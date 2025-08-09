@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact – Remka B.V.</title>
+    <meta name="description" content="Neem contact op met Remka B.V. voor vragen over producten, bestellingen of service." />
+    <link rel="canonical" href="https://remka-prototype.netlify.app/contact.html" />
+    <meta property="og:title" content="Contact – Remka B.V." />
+    <meta property="og:description" content="Wij helpen je graag verder. Bel of mail ons team." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://remka-prototype.netlify.app/contact.html" />
+    <meta property="og:image" content="/assets/images/placeholder-16x9.svg" />
+    <meta name="theme-color" content="#9E0059" />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/logo-remka.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { theme: { extend: { colors: { brand: '#9E0059', accent: '#F77F00', teal: '#00A99D', dark: '#333333', light: '#E6E6E6' }, fontFamily: { sans: ['"Plus Jakarta Sans"','ui-sans-serif','system-ui','sans-serif'] } } } }
+    </script>
+    <link rel="stylesheet" href="/assets/css/base.css" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <div id="header-placeholder"></div>
+
+    <main id="main" class="flex-1 container mx-auto px-4 py-10">
+      <header>
+        <h1 class="text-3xl font-extrabold tracking-tight">Contact</h1>
+        <p class="mt-2 text-gray-700">Stel je vraag. We reageren op werkdagen meestal binnen één werkdag.</p>
+      </header>
+
+      <div class="grid lg:grid-cols-2 gap-10 items-start mt-6">
+        <section>
+          <form class="space-y-4" action="#" method="post" onsubmit="event.preventDefault()">
+            <div>
+              <label for="name" class="block text-sm font-medium">Naam</label>
+              <input id="name" name="name" type="text" required class="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal" />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium">E‑mail</label>
+              <input id="email" name="email" type="email" required class="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal" />
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium">Bericht</label>
+              <textarea id="message" name="message" rows="5" required class="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal"></textarea>
+            </div>
+            <div class="flex items-center justify-between">
+              <p class="text-sm text-gray-600">We gebruiken je gegevens alleen om te reageren op je bericht.</p>
+              <button class="btn">Versturen</button>
+            </div>
+          </form>
+        </section>
+
+        <aside class="space-y-6">
+          <section class="card p-6">
+            <h2 class="font-semibold">Klantenservice</h2>
+            <ul class="mt-3 text-sm text-gray-700 space-y-1">
+              <li>Ma–Vr 09:00–17:00</li>
+              <li>Telefoon: +31 (0)85 000 0000</li>
+              <li>E‑mail: info@remka.nl</li>
+            </ul>
+          </section>
+          <section class="card overflow-hidden">
+            <img src="/assets/images/placeholder-16x9.svg" alt="Kaart van ons kantoor" loading="lazy" class="w-full" />
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="/assets/js/menu.js" defer></script>
+    <script src="/assets/js/index.js" defer></script>
+  </body>
+  </html>
+
+

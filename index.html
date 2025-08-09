@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Remka B.V. – Medische groothandel voor praktijk en lab</title>
+    <meta name="description" content="Remka B.V. levert medische verbruiksartikelen voor praktijk en lab. Snel geleverd, scherpe prijzen en persoonlijk contact." />
+    <link rel="canonical" href="https://remka-prototype.netlify.app/" />
+    <meta property="og:title" content="Remka B.V. – Medische groothandel" />
+    <meta property="og:description" content="Medische verbruiksartikelen voor praktijk en lab. Snel geleverd, scherpe prijzen en persoonlijk contact." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://remka-prototype.netlify.app/" />
+    <meta property="og:image" content="/assets/images/placeholder-16x9.svg" />
+    <meta name="theme-color" content="#9E0059" />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/logo-remka.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { brand: '#9E0059', accent: '#F77F00', teal: '#00A99D', dark: '#333333', light: '#E6E6E6' },
+            fontFamily: { sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'] }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="/assets/css/base.css" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <div id="header-placeholder"></div>
+
+    <main id="main" class="flex-1">
+      <!-- Hero -->
+      <section class="bg-gray-50">
+        <div class="container mx-auto px-4 py-14 md:py-20 grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-dark">Medische groothandel voor praktijk en lab</h1>
+            <p class="mt-4 text-gray-700 max-w-prose">Wij leveren betrouwbare verbruiksartikelen aan zorgprofessionals. Snel geleverd, helder geprijsd en met persoonlijke service.</p>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a href="#" class="btn">Bekijk assortiment</a>
+              <a href="#" class="btn btn--ghost">Neem contact op</a>
+            </div>
+          </div>
+          <div>
+            <img src="/assets/images/placeholder-16x9.svg" alt="Sfeerbeeld medische materialen" loading="lazy" class="rounded-xl border border-gray-200" />
+          </div>
+        </div>
+      </section>
+
+      <!-- USP tiles -->
+      <section class="container mx-auto px-4 py-12">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="card card--hover p-6">
+            <h3 class="font-semibold text-dark">Snelle levering</h3>
+            <p class="text-gray-700 mt-2">Voor 16:00 besteld, vaak morgen in huis.</p>
+          </div>
+          <div class="card card--hover p-6">
+            <h3 class="font-semibold text-dark">Zakelijk gemak</h3>
+            <p class="text-gray-700 mt-2">Facturen en bestelgeschiedenis op één plek.</p>
+          </div>
+          <div class="card card--hover p-6">
+            <h3 class="font-semibold text-dark">Groot assortiment</h3>
+            <p class="text-gray-700 mt-2">Alles voor praktijk, lab en facilitaire zorg.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Categorieën -->
+      <section class="container mx-auto px-4 py-12">
+        <div class="flex items-end justify-between gap-4 mb-6">
+          <h2 class="text-2xl font-bold">Categorieën</h2>
+          <a class="text-sm font-semibold text-brand" href="#">Bekijk alles →</a>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          <a href="#" class="card card--hover p-4 flex flex-col items-center text-center">
+            <img src="/assets/images/placeholder-square.svg" alt="Wondzorg" loading="lazy" class="rounded-md border border-gray-200" />
+            <span class="mt-3 font-medium">Wondzorg</span>
+          </a>
+          <a href="#" class="card card--hover p-4 flex flex-col items-center text-center">
+            <img src="/assets/images/placeholder-square.svg" alt="Desinfectie" loading="lazy" class="rounded-md border border-gray-200" />
+            <span class="mt-3 font-medium">Desinfectie</span>
+          </a>
+          <a href="#" class="card card--hover p-4 flex flex-col items-center text-center">
+            <img src="/assets/images/placeholder-square.svg" alt="Handschoenen" loading="lazy" class="rounded-md border border-gray-200" />
+            <span class="mt-3 font-medium">Handschoenen</span>
+          </a>
+          <a href="#" class="card card--hover p-4 flex flex-col items-center text-center">
+            <img src="/assets/images/placeholder-square.svg" alt="Labmateriaal" loading="lazy" class="rounded-md border border-gray-200" />
+            <span class="mt-3 font-medium">Labmateriaal</span>
+          </a>
+          <a href="#" class="card card--hover p-4 flex flex-col items-center text-center">
+            <img src="/assets/images/placeholder-square.svg" alt="Sterilisatie" loading="lazy" class="rounded-md border border-gray-200" />
+            <span class="mt-3 font-medium">Sterilisatie</span>
+          </a>
+          <a href="#" class="card card--hover p-4 flex flex-col items-center text-center">
+            <img src="/assets/images/placeholder-square.svg" alt="Instrumenten" loading="lazy" class="rounded-md border border-gray-200" />
+            <span class="mt-3 font-medium">Instrumenten</span>
+          </a>
+          <a href="#" class="card card--hover p-4 flex flex-col items-center text-center">
+            <img src="/assets/images/placeholder-square.svg" alt="Verband" loading="lazy" class="rounded-md border border-gray-200" />
+            <span class="mt-3 font-medium">Verband</span>
+          </a>
+          <a href="#" class="card card--hover p-4 flex flex-col items-center text-center">
+            <img src="/assets/images/placeholder-square.svg" alt="Meet & test" loading="lazy" class="rounded-md border border-gray-200" />
+            <span class="mt-3 font-medium">Meet &amp; test</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Populaire producten -->
+      <section class="container mx-auto px-4 py-12">
+        <div class="flex items-end justify-between gap-4 mb-6">
+          <h2 class="text-2xl font-bold">Populaire producten</h2>
+          <a class="text-sm font-semibold text-brand" href="#">Alle producten →</a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <!-- 8 product cards -->
+          
+          <!-- Card template -->
+          <a href="#" class="card card--hover p-4 flex flex-col">
+            <img src="/assets/images/placeholder-4x3.svg" alt="Productafbeelding" loading="lazy" class="rounded-md border border-gray-200" />
+            <div class="mt-3 text-sm text-gray-600">Remka</div>
+            <h3 class="mt-1 font-semibold text-dark">Nitril handschoenen blauw – M</h3>
+            <div class="mt-2 font-semibold">€ 12,95</div>
+            <div class="mt-3"><span class="btn btn--accent text-xs">Bekijk</span></div>
+          </a>
+
+          <a href="#" class="card card--hover p-4 flex flex-col">
+            <img src="/assets/images/placeholder-4x3.svg" alt="Productafbeelding" loading="lazy" class="rounded-md border border-gray-200" />
+            <div class="mt-3 text-sm text-gray-600">Medico</div>
+            <h3 class="mt-1 font-semibold text-dark">Alcohol 70% 1L</h3>
+            <div class="mt-2 font-semibold">€ 8,75</div>
+            <div class="mt-3"><span class="btn btn--accent text-xs">Bekijk</span></div>
+          </a>
+
+          <a href="#" class="card card--hover p-4 flex flex-col">
+            <img src="/assets/images/placeholder-4x3.svg" alt="Productafbeelding" loading="lazy" class="rounded-md border border-gray-200" />
+            <div class="mt-3 text-sm text-gray-600">CleanLab</div>
+            <h3 class="mt-1 font-semibold text-dark">Steriele gaaskompressen 10x10</h3>
+            <div class="mt-2 font-semibold">€ 5,40</div>
+            <div class="mt-3"><span class="btn btn--accent text-xs">Bekijk</span></div>
+          </a>
+
+          <a href="#" class="card card--hover p-4 flex flex-col">
+            <img src="/assets/images/placeholder-4x3.svg" alt="Productafbeelding" loading="lazy" class="rounded-md border border-gray-200" />
+            <div class="mt-3 text-sm text-gray-600">ThermoCheck</div>
+            <h3 class="mt-1 font-semibold text-dark">Digitale thermometer</h3>
+            <div class="mt-2 font-semibold">€ 14,50</div>
+            <div class="mt-3"><span class="btn btn--accent text-xs">Bekijk</span></div>
+          </a>
+
+          <a href="#" class="card card--hover p-4 flex flex-col">
+            <img src="/assets/images/placeholder-4x3.svg" alt="Productafbeelding" loading="lazy" class="rounded-md border border-gray-200" />
+            <div class="mt-3 text-sm text-gray-600">Remka</div>
+            <h3 class="mt-1 font-semibold text-dark">Onderzoeksbank papier 59cm</h3>
+            <div class="mt-2 font-semibold">€ 3,90</div>
+            <div class="mt-3"><span class="btn btn--accent text-xs">Bekijk</span></div>
+          </a>
+
+          <a href="#" class="card card--hover p-4 flex flex-col">
+            <img src="/assets/images/placeholder-4x3.svg" alt="Productafbeelding" loading="lazy" class="rounded-md border border-gray-200" />
+            <div class="mt-3 text-sm text-gray-600">Medico</div>
+            <h3 class="mt-1 font-semibold text-dark">Niet steriele spatels hout</h3>
+            <div class="mt-2 font-semibold">€ 2,25</div>
+            <div class="mt-3"><span class="btn btn--accent text-xs">Bekijk</span></div>
+          </a>
+
+          <a href="#" class="card card--hover p-4 flex flex-col">
+            <img src="/assets/images/placeholder-4x3.svg" alt="Productafbeelding" loading="lazy" class="rounded-md border border-gray-200" />
+            <div class="mt-3 text-sm text-gray-600">CleanLab</div>
+            <h3 class="mt-1 font-semibold text-dark">Schoonmaakdoekjes alcoholvrij</h3>
+            <div class="mt-2 font-semibold">€ 4,20</div>
+            <div class="mt-3"><span class="btn btn--accent text-xs">Bekijk</span></div>
+          </a>
+
+          <a href="#" class="card card--hover p-4 flex flex-col">
+            <img src="/assets/images/placeholder-4x3.svg" alt="Productafbeelding" loading="lazy" class="rounded-md border border-gray-200" />
+            <div class="mt-3 text-sm text-gray-600">ThermoCheck</div>
+            <h3 class="mt-1 font-semibold text-dark">Bloeddrukmeter pols</h3>
+            <div class="mt-2 font-semibold">€ 29,95</div>
+            <div class="mt-3"><span class="btn btn--accent text-xs">Bekijk</span></div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Blog teaser -->
+      <section class="container mx-auto px-4 py-12">
+        <div class="flex items-end justify-between gap-4 mb-6">
+          <h2 class="text-2xl font-bold">Uit onze blog</h2>
+          <a class="text-sm font-semibold text-brand" href="#">Naar alle artikelen →</a>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <a href="#" class="card card--hover overflow-hidden">
+            <img src="/assets/images/placeholder-16x9.svg" alt="Blogafbeelding" loading="lazy" />
+            <div class="p-4">
+              <div class="text-xs text-gray-600">11 apr 2025 · Praktijktips</div>
+              <h3 class="mt-1 font-semibold">Hygiëneprotocol in 5 stappen</h3>
+              <p class="mt-2 text-sm text-gray-700">Maak je praktijk schoon en veilig met dit korte stappenplan.</p>
+            </div>
+          </a>
+          <a href="#" class="card card--hover overflow-hidden">
+            <img src="/assets/images/placeholder-16x9.svg" alt="Blogafbeelding" loading="lazy" />
+            <div class="p-4">
+              <div class="text-xs text-gray-600">28 mrt 2025 · Productnieuws</div>
+              <h3 class="mt-1 font-semibold">Nieuwe nitril handschoenen</h3>
+              <p class="mt-2 text-sm text-gray-700">Sterk, comfortabel en geschikt voor lange inzet.</p>
+            </div>
+          </a>
+          <a href="#" class="card card--hover overflow-hidden">
+            <img src="/assets/images/placeholder-16x9.svg" alt="Blogafbeelding" loading="lazy" />
+            <div class="p-4">
+              <div class="text-xs text-gray-600">12 mrt 2025 · Logistiek</div>
+              <h3 class="mt-1 font-semibold">Voor 16:00 besteld, snel geleverd</h3>
+              <p class="mt-2 text-sm text-gray-700">Zo houden we levertijden laag en voorraden op peil.</p>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="/assets/js/menu.js" defer></script>
+    <script src="/assets/js/index.js" defer></script>
+  </body>
+</html>
+

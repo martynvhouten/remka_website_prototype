@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Placeholder 4:3">
+  <rect width="800" height="600" fill="#E6E6E6"/>
+  <path d="M0 0 L800 600 M800 0 L0 600" stroke="#cccccc" stroke-width="2"/>
+  <text x="400" y="310" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#666">Afbeelding 4:3</text>
+</svg>
+

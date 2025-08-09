@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Remka">
+  <rect width="64" height="64" rx="12" fill="#9E0059"/>
+  <path d="M18 44 L18 20 L30 20 C36 20 40 24 40 28 C40 31 38 33 36 34 L44 44 L38 44 L31 35 L24 35 L24 44 Z M24 29 L30.5 29 C33 29 34 27.8 34 26.8 C34 25.2 32.8 24 30.5 24 L24 24 Z" fill="white"/>
+</svg>
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' role='img' aria-label='Remka'><rect width='64' height='64' rx='12' ry='12' fill='#9E0059'/><path d='M18 44V20h12c6 0 10 3.5 10 8.5S36 37 30 37h-6v7h-6zm12-13c2.8 0 4.5-1.8 4.5-4.5S32.8 22 30 22h-6v9h6z' fill='white'/></svg>

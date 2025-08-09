@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product – Remka B.V.</title>
+    <meta name="description" content="Bekijk productspecificaties, prijs en beschikbaarheid. Snel geleverd door Remka B.V." />
+    <link rel="canonical" href="https://remka-prototype.netlify.app/product.html" />
+    <meta property="og:title" content="Product – Remka B.V." />
+    <meta property="og:description" content="Professionele producten voor de zorg." />
+    <meta property="og:type" content="product" />
+    <meta property="og:url" content="https://remka-prototype.netlify.app/product.html" />
+    <meta property="og:image" content="/assets/images/placeholder-4x3.svg" />
+    <meta name="theme-color" content="#9E0059" />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/logo-remka.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { theme: { extend: { colors: { brand: '#9E0059', accent: '#F77F00', teal: '#00A99D', dark: '#333333', light: '#E6E6E6' }, fontFamily: { sans: ['"Plus Jakarta Sans"','ui-sans-serif','system-ui','sans-serif'] } } } }
+    </script>
+    <link rel="stylesheet" href="/assets/css/base.css" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <div id="header-placeholder"></div>
+
+    <main id="main" class="flex-1 container mx-auto px-4 py-10">
+      <nav class="text-sm text-gray-700 breadcrumbs" aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center gap-2">
+          <li><a href="/">Home</a></li>
+          <li>›</li>
+          <li><a href="/category.html">Assortiment</a></li>
+          <li>›</li>
+          <li><span>Product</span></li>
+        </ol>
+      </nav>
+
+      <div class="grid lg:grid-cols-2 gap-10 mt-4">
+        <!-- Gallery -->
+        <div>
+          <img id="mainImg" src="/assets/images/placeholder-4x3.svg" alt="Nitril handschoenen blauw – M" loading="lazy" class="rounded-xl border border-gray-200" />
+          <div class="mt-4 grid grid-cols-4 gap-3">
+            <button class="border border-gray-200 rounded-lg overflow-hidden focus-ring" data-src="/assets/images/placeholder-4x3.svg"><img src="/assets/images/placeholder-4x3.svg" alt="Afbeelding 1" loading="lazy" /></button>
+            <button class="border border-gray-200 rounded-lg overflow-hidden focus-ring" data-src="/assets/images/placeholder-square.svg"><img src="/assets/images/placeholder-square.svg" alt="Afbeelding 2" loading="lazy" /></button>
+            <button class="border border-gray-200 rounded-lg overflow-hidden focus-ring" data-src="/assets/images/placeholder-16x9.svg"><img src="/assets/images/placeholder-16x9.svg" alt="Afbeelding 3" loading="lazy" /></button>
+            <button class="border border-gray-200 rounded-lg overflow-hidden focus-ring" data-src="/assets/images/placeholder-4x3.svg"><img src="/assets/images/placeholder-4x3.svg" alt="Afbeelding 4" loading="lazy" /></button>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div>
+          <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">Nitril handschoenen blauw – M</h1>
+          <div class="mt-2 text-gray-700">Merk: Remka</div>
+          <div class="mt-3 flex items-center gap-2">
+            <span class="text-2xl font-bold">€ 12,95</span>
+            <span class="text-sm text-gray-600">excl. btw</span>
+            <span class="text-sm text-gray-600">(€ 15,68 incl.)</span>
+          </div>
+          <div class="mt-3"><span class="badge badge--ok">Op voorraad</span></div>
+          <div class="mt-6 flex gap-3">
+            <button class="btn">Toevoegen</button>
+            <button class="btn btn--ghost">Offerte</button>
+          </div>
+
+          <ul class="mt-6 list-disc pl-5 text-gray-700 space-y-1">
+            <li>Comfortabele pasvorm</li>
+            <li>Geschikt voor langere draagtijd</li>
+            <li>Latexvrij en poedervrij</li>
+          </ul>
+
+          <div class="mt-8 divide-y divide-gray-200 border border-gray-200 rounded-lg">
+            <details open class="p-4">
+              <summary class="cursor-pointer font-semibold">Beschrijving</summary>
+              <div class="mt-2 text-gray-700">Nitril handschoenen bieden bescherming en draagcomfort. Geschikt voor onderzoek en algemene handelingen.</div>
+            </details>
+            <details class="p-4">
+              <summary class="cursor-pointer font-semibold">Specificaties</summary>
+              <div class="mt-2 text-gray-700">
+                <ul class="list-disc pl-5 space-y-1">
+                  <li>Maat: M</li>
+                  <li>Kleur: blauw</li>
+                  <li>Materiaal: nitril</li>
+                </ul>
+              </div>
+            </details>
+            <details class="p-4">
+              <summary class="cursor-pointer font-semibold">Verzending</summary>
+              <div class="mt-2 text-gray-700">Bestel op werkdagen voor 16:00 en je bestelling gaat dezelfde dag nog mee met de vervoerder.</div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <section class="mt-12">
+        <h2 class="text-xl font-bold">Gerelateerde producten</h2>
+        <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <a href="/product.html" class="card card--hover p-4 flex flex-col">
+            <img src="/assets/images/placeholder-4x3.svg" alt="Productafbeelding" loading="lazy" class="rounded-md border border-gray-200" />
+            <div class="mt-3 text-sm text-gray-600">Remka</div>
+            <h3 class="mt-1 font-semibold text-dark">Handschoenen zwart – L</h3>
+            <div class="mt-2 font-semibold">€ 13,95</div>
+          </a>
+          <a href="/product.html" class="card card--hover p-4 flex flex-col">
+            <img src="/assets/images/placeholder-4x3.svg" alt="Productafbeelding" loading="lazy" class="rounded-md border border-gray-200" />
+            <div class="mt-3 text-sm text-gray-600">Medico</div>
+            <h3 class="mt-1 font-semibold text-dark">Alcohol 70% 5L</h3>
+            <div class="mt-2 font-semibold">€ 32,00</div>
+          </a>
+          <a href="/product.html" class="card card--hover p-4 flex flex-col">
+            <img src="/assets/images/placeholder-4x3.svg" alt="Productafbeelding" loading="lazy" class="rounded-md border border-gray-200" />
+            <div class="mt-3 text-sm text-gray-600">CleanLab</div>
+            <h3 class="mt-1 font-semibold text-dark">Steriele kompressen 5x5</h3>
+            <div class="mt-2 font-semibold">€ 3,10</div>
+          </a>
+          <a href="/product.html" class="card card--hover p-4 flex flex-col">
+            <img src="/assets/images/placeholder-4x3.svg" alt="Productafbeelding" loading="lazy" class="rounded-md border border-gray-200" />
+            <div class="mt-3 text-sm text-gray-600">ThermoCheck</div>
+            <h3 class="mt-1 font-semibold text-dark">Infrarood thermometer</h3>
+            <div class="mt-2 font-semibold">€ 39,95</div>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="/assets/js/menu.js" defer></script>
+    <script src="/assets/js/index.js" defer></script>
+    <script>
+      // Mini gallery switcher
+      window.addEventListener('DOMContentLoaded', () => {
+        const main = document.getElementById('mainImg');
+        document.querySelectorAll('[data-src]').forEach(btn => btn.addEventListener('click', () => { main.src = btn.getAttribute('data-src'); }));
+      });
+    </script>
+  </body>
+  </html>
+
+

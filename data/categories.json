@@ -1,0 +1,127 @@
+[
+  {
+    "id": 1,
+    "name": "Apparatuur",
+    "slug": "apparatuur",
+    "count": 24,
+    "children": [
+      { "id": 11, "name": "Diagnostiek", "slug": "diagnostiek", "count": 10, "children": [
+        { "id": 111, "name": "Stethoscopen", "slug": "stethoscopen", "count": 4 },
+        { "id": 112, "name": "Bloeddrukmeters", "slug": "bloeddrukmeters", "count": 3 },
+        { "id": 113, "name": "Otoskopen", "slug": "otoskopen", "count": 3 }
+      ]},
+      { "id": 12, "name": "Sterilisatie", "slug": "sterilisatie", "count": 5, "children": [
+        { "id": 121, "name": "Autoclaaf", "slug": "autoclaaf", "count": 2 },
+        { "id": 122, "name": "Sealapparaten", "slug": "sealapparaten", "count": 2 },
+        { "id": 123, "name": "Indicatoren", "slug": "indicatoren", "count": 1 }
+      ]}
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Medische Instrumenten",
+    "slug": "medische-instrumenten",
+    "count": 18,
+    "children": [
+      { "id": 21, "name": "Chirurgisch", "slug": "chirurgisch", "count": 8, "children": [
+        { "id": 211, "name": "Scharen", "slug": "scharen", "count": 3 },
+        { "id": 212, "name": "Pincetten", "slug": "pincetten", "count": 3 },
+        { "id": 213, "name": "Klemmen", "slug": "klemmen", "count": 2 }
+      ]},
+      { "id": 22, "name": "Onderzoek", "slug": "onderzoek", "count": 4, "children": [
+        { "id": 221, "name": "Specula", "slug": "specula", "count": 2 },
+        { "id": 222, "name": "Sondes", "slug": "sondes", "count": 2 }
+      ]}
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Laboratorium",
+    "slug": "laboratorium",
+    "count": 15,
+    "children": [
+      { "id": 31, "name": "Verbruik", "slug": "verbruik", "count": 9, "children": [
+        { "id": 311, "name": "Pipetpunten", "slug": "pipetpunten", "count": 4 },
+        { "id": 312, "name": "Buisjes", "slug": "buisjes", "count": 3 },
+        { "id": 313, "name": "Cuvetten", "slug": "cuvetten", "count": 2 }
+      ]}
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Injectiematerialen",
+    "slug": "injectiematerialen",
+    "count": 20,
+    "children": [
+      { "id": 41, "name": "Naalden", "slug": "naalden", "count": 10, "children": [
+        { "id": 411, "name": "Subcutaan", "slug": "subcutaan", "count": 5 },
+        { "id": 412, "name": "Veiligheidsnaalden", "slug": "veiligheidsnaalden", "count": 5 }
+      ]},
+      { "id": 42, "name": "Spuiten", "slug": "spuiten", "count": 6, "children": [
+        { "id": 421, "name": "2-delig", "slug": "2-delig", "count": 3 },
+        { "id": 422, "name": "3-delig", "slug": "3-delig", "count": 3 }
+      ]}
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Verbandmiddelen",
+    "slug": "verbandmiddelen",
+    "count": 12,
+    "children": [
+      { "id": 51, "name": "Kompressen", "slug": "kompressen", "count": 6, "children": [
+        { "id": 511, "name": "Steriel", "slug": "steriel", "count": 3 },
+        { "id": 512, "name": "Niet-steriel", "slug": "niet-steriel", "count": 3 }
+      ]}
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Verbruiksmaterialen",
+    "slug": "verbruiksmaterialen",
+    "count": 22,
+    "children": [
+      { "id": 61, "name": "Handschoenen", "slug": "handschoenen", "count": 12, "children": [
+        { "id": 611, "name": "Nitril", "slug": "nitril", "count": 6 },
+        { "id": 612, "name": "Latex", "slug": "latex", "count": 3 },
+        { "id": 613, "name": "Vinyl", "slug": "vinyl", "count": 3 }
+      ]}
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Praktijkinrichting",
+    "slug": "praktijkinrichting",
+    "count": 9,
+    "children": [
+      { "id": 71, "name": "Meubilair", "slug": "meubilair", "count": 5, "children": [
+        { "id": 711, "name": "Behandelbanken", "slug": "behandelbanken", "count": 2 }
+      ]}
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Anatomie",
+    "slug": "anatomie",
+    "count": 6,
+    "children": [
+      { "id": 81, "name": "Modellen", "slug": "modellen", "count": 6, "children": [
+        { "id": 811, "name": "Skelet", "slug": "skelet", "count": 3 }
+      ]}
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Drogisterij artikelen",
+    "slug": "drogisterij-artikelen",
+    "count": 7,
+    "children": [
+      { "id": 91, "name": "Verzorging", "slug": "verzorging", "count": 7, "children": [
+        { "id": 911, "name": "Pleisters", "slug": "pleisters", "count": 3 },
+        { "id": 912, "name": "Cold/Hot packs", "slug": "cold-hot-packs", "count": 2 }
+      ]}
+    ]
+  }
+]
+
+

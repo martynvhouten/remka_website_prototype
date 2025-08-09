@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600" role="img" aria-label="Placeholder vierkant">
+  <rect width="600" height="600" fill="#E6E6E6"/>
+  <path d="M0 0 L600 600 M600 0 L0 600" stroke="#cccccc" stroke-width="2"/>
+  <text x="300" y="310" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#666">Afbeelding 1:1</text>
+</svg>
+

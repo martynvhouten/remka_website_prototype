@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Placeholder 16:9">
+  <rect width="1280" height="720" fill="#E6E6E6"/>
+  <path d="M0 0 L1280 720 M1280 0 L0 720" stroke="#cccccc" stroke-width="2"/>
+  <text x="640" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" fill="#666">Afbeelding 16:9</text>
+</svg>
+
