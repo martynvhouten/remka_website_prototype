@@ -128,9 +128,41 @@
     },
 
     async loadData() {
-      // In Hyvä/Magento: menu wordt server-side gerenderd; JS gebruikt alleen voor interactiviteit.
-      // Laat state leeg; renderers gaan uit van bestaande markup of eenvoudige items.
-      this.state.data = [];
+      // Probeer categorieën te laden (prototype) met robuuste fallback-parsing.
+      try {
+        const res = await fetch('/data/categories.json', { cache: 'no-store' });
+        const text = await res.text();
+        let parsed;
+        try { parsed = JSON.parse(text); }
+        catch {
+          const startIdx = text.indexOf('categories =');
+          if (startIdx !== -1) {
+            const braceStart = text.indexOf('{', startIdx);
+            let depth = 0; let endIdx = -1;
+            for (let i = braceStart; i < text.length; i++) {
+              const ch = text[i];
+              if (ch === '{') depth++;
+              else if (ch === '}') { depth--; if (depth === 0) { endIdx = i; break; } }
+            }
+            if (braceStart !== -1 && endIdx !== -1) {
+              const jsonLike = text.slice(braceStart, endIdx + 1);
+              const cleaned = jsonLike.replace(/,(\s*[}\]])/g, '$1');
+              parsed = JSON.parse(cleaned);
+            }
+          }
+        }
+        if (!parsed) throw new Error('Onleesbare categories.json');
+        const nodes = Array.isArray(parsed) ? parsed : (parsed.children || []);
+        this.state.data = nodes.map(withSlugs);
+      } catch (e) {
+        // Fallback-menu zodat er altijd items zichtbaar zijn
+        this.state.data = [
+          { name: 'Assortiment', slug: 'assortiment', children: [] },
+          { name: 'Merken', slug: 'merken', children: [] },
+          { name: 'Aanbiedingen', slug: 'aanbiedingen', children: [] }
+        ];
+        try { console.warn('[Header] Fallback-menu actief:', e); } catch {}
+      }
     },
 
     renderDesktop() {
@@ -145,12 +177,7 @@
         nav.parentNode.insertBefore(host, nav.nextSibling);
       }
 
-      // Hyvä-ready: als er geen menu-data is (prototype), verberg de menubalk volledig
-      if (!this.state.data || this.state.data.length === 0) {
-        if (nav) nav.classList.add('hidden');
-        if (host) host.classList.add('hidden');
-        return;
-      }
+      // Houd menubalk aanwezig; rendering van items gebeurt server-side in Hyvä
 
       this.state.data.forEach((cat, i) => {
         const hasChildren = Array.isArray(cat.children) && cat.children.length > 0;
@@ -245,11 +272,7 @@
       if (!wrap) wrap = offcanvas.querySelector('#mobileMenu');
       wrap.innerHTML = '';
 
-      // Geen data? Houd offcanvas verborgen en doe niets
-      if (!this.state.data || this.state.data.length === 0) {
-        if (offcanvas) offcanvas.classList.add('hidden');
-        return;
-      }
+      // Mobile menu wordt gevuld door server-side/menu data indien beschikbaar
 
       this.state.data.forEach((cat, i) => {
         const hasChildren = cat.children && cat.children.length > 0;
@@ -379,7 +402,7 @@
   // Init pas na partials:loaded, met fallback na DOMContentLoaded als er geen partial loader is
   const doInitOnce = () => { if (window.__remkaHeaderBooted) return; window.__remkaHeaderBooted = true; try { RemkaHeader.init(); } catch {} };
   document.addEventListener('partials:loaded', doInitOnce);
-  document.addEventListener('DOMContentLoaded', () => { setTimeout(() => { if (!document.getElementById('menuRoot')) doInitOnce(); }, 0); });
+  // Init uitsluitend na partials:loaded, zodat geen dubbele header wordt opgebouwd
 
   // Demo cart API (optioneel, blijft voor prototype). In productie Hyvä vervangen door Magento minicart.
   const Cart = {
