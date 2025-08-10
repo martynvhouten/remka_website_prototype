@@ -35,6 +35,7 @@
     var link = node.querySelector('[data-card-link]');
     var img = node.querySelector('[data-image]');
     var ttl = node.querySelector('[data-title]');
+    var brandEl = node.querySelector('[data-brand]');
     var priceEl = node.querySelector('[data-price]');
     var stockEl = node.querySelector('[data-stock]');
     var ratingEl = node.querySelector('[data-rating]');
@@ -58,6 +59,10 @@
     }
 
     if(ttl) ttl.textContent = data.title || '';
+    if(brandEl){
+      var brand = data.brand || '';
+      if(brand){ brandEl.textContent = brand; brandEl.hidden = false; }
+    }
 
     var hasCompare = (data.compareAtPrice && Number(data.compareAtPrice) > Number(data.price));
     if(priceEl){
