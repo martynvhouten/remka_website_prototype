@@ -2,12 +2,13 @@
 <section class="container mx-auto px-4 py-8 section-alt">
   <div class="container-narrow">
     <h2 class="text-xl font-bold">Producten</h2>
+    <div data-partial="components/ProductCard"></div>
     <div id="productGrid" class="mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
     <div id="productGridSkeletons" class="mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 hidden" aria-hidden="true">
-      <div class="card p-4 skeleton h-48"></div>
-      <div class="card p-4 skeleton h-48"></div>
-      <div class="card p-4 skeleton h-48"></div>
-      <div class="card p-4 skeleton h-48"></div>
+      <div class="card p-4 skeleton"></div>
+      <div class="card p-4 skeleton"></div>
+      <div class="card p-4 skeleton"></div>
+      <div class="card p-4 skeleton"></div>
     </div>
     <div id="productEmpty" class="mt-6 empty hidden" role="status" aria-live="polite">
       <div class="empty__title">Geen resultaten</div>

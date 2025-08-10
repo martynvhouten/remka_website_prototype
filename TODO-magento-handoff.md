@@ -15,7 +15,7 @@ Templates (PHTML mapping)
 
 JS
 - `assets/js/index.js`: partial-loader uitschakelen in Magento; behoud evt. FAQ-accordion en jaarinjectie of verplaatsen naar theme main bundle.
-- `assets/js/menu.js`: vervang of integreer met Hyvä/Alpine voor mega/offcanvas; laat data van Magento komen (navigatie tree). Verwijder demo cart API zodra Hyvä minicart actief is.
+- `assets/js/nav.js`: integreer met Hyvä/Alpine voor hoofdmenu/offcanvas; laat data van Magento komen (navigatie tree).
 - `assets/js/category.js`/`sitemap.js`/`brands.js`: vervang demo-data door Magento data of verwijder indien Hyvä componenten worden gebruikt.
 
 Functionaliteit

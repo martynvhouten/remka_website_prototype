@@ -155,26 +155,17 @@
     if(skel) skel.classList.add('hidden');
     grid.innerHTML = '';
     products.forEach(p=>{
-      const a = document.createElement('a');
-      a.href = '/product.html';
-      a.className = 'card card--hover card-product p-4';
-      a.innerHTML = `
-        <div class="card-product__media"><img src="${p.image || '/assets/images/placeholder-4x3.svg'}" alt="${p.title}" loading="lazy" class="media-img" /></div>
-        <div class="mt-3 flex items-center justify-between gap-3 card-product__brand">
-          <div class="text-sm text-dark/70">${p.brand}</div>
-          <span class="badge--soft">Topper</span>
-        </div>
-        <h3 class="mt-1 font-semibold text-dark line-clamp-2 card-product__title">${p.title}</h3>
-        <div class="mt-2 flex items-center justify-between card-product__price">
-          <div class="font-semibold">€ ${p.price.toFixed(2)}</div>
-          ${stockBadge(p)}
-        </div>
-        <button type="button" class="btn btn-brand mt-auto" data-add-to-cart aria-label="In winkelwagen" data-sku="${p.sku}" data-title="${p.title}" data-price="${p.price}" data-image="${p.image || '/assets/images/placeholder-4x3.svg'}">
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4h-2l-1 2v2h2l3.6 7.59a2 2 0 0 0 1.8 1.16h6.9v-2h-6.58l-.27-.54L18 11a2 2 0 0 0 1-1.73V6H7Zm-1 16a2 2 0 1 0 2-2 2 2 0 0 0-2 2Zm10 0a2 2 0 1 0 2-2 2 2 0 0 0-2 2Z"/><path d="M20 4v2h2v2h-2v2h-2V8h-2V6h2V4z"/></svg>
-          <span>In winkelwagen</span>
-        </button>
-      `;
-      grid.appendChild(a);
+      var card = (window.ProductCard && window.ProductCard.create) ? window.ProductCard.create({
+        url: '/product.html',
+        title: p.title,
+        imageSrc: p.image || '/assets/images/placeholder-square.svg',
+        imageAlt: p.title,
+        price: p.price,
+        sku: p.sku,
+        availability: p.stock === 'out_of_stock' ? 'outOfStock' : (p.stock === 'backorder' ? 'backorder' : 'inStock'),
+        badges: ['Topper']
+      }) : null;
+      if(card) grid.appendChild(card);
     });
     const count = document.getElementById('resultCount'); if(count) count.textContent = `${products.length} producten`;
     if(empty) empty.classList.toggle('hidden', products.length !== 0);

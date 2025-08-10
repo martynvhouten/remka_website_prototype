@@ -1,58 +1,59 @@
 <!-- COPY TO PHTML: Magento_Theme/templates/html/header.phtml -->
-<!-- Self-contained Hyvä-ready header. In: logo, zoek, account, cart, desktop menubar (mega) en mobiel off-canvas placeholders. Out: data-gedreven rendering door assets/js/menu.js. -->
-
+<!-- Tailwind + vanilla header; minimal classes and basic a11y -->
 <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-dark focus:ring-2 focus:ring-teal px-3 py-2 rounded-md">Sla over naar inhoud</a>
 
-<header class="sticky top-0 z-50 bg-white/95 backdrop-blur header-shadow" role="banner">
-  <!-- Topbar: logo, search, actions -->
-  <div>
-    <div class="container mx-auto flex items-center gap-4 py-4">
-      <!-- Mobile: burger + logo -->
-      <button type="button" class="md:hidden p-2 rounded-md border border-light" aria-label="Menu" aria-controls="offcanvas" aria-expanded="false" data-nav-toggle>
+<header id="site-header" class="sticky top-0 z-[70] bg-white/95 backdrop-blur shadow-sm transition-transform duration-200 will-change-transform" role="banner">
+  <div class="border-b border-light">
+    <div class="container mx-auto px-4 grid grid-cols-[auto_1fr_auto] items-center gap-4 py-3">
+      <button type="button" aria-label="Menu" aria-controls="mobileMenu" aria-expanded="false" data-nav="open" class="md:hidden p-2 rounded-md border border-light">
         <span class="block w-5 h-0.5 bg-dark mb-1"></span>
         <span class="block w-5 h-0.5 bg-dark mb-1"></span>
         <span class="block w-5 h-0.5 bg-dark"></span>
       </button>
-      <a href="index.html" class="shrink-0 inline-flex items-center" aria-label="Home">
-        <img src="assets/images/Remka-logo_2024.png" alt="Remka B.V." class="h-8 w-auto md:h-10" loading="lazy" />
+      <a href="/index.html" class="inline-flex items-center shrink-0" aria-label="Home">
+        <img src="/assets/images/Remka-logo_2024.png" alt="Remka B.V." class="h-8 w-auto md:h-10" loading="lazy" />
       </a>
-
-      <!-- Search (altijd zichtbaar, gecentreerd) -->
-      <form role="search" class="hidden md:flex items-center header-search-wrap">
+      <form role="search" class="hidden md:flex items-center justify-center ml-0">
         <label for="site-search" class="sr-only">Zoeken</label>
-        <input id="site-search" name="q" type="search" placeholder="Zoek producten, merken of categorieën" class="w-full h-10 rounded-full border border-light px-4 focus:outline-none focus:ring-2 focus:ring-brand" />
-        <button formaction="/search.html" class="sr-only" aria-hidden="true" tabindex="-1"></button>
+        <input id="site-search" name="q" type="search" placeholder="Zoek producten, merken of categorieën" class="w-full max-w-xl h-9 rounded-full border border-light px-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand" />
       </form>
-
-      <!-- Actions: account + cart (altijd zichtbaar) -->
-      <div class="ml-auto flex items-center gap-2 header-actions">
-        <a id="accountLink" data-account-link href="account-login.html" class="header-action header-action--ghost focus-ring" aria-label="Inloggen of account">
-          <svg class="header-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5Z" fill="currentColor"/></svg>
-          <span class="hidden sm:inline" data-account-label>Inloggen</span>
+      <div class="ml-auto flex items-center gap-2">
+        <a href="/account-login.html" aria-label="Inloggen" class="px-3 py-2 rounded-md hover:bg-light/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal inline-flex items-center">
+          <svg class="w-5 h-5 text-dark/80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5Z" fill="currentColor"/></svg>
         </a>
-        <button type="button" class="header-action header-cart focus-ring js-mini-cart-toggle" aria-label="Winkelmand" data-cart-toggle>
-          <svg class="header-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 4h-2l-1 2v2h2l3.6 7.59a2 2 0 0 0 1.8 1.16h6.9v-2h-6.58l-.27-.54L18 11a2 2 0 0 0 1-1.73V6H7Zm-1 16a2 2 0 1 0 2-2 2 2 0 0 0-2 2Zm10 0a2 2 0 1 0 2-2 2 2 0 0 0-2 2Z" fill="currentColor"/></svg>
-          <span class="hidden sm:inline">Winkelmand</span>
-          <span class="header-badge">0</span>
-        </button>
+        <a href="/cart.html" aria-label="Winkelmand" class="px-3 py-2 rounded-md hover:bg-light/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal inline-flex items-center">
+          <svg class="w-5 h-5 text-dark/80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 4h-2l-1 2v2h2l3.6 7.59a2 2 0 0 0 1.8 1.16h6.9v-2h-6.58l-.27-.54L18 11a2 2 0 0 0 1-1.73V6H7Zm-1 16a2 2 0 1 0 2-2 2 2 0 0 0-2 2Zm10 0a2 2 0 1 0 2-2 2 2 0 0 0-2 2Z" fill="currentColor"/></svg>
+        </a>
       </div>
     </div>
   </div>
-
-  <!-- Desktop: menubar + mega host -->
-  <nav id="mainNav" class="hidden md:block bg-brand text-white border-t border-light" aria-label="Hoofdmenu">
-    <div class="container mx-auto">
-      <div data-partial="menu/menu-root"></div>
+  <nav id="mainNav" aria-label="Hoofdmenu" class="hidden md:block bg-brand text-white">
+    <div class="container mx-auto px-4">
+      <ul id="desktopMenu" class="flex items-center gap-2 text-sm font-semibold py-2" role="menubar"></ul>
     </div>
   </nav>
-
-  <!-- Mega host render target (desktop) -->
-  <div class="hidden md:block"><div data-partial="menu/menu-panel"></div></div>
+  <div id="megaHost" class="hidden md:block"></div>
 </header>
 
-<!-- Mobile off-canvas (buiten header voor stabiele layering) -->
-<div data-partial="menu/menu-mobile"></div>
+<!-- Mobile drawer above overlay -->
+<div id="mobileMenu" class="fixed inset-0 z-[80] hidden" aria-hidden="true">
+  <div data-overlay class="absolute inset-0 bg-black/40 opacity-0 transition-opacity hdr-overlay"></div>
+      <aside data-drawer class="absolute left-0 top-0 h-full w-80 max-w-[85%] bg-white shadow-2xl overflow-y-auto -translate-x-full transition-transform hdr-drawer" role="dialog" aria-modal="true" aria-label="Mobiel menu">
+        <div class="p-4 border-b border-light flex items-center justify-between">
+      <h2 class="text-base font-bold">Menu</h2>
+      <button class="p-2 rounded-md border border-light" data-nav="close" aria-label="Sluiten">✕</button>
+    </div>
+        <div class="p-3 border-b border-light sticky top-0 bg-white z-10">
+      <form action="/search.html" class="flex gap-2">
+        <label for="mobile-search" class="sr-only">Zoeken</label>
+        <input id="mobile-search" name="q" type="search" placeholder="Zoek producten" class="w-full rounded-md border border-light px-3 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand" />
+        <button class="btn btn-brand text-xs" aria-label="Zoeken">Zoek</button>
+      </form>
+    </div>
+    <nav class="p-2" aria-label="Mobiel menu">
+      <div id="mobileMenuHost" class="space-y-1"></div>
+    </nav>
+  </aside>
+</div>
 
-<!-- Minicart drawer (bestaand) -->
-<div data-partial="minicart-drawer"></div>
 

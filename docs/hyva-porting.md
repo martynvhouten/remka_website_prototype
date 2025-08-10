@@ -57,7 +57,7 @@ Deze gids helpt om de prototype-partials 1-op-1 over te zetten naar Hyvä (Magen
 ### Integratie-aanwijzingen
 
 - Verplaats scripts:
-  - `assets/js/menu.js` → inline module of bundel; in Hyvä kun je Alpine gebruiken voor toggle/mega.
+  - `assets/js/nav.js` → inline module of bundel; in Hyvä kun je Alpine gebruiken voor toggle/mega.
   - `assets/js/index.js` partial loader vervalt; PHTML include/blocks nemen dit over.
 - CSS:
   - Zet token-variabelen om naar Tailwind config (`tailwind.config.js` van Hyvä) en verwijder dubbele `.btn` definities na migratie.

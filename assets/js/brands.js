@@ -19,10 +19,9 @@
   function renderCarousel(){
     const track = document.getElementById('brandsTrack'); if(!track) return;
     track.innerHTML = '';
-    const itemClass = 'snap-start shrink-0 w-[190px] md:w-[220px]';
     brands.forEach(b=>{
       const li = document.createElement('li');
-      li.className = itemClass;
+      li.className = 'slider__slide';
       const a = document.createElement('a');
       a.href = `/brand-${b.slug}.html`;
       a.className = 'block card card--hover p-4 h-[120px] flex items-center justify-center group';
@@ -35,21 +34,7 @@
       a.appendChild(img);
       li.appendChild(a); track.appendChild(li);
     });
-    const host = document.getElementById('brandsCarousel');
-    const prev = document.querySelector('[data-brands-prev]');
-    const next = document.querySelector('[data-brands-next]');
-    if(host && prev && next){
-      // Prevent vertical wheel from navigating browser history when hovering carousel
-      host.addEventListener('wheel', (e) => {
-        if(Math.abs(e.deltaX) < Math.abs(e.deltaY)){
-          e.preventDefault();
-          host.scrollBy({ left: e.deltaY, behavior: 'auto' });
-        }
-      }, { passive: false });
-      const step = 200;
-      prev.addEventListener('click', ()=> host.scrollBy({ left: -step, behavior: 'smooth' }));
-      next.addEventListener('click', ()=> host.scrollBy({ left: step, behavior: 'smooth' }));
-    }
+    // Slider behavior, arrows, snap, keyboard, autoplay are handled by the generic slider initializer via [data-slider]
   }
 
   function renderGrid(){

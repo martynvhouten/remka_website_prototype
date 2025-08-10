@@ -2,7 +2,8 @@
 
 async function injectPartial(el, name) {
   try {
-    const res = await fetch(`/partials/${name}.html`, { cache: 'no-store' });
+    const path = name.startsWith('components/') ? `/${name}.html` : `/partials/${name}.html`;
+    const res = await fetch(path, { cache: 'no-store' });
     if (!res.ok) return;
     const html = await res.text();
     el.outerHTML = html;
@@ -30,6 +31,7 @@ async function loadPartials() {
     const closeButtons = minicart.querySelectorAll('[data-close="minicart"]');
     const open = () => minicart.classList.remove('hidden');
     const close = () => minicart.classList.add('hidden');
+    try { if (!window.openMinicart) window.openMinicart = open; } catch {}
     openers.forEach(b => b.addEventListener('click', (e) => {
       e.preventDefault();
       try {
@@ -91,6 +93,26 @@ document.addEventListener('DOMContentLoaded', async () => {
         const valid = email && email.checkValidity();
         if (!valid) { err && err.classList.remove('hidden'); ok && ok.classList.add('hidden'); return; }
         err && err.classList.add('hidden'); ok && ok.classList.remove('hidden');
+      });
+    }
+  } catch {}
+
+  // Login/Register success toast (prototype only)
+  try {
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        try { window.toast && window.toast.success('Ingelogd'); } catch {}
+        setTimeout(() => { window.location.href = 'account-dashboard.html'; }, 300);
+      });
+    }
+    const registerForm = document.getElementById('registerForm');
+    if (registerForm) {
+      registerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        try { window.toast && window.toast.success('Ingelogd'); } catch {}
+        setTimeout(() => { window.location.href = 'account-dashboard.html'; }, 300);
       });
     }
   } catch {}

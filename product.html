@@ -23,13 +23,14 @@
       tailwind.config = { theme: { extend: { colors: { brand: '#9E0059', accent: '#F77F00', teal: '#00A99D', dark: '#333333', light: '#E6E6E6' }, fontFamily: { sans: ['"Plus Jakarta Sans"','ui-sans-serif','system-ui','sans-serif'] } } } }
     </script>
     <link rel="stylesheet" href="/assets/css/base.css" />
+    
   </head>
   <body class="min-h-screen flex flex-col" data-stock="in_stock">
     <div id="header-placeholder"></div>
 
     <main id="main" class="flex-1">
       <section class="section-brand-tint">
-        <div class="container mx-auto px-4 py-8">
+        <div class="container mx-auto py-8">
           <nav class="text-sm text-dark/80 breadcrumbs" aria-label="Breadcrumb">
         <ol class="flex flex-wrap items-center gap-2">
           <li><a href="/">Home</a></li>
@@ -42,23 +43,21 @@
         </div>
       </section>
 
-      <div class="container mx-auto px-4 py-8 grid lg:grid-cols-2 gap-10">
+      <div class="container mx-auto py-8 grid lg:grid-cols-2 gap-10">
         <div data-partial="product-gallery"></div>
         <div data-partial="product-info"></div>
       </div>
 
-      <section class="container mx-auto px-4 py-6">
-        <div class="card p-3 w-[min(100%,320px)] ml-auto">
-          <iframe title="Kiyoh reviews" frameborder="0" allowtransparency="false" src="https://www.kiyoh.com/retrieve-widget.html?color=white&allowTransparency=false&button=false&lang=nl&tenantId=98&locationId=1077247" width="100%" height="180"></iframe>
-        </div>
-      </section>
+      
 
+      <div data-partial="components/ProductCard"></div>
       <div data-partial="product-related"></div>
     </main>
 
     <div id="footer-placeholder"></div>
-    <script src="/assets/js/menu.js" defer></script>
+    <script src="/assets/js/nav.js" defer></script>
     <script src="/assets/js/index.js" defer></script>
+    <script src="/assets/js/productCard.js" defer></script>
     <script src="/assets/js/toasts.js" defer></script>
     <script>
       // Mini gallery switcher + zoom modal

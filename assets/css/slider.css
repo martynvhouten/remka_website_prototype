@@ -1,0 +1,20 @@
+/* Minimal slider styles using existing tokens; no !important */
+.slider__viewport { scroll-snap-type: x mandatory; }
+.slider__track { display: flex; align-items: center; }
+.slider__slide { scroll-snap-align: start; }
+
+/* Hide scrollbar on desktop (keep touch scrollbars) */
+@media (pointer: fine) {
+  .slider__viewport { scrollbar-width: none; }
+  .slider__viewport::-webkit-scrollbar { width: 0; height: 0; }
+}
+
+/* Dots */
+.slider__dots { display: flex; justify-content: center; gap: .4rem; margin-top: .75rem; }
+.slider__dots .slider__dot {
+  width: 8px; height: 8px; border-radius: 9999px; border: 1px solid var(--light);
+  background: #fff; transition: background-color .2s ease, transform .2s ease;
+}
+.slider__dots .slider__dot.is-active { background: var(--brand); border-color: var(--brand); transform: scale(1.1); }
+
+
