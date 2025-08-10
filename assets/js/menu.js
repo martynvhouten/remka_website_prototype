@@ -41,6 +41,10 @@
 
     ensureScaffold() {
       let header = document.querySelector('header[role="banner"]');
+      // Avoid creating a temporary header when a placeholder exists; the real header will be injected
+      if (!header && document.getElementById('header-placeholder')) {
+        return;
+      }
       if (!header) {
         header = document.createElement('header');
         header.setAttribute('role','banner');
@@ -301,37 +305,61 @@
 
       // Only product categories in the mobile menu
 
-      const open = () => {
+      const setAriaExpanded = (value) => { toggles.forEach(t => t.setAttribute('aria-expanded', value ? 'true' : 'false')); };
+      const lockBody = (lock) => {
+        const cls = 'menu-open';
+        if (lock) document.documentElement.classList.add(cls); else document.documentElement.classList.remove(cls);
+      };
+      const open = (sourceBtn) => {
         if (offcanvas.classList.contains('hidden')) {
           offcanvas.classList.remove('hidden');
-          document.documentElement.classList.add('menu-open');
+          try { offcanvas.style.zIndex = '80'; } catch {}
+          try { offcanvas.style.pointerEvents = 'auto'; } catch {}
+          lockBody(true);
           offcanvas.removeAttribute('aria-hidden');
-          toggles.forEach(t => t.setAttribute('aria-expanded','true'));
+          setAriaExpanded(true);
           const panel = offcanvas.querySelector('.offcanvas-panel');
+          const backdrop = offcanvas.querySelector('[data-close="offcanvas"]');
+          try {
+            if (panel) {
+              panel.style.transform = 'translateX(0)';
+              panel.style.background = '#fff';
+              panel.style.left = '0'; panel.style.top = '0'; panel.style.height = '100%';
+              panel.style.position = 'relative';
+              panel.style.zIndex = '1';
+              const wrap = panel.querySelector('#mobileMenu');
+              if (wrap) { wrap.style.display = 'block'; wrap.style.color = '#333333'; wrap.style.visibility = 'visible'; }
+            }
+            if (backdrop) { backdrop.style.zIndex = '0'; }
+          } catch {}
           this.state.offcanvasUntrap = trapFocus(panel || offcanvas);
+          if (sourceBtn) this.state.lastToggle = sourceBtn;
         }
       };
       const close = () => {
         offcanvas.classList.add('hidden');
-        document.documentElement.classList.remove('menu-open');
+        try { offcanvas.style.zIndex = ''; } catch {}
+        lockBody(false);
         offcanvas.setAttribute('aria-hidden','true');
-        toggles.forEach(t => t.setAttribute('aria-expanded','false'));
+        setAriaExpanded(false);
         if (typeof this.state.offcanvasUntrap === 'function') { this.state.offcanvasUntrap(); this.state.offcanvasUntrap = null; }
+        try { if (this.state.lastToggle && this.state.lastToggle.focus) this.state.lastToggle.focus(); } catch {}
       };
-      const onToggleClick = () => offcanvas.classList.contains('hidden') ? open() : close();
-      toggles.forEach(t => { if (t.dataset.bound) return; t.addEventListener('click', onToggleClick); t.dataset.bound = '1'; });
+      const onToggleClick = (e) => { e && e.preventDefault && e.preventDefault(); const btn = e && (e.currentTarget || e.target); offcanvas.classList.contains('hidden') ? open(btn) : close(); };
+      toggles.forEach(t => { if (t.dataset.bound) return; t.addEventListener('click', onToggleClick, { passive: false }); t.dataset.bound = '1'; });
       offcanvas.querySelectorAll('[data-close="offcanvas"]').forEach(b => { if (b.dataset.bound) return; b.addEventListener('click', close); b.dataset.bound = '1'; });
       // Delegated fallback (also works if the button appears later in the DOM)
       if (!document.documentElement.dataset.navDelegated) {
         document.addEventListener('click', (e) => {
           const toggleBtn = e.target.closest && e.target.closest('[data-nav-toggle]');
-          if (toggleBtn) { e.preventDefault(); onToggleClick(); }
+          // Avoid double-toggling if a direct handler is already bound on the button
+          if (toggleBtn) { if (toggleBtn.dataset.bound) return; e.preventDefault(); onToggleClick({ target: toggleBtn }); }
           const closeBtn = e.target.closest && e.target.closest('[data-close="offcanvas"]');
           if (closeBtn) { e.preventDefault(); close(); }
         });
         document.documentElement.dataset.navDelegated = '1';
       }
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !offcanvas.classList.contains('hidden')) close(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !offcanvas.classList.contains('hidden')) close(); }, { passive: true });
       // Prevent scroll bounce when reaching the edges
       offcanvas.addEventListener('wheel', (e) => {
         const panel = offcanvas.querySelector('.offcanvas-panel'); if(!panel) return;
@@ -339,6 +367,31 @@
         const atBottom = Math.ceil(panel.scrollTop + panel.clientHeight) >= panel.scrollHeight;
         if ((atTop && e.deltaY < 0) || (atBottom && e.deltaY > 0)) e.preventDefault();
       }, { passive: false });
+
+      // Close on internal link click
+      if (wrap && !wrap.dataset.closeOnLink) {
+        wrap.addEventListener('click', (e) => {
+          const a = e.target && e.target.closest && e.target.closest('a[href]');
+          if (!a) return;
+          const href = a.getAttribute('href') || '';
+          const isHash = href.startsWith('#');
+          const isExternal = /^https?:\/\//i.test(href) && !href.includes(location.host);
+          if (!isExternal) close();
+          if (isHash) {
+            const id = href.slice(1);
+            const target = id ? document.getElementById(id) : null;
+            if (target) { try { target.focus({ preventScroll: true }); } catch {} }
+          }
+        }, { passive: true });
+        wrap.dataset.closeOnLink = '1';
+      }
+
+      // Close on history navigation / route change
+      window.addEventListener('popstate', close);
+      const pushState = history.pushState;
+      try {
+        history.pushState = function() { pushState.apply(this, arguments); close(); };
+      } catch {}
 
       this.state.mobileCloser = close;
     },
@@ -402,10 +455,43 @@
   };
 
   window.RemkaHeader = RemkaHeader;
+  // Emergency delegated handler: ensures hamburger works even if init hasn't run yet
+  let __navEmergencyHandler = null;
+  // Legacy emergency handler removed (new module handles toggling)
+  const bindEmergencyHandler = () => {
+    if (document.documentElement.dataset.navEmergencyBound) return;
+    // no-op now; kept to avoid re-binding legacy path
+    document.documentElement.dataset.navEmergencyBound = '1';
+  };
+  bindEmergencyHandler();
   // Init only after partials:loaded, with fallback to DOMContentLoaded if there is no partial loader
-  const doInitOnce = () => { if (window.__remkaHeaderBooted) return; window.__remkaHeaderBooted = true; try { RemkaHeader.init(); } catch {} };
+  const doInitOnce = () => { if (window.__remkaHeaderBooted) return; window.__remkaHeaderBooted = true; try { if (__navEmergencyHandler) { document.removeEventListener('click', __navEmergencyHandler); __navEmergencyHandler = null; delete document.documentElement.dataset.navEmergencyBound; } RemkaHeader.init(); } catch {} };
   document.addEventListener('partials:loaded', doInitOnce);
-  // Init exclusively after partials:loaded, so that no duplicate header is constructed
+  // Fallback: if partials:loaded never fires (e.g., static include or Magento without partial loader),
+  // initialize once on DOMContentLoaded or immediately if DOM is already ready.
+  const tryInitIfHeaderPresent = () => {
+    // Only initialize here if a header/menu is already present in the DOM
+    // This avoids constructing a temporary header before partials are injected
+    const hasHeader = !!document.querySelector('header[role="banner"]');
+    const awaitingPartials = !!document.getElementById('header-placeholder');
+    if (hasHeader || !awaitingPartials) doInitOnce();
+  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', tryInitIfHeaderPresent);
+  } else {
+    try { (window.queueMicrotask ? queueMicrotask : setTimeout)(tryInitIfHeaderPresent, 0); } catch { setTimeout(tryInitIfHeaderPresent, 0); }
+  }
+  // Fallback observer: initialize as soon as header/offcanvas/toggle appears
+  try {
+    const mo = new MutationObserver(() => {
+      if (window.__remkaHeaderBooted) { try { mo.disconnect(); } catch {} return; }
+      const ready = document.querySelector('header[role="banner"]') || document.getElementById('offcanvas') || document.querySelector('[data-nav-toggle]');
+      if (ready) { doInitOnce(); try { mo.disconnect(); } catch {} }
+    });
+    mo.observe(document.documentElement || document.body, { childList: true, subtree: true });
+    setTimeout(() => { if (!window.__remkaHeaderBooted) tryInitIfHeaderPresent(); }, 1200);
+  } catch {}
+  // Note: doInitOnce guards against double initialization
 
   // Demo cart API (optional, remains for prototype). In production with Hyvä, replace with Magento minicart.
   const Cart = {

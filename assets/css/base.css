@@ -173,8 +173,11 @@ header[role="banner"] { will-change: transform, opacity; transition: transform .
 .header-search-wrap input { max-width: 42rem; width: min(100%, 42rem); }
 
 /* Offcanvas panel animation */
-.offcanvas-panel { transform: translateX(-100%); transition: transform .25s ease; }
+.offcanvas-panel { transform: translateX(-100%); transition: transform .25s ease-in-out; }
 #offcanvas:not(.hidden) .offcanvas-panel { transform: translateX(0); }
+/* Overlay fade for mobile menu (no layout shift) */
+#offcanvas > [data-close="offcanvas"] { opacity: 0; transition: opacity .2s ease-in-out; }
+#offcanvas:not(.hidden) > [data-close="offcanvas"] { opacity: 1; }
 
 /* Mega panel */
 .mega-panel { background: #fff; border: 1px solid var(--light); border-radius: 1rem; box-shadow: 0 24px 60px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.06); overflow: hidden; }
