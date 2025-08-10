@@ -588,8 +588,8 @@ a.text-sm.font-semibold.text-brand:hover::after { transform: translateX(2px); }
 
 /* Product card badges & stock */
 .badge--soft { display:inline-flex; align-items:center; gap:.35rem; font-size:.75rem; font-weight:800; color: var(--brand); background: rgba(158,0,89,0.08); border:1px solid rgba(158,0,89,0.15); padding:.125rem .5rem; border-radius:9999px; }
-.stock-ok { color: #065f46; background: #e7f8f0; border:1px solid #b6ead9; display:inline-flex; align-items:center; gap:.35rem; padding:.125rem .5rem; border-radius:9999px; font-size:.72rem; font-weight:800; white-space: nowrap; }
-.stock-low { color: #8a4b00; background: #fff6e6; border:1px solid #ffe6bf; display:inline-flex; align-items:center; gap:.35rem; padding:.125rem .5rem; border-radius:9999px; font-size:.72rem; font-weight:800; white-space: nowrap; }
+.stock-ok { color: #065f46; background: #e7f8f0; border:1px solid #b6ead9; display:inline-flex; align-items:center; gap:.35rem; padding:.125rem .5rem; border-radius:9999px; font-size:.72rem; font-weight:800; }
+.stock-low { color: #8a4b00; background: #fff6e6; border:1px solid #ffe6bf; display:inline-flex; align-items:center; gap:.35rem; padding:.125rem .5rem; border-radius:9999px; font-size:.72rem; font-weight:800; }
 /* Stock states */
 .stock-backorder { color: #8a4b00; background: #fff6e6; border:1px solid #ffe6bf; display:inline-flex; align-items:center; gap:.35rem; padding:.125rem .5rem; border-radius:9999px; font-size:.75rem; font-weight:800; }
 .stock-out { color: #7c2d12; background: #fef3c7; border:1px solid #fde68a; display:inline-flex; align-items:center; gap:.35rem; padding:.125rem .5rem; border-radius:9999px; font-size:.75rem; font-weight:800; }
