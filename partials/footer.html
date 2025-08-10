@@ -1,7 +1,7 @@
 <!-- COPY TO PHTML: Magento_Theme/templates/html/footer.phtml -->
 <!-- Betaal-iconen als CMS static block of view/frontend/web/images in Hyvä -->
 <footer class="mt-16 footer-premium" role="contentinfo">
-  <div class="container mx-auto px-4 py-12 grid gap-8 md:grid-cols-5">
+  <div class="container mx-auto px-4 py-12 grid gap-8 md:grid-cols-6">
     <div class="md:col-span-2">
       <h2 class="font-semibold text-dark">Over Remka</h2>
       <p class="mt-3 text-sm text-dark/80 max-w-prose">Remka is een Nederlandse medische groothandel met meer dan 120 jaar ervaring. We leveren een breed assortiment aan zorgprofessionals én particulieren: van instrumenten en praktijkinrichting tot verbandmiddelen, drogisterij-artikelen en apparatuur.</p>
@@ -48,33 +48,16 @@
         <li><a href="/vacatures.html">Vacatures</a></li>
       </ul>
     </div>
-    <!-- Nieuwsbrief verplaatst naar een subtiele sectie onder de kolommen -->
-  </div>
-  <!-- Subtle newsletter band -->
-  <div class="border-t border-light/70 bg-white/60">
-    <div class="container mx-auto px-4 py-6">
-      <div class="grid gap-3 md:grid-cols-[1fr,auto,1fr] md:items-center">
-        <div class="hidden md:block" aria-hidden="true"></div>
-        <div class="text-center">
-          <div class="text-sm text-dark/80 font-semibold">Nieuwsbrief</div>
-          <form class="mt-2 max-w-xl mx-auto" id="newsletterFooterForm" novalidate>
-            <div class="flex gap-2 justify-center">
-              <label for="newsletterEmail" class="sr-only">E‑mail</label>
-              <input id="newsletterEmail" name="email" type="email" required placeholder="jij@voorbeeld.nl" class="input" />
-              <button class="btn btn-brand" type="submit" aria-label="Aanmelden nieuwsbrief">Aanmelden</button>
-            </div>
-            <p class="input-error hidden text-center" id="newsletterError">Vul een geldig e‑mailadres in.</p>
-            <p class="text-sm text-dark/70 hidden text-center" id="newsletterSuccess">Dank je! We hebben je aanmelding ontvangen.</p>
-          </form>
-        </div>
-        <nav class="justify-self-end flex flex-wrap items-center gap-2" aria-label="Social media">
-          <a class="pill pill--sm" href="#" aria-label="Volg ons op LinkedIn"><span class="dot"></span> LinkedIn</a>
-          <a class="pill pill--sm" href="#" aria-label="Volg ons op Instagram"><span class="dot"></span> Instagram</a>
-          <a class="pill pill--sm" href="#" aria-label="Volg ons op Facebook"><span class="dot"></span> Facebook</a>
-        </nav>
-      </div>
+    <!-- Social rechts in de footer -->
+    <div class="md:col-span-1 md:justify-self-end">
+      <nav class="flex flex-wrap items-center gap-2 justify-end" aria-label="Social media">
+        <a class="pill pill--sm" href="#" aria-label="Volg ons op LinkedIn"><span class="dot"></span> LinkedIn</a>
+        <a class="pill pill--sm" href="#" aria-label="Volg ons op Instagram"><span class="dot"></span> Instagram</a>
+        <a class="pill pill--sm" href="#" aria-label="Volg ons op Facebook"><span class="dot"></span> Facebook</a>
+      </nav>
     </div>
   </div>
+  
 
   <div class="footer-divider">
     <div class="container mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-4">
