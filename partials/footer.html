@@ -1,47 +1,64 @@
-<footer class="mt-16 border-t border-gray-200" role="contentinfo">
-  <div class="container mx-auto px-4 py-12 grid gap-8 md:grid-cols-4">
+<!-- COPY TO PHTML: Magento_Theme/templates/html/footer.phtml -->
+<!-- Betaal-iconen als CMS static block of view/frontend/web/images in Hyvä -->
+<footer class="mt-16 footer-premium" role="contentinfo">
+  <div class="container mx-auto px-4 py-12 grid gap-8 md:grid-cols-5">
+    <div class="md:col-span-2">
+      <h2 class="font-semibold text-dark">Over Remka</h2>
+      <p class="mt-3 text-sm text-dark/80 max-w-prose">Remka is een Nederlandse medische groothandel met meer dan 120 jaar ervaring. We leveren een breed assortiment aan zorgprofessionals én particulieren: van instrumenten en praktijkinrichting tot verbandmiddelen, drogisterij-artikelen en apparatuur.</p>
+      <div class="mt-4 flex flex-wrap gap-2 justify-center md:justify-start">
+        <span class="pill pill--sm"><span class="dot"></span> 120+ jaar ervaring</span>
+        <span class="pill pill--sm pill--teal"><span class="dot"></span> 10.000+ producten</span>
+        <span class="pill pill--sm pill--accent"><span class="dot"></span> Snelle levering</span>
+      </div>
+    </div>
     <div>
-      <h2 class="font-semibold">Contact</h2>
-      <ul class="mt-3 space-y-2 text-sm text-gray-700">
-        <li>Remka B.V.</li>
-        <li>info@remka.nl</li>
-        <li>+31 (0)85 000 0000</li>
-        <li>Ma–Vr 09:00–17:00</li>
+      <h2 class="font-semibold text-dark">Contact</h2>
+      <address class="not-italic mt-3 space-y-1 text-sm text-dark/80">
+        <p>Remka B.V.</p>
+        <p>Frijdastraat 6e</p>
+        <p>2288 EX Rijswijk</p>
+        <p>T: <a class="text-brand hover:underline" href="tel:+31786144498">+31 (0) 78 614 44 98</a></p>
+        <p>F: +31 (0) 78 631 78 83</p>
+        <p>E: <a class="text-brand hover:underline" href="mailto:info@remka.nl">info@remka.nl</a></p>
+        <p>KvK: 88203867</p>
+        <p>Btw: NL864536720B01</p>
+      </address>
+    </div>
+    <div>
+      <h2 class="font-semibold text-dark">Klantenservice</h2>
+      <ul class="mt-3 space-y-2 text-sm text-dark/80">
+        <li><a href="/bestellen-en-betalen.html">Bestel- en betaalprocedure</a></li>
+        <li><a href="/voorraadbeheer.html">Voorraadbeheer</a></li>
+        <li><a href="/betalen-op-rekening.html">Betalen op rekening</a></li>
+        <li><a href="/verzending-en-retour.html">Retourneren</a></li>
+        <li><a href="/onderhoud-technische-dienst.html">Onderhoud en technische dienst</a></li>
+        <li><a href="/faq.html">Veelgestelde vragen</a></li>
+        <li><a href="/contact.html">Contact</a></li>
       </ul>
     </div>
     <div>
-      <h2 class="font-semibold">Klantenservice</h2>
-      <ul class="mt-3 space-y-2 text-sm text-gray-700">
-        <li><a href="#">Bestellen &amp; betalen</a></li>
-        <li><a href="#">Verzending &amp; retour</a></li>
-        <li><a href="#">Veelgestelde vragen</a></li>
-      </ul>
-    </div>
-    <div>
-      <h2 class="font-semibold">Over Remka B.V.</h2>
-      <ul class="mt-3 space-y-2 text-sm text-gray-700">
-        <li><a href="#">Ons verhaal</a></li>
-        <li><a href="#">Duurzaamheid</a></li>
-        <li><a href="#">Werken bij</a></li>
-      </ul>
-    </div>
-    <div>
-      <h2 class="font-semibold">Juridisch</h2>
-      <ul class="mt-3 space-y-2 text-sm text-gray-700">
-        <li><a href="#">Algemene voorwaarden</a></li>
-        <li><a href="#">Privacyverklaring</a></li>
-        <li><a href="#">Cookiebeleid</a></li>
+      <h2 class="font-semibold text-dark">Remka B.V.</h2>
+      <ul class="mt-3 space-y-2 text-sm text-dark/80">
+        <li><a href="/over-ons.html">Over ons</a></li>
+        <li><a href="/duurzaamheid.html">Duurzaamheid</a></li>
+        <li><a href="/samenwerkingen.html">Samenwerkingen</a></li>
+        <li><a href="/algemene-voorwaarden.html">Leveringsvoorwaarden</a></li>
+        <li><a href="/privacyverklaring.html">Privacyverklaring</a></li>
+        <li><a href="/disclaimer.html">Disclaimer</a></li>
+        <li><a href="/vacatures.html">Vacatures</a></li>
       </ul>
     </div>
   </div>
-  <div class="border-t border-gray-200">
+    <div class="footer-divider">
     <div class="container mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-4">
-      <div class="text-sm text-gray-600">© <span id="year"></span> Remka B.V.</div>
+      <div class="text-sm text-dark/70">© <span id="year"></span> Remka B.V.</div>
       <div class="flex items-center gap-3 opacity-80">
-        <img src="/assets/images/payment-ideal.svg" alt="iDEAL" width="64" height="40" loading="lazy" />
-        <img src="/assets/images/payment-visa.svg" alt="Visa" width="64" height="40" loading="lazy" />
-        <img src="/assets/images/payment-mastercard.svg" alt="Mastercard" width="64" height="40" loading="lazy" />
-        <img src="/assets/images/payment-bancontact.svg" alt="Bancontact" width="64" height="40" loading="lazy" />
+        <img class="h-6 w-auto" src="assets/images/payment-icons/ideal-logo.png" alt="iDEAL" loading="lazy" />
+        <img class="h-6 w-auto" src="assets/images/payment-icons/Bancontact-logo.png" alt="Bancontact" loading="lazy" />
+        <img class="h-6 w-auto" src="assets/images/payment-icons/Visa_Brandmark_Blue_RGB_2021.png" alt="Visa" loading="lazy" />
+        <img class="h-6 w-auto" src="assets/images/payment-icons/ma_symbol_rgb.png" alt="Mastercard" loading="lazy" />
+        <img class="h-6 w-auto" src="assets/images/payment-icons/PayPal-logo.png" alt="PayPal" loading="lazy" />
+        <img class="h-6 w-auto" src="assets/images/payment-icons/Apple-Pay-Logo.png" alt="Apple Pay" loading="lazy" />
       </div>
     </div>
   </div>

@@ -1,250 +1,316 @@
-/*
-  Mega menu data + rendering + a11y behavior
-  Hyvä-friendly: minimal vanilla JS, Tailwind classes in markup, no external deps
-*/
+/* Hyvä-friendly bootstrapping: partials + menu init */
 
-const menuData = [
-  {
-    title: 'Apparatuur',
-    items: [
-      { title: 'Diagnostiek', links: ['Stethoscopen', 'Bloeddrukmeters', 'Otoskopen'] },
-      { title: 'Behandelapparatuur', links: ['Electrochirurgie', 'Zuigpompen', 'Instrumentverwarmers'] },
-      { title: 'Sterilisatie', links: ['Autoclaaf', 'Sealapparaten', 'Indicatoren'] },
-      { title: 'Meetapparatuur', links: ['Thermometers', 'Weegschalen', 'Saturatiemeters'] },
-      { title: 'Onderhoud', links: ['Kalibratie', 'Reparatie', 'Reservematerialen'] },
-      { title: 'Accessoires', links: ['Manchetten', 'Batterijen', 'Sensoren'] }
-    ]
-  },
-  {
-    title: 'Medische Instrumenten',
-    items: [
-      { title: 'Chirurgisch', links: ['Scharen', 'Pincetten', 'Klemmen', 'Naaldvoerders'] },
-      { title: 'Onderzoek', links: ['Tongspatels', 'Specula', 'Sondes'] },
-      { title: 'Dermatologie', links: ['Curetten', 'Bioptie', 'Lancetten'] },
-      { title: 'Steriel', links: ['Setjes', 'Verpakkingen'] },
-      { title: 'Re-usable', links: ['RVS instrumenten', 'Reiniging'] }
-    ]
-  },
-  {
-    title: 'Laboratorium',
-    items: [
-      { title: 'Verbruik', links: ['Pipetpunten', 'Buisjes', 'Cuvetten'] },
-      { title: 'Glaswerk', links: ['Bekers', 'Kolven', 'Pipetten'] },
-      { title: 'Chemie', links: ['Bufferoplossingen', 'Reagentia'] },
-      { title: 'Opslag', links: ['Rekjes', 'Dozen', 'Cryo-opslag'] }
-    ]
-  },
-  {
-    title: 'Injectiematerialen',
-    items: [
-      { title: 'Naalden', links: ['Subcutaan', 'Intradermal', 'Veiligheidsnaalden'] },
-      { title: 'Spuiten', links: ['2-delig', '3-delig', 'Insuline'] },
-      { title: 'Infusie', links: ['Infuussets', 'Kranen', 'Katheters'] },
-      { title: 'Prikbussen', links: ['Naaldcontainers', 'Afsluiters'] }
-    ]
-  },
-  {
-    title: 'Verbandmiddelen',
-    items: [
-      { title: 'Kompressen', links: ['Steriel', 'Niet-steriel'] },
-      { title: 'Fixatie', links: ['Hechtpleisters', 'Zwachtels'] },
-      { title: 'Wondzorg', links: ['Hydrogel', 'Foam', 'Alginaat'] },
-      { title: 'Hechten', links: ['Hechtdraad', 'Nietjes', 'Hechtstrips'] }
-    ]
-  },
-  {
-    title: 'Verbruiksmaterialen',
-    items: [
-      { title: 'Handschoenen', links: ['Nitril', 'Latex', 'Vinyl'] },
-      { title: 'Hygiëne', links: ['Doekjes', 'Desinfectie', 'Papier'] },
-      { title: 'Bekers & bakjes', links: ['Samplecups', 'Patiëntenbekers'] },
-      { title: 'Bescherming', links: ['Mondmaskers', 'Schorten', 'Haarnetten'] }
-    ]
-  },
-  {
-    title: 'Praktijkinrichting',
-    items: [
-      { title: 'Meubilair', links: ['Behandelbanken', 'Krukken', 'Kasten'] },
-      { title: 'Verlichting', links: ['Onderzoekslampen', 'LED'] },
-      { title: 'Opslag', links: ['Medikast', 'Lades', 'Dispensers'] }
-    ]
-  },
-  {
-    title: 'Anatomie',
-    items: [
-      { title: 'Modellen', links: ['Skelet', 'Spieren', 'Organsets'] },
-      { title: 'Posters', links: ['Skelet', 'Spieren', 'Zintuigen'] },
-      { title: 'Oefenmateriaal', links: ['Injectietrainers', 'Hechtpads'] }
-    ]
-  },
-  {
-    title: 'Drogisterij artikelen',
-    items: [
-      { title: 'Verzorging', links: ['Pleisters', 'Paracetamol', 'Cold/Hot packs'] },
-      { title: 'EHBO', links: ['Sets', 'Navullingen'] },
-      { title: 'Huid', links: ['Crèmes', 'Zalven'] }
-    ]
-  }
-];
-
-function createEl(tag, props = {}, children = []) {
-  const el = document.createElement(tag);
-  Object.entries(props).forEach(([k, v]) => {
-    if (k === 'class') el.className = v;
-    else if (k === 'html') el.innerHTML = v;
-    else el.setAttribute(k, v);
-  });
-  children.forEach(c => el.appendChild(c));
-  return el;
-}
-
-function renderDesktopMenu() {
-  const root = document.getElementById('menuRoot');
-  const host = document.getElementById('megaHost');
-  if (!root || !host) return;
-
-  menuData.forEach((m, idx) => {
-    const li = createEl('li');
-    const btn = createEl('button', {
-      class: 'px-3 py-2 rounded-md hover:text-brand focus-ring',
-      'data-idx': String(idx),
-      'aria-haspopup': 'true',
-      'aria-expanded': 'false',
-      'aria-controls': `mega-${idx}`
-    });
-    btn.textContent = m.title;
-    li.appendChild(btn);
-    root.appendChild(li);
-
-    const panel = createEl('div', {
-      id: `mega-${idx}`,
-      class: 'absolute left-0 right-0 mx-auto container-wide px-4 hidden',
-      role: 'region',
-      'aria-label': m.title
-    });
-    const card = createEl('div', { class: 'mt-2 bg-white border border-gray-200 shadow-xl rounded-xl overflow-hidden' });
-    const grid = createEl('div', { class: 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6' });
-    m.items.forEach(col => {
-      const h = createEl('h3', { class: 'font-semibold text-dark' });
-      h.textContent = col.title;
-      const ul = createEl('ul', { class: 'mt-2 space-y-1 text-sm text-gray-700' });
-      col.links.forEach(l => {
-        const a = createEl('a', { href: '#', class: 'hover:text-brand' }); a.textContent = l;
-        const li = createEl('li', {}, [a]); ul.appendChild(li);
-      });
-      const wrap = createEl('div', {}, [h, ul]);
-      grid.appendChild(wrap);
-    });
-    card.appendChild(grid);
-    panel.appendChild(card);
-    host.appendChild(panel);
-  });
-
-  // Interactions
-  const buttons = root.querySelectorAll('button[aria-haspopup="true"]');
-  let openIdx = null;
-  function openPanel(idx) {
-    closeAll();
-    openIdx = idx;
-    const btn = root.querySelector(`button[data-idx="${idx}"]`);
-    const panel = document.getElementById(`mega-${idx}`);
-    if (btn && panel) {
-      btn.setAttribute('aria-expanded', 'true');
-      panel.classList.remove('hidden');
-      panel.dataset.open = 'true';
-    }
-  }
-  function closeAll() {
-    buttons.forEach(b => b.setAttribute('aria-expanded', 'false'));
-    host.querySelectorAll('[id^="mega-"]').forEach(p => { p.classList.add('hidden'); p.removeAttribute('data-open'); });
-    openIdx = null;
-  }
-
-  buttons.forEach((btn, i) => {
-    btn.addEventListener('mouseenter', () => openPanel(i));
-    btn.addEventListener('focus', () => openPanel(i));
-    btn.addEventListener('click', () => (openIdx === i ? closeAll() : openPanel(i)));
-    btn.addEventListener('keydown', (e) => {
-      const max = buttons.length - 1;
-      if (e.key === 'ArrowRight') { e.preventDefault(); buttons[Math.min(i + 1, max)].focus(); }
-      if (e.key === 'ArrowLeft') { e.preventDefault(); buttons[Math.max(i - 1, 0)].focus(); }
-      if (e.key === 'Escape') { closeAll(); btn.focus(); }
-      if (e.key === 'ArrowDown') { e.preventDefault(); const firstLink = document.querySelector(`#mega-${i} a`); firstLink && firstLink.focus(); }
-    });
-  });
-
-  host.addEventListener('mouseleave', closeAll);
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
-  document.addEventListener('click', (e) => {
-    if (!host.contains(e.target) && !root.contains(e.target)) closeAll();
-  });
-
-  // Focus trap inside open panel
-  host.addEventListener('keydown', (e) => {
-    if (e.key !== 'Tab') return;
-    const open = host.querySelector('[data-open="true"]');
-    if (!open) return;
-    const focusables = open.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
-    if (focusables.length === 0) return;
-    const first = focusables[0];
-    const last = focusables[focusables.length - 1];
-    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-  });
-}
-
-function renderMobileMenu() {
-  const wrap = document.getElementById('mobileMenu');
-  if (!wrap) return;
-  menuData.forEach((m, idx) => {
-    const details = createEl('details', { class: 'border-b border-gray-200', 'data-idx': String(idx) });
-    const summary = createEl('summary', { class: 'px-3 py-3 font-semibold cursor-pointer hover:bg-gray-50' });
-    summary.textContent = m.title;
-    const inner = createEl('div', { class: 'px-3 pb-3 grid grid-cols-1 gap-4' });
-    m.items.forEach(col => {
-      const h = createEl('h3', { class: 'text-sm font-semibold text-dark mt-2' }); h.textContent = col.title;
-      const ul = createEl('ul', { class: 'mt-1 space-y-1 text-sm text-gray-700' });
-      col.links.forEach(l => { const a = createEl('a', { href: '#', class: 'hover:text-brand' }); a.textContent = l; ul.appendChild(createEl('li', {}, [a])); });
-      inner.appendChild(createEl('div', {}, [h, ul]));
-    });
-    details.appendChild(summary);
-    details.appendChild(inner);
-    wrap.appendChild(details);
-  });
-
-  const toggle = document.getElementById('navToggle');
-  const offcanvas = document.getElementById('offcanvas');
-  const open = () => { offcanvas.classList.remove('hidden'); document.documentElement.classList.add('menu-open'); toggle.setAttribute('aria-expanded','true'); };
-  const close = () => { offcanvas.classList.add('hidden'); document.documentElement.classList.remove('menu-open'); toggle.setAttribute('aria-expanded','false'); };
-  toggle.addEventListener('click', () => offcanvas.classList.contains('hidden') ? open() : close());
-  offcanvas.querySelectorAll('[data-close="offcanvas"]').forEach(b => b.addEventListener('click', close));
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+async function injectPartial(el, name) {
+  try {
+    const res = await fetch(`/partials/${name}.html`, { cache: 'no-store' });
+    if (!res.ok) return;
+    const html = await res.text();
+    el.outerHTML = html;
+  } catch {}
 }
 
 async function loadPartials() {
+  // In Hyvä worden header/footer via PHTML geladen; partial injectie kan worden uitgeschakeld
   const headerPh = document.getElementById('header-placeholder');
   const footerPh = document.getElementById('footer-placeholder');
-  if (headerPh) {
-    try {
-      const res = await fetch('/partials/header.html');
-      headerPh.outerHTML = await res.text();
-    } catch {}
-  }
-  if (footerPh) {
-    try {
-      const res = await fetch('/partials/footer.html');
-      footerPh.outerHTML = await res.text();
-    } catch {}
+  if (headerPh) await injectPartial(headerPh, 'header');
+  if (footerPh) await injectPartial(footerPh, 'footer');
+
+  // Generic component placeholders
+  const blocks = Array.from(document.querySelectorAll('[data-partial]'));
+  await Promise.all(blocks.map((el) => injectPartial(el, el.getAttribute('data-partial'))));
+
+  // Notify others that partials are loaded
+  try { document.dispatchEvent(new CustomEvent('partials:loaded')); } catch {}
+
+  // Minicart toggle (prototype only) – te vervangen door Hyvä minicart
+  const openers = document.querySelectorAll('[data-open="minicart"]');
+  const minicart = document.getElementById('minicart');
+  if (minicart && openers.length) {
+    const closeButtons = minicart.querySelectorAll('[data-close="minicart"]');
+    const open = () => minicart.classList.remove('hidden');
+    const close = () => minicart.classList.add('hidden');
+    openers.forEach(b => b.addEventListener('click', (e) => {
+      e.preventDefault();
+      try {
+        if (window.RemkaCart && typeof window.RemkaCart.count === 'function') {
+          if (window.RemkaCart.count() > 0) open();
+          else open(); // toon ook lege minicart als er geen items zijn
+        } else {
+          open();
+        }
+      } catch { open(); }
+    }));
+    closeButtons.forEach(b => b.addEventListener('click', (e) => { e.preventDefault(); close(); }));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
   }
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
   await loadPartials();
-  if (window.RemkaMenu && typeof window.RemkaMenu.init === 'function') {
-    await window.RemkaMenu.init();
-  }
+  // Laat menu.js zelf init doen na partials:loaded om dubbel init te voorkomen
+  try { RemkaAuth.init(); } catch {}
 });
 
-// Export for devs to map Magento categories later
-window.__remkaMenu = menuData;
-// Placeholder for future enhancements\n
+// --- Demo account/auth state & helpers (prototype) ---
+const RemkaAuth = (() => {
+  const AUTH_KEY = 'remka_demo_auth';
+  const USER_KEY = 'remka_demo_user';
+
+  function read(key) {
+    try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch { return null; }
+  }
+  function write(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch {}
+  }
+
+  function seedDemoUserIfNeeded() {
+    if (read(USER_KEY)) return;
+    const demoUser = {
+      id: '100001',
+      firstName: 'Sanne',
+      lastName: 'Jansen',
+      email: 'sanne.jansen@example.com',
+      company: 'Huisartsenpraktijk Parklaan',
+      kvk: '12345678',
+      vat: 'NL123456789B01',
+      newsletter: true,
+      addresses: [
+        { id: 'addr1', type: 'shipping', firstName: 'Sanne', lastName: 'Jansen', company: 'Huisartsenpraktijk Parklaan', street: 'Parklaan 12', postcode: '2512 AB', city: 'Den Haag', country: 'NL', phone: '+31 70 123 4567', isDefault: true },
+        { id: 'addr2', type: 'billing', firstName: 'Sanne', lastName: 'Jansen', company: 'Huisartsenpraktijk Parklaan', street: 'Parklaan 12', postcode: '2512 AB', city: 'Den Haag', country: 'NL', phone: '+31 70 123 4567', isDefault: true }
+      ],
+      orders: [
+        { id: '200000001', incrementId: '200000001', date: '2024-06-12', status: 'Verzonden', total: 248.50, currency: 'EUR', shippingMethod: 'DHL – Zakelijk', paymentMethod: 'iDEAL', items: [ { sku: 'KAI-HP-4', name: 'KAI huidcurette 4 mm', qty: 2, price: 19.95, thumb: '/assets/images/kai_biopsy_punch_4.jpg' }, { sku: 'HART-37971', name: 'Hartmann Verband 10x10', qty: 5, price: 12.90, thumb: '/assets/images/Products/Hartmann/37971_43.jpg' } ], invoices: ['000000123'], creditmemos: [] },
+        { id: '200000002', incrementId: '200000002', date: '2024-07-03', status: 'In behandeling', total: 92.10, currency: 'EUR', shippingMethod: 'DHL – Zakelijk', paymentMethod: 'Op rekening', items: [ { sku: 'HEINE-EN200', name: 'HEINE EN 200 powersource', qty: 1, price: 89.00, thumb: '/assets/images/Products/HEINE/A-095.12.218-HEINE-PowerSource-EN200-main.jpg' } ], invoices: [], creditmemos: [] }
+      ],
+      invoices: [ { number: '000000123', date: '2024-06-13', order: '200000001', amount: 248.50, currency: 'EUR', pdf: '#' } ],
+      creditmemos: [],
+      wishlist: [ { sku: 'SECA-213', name: 'seca 213 mobiele lengtemeter', price: 59.00, link: '/product.html', thumb: '/assets/images/placeholder-4x3.svg' }, { sku: 'SCHUELKE-STER', name: 'Schülke Sterillium 500ml', price: 7.95, link: '/product.html', thumb: '/assets/images/placeholder-4x3.svg' } ],
+      reviews: [ { sku: 'KAI-HP-4', name: 'KAI huidcurette 4 mm', rating: 5, title: 'Uitstekend product', text: 'Scherp en precies, snelle levering.', date: '2024-05-22' } ],
+      requisitionLists: [
+        { id: 'rl-1', name: 'Maandelijkse verbruiksartikelen', createdAt: '2024-04-01', items: [ { sku: 'HART-37971', name: 'Hartmann Verband 10x10', qty: 10 }, { sku: 'SCHUELKE-STER', name: 'Schülke Sterillium 500ml', qty: 6 } ] },
+        { id: 'rl-2', name: 'Instrumenten onderhoud', createdAt: '2024-03-15', items: [ { sku: 'HEINE-EN200', name: 'HEINE EN 200 powersource', qty: 1 } ] }
+      ]
+    };
+    write(USER_KEY, demoUser);
+  }
+
+  function getUser() { return read(USER_KEY); }
+  function setUser(user) { write(USER_KEY, user); }
+  function isLoggedIn() { const a = read(AUTH_KEY); return !!(a && a.loggedIn && a.userEmail); }
+  function login(email, _password) {
+    const user = getUser();
+    if (user && user.email.toLowerCase() === String(email || '').toLowerCase()) {
+      write(AUTH_KEY, { loggedIn: true, userEmail: user.email });
+      return { ok: true };
+    }
+    write(USER_KEY, { ...getUser(), email: email || 'demo@example.com' });
+    write(AUTH_KEY, { loggedIn: true, userEmail: email || 'demo@example.com' });
+    return { ok: true };
+  }
+  function logout() { write(AUTH_KEY, { loggedIn: false }); }
+
+  function updateHeaderAccountLink() {
+    const link = document.querySelector('[data-account-link]');
+    const label = document.querySelector('[data-account-label]');
+    if (!link || !label) return;
+    if (isLoggedIn()) {
+      link.setAttribute('href', 'account-dashboard.html');
+      label.textContent = 'Mijn account';
+      link.setAttribute('aria-label', 'Ga naar mijn account');
+    } else {
+      link.setAttribute('href', 'account-login.html');
+      label.textContent = 'Inloggen';
+      link.setAttribute('aria-label', 'Inloggen of account');
+    }
+  }
+
+  function guardAccountRoutes() {
+    // Demo: auth guard uitgeschakeld zodat alle accountpagina's toegankelijk zijn zonder inlog
+    return;
+  }
+
+  function wireForms() {
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = loginForm.querySelector('input[name="email"]').value;
+        const password = loginForm.querySelector('input[name="password"]').value;
+        const res = login(email, password);
+        if (res.ok) { location.href = 'account-dashboard.html'; }
+      });
+    }
+    const registerForm = document.getElementById('registerForm');
+    if (registerForm) {
+      registerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const firstName = registerForm.querySelector('input[name="firstName"]').value;
+        const lastName = registerForm.querySelector('input[name="lastName"]').value;
+        const email = registerForm.querySelector('input[name="email"]').value;
+        const company = registerForm.querySelector('input[name="company"]').value;
+        const kvk = registerForm.querySelector('input[name="kvk"]').value;
+        const vat = registerForm.querySelector('input[name="vat"]').value;
+        seedDemoUserIfNeeded();
+        const user = { ...getUser(), firstName, lastName, email, company, kvk, vat };
+        setUser(user);
+        write(AUTH_KEY, { loggedIn: true, userEmail: email });
+        location.href = 'account-dashboard.html';
+      });
+    }
+    const forgotForm = document.getElementById('forgotForm');
+    if (forgotForm) {
+      forgotForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const success = document.getElementById('forgotSuccess');
+        if (success) success.classList.remove('hidden');
+      });
+    }
+    const resetForm = document.getElementById('resetForm');
+    if (resetForm) {
+      resetForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        location.href = 'account-login.html';
+      });
+    }
+    const logoutBtn = document.querySelector('[data-action="logout"]');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        logout();
+        updateHeaderAccountLink();
+        location.href = 'account-login.html';
+      });
+    }
+    const personalForm = document.getElementById('personalForm');
+    if (personalForm) {
+      const user = getUser();
+      if (user) {
+        personalForm.querySelector('input[name="firstName"]').value = user.firstName || '';
+        personalForm.querySelector('input[name="lastName"]').value = user.lastName || '';
+        personalForm.querySelector('input[name="email"]').value = user.email || '';
+      }
+      personalForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const userNow = { ...getUser(),
+          firstName: personalForm.querySelector('input[name="firstName"]').value,
+          lastName: personalForm.querySelector('input[name="lastName"]').value,
+          email: personalForm.querySelector('input[name="email"]').value
+        };
+        setUser(userNow);
+        const note = document.getElementById('personalSaved');
+        if (note) note.classList.remove('hidden');
+      });
+    }
+    const newsletterForm = document.getElementById('newsletterForm');
+    if (newsletterForm) {
+      const user = getUser();
+      const checkbox = newsletterForm.querySelector('input[name="newsletter"]');
+      if (user && checkbox) checkbox.checked = !!user.newsletter;
+      newsletterForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const userNow = { ...getUser(), newsletter: !!checkbox.checked };
+        setUser(userNow);
+        const note = document.getElementById('newsletterSaved');
+        if (note) note.classList.remove('hidden');
+      });
+    }
+  }
+
+  function renderers() {
+    const user = getUser();
+    const nameEl = document.getElementById('accountName');
+    if (nameEl && user) nameEl.textContent = `${user.firstName} ${user.lastName}`.trim();
+    const emailEl = document.getElementById('accountEmail');
+    if (emailEl && user) emailEl.textContent = user.email;
+    const addrList = document.getElementById('addressList');
+    if (addrList && user) {
+      addrList.innerHTML = '';
+      user.addresses.forEach((a) => {
+        const div = document.createElement('div');
+        div.className = 'card p-4';
+        const def = a.isDefault ? '<span class="badge badge--ok">Standaard</span>' : '';
+        div.innerHTML = `<div class=\"flex items-start justify-between gap-4\">\n            <div>\n              <div class=\"font-semibold\">${a.firstName} ${a.lastName}</div>\n              <div class=\"text-sm text-dark/70\">${a.company || ''}</div>\n              <div class=\"text-sm text-dark/70\">${a.street}, ${a.postcode} ${a.city}</div>\n              <div class=\"text-sm text-dark/70\">${a.country}</div>\n              <div class=\"text-sm text-dark/70\">${a.phone || ''}</div>\n            </div>\n            ${def}\n          </div>`;
+        addrList.appendChild(div);
+      });
+    }
+    const ordersTbody = document.getElementById('ordersTableBody');
+    if (ordersTbody && user) {
+      ordersTbody.innerHTML = '';
+      user.orders.forEach((o) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td class=\"py-2 px-3 font-semibold\">#${o.incrementId}</td>\n                        <td class=\"py-2 px-3\">${o.date}</td>\n                        <td class=\"py-2 px-3\">${o.status}</td>\n                        <td class=\"py-2 px-3\">€ ${o.total.toFixed(2)}</td>\n                        <td class=\"py-2 px-3 text-right\"><a class=\"link-cta\" href=\"account-order-detail.html?id=${o.id}\">Details</a></td>`;
+        ordersTbody.appendChild(tr);
+      });
+    }
+    const wishlistGrid = document.getElementById('wishlistGrid');
+    if (wishlistGrid && user) {
+      wishlistGrid.innerHTML = '';
+      user.wishlist.forEach((w) => {
+        const a = document.createElement('a');
+        a.href = w.link;
+        a.className = 'card card--hover p-4 flex items-center gap-4';
+        a.innerHTML = `<img src=\"${w.thumb}\" alt=\"${w.name}\" class=\"w-16 h-16 object-contain border border-light rounded\"/>\n                       <div class=\"flex-1\"><div class=\"font-semibold\">${w.name}</div><div class=\"text-sm text-dark/70\">SKU: ${w.sku}</div></div>\n                       <div class=\"font-semibold\">€ ${w.price.toFixed(2)}</div>`;
+        wishlistGrid.appendChild(a);
+      });
+    }
+    const reviewsList = document.getElementById('reviewsList');
+    if (reviewsList && user) {
+      reviewsList.innerHTML = '';
+      user.reviews.forEach((r) => {
+        const li = document.createElement('li');
+        li.className = 'card p-4';
+        li.innerHTML = `<div class=\"font-semibold\">${r.title}</div>\n                        <div class=\"text-sm text-dark/70\">${r.name} – ${r.date}</div>\n                        <div class=\"text-sm\">${r.text}</div>`;
+        reviewsList.appendChild(li);
+      });
+    }
+    const invoicesTbody = document.getElementById('invoicesTableBody');
+    if (invoicesTbody && user) {
+      invoicesTbody.innerHTML = '';
+      user.invoices.forEach((inv) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td class=\"py-2 px-3 font-semibold\">${inv.number}</td>\n                        <td class=\"py-2 px-3\">${inv.date}</td>\n                        <td class=\"py-2 px-3\">Order #${inv.order}</td>\n                        <td class=\"py-2 px-3\">€ ${inv.amount.toFixed(2)}</td>\n                        <td class=\"py-2 px-3 text-right\"><a class=\"link-cta\" href=\"${inv.pdf}\">Download</a></td>`;
+        invoicesTbody.appendChild(tr);
+      });
+    }
+    const rlList = document.getElementById('requisitionLists');
+    if (rlList && user) {
+      rlList.innerHTML = '';
+      user.requisitionLists.forEach((list) => {
+        const div = document.createElement('div');
+        div.className = 'card p-4';
+        div.innerHTML = `<div class=\"flex items-start justify-between\">\n            <div>\n              <div class=\"font-semibold\">${list.name}</div>\n              <div class=\"text-sm text-dark/70\">Aangemaakt: ${list.createdAt} • ${list.items.length} artikelen</div>\n            </div>\n            <a href=\"#\" class=\"btn btn-outline\">In winkelmand</a>\n          </div>`;
+        rlList.appendChild(div);
+      });
+    }
+    const companyEl = document.getElementById('companyInfo');
+    if (companyEl && user) {
+      companyEl.innerHTML = `<div class=\"card p-4\">\n        <div class=\"grid md:grid-cols-2 gap-4\">\n          <div><div class=\"text-sm text-dark/70\">Bedrijfsnaam</div><div class=\"font-semibold\">${user.company || '-'}</div></div>\n          <div><div class=\"text-sm text-dark/70\">KvK-nummer</div><div class=\"font-semibold\">${user.kvk || '-'}</div></div>\n          <div><div class=\"text-sm text-dark/70\">btw-nummer</div><div class=\"font-semibold\">${user.vat || '-'}</div></div>\n          <div><div class=\"text-sm text-dark/70\">E-mailadres</div><div class=\"font-semibold\">${user.email}</div></div>\n        </div>\n      </div>`;
+    }
+    const orderDetail = document.getElementById('orderDetail');
+    if (orderDetail && user) {
+      const url = new URL(location.href);
+      const id = url.searchParams.get('id');
+      const o = user.orders.find(x => x.id === id) || user.orders[0];
+      if (o) {
+        const itemsRows = o.items.map(i => `<tr>\n            <td class=\"py-2 px-3\">${i.name}<div class=\"text-sm text-dark/70\">SKU: ${i.sku}</div></td>\n            <td class=\"py-2 px-3\">${i.qty}</td>\n            <td class=\"py-2 px-3\">€ ${i.price.toFixed(2)}</td>\n            <td class=\"py-2 px-3\">€ ${(i.qty * i.price).toFixed(2)}</td>\n          </tr>`).join('');
+        orderDetail.innerHTML = `\n          <div class=\"flex items-center justify-between\">\n            <div>\n              <div class=\"font-extrabold text-xl\">Bestelling #${o.incrementId}</div>\n              <div class=\"text-sm text-dark/70\">${o.date} • ${o.status}</div>\n            </div>\n            <div class=\"text-right font-semibold\">Totaal: € ${o.total.toFixed(2)}</div>\n          </div>\n          <div class=\"mt-4 overflow-auto\">\n            <table class=\"min-w-full text-sm\">\n              <thead><tr><th class=\"text-left py-2 px-3\">Product</th><th class=\"text-left py-2 px-3\">Aantal</th><th class=\"text-left py-2 px-3\">Prijs</th><th class=\"text-left py-2 px-3\">Subtotaal</th></tr></thead>\n              <tbody>${itemsRows}</tbody>\n            </table>\n          </div>`;
+      }
+    }
+  }
+
+  function init() {
+    seedDemoUserIfNeeded();
+    updateHeaderAccountLink();
+    guardAccountRoutes();
+    wireForms();
+    renderers();
+    document.addEventListener('partials:loaded', () => {
+      updateHeaderAccountLink();
+      wireForms();
+      renderers();
+    });
+  }
+
+  return { init, isLoggedIn, getUser };
+})();

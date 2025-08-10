@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Remka style guide</title>
+    <meta name="description" content="Compact naslagwerk met kleuren, typografie, componenten en UI-richtlijnen voor Remka." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { brand: '#9E0059', accent: '#F77F00', teal: '#00A99D', dark: '#333333', light: '#E6E6E6' },
+            fontFamily: { sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'] }
+          }
+        }
+      };
+    </script>
+    <link rel="stylesheet" href="/assets/css/base.css" />
+
+    <style>
+      /* Demo helper */
+      .demo-grid > * { min-height: 3rem; display: grid; place-items: center; }
+      .sg-section h3 { font-weight: 900; letter-spacing: -0.01em; }
+      .sg-kleur { height: 64px; border-radius: .5rem; border: 1px solid rgba(0,0,0,.06); display:flex; align-items:center; justify-content:space-between; gap:.75rem; padding:.5rem .75rem; font-size:.85rem; }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <!-- Header via partials loader -->
+    <div id="header-placeholder"></div>
+
+    <main id="main" class="flex-1">
+      <section class="border-b border-light/60 bg-white/70 backdrop-blur">
+        <div class="container mx-auto px-4 py-8">
+          <div class="flex items-start justify-between gap-6">
+            <div>
+              <h1 class="text-3xl md:text-4xl font-black tracking-tight">Remka style guide</h1>
+              <p class="mt-2 text-dark/70 max-w-prose">Overzicht van kleuren, typografie, componenten en UI-elementen. Direct toepasbaar in Hyvä/Tailwind en modulair opgezet.</p>
+              <nav class="mt-4 text-sm breadcrumbs" aria-label="Broodkruimel">
+                <ol class="flex items-center gap-2 text-dark/70">
+                  <li><a href="index.html" class="hover:text-brand">Home</a></li>
+                  <li aria-hidden="true">/</li>
+                  <li>Style guide</li>
+                </ol>
+              </nav>
+            </div>
+            <div class="ml-auto flex items-center gap-2">
+              <a href="#inhoud" class="btn btn-brand text-sm">Naar inhoud</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container mx-auto px-4 py-10 grid md:grid-cols-[260px,1fr] gap-8" id="inhoud">
+        <!-- Sticky inhoudsopgave -->
+        <aside class="md:sticky md:top-20 self-start">
+          <div class="card p-4">
+            <h2 class="text-base font-extrabold">Inhoud</h2>
+            <nav class="mt-3 text-sm space-y-2">
+              <a class="block hover:text-brand" href="#kleuren">Kleurenpalet</a>
+              <a class="block hover:text-brand" href="#typografie">Typografie</a>
+              <a class="block hover:text-brand" href="#buttons">Buttons</a>
+              <a class="block hover:text-brand" href="#forms">Form elementen</a>
+              <a class="block hover:text-brand" href="#cards">Kaarten en containers</a>
+              <a class="block hover:text-brand" href="#navigatie">Navigatie en footer</a>
+              <a class="block hover:text-brand" href="#componenten">Componenten</a>
+              <a class="block hover:text-brand" href="#grid">Grid en layout</a>
+              <a class="block hover:text-brand" href="#iconen">Iconen</a>
+            </nav>
+          </div>
+        </aside>
+
+        <!-- Content kolom -->
+        <div class="space-y-10">
+          <!-- Kleurenpalet -->
+          <section id="kleuren" class="sg-section">
+            <h2 class="text-2xl font-black">Kleurenpalet</h2>
+            <p class="mt-1 text-sm text-dark/70">Primair, secundair en grijstinten. Gebruik <code>hover</code> en <code>focus</code> subtiel.</p>
+            <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div class="sg-kleur bg-brand text-white"><span>Brand</span><span>#9E0059</span></div>
+              <div class="sg-kleur bg-accent text-[#111]"><span>Accent</span><span>#F77F00</span></div>
+              <div class="sg-kleur bg-teal text-white"><span>Teal</span><span>#00A99D</span></div>
+              <div class="sg-kleur bg-dark text-white"><span>Donker</span><span>#333333</span></div>
+              <div class="sg-kleur bg-light text-[#111]"><span>Licht</span><span>#E6E6E6</span></div>
+              <div class="sg-kleur bg-white text-dark"><span>Wit</span><span>#FFFFFF</span></div>
+            </div>
+            <div class="mt-4 text-sm text-dark/70">
+              <p><strong>Focus</strong>: outline in merk-kleur. <strong>Hover</strong>: lichte schaduw of kleur-tint; geen flashy effecten.</p>
+            </div>
+          </section>
+
+          <!-- Typografie -->
+          <section id="typografie" class="sg-section">
+            <h2 class="text-2xl font-black">Typografie</h2>
+            <div class="mt-4 grid gap-3">
+              <h1 class="text-3xl md:text-4xl font-black">Kop h1 – belangrijkste titel</h1>
+              <h2 class="text-2xl md:text-3xl font-extrabold">Kop h2 – sectietitel</h2>
+              <h3 class="text-xl md:text-2xl font-extrabold">Kop h3 – subtitel</h3>
+              <h4 class="text-lg font-bold">Kop h4</h4>
+              <h5 class="text-base font-semibold">Kop h5</h5>
+              <h6 class="text-sm font-semibold text-dark/80">Kop h6</h6>
+              <p class="mt-2">Bodytekst met <a href="#" class="text-brand hover:underline">link</a> voorbeeld. Gebruik duidelijke paragrafen en voldoende regelafstand.</p>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>Ongeordende lijst</li>
+                <li>Consistente opmaak</li>
+              </ul>
+              <ol class="list-decimal pl-5 space-y-1">
+                <li>Geordende lijst</li>
+                <li>Stabiele hiërarchie</li>
+              </ol>
+            </div>
+          </section>
+
+          <!-- Buttons -->
+          <section id="buttons" class="sg-section">
+            <h2 class="text-2xl font-black">Buttons</h2>
+            <p class="mt-1 text-sm text-dark/70">Primaire, secundaire en outline. Gebruik disabled met lagere opacity.</p>
+            <div class="mt-4 flex flex-wrap gap-3 items-center">
+              <button class="btn btn-brand">Primaire</button>
+              <button class="btn btn-accent">Secundaire</button>
+              <button class="btn btn-outline">Outline</button>
+              <button class="btn btn-outline">Ghost</button>
+              <button class="btn btn-brand disabled:opacity-50 disabled:cursor-not-allowed" disabled>Disabled</button>
+              <a href="#" class="btn btn-brand">Link button</a>
+            </div>
+            <div class="mt-4 text-sm text-dark/70">Hover: subtiele schaduw of tint. Focus: duidelijke focus-ring.</div>
+          </section>
+
+          <!-- Form elementen -->
+          <section id="forms" class="sg-section">
+            <h2 class="text-2xl font-black">Form elementen</h2>
+            <div class="mt-4 grid md:grid-cols-2 gap-6">
+              <div class="space-y-3">
+                <label class="block text-sm font-semibold">Tekstveld</label>
+                <input type="text" class="input" placeholder="Voorbeeld invoer" />
+                <label class="block text-sm font-semibold">Textarea</label>
+                <textarea class="textarea" placeholder="Meerregelige invoer"></textarea>
+                <label class="block text-sm font-semibold">Select</label>
+                <select class="select">
+                  <option>Optie 1</option>
+                  <option>Optie 2</option>
+                </select>
+              </div>
+              <div class="space-y-4">
+                <fieldset class="card p-4">
+                  <legend class="font-semibold">Keuzes</legend>
+                  <label class="flex items-center gap-2 mt-2"><input type="checkbox" class="h-4 w-4" /> Checkbox</label>
+                  <label class="flex items-center gap-2 mt-2"><input type="checkbox" class="h-4 w-4" checked /> Checkbox aangevinkt</label>
+                  <div class="mt-3"></div>
+                  <label class="flex items-center gap-2 mt-2"><input type="radio" name="r" class="h-4 w-4" /> Radio</label>
+                  <label class="flex items-center gap-2 mt-2"><input type="radio" name="r" class="h-4 w-4" checked /> Radio geselecteerd</label>
+                </fieldset>
+                <div class="card p-4">
+                  <div class="flex items-center justify-between">
+                    <span class="font-semibold">Toggle</span>
+                    <button type="button" class="group inline-flex items-center" aria-pressed="false" data-toggle>
+                      <span class="sr-only">Schakel</span>
+                      <span class="w-10 h-6 rounded-full bg-light relative transition-colors group-[aria-pressed=true]:bg-brand">
+                        <span class="absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white shadow transition-all group-[aria-pressed=true]:translate-x-4"></span>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Kaarten & containers -->
+          <section id="cards" class="sg-section">
+            <h2 class="text-2xl font-black">Kaarten en containers</h2>
+            <div class="mt-4 grid md:grid-cols-2 gap-6">
+              <div class="card card--hover overflow-hidden">
+                <img src="/assets/images/placeholder-4x3.svg" alt="Voorbeeld" class="w-full" />
+                <div class="card-body">
+                  <div class="flex items-start justify-between gap-3">
+                    <h3 class="text-lg font-extrabold">Productkaart</h3>
+                    <span class="badge--soft">Nieuw</span>
+                  </div>
+                  <p class="mt-1 text-sm text-dark/70">Korte omschrijving van het product.</p>
+                  <div class="mt-3 flex items-center justify-between">
+                    <div class="price">€ 24,95 <small>incl. btw</small></div>
+                    <button class="btn btn-brand" data-add-to-cart data-sku="SG-DEMO" data-title="Voorbeeld" data-price="24.95" data-image="/assets/images/placeholder-4x3.svg" aria-label="In winkelwagen">
+                      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4h-2l-1 2v2h2l3.6 7.59a2 2 0 0 0 1.8 1.16h6.9v-2h-6.58l-.27-.54L18 11a2 2 0 0 0 1-1.73V6H7Zm-1 16a2 2 0 1 0 2-2 2 2 0 0 0-2 2Zm10 0a2 2 0 1 0 2-2 2 2 0 0 0-2 2Z"/><path d="M20 4v2h2v2h-2v2h-2V8h-2V6h2V4z"/></svg>
+                      <span>In winkelwagen</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="feature-card">
+                <div class="feature-icon"><svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm1 15h-2v-2h2Zm0-4h-2V7h2Z"/></svg></div>
+                <div>
+                  <h3 class="feature-title">Contentkaart</h3>
+                  <p class="feature-text">Gebruik voor korte voordelen of kenmerken.</p>
+                </div>
+              </div>
+              <div class="col-span-full card p-4">
+                <div class="grid sm:grid-cols-3 gap-4">
+                  <div class="promo p-4 rounded-lg bg-[rgba(158,0,89,0.06)] border border-[rgba(158,0,89,0.15)]">
+                    <div class="font-extrabold">Promo banner</div>
+                    <div class="text-sm text-dark/70">Merk-tint met duidelijke call-to-action.</div>
+                  </div>
+                  <div class="promo p-4 rounded-lg bg-[rgba(0,169,157,0.06)] border border-[rgba(0,169,157,0.15)]">
+                    <div class="font-extrabold">Promo banner</div>
+                    <div class="text-sm text-dark/70">Alternatieve tint.</div>
+                  </div>
+                  <div class="promo p-4 rounded-lg bg-[rgba(247,127,0,0.10)] border border-[rgba(247,127,0,0.25)]">
+                    <div class="font-extrabold">Promo banner</div>
+                    <div class="text-sm text-dark/70">Accentvariant.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Navigatie & footer -->
+          <section id="navigatie" class="sg-section">
+            <h2 class="text-2xl font-black">Navigatie en footer</h2>
+            <p class="mt-1 text-sm text-dark/70">Voorbeeld van breadcrumbs en globale layout. Header en footer worden geladen als partials.</p>
+            <nav class="mt-3 breadcrumbs text-sm" aria-label="Broodkruimel">
+              <ol class="flex items-center gap-2">
+                <li><a href="#" class="hover:text-brand">Assortiment</a></li>
+                <li aria-hidden="true">/</li>
+                <li><a href="#" class="hover:text-brand">Hygiëne</a></li>
+                <li aria-hidden="true">/</li>
+                <li>Handdesinfectie</li>
+              </ol>
+            </nav>
+            <div class="mt-4 text-sm text-dark/70">Bekijk de bovenste header en footer onderaan de pagina voor de volledige weergave.</div>
+          </section>
+
+          <!-- Componenten -->
+          <section id="componenten" class="sg-section">
+            <h2 class="text-2xl font-black">Componenten</h2>
+            <div class="mt-4 grid md:grid-cols-2 gap-6">
+              <!-- Accordions -->
+              <div class="card p-4">
+                <h3 class="text-lg font-extrabold">Accordion</h3>
+                <div class="mt-2 space-y-2" role="tablist" aria-multiselectable="true">
+                  <div class="card">
+                    <h4>
+                      <button class="w-full text-left p-3 font-semibold" role="tab" aria-expanded="false" aria-controls="sg-acc-1" id="sg-acc-tab-1">Vraag 1</button>
+                    </h4>
+                    <div id="sg-acc-1" role="tabpanel" aria-labelledby="sg-acc-tab-1" hidden>
+                      <div class="p-3 pt-0 text-sm text-dark/80">Antwoord op vraag 1.</div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <h4>
+                      <button class="w-full text-left p-3 font-semibold" role="tab" aria-expanded="false" aria-controls="sg-acc-2" id="sg-acc-tab-2">Vraag 2</button>
+                    </h4>
+                    <div id="sg-acc-2" role="tabpanel" aria-labelledby="sg-acc-tab-2" hidden>
+                      <div class="p-3 pt-0 text-sm text-dark/80">Antwoord op vraag 2.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Modals -->
+              <div class="card p-4">
+                <h3 class="text-lg font-extrabold">Modal</h3>
+                <p class="text-sm text-dark/70">Eenvoudige overlay met focus-trap.</p>
+                <button class="btn btn-brand mt-3" data-open-modal>Open modal</button>
+                <div id="sg-modal" class="fixed inset-0 z-50 hidden" aria-hidden="true" role="dialog" aria-label="Dialoog">
+                  <div class="absolute inset-0 bg-black/40" data-close-modal></div>
+                  <div class="absolute inset-0 grid place-items-center p-4">
+                    <div class="card w-full max-w-md">
+                      <div class="flex items-center justify-between p-4 border-b border-light"><h4 class="font-extrabold">Titel</h4><button class="p-2" data-close-modal aria-label="Sluiten">✕</button></div>
+                      <div class="p-4 text-sm text-dark/80">Inhoud van de modal.</div>
+                      <div class="p-4 border-t border-light flex justify-end gap-2"><button class="btn btn-outline" data-close-modal>Annuleren</button><button class="btn btn-brand" data-close-modal>Opslaan</button></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tooltips & badges -->
+              <div class="card p-4">
+                <h3 class="text-lg font-extrabold">Tooltips en badges</h3>
+                <div class="mt-2 flex flex-wrap items-center gap-2 text-sm">
+                  <button class="btn btn-outline" title="Korte toelichting">Hover voor tooltip</button>
+                  <span class="badge">Standaard</span>
+                  <span class="badge badge-success">Succes</span>
+                  <span class="badge badge-warning">Waarschuwing</span>
+                </div>
+              </div>
+
+              <!-- Alerts -->
+              <div class="card p-4">
+                <h3 class="text-lg font-extrabold">Alerts</h3>
+                <div class="mt-2 space-y-2 text-sm">
+                  <div class="rounded-md border border-brand/30 bg-brand/5 text-brand px-3 py-2">Informatie in merk-stijl.</div>
+                  <div class="rounded-md border border-amber-300 bg-amber-50 text-amber-800 px-3 py-2">Waarschuwing.</div>
+                  <div class="rounded-md border border-red-300 bg-red-50 text-red-800 px-3 py-2">Foutmelding.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Grid & layout -->
+          <section id="grid" class="sg-section">
+            <h2 class="text-2xl font-black">Grid en layout</h2>
+            <p class="mt-1 text-sm text-dark/70">Gebruik <code>container</code>, responsive grids en consistente spacing.</p>
+            <div class="mt-4 grid gap-4">
+              <div class="card p-4">
+                <div class="text-sm font-semibold">Breakpoints</div>
+                <div class="mt-2 text-sm text-dark/70">sm (640px), md (768px), lg (1024px), xl (1280px)</div>
+              </div>
+              <div class="card p-4">
+                <div class="text-sm font-semibold">Kolommen</div>
+                <div class="mt-3 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 demo-grid">
+                  <div class="bg-light/60 rounded-md">1</div>
+                  <div class="bg-light/60 rounded-md">2</div>
+                  <div class="bg-light/60 rounded-md">3</div>
+                  <div class="bg-light/60 rounded-md">4</div>
+                  <div class="bg-light/60 rounded-md">5</div>
+                  <div class="bg-light/60 rounded-md">6</div>
+                </div>
+              </div>
+              <div class="card p-4">
+                <div class="text-sm font-semibold">Spacing</div>
+                <div class="mt-3 flex flex-wrap items-end gap-3">
+                  <div class="bg-light/60 rounded-md w-9 h-2" title="spacing 2"></div>
+                  <div class="bg-light/60 rounded-md w-14 h-3" title="spacing 3"></div>
+                  <div class="bg-light/60 rounded-md w-18 h-4" title="spacing 4"></div>
+                  <div class="bg-light/60 rounded-md w-23 h-6" title="spacing 6"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Iconen -->
+          <section id="iconen" class="sg-section">
+            <h2 class="text-2xl font-black">Iconen</h2>
+            <p class="mt-1 text-sm text-dark/70">Gebruik inline SVG met <code>currentColor</code> of vaste afbeeldingen waar nodig.</p>
+            <div class="mt-3 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div class="card p-4">
+                <div class="text-sm font-semibold">Inline svg</div>
+                <div class="mt-2 flex items-center gap-3 text-brand">
+                  <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5Z"/></svg>
+                  <span class="text-sm">Account icoon</span>
+                </div>
+              </div>
+              <div class="card p-4">
+                <div class="text-sm font-semibold">Pictogrammen in footer</div>
+                <div class="mt-3 flex items-center gap-3 opacity-80">
+                  <img class="h-6" src="assets/images/payment-icons/ideal-logo.png" alt="iDEAL" />
+                  <img class="h-6" src="assets/images/payment-icons/Bancontact-logo.png" alt="Bancontact" />
+                  <img class="h-6" src="assets/images/payment-icons/Visa_Brandmark_Blue_RGB_2021.png" alt="Visa" />
+                </div>
+              </div>
+              <div class="card p-4">
+                <div class="text-sm font-semibold">Tip</div>
+                <p class="mt-2 text-sm text-dark/70">Zorg voor consistente maatvoering (16–24px) en contrast.</p>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer via partials loader -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="/assets/js/menu.js" defer></script>
+    <script src="/assets/js/index.js" defer></script>
+    <script>
+      // Simple accordion behaviour for the demo
+      document.addEventListener('click', function(e){
+        var btn = e.target.closest('button[role="tab"][id^="sg-acc-tab-"]');
+        if(!btn) return;
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        var panelId = btn.getAttribute('aria-controls');
+        var panel = document.getElementById(panelId);
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(panel) panel.hidden = expanded;
+      });
+
+      // Toggle demo
+      document.addEventListener('click', function(e){
+        var t = e.target.closest('[data-toggle]');
+        if(!t) return;
+        var state = t.getAttribute('aria-pressed') === 'true';
+        t.setAttribute('aria-pressed', String(!state));
+      });
+
+      // Modal demo
+      (function(){
+        var openBtn, modal;
+        function trap(container){
+          var focusables = container.querySelectorAll('a,button,input,select,textarea,[tabindex]:not([tabindex="-1"])');
+          focusables = Array.prototype.filter.call(focusables, function(el){ return !el.hasAttribute('disabled'); });
+          var first = focusables[0], last = focusables[focusables.length-1];
+          function onKey(e){
+            if(e.key !== 'Tab') return;
+            if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+            else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+          }
+          document.addEventListener('keydown', onKey);
+          setTimeout(function(){ (first||container).focus(); }, 0);
+          return function(){ document.removeEventListener('keydown', onKey); };
+        }
+        var untrap = null;
+        document.addEventListener('click', function(e){
+          if(e.target.closest('[data-open-modal]')){
+            modal = document.getElementById('sg-modal');
+            if(!modal) return;
+            modal.classList.remove('hidden');
+            untrap = trap(modal);
+          }
+          if(e.target.closest('[data-close-modal]')){
+            modal = document.getElementById('sg-modal');
+            if(!modal) return;
+            modal.classList.add('hidden');
+            if(typeof untrap === 'function'){ untrap(); untrap = null; }
+          }
+        });
+        document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ var m = document.getElementById('sg-modal'); if(m && !m.classList.contains('hidden')){ m.classList.add('hidden'); if(typeof untrap === 'function'){ untrap(); untrap = null; } } } });
+      })();
+    </script>
+  </body>
+</html>
+
+

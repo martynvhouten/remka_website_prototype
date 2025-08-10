@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Afrekenen – Betaling | Remka B.V.</title>
+    <meta name="description" content="Hyvä Checkout-stijl: stap 2 betaling." />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/logo-remka.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { theme: { extend: { colors: { brand: '#9E0059', accent: '#F77F00', teal: '#00A99D', dark: '#333333', light: '#E6E6E6' }, fontFamily: { sans: ['\"Plus Jakarta Sans\"','ui-sans-serif','system-ui','sans-serif'] } } } }
+    </script>
+    <link rel="stylesheet" href="/assets/css/base.css" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <div id="header-placeholder"></div>
+    <main id="main" class="flex-1">
+      <section class="container mx-auto px-4 py-8">
+        <nav aria-label="Checkout stappen" class="mb-6">
+          <ol class="flex items-center gap-2 text-sm">
+            <li class="text-dark/60">Verzenden</li>
+            <li>›</li>
+            <li class="font-semibold text-brand">Betalen</li>
+            <li>›</li>
+            <li class="text-dark/60">Bevestiging</li>
+          </ol>
+        </nav>
+        <div class="grid lg:grid-cols-3 gap-8">
+          <section class="lg:col-span-2">
+            <h1 class="text-xl md:text-2xl font-extrabold tracking-tight">Betaalmethode</h1>
+            <form class="mt-4 space-y-4 form-compact" onsubmit="event.preventDefault(); window.location.href='/checkout-success.html'">
+              <fieldset class="space-y-2">
+                <label class="flex items-center gap-3 border border-light rounded-md p-3 cursor-pointer"><input type="radio" name="pm" checked /> <span>iDEAL</span> <img src="/assets/images/payment-ideal.svg" alt="iDEAL" class="ml-auto h-5" /></label>
+                <label class="flex items-center gap-3 border border-light rounded-md p-3 cursor-pointer"><input type="radio" name="pm" /> <span>Bancontact</span> <img src="/assets/images/payment-bancontact.svg" alt="Bancontact" class="ml-auto h-5" /></label>
+                <label class="flex items-center gap-3 border border-light rounded-md p-3 cursor-pointer"><input type="radio" name="pm" /> <span>Creditcard</span> <img src="/assets/images/payment-visa.svg" alt="Visa" class="ml-auto h-5" /></label>
+               <label class="flex items-center gap-3 border border-light rounded-md p-3 cursor-pointer"><input type="radio" name="pm" /> <span>PayPal</span> <img src="/assets/images/payment-icons/PayPal-logo.png" alt="PayPal" class="ml-auto h-5" /></label>
+              </fieldset>
+              <div>
+                <label class="block text-sm font-medium" for="comment">Opmerking bij bestelling (optioneel)</label>
+                <textarea id="comment" class="mt-1 textarea" rows="3"></textarea>
+              </div>
+              <div class="mt-4 flex items-center justify-between">
+                <a href="/checkout-shipping.html" class="text-brand">Terug naar verzenden</a>
+                <button class="btn btn-brand">Bestelling plaatsen</button>
+              </div>
+            </form>
+          </section>
+          <aside class="space-y-4">
+            <div class="card p-4">
+              <h2 class="font-semibold mb-2">Orderoverzicht</h2>
+              <div class="flex items-center justify-between text-sm"><span>Subtotaal</span><span>€ 54,00</span></div>
+              <div class="flex items-center justify-between text-sm"><span>Verzending</span><span>€ 5,00</span></div>
+              <div class="flex items-center justify-between text-sm"><span>Btw</span><span>€ 0,00</span></div>
+              <div class="flex items-center justify-between mt-2 text-lg font-extrabold"><span>Totaal</span><span>€ 59,00</span></div>
+              <div class="mt-4 text-sm text-dark/70">
+                <div class="font-semibold">Verzenden naar</div>
+                <div>test test<br/>1011 AB Amsterdam<br/>Nederland</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+    <div id="footer-placeholder"></div>
+    <script src="/assets/js/menu.js" defer></script>
+    <script src="/assets/js/index.js" defer></script>
+  </body>
+  </html>
+
