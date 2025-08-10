@@ -49,6 +49,35 @@ async function loadPartials() {
 document.addEventListener('DOMContentLoaded', async () => {
   await loadPartials();
   // Laat menu.js zelf init doen na partials:loaded om dubbel init te voorkomen
+  try {
+    const y = document.getElementById('year');
+    if (y) y.textContent = String(new Date().getFullYear());
+  } catch {}
+  // Unobtrusive demo form handlers (replace inline onsubmit)
+  try {
+    document.querySelectorAll('form[data-navigate]')
+      .forEach((form) => {
+        if (form.dataset.bound) return;
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const to = form.getAttribute('data-navigate');
+          if (to) window.location.href = to;
+        });
+        form.dataset.bound = '1';
+      });
+  } catch {}
+  // FAQ accordion delegation (removed inline script from faq.html)
+  try {
+    document.addEventListener('click', function(e){
+      const btn = e.target.closest && e.target.closest('button[id^="tab-"]');
+      if(!btn) return;
+      const panelId = btn.getAttribute('aria-controls');
+      const panel = document.getElementById(panelId);
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      if(panel) panel.hidden = expanded;
+    });
+  } catch {}
 });
 
 // --- Demo account/auth verwijderd voor Hyvä ---

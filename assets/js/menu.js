@@ -161,7 +161,7 @@
           { name: 'Merken', slug: 'merken', children: [] },
           { name: 'Aanbiedingen', slug: 'aanbiedingen', children: [] }
         ];
-        try { console.warn('[Header] Fallback-menu actief:', e); } catch {}
+        // Fallback-menu actief; in productie worden menu-items server-side geleverd
       }
     },
 

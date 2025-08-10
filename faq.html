@@ -77,17 +77,7 @@
           </aside>
         </div>
       </section>
-      <script>
-        document.addEventListener('click', function(e){
-          const btn = e.target.closest('button[id^="tab-"]');
-          if(!btn) return;
-          const panelId = btn.getAttribute('aria-controls');
-          const panel = document.getElementById(panelId);
-          const expanded = btn.getAttribute('aria-expanded') === 'true';
-          btn.setAttribute('aria-expanded', String(!expanded));
-          if(panel) panel.hidden = expanded;
-        });
-      </script>
+      
     </main>
     <div id="footer-placeholder"></div>
     <script src="/assets/js/menu.js" defer></script>

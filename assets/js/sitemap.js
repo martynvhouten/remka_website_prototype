@@ -49,7 +49,7 @@
 
     const makeToggle = () => {
       const btn = document.createElement('button');
-      btn.className = 'w-6 h-6 shrink-0 rounded-md border border-light text-dark/80 grid place-items-center hover:bg-gray-50';
+      btn.className = 'w-6 h-6 shrink-0 rounded-md border border-light text-dark/80 grid place-items-center hover:bg-light/40';
       // default collapsed
       btn.setAttribute('aria-expanded', 'false');
       btn.innerHTML = iconPlus;
@@ -67,14 +67,14 @@
 
     const createItem = (label, href, level = 0, kind = 'category') => {
       const row = document.createElement('div');
-      row.className = 'flex items-center gap-2';
-      const pad = document.createElement('div'); pad.style.width = `${level * 16}px`; pad.className = 'shrink-0';
+      const ml = level <= 0 ? '' : (level === 1 ? 'ml-4' : (level === 2 ? 'ml-8' : 'ml-12'));
+      row.className = `flex items-center gap-2 ${ml}`.trim();
       const iconWrap = document.createElement('span'); iconWrap.className = 'w-6 h-6 text-brand grid place-items-center'; iconWrap.innerHTML = icon[kind] || icon.category;
       const link = document.createElement('a');
-      link.className = 'inline-flex items-center gap-2 rounded-lg px-2 py-1 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand';
+      link.className = 'inline-flex items-center gap-2 rounded-lg px-2 py-1 hover:bg-light/40 focus:outline-none focus:ring-2 focus:ring-brand';
       link.href = href; link.innerHTML = `<span class=\"font-semibold\">${label}</span>`;
       link.setAttribute('aria-label', label);
-      row.appendChild(pad); row.appendChild(iconWrap); row.appendChild(link);
+      row.appendChild(iconWrap); row.appendChild(link);
       return row;
     };
 

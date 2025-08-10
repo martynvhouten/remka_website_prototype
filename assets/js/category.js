@@ -158,7 +158,7 @@
       a.innerHTML = `
         <div class="card-product__media"><img src="${p.image || '/assets/images/placeholder-4x3.svg'}" alt="${p.title}" loading="lazy" class="media-img" /></div>
         <div class="mt-3 flex items-center justify-between gap-3 card-product__brand">
-          <div class="text-sm text-gray-600">${p.brand}</div>
+          <div class="text-sm text-dark/70">${p.brand}</div>
           <span class="badge--soft">Topper</span>
         </div>
         <h3 class="mt-1 font-semibold text-dark line-clamp-2 card-product__title">${p.title}</h3>
@@ -200,7 +200,7 @@
       const stars = '★★★★★'.slice(0, 5); // dummy 5/5
       card.innerHTML = `
         <div class="card-product__media"><img src="${p.image || '/assets/images/placeholder-4x3.svg'}" alt="${p.title}" loading="lazy" class="media-img"/></div>
-        <div class="mt-3 text-sm text-gray-600">${p.brand}</div>
+        <div class="mt-3 text-sm text-dark/70">${p.brand}</div>
         <h3 class="mt-1 font-semibold text-dark line-clamp-2">${p.title}</h3>
         <div class="mt-1 text-sm text-dark/80">${stars} <span class="badge--soft">5.0</span></div>
         <div class="mt-2 font-semibold">€ ${p.price.toFixed(2)}</div>
@@ -219,7 +219,7 @@
       const card = document.createElement('a'); card.href = '/product.html'; card.className = 'card card--hover p-3 flex flex-col';
       card.innerHTML = `
         <div class="card-product__media"><img src="${p.image || '/assets/images/placeholder-4x3.svg'}" alt="${p.title}" loading="lazy" class="media-img"/></div>
-        <div class="mt-2 text-sm text-gray-600">${p.title}</div>
+        <div class="mt-2 text-sm text-dark/70">${p.title}</div>
       `; host.appendChild(card);
     });
   }

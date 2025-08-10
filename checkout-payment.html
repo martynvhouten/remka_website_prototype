@@ -31,7 +31,7 @@
         <div class="grid lg:grid-cols-3 gap-8">
           <section class="lg:col-span-2">
             <h1 class="text-xl md:text-2xl font-extrabold tracking-tight">Betaalmethode</h1>
-            <form class="mt-4 space-y-4 form-compact" onsubmit="event.preventDefault(); window.location.href='/checkout-success.html'">
+            <form class="mt-4 space-y-4 form-compact" data-navigate="/checkout-success.html">
               <fieldset class="space-y-2">
                 <label class="flex items-center gap-3 border border-light rounded-md p-3 cursor-pointer"><input type="radio" name="pm" checked /> <span>iDEAL</span> <img src="/assets/images/payment-ideal.svg" alt="iDEAL" class="ml-auto h-5" /></label>
                 <label class="flex items-center gap-3 border border-light rounded-md p-3 cursor-pointer"><input type="radio" name="pm" /> <span>Bancontact</span> <img src="/assets/images/payment-bancontact.svg" alt="Bancontact" class="ml-auto h-5" /></label>

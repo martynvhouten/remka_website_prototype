@@ -62,7 +62,7 @@
     if(azHost){
       letters.forEach(l=>{
         const btn = document.createElement('button');
-        btn.className = 'px-2 py-1 text-sm rounded-md border border-light bg-white hover:bg-gray-50';
+        btn.className = 'px-2 py-1 text-sm rounded-md border border-light bg-white hover:bg-light/40';
         btn.textContent = l; btn.setAttribute('data-letter', l);
         azHost.appendChild(btn);
       });

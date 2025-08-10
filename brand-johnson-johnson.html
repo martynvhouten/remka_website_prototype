@@ -180,7 +180,7 @@
             const a = document.createElement('a'); a.href = '/product.html'; a.className = 'card card--hover p-3 flex flex-col';
             a.innerHTML = `
               <div class="card-product__media"><img src="${p.image || '/assets/images/placeholder-4x3.svg'}" alt="${p.title}" class="media-img" loading="lazy" /></div>
-              <div class="mt-2 text-sm text-gray-600">${p.brand || 'Johnson & Johnson'}</div>
+              <div class="mt-2 text-sm text-dark/70">${p.brand || 'Johnson & Johnson'}</div>
               <div class="mt-1 font-semibold line-clamp-2">${p.title}</div>
               <div class="mt-2 font-semibold">€ ${Number(p.price||0).toFixed(2)}</div>
             `;
