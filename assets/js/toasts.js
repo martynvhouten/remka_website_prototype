@@ -11,10 +11,15 @@
     var host = ensureHost();
     var div = document.createElement('div');
     div.className = 'toast';
-    div.innerHTML = iconSvg() + '<div><div class="toast__title">'+(title||'Melding')+'</div>' + (text?'<div class="toast__text">'+text+'</div>':'') + '</div>' + closeButton();
+    var actionHtml = (opts && opts.actionLabel) ? '<button class="btn btn-outline btn-sm" data-toast-action="primary">'+opts.actionLabel+'</button>' : '';
+    div.innerHTML = iconSvg() + '<div><div class="toast__title">'+(title||'Melding')+'</div>' + (text?'<div class="toast__text">'+text+'</div>':'') + '</div>' + actionHtml + closeButton();
     host.appendChild(div);
     var close = function(){ if(div && div.parentNode){ div.parentNode.removeChild(div); } };
     var btn = div.querySelector('.toast__close'); if(btn) btn.addEventListener('click', close);
+    var act = div.querySelector('[data-toast-action="primary"]');
+    if(act && opts && typeof opts.onAction === 'function'){
+      act.addEventListener('click', function(){ try { opts.onAction(); } catch {} close(); });
+    }
     var ms = (opts && opts.timeout) || 2400; if(ms>0) setTimeout(close, ms);
   }
   window.RemkaToasts = { show: showToast };
@@ -24,7 +29,7 @@
     if(!btn) return;
     var title = 'Toegevoegd aan winkelmand';
     var name = btn.getAttribute('data-title') || 'Product';
-    showToast(title, name, { timeout: 2600 });
+    showToast(title, name, { timeout: 2600, actionLabel: 'Bekijken', onAction: function(){ try { window.openMinicart && window.openMinicart(); } catch {} } });
   });
 })();
 

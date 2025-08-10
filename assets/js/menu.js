@@ -398,15 +398,32 @@
 
     // Cart adapter: supports multiple hooks/selectors
     bindCartAdapter() {
+      const focusMinicartHeading = () => {
+        try {
+          const mc = document.getElementById('minicart'); if (!mc) return;
+          const h = mc.querySelector('h2');
+          if (h) { if (!h.hasAttribute('tabindex')) h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
+        } catch {}
+      };
       const openMinicart = () => {
         try { document.dispatchEvent(new CustomEvent('cart:toggle', { detail: { open: true } })); } catch {}
-        const el = document.getElementById('minicart'); if (el) el.classList.remove('hidden');
-        if (window.RemkaToasts && typeof window.RemkaToasts.show === 'function') {
-          window.RemkaToasts.show('Winkelmand geopend');
-        }
+        const el = document.getElementById('minicart');
+        if (!el) return;
+        if (el.classList.contains('hidden')) el.classList.remove('hidden');
+        focusMinicartHeading();
       };
+      const closeMinicart = () => {
+        const el = document.getElementById('minicart'); if (!el) return; el.classList.add('hidden');
+      };
+      try { window.openMinicart = openMinicart; } catch {}
       const selectors = ['[data-cart-toggle]', '.js-mini-cart-toggle', '[data-open="minicart"]'];
       selectors.forEach(sel => document.querySelectorAll(sel).forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); openMinicart(); })));
+      // Close buttons
+      document.querySelectorAll('[data-close="minicart"]').forEach(btn => {
+        if (btn.dataset.mcCloseBound) return;
+        btn.addEventListener('click', (e) => { e.preventDefault(); closeMinicart(); });
+        btn.dataset.mcCloseBound = '1';
+      });
     },
 
     async init() {
@@ -498,7 +515,7 @@
     key: 'remka_demo_cart',
     read() { try { return JSON.parse(localStorage.getItem(this.key) || '[]'); } catch { return []; } },
     write(items) { localStorage.setItem(this.key, JSON.stringify(items)); },
-    add(item) { const items = this.read(); const existing = items.find(i => i.sku === item.sku); if (existing) existing.qty += item.qty || 1; else items.push({ ...item, qty: item.qty || 1 }); this.write(items); this.renderBadge(); this.renderMinicart(); },
+    add(item) { const items = this.read(); const existing = items.find(i => i.sku === item.sku); if (existing) existing.qty += item.qty || 1; else items.push({ ...item, qty: item.qty || 1 }); this.write(items); this.renderBadge(); this.renderMinicart(); try { window.openMinicart && window.openMinicart(); } catch {} },
     remove(sku) { const items = this.read().filter(i => i.sku !== sku); this.write(items); this.renderBadge(); this.renderMinicart(); },
     count() { return this.read().reduce((n, i) => n + (i.qty || 0), 0); },
     subtotal() { return this.read().reduce((sum, i) => sum + (i.price || 0) * (i.qty || 0), 0); },
@@ -525,11 +542,11 @@
     clear() { this.write([]); this.renderBadge(); this.renderMinicart(); }
   };
   window.RemkaCart = Cart;
-  const bindCartButtons = () => {
+      const bindCartButtons = () => {
     document.querySelectorAll('[data-add-to-cart]').forEach(btn => btn.addEventListener('click', () => {
       const sku = btn.getAttribute('data-sku') || 'DEMO'; const title = btn.getAttribute('data-title') || 'Product'; const price = parseFloat(btn.getAttribute('data-price') || '9.99'); const image = btn.getAttribute('data-image') || '/assets/images/placeholder-4x3.svg';
       Cart.add({ sku, title, price, image, qty: 1 });
-      const mc = document.getElementById('minicart'); if (mc) mc.classList.remove('hidden');
+          try { window.openMinicart && window.openMinicart(); } catch {}
     }));
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => { Cart.renderBadge(); Cart.renderMinicart(); bindCartButtons(); });
