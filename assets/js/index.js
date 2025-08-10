@@ -102,6 +102,16 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     }
   } catch {}
+
+  // Load Various catalog for placeholders
+  try {
+    const res = await fetch('/assets/images/various-catalog.json', { cache: 'no-store' });
+    if (res.ok) {
+      const catalog = await res.json();
+      try { window.RemkaVarious = (catalog && catalog.items) ? catalog.items : []; } catch { window.RemkaVarious = []; }
+      try { document.dispatchEvent(new CustomEvent('various:ready')); } catch {}
+    }
+  } catch {}
 });
 
 // --- Demo account/auth removed for Hyvä ---
