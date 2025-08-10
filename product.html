@@ -47,17 +47,30 @@
         <div data-partial="product-info"></div>
       </div>
 
+      <section class="container mx-auto px-4 py-6">
+        <div class="card p-3 w-[min(100%,320px)] ml-auto">
+          <iframe title="Kiyoh reviews" frameborder="0" allowtransparency="false" src="https://www.kiyoh.com/retrieve-widget.html?color=white&allowTransparency=false&button=false&lang=nl&tenantId=98&locationId=1077247" width="100%" height="180"></iframe>
+        </div>
+      </section>
+
       <div data-partial="product-related"></div>
     </main>
 
     <div id="footer-placeholder"></div>
     <script src="/assets/js/menu.js" defer></script>
     <script src="/assets/js/index.js" defer></script>
+    <script src="/assets/js/toasts.js" defer></script>
     <script>
-      // Mini gallery switcher
+      // Mini gallery switcher + zoom modal
       window.addEventListener('DOMContentLoaded', () => {
         const main = document.getElementById('mainImg');
         document.querySelectorAll('[data-src]').forEach(btn => btn.addEventListener('click', () => { main.src = btn.getAttribute('data-src'); }));
+        const modal = document.getElementById('pdpZoom');
+        const open = () => modal && modal.classList.remove('hidden');
+        const close = () => modal && modal.classList.add('hidden');
+        if(main){ main.style.cursor = 'zoom-in'; main.addEventListener('click', open); }
+        document.addEventListener('click', (e)=>{ if(e.target && e.target.getAttribute && e.target.getAttribute('data-close')==='pdpZoom') close(); });
+        document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
       });
     </script>
     <script src="/assets/js/product-stock.js" defer></script>

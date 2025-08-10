@@ -150,6 +150,9 @@
 
   function renderProducts(products){
     const grid = document.getElementById('productGrid'); if(!grid) return;
+    const skel = document.getElementById('productGridSkeletons');
+    const empty = document.getElementById('productEmpty');
+    if(skel) skel.classList.add('hidden');
     grid.innerHTML = '';
     products.forEach(p=>{
       const a = document.createElement('a');
@@ -174,6 +177,7 @@
       grid.appendChild(a);
     });
     const count = document.getElementById('resultCount'); if(count) count.textContent = `${products.length} producten`;
+    if(empty) empty.classList.toggle('hidden', products.length !== 0);
 
     // Persist for Recently Viewed (simulate when clicking)
     grid.querySelectorAll('[data-add-to-cart]').forEach(btn => {
@@ -306,6 +310,8 @@
       renderBreadcrumbs(node);
       renderSubcategoryGrid(node);
       renderCategoryDynamicBlocks(node);
+      // Show skeletons while preparing
+      const skel = document.getElementById('productGridSkeletons'); if(skel) skel.classList.remove('hidden');
       const allProducts = await loadProducts();
       const subtreeSlugs = collectSubtreeSlugs(node);
       const productsForCategory = allProducts.filter(p => Array.isArray(p.categories) && p.categories.some(c => subtreeSlugs.has(c)));
@@ -317,6 +323,12 @@
       buildBrandFacet(products, () => apply());
       const apply = bindToolbar(state);
       apply && apply();
+      const clear = document.getElementById('clearAllFilters');
+      if(clear){ clear.addEventListener('click', ()=>{
+        document.querySelectorAll('#facetHost input[type="checkbox"]').forEach(cb=> cb.checked=false);
+        document.querySelectorAll('#facetHostMobile input[type="checkbox"]').forEach(cb=> cb.checked=false);
+        if(typeof apply === 'function') apply();
+      }); }
     } catch (e) {
     const title = document.getElementById('catTitle'); if(title) title.textContent = 'Assortiment';
     }

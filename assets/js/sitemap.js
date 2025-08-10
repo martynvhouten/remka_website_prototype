@@ -23,7 +23,7 @@
   }
 
   async function loadCategories(){
-    // Hyvä/Magento: server-side sitemap boom; fallback op lege set
+    // Hyvä/Magento: server-side sitemap tree; fallback to empty set
     return { children: [] };
   }
 
@@ -87,7 +87,7 @@
     const tree = document.createElement('div');
     tree.className = 'space-y-2';
 
-    // Root: Home -> Assortiment -> Hoofdcategorieën
+    // Root: Home -> Assortment -> Main categories
     const home = createItem('Home', '/index.html', 0, 'home');
     tree.appendChild(home);
 
@@ -126,12 +126,12 @@
         // default collapsed
         prodWrap.classList.add('hidden');
 
-        // Optional: toon tot 3 productlinks voor deze subcategorie
+        // Optional: show up to 3 product links for this subcategory
         const prods = productsByCat.get(sub.slug) || [];
         const prodList = document.createElement('div'); prodList.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2';
         prods.forEach(p => {
           const a = document.createElement('a');
-          // Route naar demo-varianten op basis van stock waar mogelijk
+          // Route to demo variants based on stock where possible
            let href = '/product.html';
           if(p.stock === 'in_stock') href = '/product-op-voorraad.html';
           else if(p.stock === 'backorder') href = '/product-ordergestuurd.html';

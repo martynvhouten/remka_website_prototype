@@ -161,7 +161,7 @@
           { name: 'Merken', slug: 'merken', children: [] },
           { name: 'Aanbiedingen', slug: 'aanbiedingen', children: [] }
         ];
-        // Fallback-menu actief; in productie worden menu-items server-side geleverd
+        // Fallback menu active; in production, menu items are provided server-side
       }
     },
 
@@ -348,6 +348,9 @@
       const openMinicart = () => {
         try { document.dispatchEvent(new CustomEvent('cart:toggle', { detail: { open: true } })); } catch {}
         const el = document.getElementById('minicart'); if (el) el.classList.remove('hidden');
+        if (window.RemkaToasts && typeof window.RemkaToasts.show === 'function') {
+          window.RemkaToasts.show('Winkelmand geopend');
+        }
       };
       const selectors = ['[data-cart-toggle]', '.js-mini-cart-toggle', '[data-open="minicart"]'];
       selectors.forEach(sel => document.querySelectorAll(sel).forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); openMinicart(); })));
@@ -356,7 +359,7 @@
     async init() {
       await this.loadData();
       this.ensureScaffold();
-      // In Hyvä server-side menu, data-gedreven rendering is optioneel; behoud interactiviteit
+      // In Hyvä server-side menu, data-driven rendering is optional; retain interactivity
       this.renderDesktop();
       this.renderMobile();
       this.bindCartAdapter();
@@ -399,12 +402,12 @@
   };
 
   window.RemkaHeader = RemkaHeader;
-  // Init pas na partials:loaded, met fallback na DOMContentLoaded als er geen partial loader is
+  // Init only after partials:loaded, with fallback to DOMContentLoaded if there is no partial loader
   const doInitOnce = () => { if (window.__remkaHeaderBooted) return; window.__remkaHeaderBooted = true; try { RemkaHeader.init(); } catch {} };
   document.addEventListener('partials:loaded', doInitOnce);
-  // Init uitsluitend na partials:loaded, zodat geen dubbele header wordt opgebouwd
+  // Init exclusively after partials:loaded, so that no duplicate header is constructed
 
-  // Demo cart API (optioneel, blijft voor prototype). In productie Hyvä vervangen door Magento minicart.
+  // Demo cart API (optional, remains for prototype). In production with Hyvä, replace with Magento minicart.
   const Cart = {
     key: 'remka_demo_cart',
     read() { try { return JSON.parse(localStorage.getItem(this.key) || '[]'); } catch { return []; } },

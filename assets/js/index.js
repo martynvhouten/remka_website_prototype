@@ -78,6 +78,22 @@ document.addEventListener('DOMContentLoaded', async () => {
       if(panel) panel.hidden = expanded;
     });
   } catch {}
+
+  // Footer newsletter form (basic client validation)
+  try {
+    const form = document.getElementById('newsletterFooterForm');
+    if (form) {
+      const email = document.getElementById('newsletterEmail');
+      const err = document.getElementById('newsletterError');
+      const ok = document.getElementById('newsletterSuccess');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const valid = email && email.checkValidity();
+        if (!valid) { err && err.classList.remove('hidden'); ok && ok.classList.add('hidden'); return; }
+        err && err.classList.add('hidden'); ok && ok.classList.remove('hidden');
+      });
+    }
+  } catch {}
 });
 
 // --- Demo account/auth removed for Hyvä ---

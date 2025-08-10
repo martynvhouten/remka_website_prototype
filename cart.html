@@ -28,26 +28,34 @@
         <p class="section-subtitle">Hier zie je een voorbeeld van je winkelmandpagina.</p>
       </header>
       <div class="grid lg:grid-cols-3 gap-8">
-        <section class="lg:col-span-2 space-y-4">
-          <div class="card p-4 flex gap-4 items-start">
+        <section class="lg:col-span-2 space-y-4" id="cartItems">
+          <div class="card p-4 flex gap-4 items-start" data-item data-price="8.75">
             <img src="/assets/images/Products/Hartmann/42080_43.jpg" alt="Productafbeelding" class="w-24 h-24 object-cover rounded-md border border-light" />
             <div class="flex-1">
               <h2 class="font-semibold">Hartmann 42080</h2>
               <div class="text-sm text-dark/70">Artikelnummer: DEMO-42080</div>
-            <div class="mt-2 flex items-center gap-3">
+              <div class="mt-2 flex items-center gap-3">
                 <label class="text-sm" for="qty1">Aantal</label>
-                <input id="qty1" type="number" value="1" min="1" class="w-20 input" />
-                <button class="text-sm text-brand">Verwijderen</button>
+                <input id="qty1" type="number" value="1" min="1" class="w-20 input" data-qty />
+                <button class="text-sm text-brand" data-remove>Verwijderen</button>
               </div>
             </div>
-            <div class="font-semibold whitespace-nowrap">€ 8,75</div>
+            <div class="font-semibold whitespace-nowrap">€ <span data-line-total>8,75</span></div>
           </div>
         </section>
         <aside class="space-y-4">
           <div class="card p-4">
-            <div class="flex items-center justify-between"><span>Subtotaal</span><span class="font-semibold">€ 8,75</span></div>
-            <div class="flex items-center justify-between text-sm text-dark/70 mt-1"><span>Btw (21%)</span><span>€ 1,84</span></div>
-            <div class="flex items-center justify-between mt-2 text-lg font-extrabold"><span>Totaal</span><span>€ 10,59</span></div>
+            <div class="mb-3">
+              <label for="coupon" class="block text-sm font-medium">Kortingscode</label>
+              <div class="mt-1 flex gap-2">
+                <input id="coupon" class="input" placeholder="Voer coupon in" />
+                <button id="applyCoupon" class="btn btn-outline" type="button">Pas toe</button>
+              </div>
+              <p id="couponNote" class="text-sm text-dark/70 mt-1 hidden">Coupon toegepast.</p>
+            </div>
+            <div class="flex items-center justify-between"><span>Subtotaal</span><span class="font-semibold">€ <span id="subTotal">8,75</span></span></div>
+            <div class="flex items-center justify-between text-sm text-dark/70 mt-1"><span>Btw (21%)</span><span>€ <span id="taxTotal">1,84</span></span></div>
+            <div class="flex items-center justify-between mt-2 text-lg font-extrabold"><span>Totaal</span><span>€ <span id="grandTotal">10,59</span></span></div>
             <div class="mt-4 grid grid-cols-2 gap-2">
               <a href="/category.html" class="btn btn-outline w-full">Verder winkelen</a>
               <a href="/checkout-shipping.html" class="btn btn-brand w-full">Afrekenen</a>
@@ -59,6 +67,28 @@
     <div id="footer-placeholder"></div>
     <script src="/assets/js/menu.js" defer></script>
     <script src="/assets/js/index.js" defer></script>
+    <script>
+      // Basic cart UI interactions (client-only)
+      function fmt(n){ return (Number(n)||0).toFixed(2).replace('.', ','); }
+      function recalc(){
+        var items = document.querySelectorAll('[data-item]');
+        var subtotal = 0;
+        items.forEach(function(row){
+          var price = Number(row.getAttribute('data-price')||'0');
+          var qty = Number((row.querySelector('[data-qty]')||{}).value||'1');
+          var line = price * qty; subtotal += line;
+          var lineEl = row.querySelector('[data-line-total]'); if(lineEl) lineEl.textContent = fmt(line);
+        });
+        var tax = subtotal * 0.21; var grand = subtotal + tax;
+        var sEl = document.getElementById('subTotal'); if(sEl) sEl.textContent = fmt(subtotal);
+        var tEl = document.getElementById('taxTotal'); if(tEl) tEl.textContent = fmt(tax);
+        var gEl = document.getElementById('grandTotal'); if(gEl) gEl.textContent = fmt(grand);
+      }
+      document.addEventListener('input', function(e){ if(e.target && e.target.matches('[data-qty]')) recalc(); });
+      document.addEventListener('click', function(e){ var btn = e.target.closest('[data-remove]'); if(!btn) return; var row = btn.closest('[data-item]'); if(row){ row.parentNode.removeChild(row); recalc(); }});
+      document.getElementById('applyCoupon')?.addEventListener('click', function(){ var note = document.getElementById('couponNote'); if(note) note.classList.remove('hidden'); });
+      recalc();
+    </script>
   </body>
   </html>
 

@@ -18,46 +18,224 @@
   <body class="min-h-screen flex flex-col">
     <div id="header-placeholder"></div>
     <main id="main" class="flex-1">
+      <!-- Page title section (compact, met kleinere Kiyoh) -->
       <section class="section-teal-tint">
-        <div class="container mx-auto px-4 py-12 lg:py-16">
-          <header>
-            <div class="eyebrow">Sinds 1902</div>
-            <h1 class="mt-1 text-3xl font-extrabold tracking-tight">Over ons</h1>
-            <p class="mt-2 section-subtitle">Medische groothandel met focus op betrouwbaarheid, snelle levering en eerlijke prijzen.</p>
-          </header>
-          <div class="mt-6 flex gap-3">
-            <a href="index.html" class="btn btn-brand">Bekijk assortiment</a>
-            <a href="contact.html" class="btn btn-outline">Neem contact op</a>
+        <div class="container mx-auto px-4 py-10">
+          <div class="grid md:grid-cols-2 gap-6 items-start">
+            <header>
+              <div class="eyebrow">Sinds 1902</div>
+              <h1 class="mt-1 text-3xl md:text-4xl font-black tracking-tight">Over ons</h1>
+              <p class="mt-2 section-subtitle">Groothandel voor medische benodigdheden. Kwaliteit, betrouwbaarheid en snelle levering.</p>
+              <div class="mt-4 flex flex-wrap gap-3">
+                <a href="/category.html" class="btn btn-brand">Bekijk assortiment</a>
+                <a href="/contact.html" class="btn btn-outline">Neem contact op</a>
+              </div>
+            </header>
+            <aside class="justify-self-end">
+              <div class="card p-3 bg-white w-[min(100%,320px)]">
+                <iframe title="Kiyoh reviews" frameborder="0" allowtransparency="false" src="https://www.kiyoh.com/retrieve-widget.html?color=white&allowTransparency=false&button=false&lang=nl&tenantId=98&locationId=1077247" width="100%" height="180"></iframe>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
 
-      <section class="container mx-auto px-4 py-10">
-        <div class="grid md:grid-cols-2 gap-8 items-start">
-          <div class="space-y-4">
-            <h2 class="text-xl font-extrabold">Kernpunten</h2>
-            <ul class="space-y-2 list-disc list-inside text-dark/90">
-              <li>120+ jaar ervaring in medische verbruiksartikelen</li>
-              <li>Assortiment van 10.000+ producten (inclusief >100.000 varianten)</li>
-              <li>Voor praktijk, kliniek, ziekenhuis en consument</li>
-              <li>Snelle levering in Nederland en België</li>
-              <li>Scherpe en eerlijke prijzen</li>
+      <!-- Wie is Remka -->
+      <section class="section">
+        <div class="container mx-auto px-4 py-10 grid md:grid-cols-3 gap-8 items-start">
+          <div class="md:col-span-2">
+            <h2 class="text-2xl font-black">Wie is Remka?</h2>
+            <p class="mt-3 text-dark/80">Remka, een prominente speler in de groothandel voor medische benodigdheden, heeft een lange en rijke historie. Onze missie is om een breed scala aan hoogwaardige medische producten en persoonlijke zorgartikelen te leveren. Met meer dan 100.000 producten – van gespecialiseerde medische apparatuur tot alledaagse verbandmiddelen en huidverzorging – bedienen we een divers klantenbestand. Van huisartsen, fysiotherapeuten, verpleegkundigen en chirurgen tot schoonheidssalons en particulieren: Remka staat voor kwaliteit en betrouwbaarheid bij elke levering.</p>
+          </div>
+          <aside class="justify-self-end w-full max-w-[320px]">
+            <img src="/assets/images/Inschrijving_KvK_voorkant.jpg" alt="KvK‑inschrijving – voorkant" class="w-full h-auto object-contain max-h-60 rounded-[0.75rem] border border-light shadow-sm" loading="lazy" />
+          </aside>
+          <div class="md:col-span-3 mt-2"></div>
+        </div>
+        <!-- verwijderd: brede figure -->
+      </section>
+
+      <!-- KVK-afbeeldingen + kort verhaal -->
+      <section class="section">
+        <div class="container mx-auto px-4 py-10">
+          <div class="grid lg:grid-cols-2 gap-6 items-start">
+            <div>
+              <h2 class="text-2xl font-black">Wie is Remka?</h2>
+              <p class="mt-3 text-dark/80">We leveren sinds 1902 medische artikelen aan zorgprofessionals en consumenten. Met een betrouwbaar assortiment en duidelijke service helpen we je snel aan de juiste producten.</p>
+            </div>
+            <div class="grid gap-4 content-start justify-items-end">
+              <img src="/assets/images/Inschrijving_KvK_inhoud.jpg" alt="KvK‑inschrijving – inhoud" loading="lazy" class="w-full max-w-[320px] h-auto object-contain max-h-60 rounded-[0.75rem] border border-light shadow-sm" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ons pand in Rijswijk (highlight) -->
+      <section class="section">
+        <div class="container mx-auto px-4 py-10 grid md:grid-cols-2 gap-8 items-start">
+          <div class="order-2 md:order-1 justify-self-end w-full max-w-[320px]">
+            <img src="/assets/images/Remka_buitenkant.jpg" alt="Ons pand in Rijswijk" class="w-full h-auto object-contain max-h-64 rounded-[0.75rem] border border-light shadow-sm" loading="lazy" />
+          </div>
+          <div class="order-1 md:order-2">
+            <h2 class="text-2xl font-black">Ons pand in Rijswijk</h2>
+            <p class="mt-3 text-dark/80">Het moderne, duurzaam ontworpen pand in Rijswijk ondersteunt snelle logistiek, zorgvuldige opslag en efficiënte orderverwerking. Met aandacht voor energiezuinigheid en een prettige werkomgeving.</p>
+            <ul class="mt-4 grid sm:grid-cols-2 gap-3 text-sm">
+              <li class="card p-3"><span class="font-semibold">Duurzaam</span><div class="text-dark/70">Energiezuinige installaties en bewuste materiaalkeuzes.</div></li>
+              <li class="card p-3"><span class="font-semibold">Logistiek</span><div class="text-dark/70">Geoptimaliseerde routing voor snelle orderafhandeling.</div></li>
+              <li class="card p-3"><span class="font-semibold">Kwaliteit</span><div class="text-dark/70">Geconditioneerde opslag en strakke procesbewaking.</div></li>
+              <li class="card p-3"><span class="font-semibold">Bereikbaarheid</span><div class="text-dark/70">Centraal gelegen met goede uitvalswegen.</div></li>
             </ul>
           </div>
-          <aside>
-            <div data-partial="content/contact-card"></div>
-          </aside>
         </div>
       </section>
 
+      <!-- Remka vandaag -->
+      <section class="section">
+        <div class="container mx-auto px-4 py-10 grid lg:grid-cols-3 gap-6 items-start">
+          <div class="lg:col-span-2">
+            <h2 class="text-2xl font-black">Remka vandaag: innovatie en duurzaamheid</h2>
+            <p class="mt-3 text-dark/80">Met meer dan 120 jaar ervaring blijven we verbeteren en innoveren. Onze identiteit (2024) en geavanceerde webshop maken bestellen eenvoudiger en sneller. Ons duurzame pand in Rijswijk onderstreept onze inzet voor milieubewust ondernemen en maatschappelijke verantwoordelijkheid.</p>
+          </div>
+          <div class="card p-4">
+            <div class="text-sm text-dark/70">MDR & kwaliteit</div>
+            <p class="mt-2 text-sm text-dark/80">Door de MDR‑wetgeving (Medical Device Regulation) hebben we processen en assortiment aangescherpt. Zo borgen we veiligheid en traceerbaarheid – en leveren we betrouwbare medische hulpmiddelen.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Missie & waarden -->
+      <section class="section">
+        <div class="container mx-auto px-4 py-10">
+          <h2 class="text-2xl font-black">Missie & waarden</h2>
+          <div class="mt-6 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="feature-card"><div class="feature-icon">🎯</div><div><div class="feature-title">Betrouwbaarheid</div><div class="feature-text">Leverzekerheid en eerlijke afspraken vormen de basis.</div></div></div>
+            <div class="feature-card"><div class="feature-icon feature-icon--teal">🔬</div><div><div class="feature-title">Kennis</div><div class="feature-text">Actuele expertise over producten, regelgeving en toepassing.</div></div></div>
+            <div class="feature-card"><div class="feature-icon feature-icon--accent">🌱</div><div><div class="feature-title">Duurzaamheid</div><div class="feature-text">Verantwoorde keuzes in pand, logistiek en verpakkingen.</div></div></div>
+            <div class="feature-card"><div class="feature-icon">🤝</div><div><div class="feature-title">Partnerschap</div><div class="feature-text">Meedenken met zorgprofessionals én consumenten.</div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Kiyoh (alt) -->
       <section class="section-alt">
         <div class="container mx-auto px-4 py-10">
-          <h2 class="text-xl font-extrabold">Mijlpalen</h2>
-          <ol class="mt-4 grid md:grid-cols-3 gap-6">
-            <li class="card p-4"><h3 class="font-semibold">Oorsprong</h3><p class="text-sm text-dark/80 mt-1">Start van Remka als medische groothandel in 1902.</p></li>
-            <li class="card p-4"><h3 class="font-semibold">Rijswijk</h3><p class="text-sm text-dark/80 mt-1">Moderne faciliteit in Rijswijk met duurzaam pand.</p></li>
-            <li class="card p-4"><h3 class="font-semibold">Webshop</h3><p class="text-sm text-dark/80 mt-1">Professionele webshop voor B2B en consument.</p></li>
+          <div class="grid md:grid-cols-3 gap-6 items-start">
+            <div class="md:col-span-2">
+              <h2 class="text-2xl font-black">Wat klanten zeggen</h2>
+              <p class="mt-2 text-dark/80">Onafhankelijke reviews via Kiyoh. We bouwen aan lange relaties met zorgprofessionals én consumenten.</p>
+            </div>
+            <div class="justify-self-end w-[min(100%,320px)]">
+              <div class="card p-3 bg-white">
+                <iframe title="Kiyoh reviews" frameborder="0" allowtransparency="false" src="https://www.kiyoh.com/retrieve-widget.html?color=white&allowTransparency=false&button=false&lang=nl&tenantId=98&locationId=1077247" width="100%" height="180"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Service & logistiek -->
+      <section class="section">
+        <div class="container mx-auto px-4 py-10">
+          <h2 class="text-2xl font-black">Service & logistiek</h2>
+          <div class="mt-6 grid md:grid-cols-3 gap-6">
+            <div class="card p-4"><div class="font-extrabold">Snelle levering</div><div class="mt-1 text-dark/80 text-sm">Meestal 24–48 uur binnen NL/BE. Transparante track & trace.</div></div>
+            <div class="card p-4"><div class="font-extrabold">Spoedservice</div><div class="mt-1 text-dark/80 text-sm">Bij urgente bestellingen denken we direct mee in opties.</div></div>
+            <div class="card p-4"><div class="font-extrabold">Ondersteuning</div><div class="mt-1 text-dark/80 text-sm">Deskundig advies over productkeuze, toepassing en alternatieven.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certificering & compliance -->
+      <section class="section-alt">
+        <div class="container mx-auto px-4 py-10">
+          <h2 class="text-2xl font-black">Certificering & compliance</h2>
+          <ul class="mt-4 grid md:grid-cols-2 gap-3 text-sm">
+            <li class="card p-3"><span class="font-semibold">MDR</span><div class="text-dark/70">Procesaanpassingen voor veiligheid & traceerbaarheid van hulpmiddelen.</div></li>
+            <li class="card p-3"><span class="font-semibold">Kwaliteitsborging</span><div class="text-dark/70">Strakke in‑ en outbound controles en documentatie.</div></li>
+            <li class="card p-3"><span class="font-semibold">Privacy</span><div class="text-dark/70">Zorgvuldige omgang met klantgegevens en bestelhistorie.</div></li>
+            <li class="card p-3"><span class="font-semibold">Veiligheid</span><div class="text-dark/70">Continu verbeteren van processen en werkinstructies.</div></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Onze werkwijze (stappen) -->
+      <section class="section">
+        <div class="container mx-auto px-4 py-10">
+          <h2 class="text-2xl font-black">Onze werkwijze</h2>
+          <ol class="mt-6 grid md:grid-cols-4 gap-4">
+            <li class="card p-4"><div class="font-extrabold">1. Inventarisatie</div><div class="text-sm text-dark/80 mt-1">Vragen en behoeften helder krijgen.</div></li>
+            <li class="card p-4"><div class="font-extrabold">2. Advies</div><div class="text-sm text-dark/80 mt-1">Passende selectie met alternatieven.</div></li>
+            <li class="card p-4"><div class="font-extrabold">3. Levering</div><div class="text-sm text-dark/80 mt-1">Snel en zorgvuldig uitgeleverd.</div></li>
+            <li class="card p-4"><div class="font-extrabold">4. Nazorg</div><div class="text-sm text-dark/80 mt-1">Beschikbaar voor vragen en vervolg.</div></li>
           </ol>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="section-alt">
+        <div class="container mx-auto px-4 py-10">
+          <h2 class="text-2xl font-black">Wat klanten zeggen</h2>
+          <div class="mt-6 grid md:grid-cols-3 gap-6">
+            <blockquote class="card p-4"><p class="text-dark/80">“Snelle levering en goed advies – precies wat we nodig hadden.”</p><footer class="mt-2 text-sm text-dark/60">Huisartsenpraktijk – Den Haag</footer></blockquote>
+            <blockquote class="card p-4"><p class="text-dark/80">“Breed assortiment en vriendelijke service. Aanrader.”</p><footer class="mt-2 text-sm text-dark/60">Fysiotherapie – Rotterdam</footer></blockquote>
+            <blockquote class="card p-4"><p class="text-dark/80">“Duidelijke communicatie, betrouwbare partner.”</p><footer class="mt-2 text-sm text-dark/60">Kliniek – Utrecht</footer></blockquote>
+          </div>
+        </div>
+      </section>
+
+      <!-- Waarom Remka (wit) -->
+      <section class="section">
+        <div class="container mx-auto px-4 py-10">
+          <h2 class="text-2xl font-black">Waarom kiezen voor Remka?</h2>
+          <div class="mt-6 grid md:grid-cols-3 gap-6">
+            <div class="feature-card">
+              <div class="feature-icon">★</div>
+              <div>
+                <div class="feature-title">Ervaring en expertise</div>
+                <div class="feature-text">Meer dan een eeuw aan kennis in de medische sector.</div>
+              </div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon feature-icon--teal">⌂</div>
+              <div>
+                <div class="feature-title">Breed assortiment</div>
+                <div class="feature-text">Een selectie die aansluit op elke behoefte, van praktijk tot particulier.</div>
+              </div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon feature-icon--accent">❤</div>
+              <div>
+                <div class="feature-title">Klantgerichte service</div>
+                <div class="feature-text">Deskundige ondersteuning en advies door ons team.</div>
+              </div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">⚡</div>
+              <div>
+                <div class="feature-title">Flexibiliteit en snelheid</div>
+                <div class="feature-text">Snelle leveringen en spoedservice voor urgente bestellingen.</div>
+              </div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon feature-icon--teal">♻</div>
+              <div>
+                <div class="feature-title">Duurzaamheid</div>
+                <div class="feature-text">Duurzaam pand en bewuste keuzes in logistiek en assortiment.</div>
+              </div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">✔</div>
+              <div>
+                <div class="feature-title">Betrouwbare levering</div>
+                <div class="feature-text">Stabiele voorraad en afspraken waar je op kunt rekenen.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 grid sm:grid-cols-2 gap-3">
+            <a href="/category.html" class="btn btn-brand">Ontdek het assortiment</a>
+            <a href="/contact.html" class="btn btn-outline">Plan een kennismaking</a>
+          </div>
         </div>
       </section>
     </main>

@@ -8,8 +8,11 @@
       <button class="p-2 rounded-md border border-light" data-close="offcanvas" aria-label="Sluiten">✕</button>
     </div>
     <div class="p-3 border-b border-light">
-      <label for="mobile-search" class="sr-only">Zoeken</label>
-      <input id="mobile-search" type="search" placeholder="Zoek in menu" class="w-full rounded-md border border-light px-3 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal" />
+      <form action="/search.html" class="flex gap-2">
+        <label for="mobile-search" class="sr-only">Zoeken</label>
+        <input id="mobile-search" name="q" type="search" placeholder="Zoek producten" class="w-full rounded-md border border-light px-3 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal" />
+        <button class="btn btn-brand text-xs" aria-label="Zoeken">Zoek</button>
+      </form>
     </div>
     <div id="mobileMenu" class="p-2" role="menu" aria-label="Mobiel menu">
       <!-- JS render -->
