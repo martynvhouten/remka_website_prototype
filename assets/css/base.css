@@ -155,8 +155,12 @@ body { color: var(--dark); background: #fff; }
 .mega-rail { position: relative; }
 
 /* Hide-on-scroll header (smooth, class-based; no inline styles) */
-header[role="banner"] { will-change: transform, opacity; transition: transform .45s cubic-bezier(.22,.61,.36,1), opacity .3s ease; opacity: 1; }
-.header--hidden { transform: translateY(-100%); opacity: 0; }
+header[role="banner"] { will-change: transform; transition: transform .22s ease-in-out; }
+.header--hidden { transform: translateY(-100%); }
+
+/* New light-weight classes (preferred) */
+header[role="banner"].is-visible { transform: translateY(0); }
+header[role="banner"].is-hidden { transform: translateY(-100%); }
 
 /* Reserve space for hide-on-scroll if needed (can be adjusted per page) */
 /* main:first-of-type { margin-top: var(--header-reserved, 0); } */

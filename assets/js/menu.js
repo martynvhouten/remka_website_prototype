@@ -435,37 +435,56 @@
       this.bindCartAdapter();
       window.__remkaMenu = this.state.data;
 
-      // Hide-on-scroll: always visible when scrolling up; hide when scrolling down
+      // Smooth header hide/show on scroll (mobile+desktop) with thresholds
       const header = document.querySelector('header[role="banner"]');
       const offcanvas = document.getElementById('offcanvas');
       if (header) {
-        // Tuning: less sensitive with hysteresis
-        if (typeof this.state.scrollAnchor !== 'number') this.state.scrollAnchor = 0;
+        const SHOW_UP_PX = 15;   // show after scrolling up by ~15px
+        const HIDE_DOWN_PX = 40; // hide after scrolling down by ~40px from last reveal
+        let lastY = window.scrollY || 0;
+        let revealAnchor = lastY; // last position where header was revealed
+        let visible = true;
+
+        // Initial state
+        header.classList.add('is-visible');
+        header.classList.remove('is-hidden');
+
+        const setVisible = () => {
+          if (!visible) {
+            header.classList.remove('is-hidden');
+            header.classList.add('is-visible');
+            visible = true;
+          }
+          revealAnchor = window.scrollY || 0;
+        };
+        const setHidden = () => {
+          if (visible) {
+            header.classList.remove('is-visible');
+            header.classList.add('is-hidden');
+            visible = false;
+          }
+        };
+
         const onScroll = () => {
           const y = window.scrollY || 0;
-          const delta = y - this.state.lastScrollY;
+          const delta = y - lastY;
           const goingDown = delta > 0;
           const goingUp = delta < 0;
-           const nearTop = y < 80; // always show when near the top
+          const nearTop = y < 16;
           const mobileOpen = offcanvas && !offcanvas.classList.contains('hidden');
 
-          // Less sensitive: require a small delta threshold to react
-          const ignoreSmall = Math.abs(delta) < 6;
-          if (ignoreSmall) { this.state.lastScrollY = y; return; }
+          // Do not hide while focusing within header (keyboard nav / skip link interactions)
+          const active = document.activeElement;
+          if (active && header.contains(active)) { setVisible(); lastY = y; return; }
 
-          if (nearTop || (goingUp && !mobileOpen)) {
-            if (this.state.hidden) { header.classList.remove('header--hidden'); this.state.hidden = false; }
-            this.state.scrollAnchor = y; // reset anchor when showing
-          } else if (goingDown && !mobileOpen) {
-            // Hide only after scrolling sufficiently past the anchor point
-            const threshold = 160; // px after last show before hiding
-            if (y - (this.state.scrollAnchor || 0) > threshold) {
-              if (!this.state.hidden) { header.classList.add('header--hidden'); this.state.hidden = true; }
-            }
+          if (nearTop || (goingUp && (revealAnchor - y >= SHOW_UP_PX))) {
+            setVisible();
+          } else if (!mobileOpen && goingDown && (y - revealAnchor >= HIDE_DOWN_PX)) {
+            setHidden();
           }
-          this.state.lastScrollY = y;
+          lastY = y;
         };
-        window.addEventListener('scroll', debounce(onScroll, 80), { passive: true });
+        window.addEventListener('scroll', debounce(onScroll, 60), { passive: true });
         onScroll();
       }
     }
