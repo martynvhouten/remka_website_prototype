@@ -1,4 +1,4 @@
-// Header + Menu (Hyvä-ready) – modulair, A11y-first, data-gedreven
+// Header + Menu (Hyvä-ready) – modular, A11y-first, data-driven
 (function () {
   // Helpers
   const FOCUSABLE = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, audio[controls], video[controls], [contenteditable], [tabindex]:not([tabindex="-1"])';
@@ -128,7 +128,7 @@
     },
 
     async loadData() {
-      // Probeer categorieën te laden (prototype) met robuuste fallback-parsing.
+      // Try to load categories (prototype) with robust fallback parsing.
       try {
         const res = await fetch('/data/categories.json', { cache: 'no-store' });
         const text = await res.text();
@@ -151,11 +151,11 @@
             }
           }
         }
-        if (!parsed) throw new Error('Onleesbare categories.json');
+        if (!parsed) throw new Error('Unreadable categories.json');
         const nodes = Array.isArray(parsed) ? parsed : (parsed.children || []);
         this.state.data = nodes.map(withSlugs);
       } catch (e) {
-        // Fallback-menu zodat er altijd items zichtbaar zijn
+        // Fallback menu so there are always items visible
         this.state.data = [
           { name: 'Assortiment', slug: 'assortiment', children: [] },
           { name: 'Merken', slug: 'merken', children: [] },
@@ -177,7 +177,7 @@
         nav.parentNode.insertBefore(host, nav.nextSibling);
       }
 
-      // Houd menubalk aanwezig; rendering van items gebeurt server-side in Hyvä
+      // Keep the menu bar present; item rendering happens server-side in Hyvä
 
       this.state.data.forEach((cat, i) => {
         const hasChildren = Array.isArray(cat.children) && cat.children.length > 0;
@@ -250,7 +250,7 @@
       let wrap = document.getElementById('mobileMenu');
       let offcanvas = document.getElementById('offcanvas');
       const toggles = document.querySelectorAll('[data-nav-toggle]');
-      // Fallback: als offcanvas ontbreekt (bijv. partial niet geladen), maak een minimale versie
+      // Fallback: if offcanvas is missing (e.g. partial not loaded), create a minimal version
       if (!offcanvas) {
         offcanvas = document.createElement('div');
         offcanvas.id = 'offcanvas';
@@ -272,7 +272,7 @@
       if (!wrap) wrap = offcanvas.querySelector('#mobileMenu');
       wrap.innerHTML = '';
 
-      // Mobile menu wordt gevuld door server-side/menu data indien beschikbaar
+      // Mobile menu is populated by server-side/menu data when available
 
       this.state.data.forEach((cat, i) => {
         const hasChildren = cat.children && cat.children.length > 0;
@@ -321,7 +321,7 @@
       const onToggleClick = () => offcanvas.classList.contains('hidden') ? open() : close();
       toggles.forEach(t => { if (t.dataset.bound) return; t.addEventListener('click', onToggleClick); t.dataset.bound = '1'; });
       offcanvas.querySelectorAll('[data-close="offcanvas"]').forEach(b => { if (b.dataset.bound) return; b.addEventListener('click', close); b.dataset.bound = '1'; });
-      // Delegated fallback (werkt ook als knop later in DOM komt)
+      // Delegated fallback (also works if the button appears later in the DOM)
       if (!document.documentElement.dataset.navDelegated) {
         document.addEventListener('click', (e) => {
           const toggleBtn = e.target.closest && e.target.closest('[data-nav-toggle]');
@@ -332,7 +332,7 @@
         document.documentElement.dataset.navDelegated = '1';
       }
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !offcanvas.classList.contains('hidden')) close(); });
-      // Prevent scroll bounce when at edges
+      // Prevent scroll bounce when reaching the edges
       offcanvas.addEventListener('wheel', (e) => {
         const panel = offcanvas.querySelector('.offcanvas-panel'); if(!panel) return;
         const atTop = panel.scrollTop === 0;
@@ -343,7 +343,7 @@
       this.state.mobileCloser = close;
     },
 
-    // Cart adapter: ondersteunt meerdere hooks/selectors
+    // Cart adapter: supports multiple hooks/selectors
     bindCartAdapter() {
       const openMinicart = () => {
         try { document.dispatchEvent(new CustomEvent('cart:toggle', { detail: { open: true } })); } catch {}
@@ -362,30 +362,30 @@
       this.bindCartAdapter();
       window.__remkaMenu = this.state.data;
 
-      // Hide-on-scroll: altijd zichtbaar bij omhoog scrollen; verbergen bij omlaag
+      // Hide-on-scroll: always visible when scrolling up; hide when scrolling down
       const header = document.querySelector('header[role="banner"]');
       const offcanvas = document.getElementById('offcanvas');
       if (header) {
-        // Tuning: minder gevoelig en met hysterese
+        // Tuning: less sensitive with hysteresis
         if (typeof this.state.scrollAnchor !== 'number') this.state.scrollAnchor = 0;
         const onScroll = () => {
           const y = window.scrollY || 0;
           const delta = y - this.state.lastScrollY;
           const goingDown = delta > 0;
           const goingUp = delta < 0;
-          const nearTop = y < 80; // laat dichter bij top altijd zien
+           const nearTop = y < 80; // always show when near the top
           const mobileOpen = offcanvas && !offcanvas.classList.contains('hidden');
 
-          // Minder gevoelig: vereis kleine drempel in delta om te reageren
+          // Less sensitive: require a small delta threshold to react
           const ignoreSmall = Math.abs(delta) < 6;
           if (ignoreSmall) { this.state.lastScrollY = y; return; }
 
           if (nearTop || (goingUp && !mobileOpen)) {
             if (this.state.hidden) { header.classList.remove('header--hidden'); this.state.hidden = false; }
-            this.state.scrollAnchor = y; // reset anker wanneer we tonen
+            this.state.scrollAnchor = y; // reset anchor when showing
           } else if (goingDown && !mobileOpen) {
-            // Verberg pas als we voldoende voorbij het ankerpunt zijn gescrold
-            const threshold = 160; // px na laatste show voordat we verbergen
+            // Hide only after scrolling sufficiently past the anchor point
+            const threshold = 160; // px after last show before hiding
             if (y - (this.state.scrollAnchor || 0) > threshold) {
               if (!this.state.hidden) { header.classList.add('header--hidden'); this.state.hidden = true; }
             }

@@ -10,7 +10,7 @@ async function injectPartial(el, name) {
 }
 
 async function loadPartials() {
-  // In Hyvä worden header/footer via PHTML geladen; partial injectie kan worden uitgeschakeld
+  // In Hyvä, header/footer are loaded via PHTML; partial injection can be disabled
   const headerPh = document.getElementById('header-placeholder');
   const footerPh = document.getElementById('footer-placeholder');
   if (headerPh) await injectPartial(headerPh, 'header');
@@ -23,7 +23,7 @@ async function loadPartials() {
   // Notify others that partials are loaded
   try { document.dispatchEvent(new CustomEvent('partials:loaded')); } catch {}
 
-  // Minicart toggle (prototype only) – te vervangen door Hyvä minicart
+  // Minicart toggle (prototype only) – to be replaced by Hyvä minicart
   const openers = document.querySelectorAll('[data-open="minicart"]');
   const minicart = document.getElementById('minicart');
   if (minicart && openers.length) {
@@ -35,7 +35,7 @@ async function loadPartials() {
       try {
         if (window.RemkaCart && typeof window.RemkaCart.count === 'function') {
           if (window.RemkaCart.count() > 0) open();
-          else open(); // toon ook lege minicart als er geen items zijn
+          else open(); // also show empty minicart if there are no items
         } else {
           open();
         }
@@ -48,7 +48,7 @@ async function loadPartials() {
 
 document.addEventListener('DOMContentLoaded', async () => {
   await loadPartials();
-  // Laat menu.js zelf init doen na partials:loaded om dubbel init te voorkomen
+  // Let menu.js initialize itself after partials:loaded to avoid double init
   try {
     const y = document.getElementById('year');
     if (y) y.textContent = String(new Date().getFullYear());
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   } catch {}
 });
 
-// --- Demo account/auth verwijderd voor Hyvä ---
+// --- Demo account/auth removed for Hyvä ---
 /* const RemkaAuth = (() => {
   const AUTH_KEY = 'remka_demo_auth';
   const USER_KEY = 'remka_demo_user';
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function guardAccountRoutes() {
-    // Demo: auth guard uitgeschakeld zodat alle accountpagina's toegankelijk zijn zonder inlog
+    // Demo: auth guard disabled so all account pages are accessible without login
     return;
   }
 

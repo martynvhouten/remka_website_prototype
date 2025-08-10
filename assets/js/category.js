@@ -17,7 +17,7 @@
   }
 
   async function loadCategories(){
-    // Hyvä/Magento: categories worden server-side geleverd; fallback op lege boom
+    // Hyvä/Magento: categories are provided server-side; fallback to empty tree
     return { children: [] };
   }
 
@@ -27,7 +27,7 @@
   }
 
   async function loadProducts(){
-    // Hyvä/Magento: producten komen uit collections; client-side demo data niet nodig
+    // Hyvä/Magento: products come from collections; no need for client-side demo data
     return [];
   }
 
