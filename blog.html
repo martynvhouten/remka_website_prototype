@@ -27,38 +27,9 @@
   <body class="min-h-screen flex flex-col">
     <div id="header-placeholder"></div>
 
-    <main id="main" class="flex-1 container mx-auto px-4 py-10">
-      <header class="max-w-3xl">
-        <h1 class="text-3xl font-extrabold tracking-tight">Blog</h1>
-        <p class="mt-2 text-gray-700">Actueel nieuws, producttips en praktische adviezen voor de zorg.</p>
-      </header>
-
-      <section class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <a href="/blog-post.html" class="card card--hover overflow-hidden">
-          <img src="/assets/images/placeholder-16x9.svg" alt="Blogafbeelding" loading="lazy" />
-          <div class="p-4">
-            <div class="text-xs text-gray-600">11 apr 2025 · Praktijktips</div>
-            <h3 class="mt-1 font-semibold">Hygiëneprotocol in 5 stappen</h3>
-            <p class="mt-2 text-sm text-gray-700">Maak je praktijk schoon en veilig met dit korte stappenplan.</p>
-          </div>
-        </a>
-        <a href="/blog-post.html" class="card card--hover overflow-hidden">
-          <img src="/assets/images/placeholder-16x9.svg" alt="Blogafbeelding" loading="lazy" />
-          <div class="p-4">
-            <div class="text-xs text-gray-600">28 mrt 2025 · Productnieuws</div>
-            <h3 class="mt-1 font-semibold">Nieuwe nitril handschoenen</h3>
-            <p class="mt-2 text-sm text-gray-700">Sterk, comfortabel en geschikt voor lange inzet.</p>
-          </div>
-        </a>
-        <a href="/blog-post.html" class="card card--hover overflow-hidden">
-          <img src="/assets/images/placeholder-16x9.svg" alt="Blogafbeelding" loading="lazy" />
-          <div class="p-4">
-            <div class="text-xs text-gray-600">12 mrt 2025 · Logistiek</div>
-            <h3 class="mt-1 font-semibold">Voor 16:00 besteld, snel geleverd</h3>
-            <p class="mt-2 text-sm text-gray-700">Zo houden we levertijden laag en voorraden op peil.</p>
-          </div>
-        </a>
-      </section>
+    <main id="main" class="flex-1">
+      <div data-partial="blog-header"></div>
+      <div data-partial="blog-grid"></div>
     </main>
 
     <div id="footer-placeholder"></div>

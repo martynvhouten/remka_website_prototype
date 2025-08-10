@@ -1,0 +1,265 @@
+[
+  {
+    "sku": "KAI-BP-4MM",
+    "brand": "Kai",
+    "title": "Kai biopsiepunch 4 mm",
+    "price": 2.95,
+    "image": "/assets/images/Products/kai_biopsy_punch_4.jpg",
+    "categories": ["huidstansen", "medische-instrumenten"],
+    "stock": "in_stock"
+  },
+  {
+    "sku": "KAI-BP-3MM",
+    "brand": "Kai",
+    "title": "Kai biopsiepunch 3 mm",
+    "price": 2.95,
+    "image": "/assets/images/Products/kai_biopsy_punch_detail_4.jpg",
+    "categories": ["huidstansen", "medische-instrumenten"],
+    "stock": "in_stock"
+  },
+  {
+    "sku": "KAI-HC-4MM",
+    "brand": "Kai",
+    "title": "Kai huidcurette 4 mm",
+    "price": 5.90,
+    "image": "/assets/images/Products/KAI_huidcurette.jpg",
+    "categories": ["scherpe-lepels", "medische-instrumenten"],
+    "stock": "backorder"
+  },
+  {
+    "sku": "KAI-HC-SET",
+    "brand": "Kai",
+    "title": "Kai huidcurette set assorti",
+    "price": 24.50,
+    "image": "/assets/images/Products/KAI_huidcurette_packaging.jpg",
+    "categories": ["scherpe-lepels", "medische-instrumenten"],
+    "stock": "out_of_stock",
+    "eta": "2025-08-20"
+  },
+
+  {
+    "sku": "AID-QRGO-INST",
+    "brand": "Aidian",
+    "title": "QuikRead go instrument",
+    "price": 1295.00,
+    "image": "/assets/images/Products/Aidian/OD-133893%20-%20QuikRead%20go%20Instrument.png",
+    "categories": ["bloedonderzoek", "laboratorium"],
+    "stock": "backorder"
+  },
+  {
+    "sku": "AID-QRGO-WS",
+    "brand": "Aidian",
+    "title": "QuikRead go workstation",
+    "price": 235.00,
+    "image": "/assets/images/Products/Aidian/OD-136206%20-%20QuikRead%20go%20Workstation.png",
+    "categories": ["bloedonderzoek", "laboratorium"],
+    "stock": "in_stock"
+  },
+  {
+    "sku": "AID-QRGO-CRP",
+    "brand": "Aidian",
+    "title": "QuikRead go CRP kit",
+    "price": 189.00,
+    "image": "/assets/images/Products/Aidian/QuikRead%20go%20CRP%20kit%20open%20WEB.png",
+    "categories": ["crp", "bloedonderzoek", "laboratorium"],
+    "stock": "in_stock"
+  },
+  {
+    "sku": "AID-QRGO-CRPHB",
+    "brand": "Aidian",
+    "title": "QuikRead go CRP+Hb kit",
+    "price": 225.00,
+    "image": "/assets/images/Products/Aidian/QuikRead%20go%20CRP%2BHb%20kit%20WEB.png",
+    "categories": ["crp", "bloedonderzoek", "laboratorium"],
+    "stock": "backorder"
+  },
+  {
+    "sku": "AID-QRGO-HBA1C",
+    "brand": "Aidian",
+    "title": "QuikRead go HbA1c kit",
+    "price": 295.00,
+    "image": "/assets/images/Products/Aidian/QuikRead-go-HbA1c-kit-open%20web.png",
+    "categories": ["hba1c", "bloedonderzoek", "laboratorium"],
+    "stock": "out_of_stock",
+    "eta": "2025-09-05"
+  },
+  {
+    "sku": "AID-QRGO-IFOBT",
+    "brand": "Aidian",
+    "title": "QuikRead go iFOBT kit",
+    "price": 210.00,
+    "image": "/assets/images/Products/Aidian/QuikRead%20go%20iFOBT%20kit%20WEB.png",
+    "categories": ["overige-testen", "laboratorium"],
+    "stock": "in_stock"
+  },
+  {
+    "sku": "AID-QRGO-SC-10UL",
+    "brand": "Aidian",
+    "title": "QuikRead go easy CRP sample collector 10 µl",
+    "price": 59.00,
+    "image": "/assets/images/Products/Aidian/OD-153211%20-%20QuikRead%20go%20Easy%20CRP%20Sample%20Collectors.png",
+    "categories": ["bloedonderzoek", "laboratorium"],
+    "stock": "backorder"
+  },
+  {
+    "sku": "AID-URICULT",
+    "brand": "Aidian",
+    "title": "Uricult dipslides",
+    "price": 75.00,
+    "image": "/assets/images/Products/Aidian/OD-67404%20-%20Uricult.png",
+    "categories": ["dipslides", "urineonderzoek", "laboratorium"],
+    "stock": "in_stock"
+  },
+  {
+    "sku": "AID-EASICULT-COMBI",
+    "brand": "Aidian",
+    "title": "Easicult combi kit",
+    "price": 82.50,
+    "image": "/assets/images/Products/Aidian/Easicult%20Combi%20kit%20WEB.png",
+    "categories": ["dipslides", "urineonderzoek", "laboratorium"],
+    "stock": "out_of_stock",
+    "eta": "2025-08-28"
+  },
+  {
+    "sku": "AID-HYGICULT-E",
+    "brand": "Aidian",
+    "title": "Hygicult E kit",
+    "price": 79.00,
+    "image": "/assets/images/Products/Aidian/Hygicult%20E%20kit%20WEB.png",
+    "categories": ["dipslides", "urineonderzoek", "laboratorium"],
+    "stock": "backorder"
+  },
+
+  {
+    "sku": "HEINE-EN200",
+    "brand": "Heine",
+    "title": "Heine EN 200 wandtransformator",
+    "price": 329.00,
+    "image": "/assets/images/Products/HEINE/A-095.12.218-HEINE-PowerSource-EN200-main.jpg",
+    "categories": ["wandunits-wandsets", "diagnostische-apparaten", "apparatuur"],
+    "stock": "in_stock"
+  },
+  {
+    "sku": "HEINE-BETA200-SET",
+    "brand": "Heine",
+    "title": "Heine BETA 200 set otoscoop/oftalmoscoop",
+    "price": 945.00,
+    "image": "/assets/images/Products/HEINE/A-132.10.118-HEINE-BETA200-otoscope-ophtalmoscope-set-battery-handle_1.jpg",
+    "categories": ["diagnostische-sets", "diagnostische-apparaten", "apparatuur"],
+    "stock": "backorder"
+  },
+  {
+    "sku": "HEINE-BETA200-OTOSCOOP",
+    "brand": "Heine",
+    "title": "Heine BETA 200 otoscoop",
+    "price": 385.00,
+    "image": "/assets/images/Products/HEINE/A-132.10.118-HEINE-BETA200-otoscope-ophtalmoscope-set-battery-handle_2.jpg",
+    "categories": ["otoscopen", "diagnostische-apparaten", "apparatuur"],
+    "stock": "out_of_stock",
+    "eta": "2025-09-12"
+  },
+  {
+    "sku": "HEINE-BETA200-OFTALMO",
+    "brand": "Heine",
+    "title": "Heine BETA 200 oftalmoscoop",
+    "price": 455.00,
+    "image": "/assets/images/Products/HEINE/A-132.10.118-HEINE-BETA200-otoscope-ophtalmoscope-set-battery-handle-2_1.jpg",
+    "categories": ["oftalmoscopen", "diagnostische-apparaten", "apparatuur"],
+    "stock": "in_stock"
+  },
+
+  {
+    "sku": "DRM-LED-110-TAFEL",
+    "brand": "Dr. Mach",
+    "title": "Dr. Mach LED 110 onderzoeksarmatuur tafelmodel",
+    "price": 725.00,
+    "image": "/assets/images/Products/Dr%20Mach/LED%20110/LED_110_Stativ.jpg",
+    "categories": ["tafelmodellen", "onderzoekslampen", "praktijkinrichting"],
+    "stock": "in_stock"
+  },
+  {
+    "sku": "DRM-LED-110-WAND",
+    "brand": "Dr. Mach",
+    "title": "Dr. Mach LED 110 onderzoeksarmatuur wandmodel",
+    "price": 765.00,
+    "image": "/assets/images/Products/Dr%20Mach/LED%20110/LED_110_Grossaufnahme_Ausicht.jpg",
+    "categories": ["wandmodellen", "onderzoekslampen", "praktijkinrichting"],
+    "stock": "backorder"
+  },
+  {
+    "sku": "DRM-LED-115-WAND",
+    "brand": "Dr. Mach",
+    "title": "Dr. Mach LED 115 onderzoeksarmatuur wandmodel",
+    "price": 895.00,
+    "image": "/assets/images/Products/Dr%20Mach/LED%20115/LED115_mit_Wandbesfestigung.jpg",
+    "categories": ["wandmodellen", "onderzoekslampen", "praktijkinrichting"],
+    "stock": "out_of_stock",
+    "eta": "2025-08-30"
+  },
+  {
+    "sku": "DRM-LED-115-STATIEF",
+    "brand": "Dr. Mach",
+    "title": "Dr. Mach LED 115 onderzoeksarmatuur statief",
+    "price": 995.00,
+    "image": "/assets/images/Products/Dr%20Mach/LED%20115/LED115_Stativmodell.jpg",
+    "categories": ["statiefmodellen", "onderzoekslampen", "praktijkinrichting"],
+    "stock": "in_stock"
+  },
+  {
+    "sku": "DRM-LED-120-PLAFOND",
+    "brand": "Dr. Mach",
+    "title": "Dr. Mach LED 120 onderzoeksarmatuur plafond",
+    "price": 1195.00,
+    "image": "/assets/images/Products/Dr%20Mach/LED%20120/Mach_LED_120_Deckenmodell.jpg",
+    "categories": ["plafondmodellen", "onderzoekslampen", "praktijkinrichting"],
+    "stock": "backorder"
+  },
+  {
+    "sku": "DRM-LED-130-PLAFOND",
+    "brand": "Dr. Mach",
+    "title": "Dr. Mach LED 130 onderzoeksarmatuur",
+    "price": 1595.00,
+    "image": "/assets/images/Products/Dr%20Mach/LED%20130/Dr.%20Mach%20LED%20130%20Leuchtenko%CC%88rper%20flach.jpg",
+    "categories": ["plafondmodellen", "onderzoekslampen", "praktijkinrichting"],
+    "stock": "in_stock"
+  },
+  {
+    "sku": "DRM-LED-150-PLAFOND",
+    "brand": "Dr. Mach",
+    "title": "Dr. Mach LED 150 onderzoeksarmatuur",
+    "price": 1895.00,
+    "image": "/assets/images/Products/Dr%20Mach/LED%20150/2021-05-17%20Dr%20Mach%20%20150%205854_cmyk.jpg",
+    "categories": ["plafondmodellen", "onderzoekslampen", "praktijkinrichting"],
+    "stock": "backorder"
+  },
+  {
+    "sku": "DRM-LED-300-SC",
+    "brand": "Dr. Mach",
+    "title": "Dr. Mach LED 300 SC",
+    "price": 2495.00,
+    "image": "/assets/images/Products/Dr%20Mach/LED%20300/LED%20300%20SC%20Bedienfeld.jpg",
+    "categories": ["plafondmodellen", "onderzoekslampen", "praktijkinrichting"],
+    "stock": "out_of_stock",
+    "eta": "2025-09-10"
+  },
+  {
+    "sku": "DRM-LED-6-STATIEF",
+    "brand": "Dr. Mach",
+    "title": "Dr. Mach LED 6 MC statief",
+    "price": 625.00,
+    "image": "/assets/images/Products/Dr%20Mach/LED%206/LED%206MC%20(BASIC)/LED%206_Stativ.jpg",
+    "categories": ["statiefmodellen", "onderzoekslampen", "praktijkinrichting"],
+    "stock": "in_stock"
+  },
+  {
+    "sku": "DRM-LED-8-LK",
+    "brand": "Dr. Mach",
+    "title": "Dr. Mach LED 8 LK",
+    "price": 1395.00,
+    "image": "/assets/images/Products/Dr%20Mach/LED%208/LED%208%20LK%202.jpg",
+    "categories": ["plafondmodellen", "onderzoekslampen", "praktijkinrichting"],
+    "stock": "backorder"
+  }
+]
+
+

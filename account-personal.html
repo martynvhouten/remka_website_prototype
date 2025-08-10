@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Persoonlijke gegevens – Remka B.V.</title>
+    <meta name="description" content="Beheer je persoonlijke gegevens en wachtwoord." />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/logo-remka.svg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { brand: '#9E0059', teal: '#00A99D', dark: '#333333', light: '#E6E6E6' }, fontFamily: { sans: ['\"Plus Jakarta Sans\"','ui-sans-serif','system-ui','sans-serif'] } } } }</script>
+    <link rel="stylesheet" href="/assets/css/base.css" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <div id="header-placeholder"></div>
+    <main id="main" class="flex-1">
+      <section class="section-brand-tint">
+        <div class="container mx-auto px-4 py-8">
+          <h1 class="text-2xl md:text-3xl font-extrabold text-dark">Persoonlijke gegevens</h1>
+        </div>
+      </section>
+      <section class="container mx-auto px-4 py-8 grid md:grid-cols-3 gap-6">
+        <div class="md:col-span-1"><div data-partial="account-nav"></div></div>
+        <div class="md:col-span-2 space-y-6">
+          <form id="personalForm" class="card p-4 md:p-6 grid md:grid-cols-2 gap-4 form-compact">
+            <h2 class="md:col-span-2 text-xl font-extrabold">Je gegevens</h2>
+            <label class="block"><span class="text-sm">Voornaam</span><input class="input mt-1" name="firstName" required /></label>
+            <label class="block"><span class="text-sm">Achternaam</span><input class="input mt-1" name="lastName" required /></label>
+            <label class="block md:col-span-2"><span class="text-sm">E-mailadres</span><input class="input mt-1" type="email" name="email" required /></label>
+            <div class="md:col-span-2 flex justify-end gap-3">
+              <a href="/account-dashboard.html" class="btn btn-outline">Annuleren</a>
+              <button type="submit" class="btn btn-brand">Opslaan</button>
+            </div>
+            <div id="personalSaved" class="md:col-span-2 hidden text-teal font-semibold">Je gegevens zijn bijgewerkt.</div>
+          </form>
+          <form class="card p-4 md:p-6 grid md:grid-cols-2 gap-4 form-compact">
+            <h2 class="md:col-span-2 text-xl font-extrabold">Wachtwoord wijzigen</h2>
+            <label class="block md:col-span-2"><span class="text-sm">Huidig wachtwoord</span><input class="input mt-1" type="password" /></label>
+            <label class="block"><span class="text-sm">Nieuw wachtwoord</span><input class="input mt-1" type="password" /></label>
+            <label class="block"><span class="text-sm">Herhaal nieuw wachtwoord</span><input class="input mt-1" type="password" /></label>
+            <div class="md:col-span-2 flex justify-end"><button type="button" class="btn btn-outline">Wachtwoord opslaan</button></div>
+          </form>
+        </div>
+      </section>
+    </main>
+    <div id="footer-placeholder"></div>
+    <script src="/assets/js/menu.js" defer></script>
+    <script src="/assets/js/index.js" defer></script>
+  </body>
+  </html>
+
+

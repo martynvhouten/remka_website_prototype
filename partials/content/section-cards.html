@@ -1,0 +1,17 @@
+<!-- COPY TO PHTML: Vendor/Theme/RemkaCms/templates/content/section-cards.phtml → In: list of {icon?, title, text}. Out: responsive card grid. -->
+<section class="container mx-auto px-4 py-10" aria-labelledby="section-cards-heading">
+  <h2 id="section-cards-heading" class="sr-only">Kernpunten</h2>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <!-- Example card item; duplicate per item in data source -->
+    <article class="feature-card" aria-label="{{ title }}">
+      <div class="feature-icon" aria-hidden="true">★</div>
+      <div>
+        <h3 class="feature-title">{{ title }}</h3>
+        <p class="feature-text">{{ text }}</p>
+      </div>
+    </article>
+  </div>
+  <!-- NOTE: In Magento/Hyvä, loop items server-side -->
+</section>
+
+

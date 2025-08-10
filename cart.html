@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Winkelmand – Remka B.V.</title>
+    <meta name="description" content="Bekijk en beheer je winkelmand bij Remka B.V." />
+    <link rel="canonical" href="https://remka-prototype.netlify.app/cart.html" />
+    <meta property="og:title" content="Winkelmand – Remka B.V." />
+    <meta property="og:description" content="Overzicht van je geselecteerde producten." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://remka-prototype.netlify.app/cart.html" />
+    <meta property="og:image" content="/assets/images/placeholder-16x9.svg" />
+    <meta name="theme-color" content="#9E0059" />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/logo-remka.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { brand: '#9E0059', accent: '#F77F00', teal: '#00A99D', dark: '#333333', light: '#E6E6E6' }, fontFamily: { sans: ['"Plus Jakarta Sans"','ui-sans-serif','system-ui','sans-serif'] } } } }</script>
+    <link rel="stylesheet" href="/assets/css/base.css" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <div id="header-placeholder"></div>
+    <main id="main" class="flex-1 container mx-auto px-4 py-10">
+      <header class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">Winkelmand</h1>
+        <p class="section-subtitle">Hier zie je een voorbeeld van je winkelmandpagina.</p>
+      </header>
+      <div class="grid lg:grid-cols-3 gap-8">
+        <section class="lg:col-span-2 space-y-4">
+          <div class="card p-4 flex gap-4 items-start">
+            <img src="/assets/images/Products/Hartmann/42080_43.jpg" alt="Productafbeelding" class="w-24 h-24 object-cover rounded-md border border-light" />
+            <div class="flex-1">
+              <h2 class="font-semibold">Hartmann 42080</h2>
+              <div class="text-sm text-dark/70">Artikelnummer: DEMO-42080</div>
+            <div class="mt-2 flex items-center gap-3">
+                <label class="text-sm" for="qty1">Aantal</label>
+                <input id="qty1" type="number" value="1" min="1" class="w-20 input" />
+                <button class="text-sm text-brand">Verwijderen</button>
+              </div>
+            </div>
+            <div class="font-semibold whitespace-nowrap">€ 8,75</div>
+          </div>
+        </section>
+        <aside class="space-y-4">
+          <div class="card p-4">
+            <div class="flex items-center justify-between"><span>Subtotaal</span><span class="font-semibold">€ 8,75</span></div>
+            <div class="flex items-center justify-between text-sm text-dark/70 mt-1"><span>Btw (21%)</span><span>€ 1,84</span></div>
+            <div class="flex items-center justify-between mt-2 text-lg font-extrabold"><span>Totaal</span><span>€ 10,59</span></div>
+            <div class="mt-4 grid grid-cols-2 gap-2">
+              <a href="/category.html" class="btn btn-outline w-full">Verder winkelen</a>
+              <a href="/checkout-shipping.html" class="btn btn-brand w-full">Afrekenen</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+    <div id="footer-placeholder"></div>
+    <script src="/assets/js/menu.js" defer></script>
+    <script src="/assets/js/index.js" defer></script>
+  </body>
+  </html>
+
+

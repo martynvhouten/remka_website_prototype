@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Afrekenen – Verzendadres | Remka B.V.</title>
+    <meta name="description" content="Hyvä Checkout-stijl: stap 1 verzendadres." />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/logo-remka.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { theme: { extend: { colors: { brand: '#9E0059', accent: '#F77F00', teal: '#00A99D', dark: '#333333', light: '#E6E6E6' }, fontFamily: { sans: ['"Plus Jakarta Sans"','ui-sans-serif','system-ui','sans-serif'] } } } }
+    </script>
+    <link rel="stylesheet" href="/assets/css/base.css" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <div id="header-placeholder"></div>
+    <main id="main" class="flex-1">
+      <section class="container mx-auto px-4 py-8">
+        <nav aria-label="Checkout stappen" class="mb-6">
+          <ol class="flex items-center gap-2 text-sm">
+            <li class="font-semibold text-brand">Verzenden</li>
+            <li>›</li>
+            <li class="text-dark/60">Betalen</li>
+            <li>›</li>
+            <li class="text-dark/60">Bevestiging</li>
+          </ol>
+        </nav>
+        <div class="grid lg:grid-cols-3 gap-8">
+          <section class="lg:col-span-2">
+            <h1 class="text-xl md:text-2xl font-extrabold tracking-tight">Contactgegevens</h1>
+            <form class="mt-4 space-y-4 form-compact" onsubmit="event.preventDefault(); window.location.href='/checkout-payment.html'">
+              <div>
+                <label class="block text-sm font-medium" for="email">E‑mail</label>
+                <input id="email" type="email" required class="mt-1 input" placeholder="jij@voorbeeld.nl" />
+                <p class="text-xs text-dark/60 mt-1">We sturen je orderbevestiging hierheen.</p>
+              </div>
+              <div>
+                <h2 class="text-lg font-bold mt-6">Verzendadres</h2>
+                <div class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div><label class="block text-sm font-medium" for="first">Voornaam</label><input id="first" class="mt-1 input" required /></div>
+                  <div><label class="block text-sm font-medium" for="last">Achternaam</label><input id="last" class="mt-1 input" required /></div>
+                  <div class="sm:col-span-2"><label class="block text-sm font-medium" for="street">Straat en huisnr.</label><input id="street" class="mt-1 input" required /></div>
+                  <div>
+                    <label class="block text-sm font-medium" for="country">Land</label>
+                    <select id="country" class="mt-1 select"><option>Nederland</option><option>België</option></select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium" for="region">Provincie</label>
+                    <input id="region" class="mt-1 input" placeholder="Zuid-Holland" />
+                  </div>
+                  <div><label class="block text-sm font-medium" for="zip">Postcode</label><input id="zip" class="mt-1 input" required /></div>
+                  <div><label class="block text-sm font-medium" for="city">Plaats</label><input id="city" class="mt-1 input" required /></div>
+                  <div><label class="block text-sm font-medium" for="phone">Telefoon</label><input id="phone" class="mt-1 input" /></div>
+                  <div><label class="block text-sm font-medium" for="company">Bedrijf</label><input id="company" class="mt-1 input" /></div>
+                </div>
+              </div>
+              <div>
+                <h2 class="text-lg font-bold mt-6">Verzendmethode</h2>
+                <div class="mt-2 space-y-2">
+                  <label class="flex items-center gap-3 border border-light rounded-md p-3 cursor-pointer"><input type="radio" name="ship" checked /> <span>Standaard (24–48 uur)</span> <span class="ml-auto font-semibold">€ 5,00</span></label>
+                  <label class="flex items-center gap-3 border border-light rounded-md p-3 cursor-pointer"><input type="radio" name="ship" /> <span>Afhalen</span> <span class="ml-auto font-semibold">Gratis</span></label>
+                </div>
+              </div>
+              <div class="mt-4 flex items-center justify-between">
+                <a href="/cart.html" class="text-brand">Terug naar winkelmand</a>
+                <button class="btn btn-brand">Doorgaan naar betalen</button>
+              </div>
+            </form>
+          </section>
+          <aside class="space-y-4">
+            <div class="card p-4">
+              <h2 class="font-semibold mb-2">Orderoverzicht</h2>
+              <div class="flex items-center justify-between text-sm"><span>Subtotaal</span><span>€ 54,00</span></div>
+              <div class="flex items-center justify-between text-sm"><span>Verzending</span><span>€ 5,00</span></div>
+              <div class="flex items-center justify-between text-sm"><span>Btw</span><span>€ 0,00</span></div>
+              <div class="flex items-center justify-between mt-2 text-lg font-extrabold"><span>Totaal</span><span>€ 59,00</span></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+    <div id="footer-placeholder"></div>
+    <script src="/assets/js/menu.js" defer></script>
+    <script src="/assets/js/index.js" defer></script>
+  </body>
+  </html>
+

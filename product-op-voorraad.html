@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product – Op voorraad | Remka B.V.</title>
+    <meta name="description" content="Product demo – op voorraad." />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/logo-remka.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { brand: '#9E0059', accent: '#F77F00', teal: '#00A99D', dark: '#333333', light: '#E6E6E6' }, fontFamily: { sans: ['"Plus Jakarta Sans"','ui-sans-serif','system-ui','sans-serif'] } } } }</script>
+    <link rel="stylesheet" href="/assets/css/base.css" />
+  </head>
+  <body class="min-h-screen flex flex-col" data-stock="in_stock">
+    <div id="header-placeholder"></div>
+    <main id="main" class="flex-1">
+      <section class="section-brand-tint">
+        <div class="container mx-auto px-4 py-8">
+          <nav class="text-sm text-gray-700 breadcrumbs" aria-label="Breadcrumb">
+            <ol class="flex flex-wrap items-center gap-2">
+              <li><a href="/">Home</a></li>
+              <li>›</li>
+              <li><a href="/category.html">Assortiment</a></li>
+              <li>›</li>
+              <li><span>Product</span></li>
+            </ol>
+          </nav>
+        </div>
+      </section>
+      <div class="container mx-auto px-4 py-8 grid lg:grid-cols-2 gap-10">
+        <div data-partial="product-gallery"></div>
+        <div data-partial="product-info"></div>
+      </div>
+      <div data-partial="product-related"></div>
+    </main>
+    <div id="footer-placeholder"></div>
+    <script src="/assets/js/menu.js" defer></script>
+    <script src="/assets/js/index.js" defer></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const main = document.getElementById('mainImg');
+        document.querySelectorAll('[data-src]').forEach(btn => btn.addEventListener('click', () => { main.src = btn.getAttribute('data-src'); }));
+      });
+    </script>
+    <script src="/assets/js/product-stock.js" defer></script>
+  </body>
+  </html>
+
+

@@ -49,11 +49,10 @@ async function loadPartials() {
 document.addEventListener('DOMContentLoaded', async () => {
   await loadPartials();
   // Laat menu.js zelf init doen na partials:loaded om dubbel init te voorkomen
-  try { RemkaAuth.init(); } catch {}
 });
 
-// --- Demo account/auth state & helpers (prototype) ---
-const RemkaAuth = (() => {
+// --- Demo account/auth verwijderd voor Hyvä ---
+/* const RemkaAuth = (() => {
   const AUTH_KEY = 'remka_demo_auth';
   const USER_KEY = 'remka_demo_user';
 
@@ -313,4 +312,4 @@ const RemkaAuth = (() => {
   }
 
   return { init, isLoggedIn, getUser };
-})();
+})(); */

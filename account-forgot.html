@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wachtwoord vergeten – Remka B.V.</title>
+    <meta name="description" content="Vraag een link aan om je wachtwoord te resetten." />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/logo-remka.svg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { brand: '#9E0059', teal: '#00A99D', dark: '#333333', light: '#E6E6E6' }, fontFamily: { sans: ['\"Plus Jakarta Sans\"','ui-sans-serif','system-ui','sans-serif'] } } } }</script>
+    <link rel="stylesheet" href="/assets/css/base.css" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <div id="header-placeholder"></div>
+    <main id="main" class="flex-1">
+      <section class="section-brand-tint">
+        <div class="container mx-auto px-4 py-8">
+          <h1 class="text-2xl md:text-3xl font-extrabold text-dark">Wachtwoord vergeten</h1>
+        </div>
+      </section>
+      <section class="container mx-auto px-4 py-8">
+        <form id="forgotForm" class="card p-4 md:p-6 space-y-4 form-compact" aria-labelledby="forgotTitle">
+          <h2 id="forgotTitle" class="text-xl font-extrabold">Vraag een reset-link aan</h2>
+          <p class="text-dark/80">Vul je e-mailadres in. Je ontvangt een e-mail met instructies om je wachtwoord te resetten.</p>
+          <label class="block"><span class="text-sm">E-mailadres</span><input class="input mt-1" type="email" required placeholder="naam@voorbeeld.nl" /></label>
+          <div class="flex items-center justify-between">
+            <a href="/account-login.html" class="btn btn-outline">Terug naar inloggen</a>
+            <button type="submit" class="btn btn-brand">Versturen</button>
+          </div>
+          <div id="forgotSuccess" class="hidden text-teal font-semibold">Als dit e-mailadres bij ons bekend is, hebben we je zojuist een e-mail gestuurd.</div>
+        </form>
+      </section>
+    </main>
+    <div id="footer-placeholder"></div>
+    <script src="/assets/js/menu.js" defer></script>
+    <script src="/assets/js/index.js" defer></script>
+  </body>
+  </html>
+
+

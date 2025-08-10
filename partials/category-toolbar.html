@@ -1,0 +1,45 @@
+<!-- COPY TO PHTML: Magento_Catalog/templates/product/list/toolbar.phtml (Hyvä Toolbar component) -->
+<section class="container mx-auto px-4 py-4" aria-label="Product toolbar">
+  <div class="flex flex-wrap items-center justify-between gap-3 border border-light rounded-lg bg-white px-3 py-2">
+    <div class="text-sm text-gray-700" id="resultCount">0 producten</div>
+
+    <div class="flex items-center gap-3 h-scroll whitespace-nowrap">
+      <button class="filter-toggle md:hidden" id="openFilters" type="button" aria-haspopup="dialog" aria-controls="filterOverlay">
+        Filters <span class="filter-count" id="activeFilterCount" aria-hidden="true">0</span>
+      </button>
+      <label class="text-sm text-gray-700 flex items-center gap-2" for="sortSelect">
+        Sorteer:
+      </label>
+      <select id="sortSelect" class="border border-light rounded-md px-2 py-1 text-sm" aria-label="Sorteer op">
+        <option value="popularity">Populair</option>
+        <option value="price-asc">Prijs laag-hoog</option>
+        <option value="price-desc">Prijs hoog-laag</option>
+        <option value="new">Nieuw</option>
+      </select>
+
+      <div class="hidden md:flex items-center gap-1" role="group" aria-label="Weergave">
+        <button type="button" id="viewGrid" class="px-2 py-1 text-sm rounded-md border border-light bg-white hover:bg-gray-50" aria-pressed="true">Raster</button>
+        <button type="button" id="viewList" class="px-2 py-1 text-sm rounded-md border border-light bg-white hover:bg-gray-50" aria-pressed="false">Lijst</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mobile filter overlay -->
+<div id="filterOverlay" class="filter-overlay" role="dialog" aria-modal="true" aria-labelledby="filterTitle" aria-hidden="true">
+  <div class="filter-overlay__backdrop" data-close="overlay" aria-hidden="true"></div>
+  <aside class="filter-overlay__panel">
+    <div class="filter-overlay__head">
+      <h2 id="filterTitle" class="font-bold">Filters</h2>
+      <div class="flex items-center gap-2">
+        <button id="clearFiltersMobile" class="text-sm text-brand" type="button">Wis</button>
+        <button id="closeOverlay" class="btn btn-outline" type="button">Sluiten</button>
+      </div>
+    </div>
+    <div class="filter-overlay__body">
+      <div id="facetHostMobile"></div>
+    </div>
+  </aside>
+ </div>
+
+

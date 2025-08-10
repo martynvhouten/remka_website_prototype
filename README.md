@@ -1,38 +1,45 @@
-# Remka static showcase (Hyvä-ready)
+# Remka website prototype (Hyvä-ready)
 
-Statische referentiesite voor een Magento 2 Hyvä child theme. Pure HTML, Tailwind via CDN, minimale JS.
+Statische referentiesite voor een Magento 2 Hyvä child theme. HTML + Tailwind (CDN) + minimale JS.
+
+## Starten
+
+- Open `index.html` lokaal in je browser.
+- Partials uit `partials/` worden client-side ingeladen door `assets/js/index.js`.
 
 ## Structuur
 ```
-/assets/images/ (logo-remka.svg + placeholders)
+/assets/images/
 /assets/css/base.css
 /assets/js/menu.js
 /assets/js/index.js
-/partials/header.html
-/partials/footer.html
-/data/categories.json (optioneel; aanwezig in dit project)
+/partials/
+/data/categories.json
 index.html
-/netlify.toml
-.editorconfig
-README.md
+product.html
+category.html
+blog.html, blog-post.html
+docs/hyva-porting.md
 ```
 
-## Menu (data-gedreven)
-- Data komt uit `/data/categories.json` (vorm: `{ id, name, slug, count, children[] }`).
-- Items met `count===0` worden verborgen. Geen JSON beschikbaar? Dan fallback naar ingebouwde demo-data in `assets/js/menu.js`.
-- Desktop: mega menu opent via hover/click; mobiel: off-canvas. A11y: `aria-expanded`, `aria-controls`, ESC, focus trap, pijltjesnavigatie.
+## Component-partials
 
-## Logo
-- Plaats je echte logo op: `/assets/images/logo-remka.svg` (vervang placeholder met dezelfde bestandsnaam).
+- Header/footer: `partials/header.html`, `partials/footer.html`
+- Home: `home-hero.html`, `home-usp.html`, `home-categories.html`, `home-features.html`, `home-popular-products.html`, `home-blog-teaser.html`
+- Product: `product-gallery.html`, `product-info.html`, `product-related.html`
 
-## Tokens & styling
-- Tokens in `assets/css/base.css`:
-  - `--brand:#9E0059; --accent:#F77F00; --teal:#00A99D; --dark:#333333; --light:#E6E6E6;`
-- Utilities: `.btn`, `.card`, `.focus-ring`, container-breedtes, sr-only skiplink.
-- Font: Plus Jakarta Sans (display=swap) via Google Fonts.
+## Hyvä mapping
 
-## Ontwikkelen
-- Open `index.html` lokaal. `header.html` en `footer.html` worden client-side ingeladen, daarna initialiseert het mega menu.
+Zie `docs/hyva-porting.md` voor PHTML-bestemmingen en aanpassingen.
 
-## Netlify
-- `netlify.toml` publiceert vanaf de projectroot (`.`). Geen build-stap nodig.
+## Conventies
+
+- Tokens: `--brand`, `--accent`, `--teal`, `--dark`, `--light` (zie `assets/css/base.css`).
+- Tailwind: gebruik `border-light` i.p.v. `border-gray-200`; knoppen `btn btn-brand|btn-accent|btn-outline`.
+- A11y: juiste landmarks, aria-attributen, `loading="lazy"` voor afbeeldingen.
+
+## Demo functionaliteit
+
+- Minicart: offcanvas met badge, openen via winkelmand in header. Data in `localStorage` (`remka_demo_cart`).
+- Add to cart: knoppen met `data-add-to-cart` attributen voegen producten toe en openen minicart.
+- Checkout: tweestaps demo (`checkout-shipping.html` → `checkout-payment.html` → `checkout-success.html`).

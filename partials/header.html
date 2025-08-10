@@ -1,51 +1,57 @@
+<!-- COPY TO PHTML: Magento_Theme/templates/html/header.phtml -->
+<!-- Self-contained Hyvä-ready header. In: logo, zoek, account, cart, desktop menubar (mega) en mobiel off-canvas placeholders. Out: data-gedreven rendering door assets/js/menu.js. -->
+
 <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-dark focus:ring-2 focus:ring-teal px-3 py-2 rounded-md">Sla over naar inhoud</a>
-<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-gray-200" role="banner">
-  <div class="container mx-auto px-4">
-    <div class="flex h-16 items-center justify-between gap-3">
-      <div class="flex items-center gap-3">
-        <button id="navToggle" class="md:hidden p-2 rounded-md border border-gray-300" aria-label="Menu" aria-controls="offcanvas" aria-expanded="false">
-          <span class="block w-5 h-0.5 bg-dark mb-1"></span>
-          <span class="block w-5 h-0.5 bg-dark mb-1"></span>
-          <span class="block w-5 h-0.5 bg-dark"></span>
-        </button>
-        <a href="/" class="shrink-0 flex items-center" aria-label="Home">
-          <img src="/assets/images/logo-remka.svg" alt="Remka B.V." class="h-6 w-auto" loading="lazy" />
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur header-shadow" role="banner">
+  <!-- Topbar: logo, search, actions -->
+  <div class="border-b border-light">
+    <div class="container mx-auto flex items-center gap-4 py-4">
+      <!-- Mobile: burger + logo -->
+      <button type="button" class="md:hidden p-2 rounded-md border border-light" aria-label="Menu" aria-controls="offcanvas" aria-expanded="false" data-nav-toggle>
+        <span class="block w-5 h-0.5 bg-dark mb-1"></span>
+        <span class="block w-5 h-0.5 bg-dark mb-1"></span>
+        <span class="block w-5 h-0.5 bg-dark"></span>
+      </button>
+      <a href="index.html" class="shrink-0 inline-flex items-center" aria-label="Home">
+        <img src="assets/images/Remka-logo_2024.png" alt="Remka B.V." class="h-8 w-auto md:h-10" loading="lazy" />
+      </a>
+
+      <!-- Search (altijd zichtbaar, gecentreerd) -->
+      <form role="search" class="hidden md:flex items-center header-search-wrap">
+        <label for="site-search" class="sr-only">Zoeken</label>
+        <input id="site-search" name="q" type="search" placeholder="Zoek producten, merken of categorieën" class="w-full h-10 rounded-full border border-light px-4 focus:outline-none focus:ring-2 focus:ring-brand" />
+      </form>
+
+      <!-- Actions: account + cart (altijd zichtbaar) -->
+      <div class="ml-auto flex items-center gap-2 header-actions">
+        <a id="accountLink" data-account-link href="account-login.html" class="header-action header-action--ghost focus-ring" aria-label="Inloggen of account">
+          <svg class="header-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5Z" fill="currentColor"/></svg>
+          <span class="hidden sm:inline" data-account-label>Inloggen</span>
         </a>
-      </div>
-
-      <div class="hidden md:flex items-center gap-6">
-        <nav id="mainNav" class="relative" aria-label="Hoofdmenu">
-          <!-- Menu buttons rendered by JS -->
-          <ul class="flex items-center gap-4 text-sm font-medium text-gray-800" id="menuRoot"></ul>
-        </nav>
-      </div>
-
-      <div class="hidden md:flex items-center gap-3">
-        <input type="search" placeholder="Zoeken" class="w-48 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal" disabled aria-disabled="true" />
-        <a href="#" class="text-sm font-medium text-gray-800 hover:text-brand">Inloggen</a>
+        <button type="button" class="header-action header-cart focus-ring js-mini-cart-toggle" aria-label="Winkelmand" data-cart-toggle>
+          <svg class="header-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 4h-2l-1 2v2h2l3.6 7.59a2 2 0 0 0 1.8 1.16h6.9v-2h-6.58l-.27-.54L18 11a2 2 0 0 0 1-1.73V6H7Zm-1 16a2 2 0 1 0 2-2 2 2 0 0 0-2 2Zm10 0a2 2 0 1 0 2-2 2 2 0 0 0-2 2Z" fill="currentColor"/></svg>
+          <span class="hidden sm:inline">Winkelmand</span>
+          <span class="header-badge">0</span>
+        </button>
       </div>
     </div>
   </div>
 
-  <!-- Desktop mega containers render target -->
-  <div id="megaHost" class="hidden md:block"></div>
+  <!-- Desktop: menubar + mega host -->
+  <nav id="mainNav" class="hidden md:block bg-brand text-white" aria-label="Hoofdmenu">
+    <div class="container mx-auto">
+      <div data-partial="menu/menu-root"></div>
+    </div>
+  </nav>
 
-  <!-- Mobile off-canvas -->
-  <div id="offcanvas" class="fixed inset-0 z-50 hidden" aria-hidden="true">
-    <div class="absolute inset-0 bg-black/40" data-close="offcanvas"></div>
-    <aside class="absolute left-0 top-0 h-full w-80 max-w-[85%] bg-white shadow-xl overflow-y-auto" role="dialog" aria-modal="true" aria-label="Mobiel menu">
-      <div class="p-4 border-b border-gray-200 flex items-center justify-between">
-        <img src="/assets/images/logo-remka.svg" alt="Remka B.V." class="h-6 w-auto" loading="lazy" />
-        <button class="p-2 rounded-md border border-gray-300" data-close="offcanvas" aria-label="Sluiten">✕</button>
-      </div>
-      <div id="mobileMenu" class="p-2">
-        <!-- Mobile menu rendered by JS -->
-      </div>
-      <div class="p-4 border-t border-gray-200">
-        <input type="search" placeholder="Zoeken" class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal" disabled aria-disabled="true" />
-        <a href="#" class="mt-3 inline-block text-sm font-medium text-gray-800 hover:text-brand">Inloggen</a>
-      </div>
-    </aside>
-  </div>
+  <!-- Mega host render target (desktop) -->
+  <div class="hidden md:block"><div data-partial="menu/menu-panel"></div></div>
 </header>
+
+<!-- Mobile off-canvas (buiten header voor stabiele layering) -->
+<div data-partial="menu/menu-mobile"></div>
+
+<!-- Minicart drawer (bestaand) -->
+<div data-partial="minicart-drawer"></div>
 

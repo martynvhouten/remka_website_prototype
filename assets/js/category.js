@@ -17,16 +17,8 @@
   }
 
   async function loadCategories(){
-    const res = await fetch('/data/categories.json', { cache: 'no-store' });
-    const text = await res.text();
-    try { return JSON.parse(text); } catch {
-      const startIdx = text.indexOf('{'); const endIdx = text.lastIndexOf('}');
-      if(startIdx !== -1 && endIdx !== -1){
-        const jsonLike = text.slice(startIdx, endIdx+1).replace(/,(\s*[}\]])/g,'$1');
-        return JSON.parse(jsonLike);
-      }
-      throw new Error('Onleesbare categories.json');
-    }
+    // Hyvä/Magento: categories worden server-side geleverd; fallback op lege boom
+    return { children: [] };
   }
 
   function findBySlug(nodes, slug){
@@ -35,11 +27,8 @@
   }
 
   async function loadProducts(){
-    try {
-      const res = await fetch('/data/products.json', { cache: 'no-store' });
-      if(!res.ok) return [];
-      return await res.json();
-    } catch { return []; }
+    // Hyvä/Magento: producten komen uit collections; client-side demo data niet nodig
+    return [];
   }
 
   function collectSubtreeSlugs(node){

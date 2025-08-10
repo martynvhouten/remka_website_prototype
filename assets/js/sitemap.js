@@ -23,24 +23,12 @@
   }
 
   async function loadCategories(){
-    const res = await fetch('/data/categories.json', { cache: 'no-store' });
-    const text = await res.text();
-    try { return JSON.parse(text); } catch {
-      const startIdx = text.indexOf('{'); const endIdx = text.lastIndexOf('}');
-      if(startIdx !== -1 && endIdx !== -1){
-        const jsonLike = text.slice(startIdx, endIdx+1).replace(/,(\s*[}\]])/g,'$1');
-        return JSON.parse(jsonLike);
-      }
-      return { name: 'Assortiment', children: [] };
-    }
+    // Hyvä/Magento: server-side sitemap boom; fallback op lege set
+    return { children: [] };
   }
 
   async function loadProducts(){
-    try {
-      const res = await fetch('/data/products.json', { cache: 'no-store' });
-      if(!res.ok) return [];
-      return await res.json();
-    } catch { return []; }
+    return [];
   }
 
   function collectProductsByCategory(products){

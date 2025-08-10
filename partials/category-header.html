@@ -1,0 +1,34 @@
+<!-- COPY TO PHTML: Magento_Catalog/templates/category/header.phtml -->
+<!-- Hyvä: combineer breadcrumbs + heading in layout blocks indien gewenst -->
+<section class="section-alt">
+  <div class="container mx-auto px-4 py-8">
+    <nav class="text-sm text-gray-700 breadcrumbs" aria-label="Breadcrumb">
+      <ol class="flex flex-wrap items-center gap-2">
+        <li><a href="/">Home</a></li>
+        <li>›</li>
+        <li><a href="/category.html" id="crumbCat">Assortiment</a></li>
+        <li class="hidden" id="crumbSep">›</li>
+        <li class="hidden" id="crumbLeafWrap"><span id="crumbLeaf">Categorie</span></li>
+      </ol>
+    </nav>
+    <header class="mt-4 grid lg:grid-cols-3 gap-6 items-center">
+      <div class="lg:col-span-2">
+        <h1 class="text-3xl font-extrabold tracking-tight" id="catTitle">Assortiment</h1>
+        <p class="mt-2 section-subtitle max-w-2xl">Vind snel wat je nodig hebt. Bekijk subcategorieën, filter op merk en ontdek populaire items.</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <a href="#subcatGrid" class="pill"><span class="dot"></span> Subcategorieën</a>
+          <a href="#productGrid" class="pill pill--teal"><span class="dot"></span> Producten</a>
+          <a href="#advice" class="pill pill--accent"><span class="dot"></span> Advies</a>
+        </div>
+      </div>
+      <aside class="hidden lg:block">
+        <div class="card p-4">
+          <div class="text-sm text-dark/80">Tip</div>
+          <div class="mt-1 font-semibold">Vandaag besteld, vaak morgen in huis</div>
+          <div class="mt-2 text-sm text-dark/70">Gratis retour binnen 14 dagen. B2B op rekening in overleg.</div>
+        </div>
+      </aside>
+    </header>
+  </div>
+  </section>
+

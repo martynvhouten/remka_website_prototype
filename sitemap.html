@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sitemap – Remka B.V.</title>
+    <meta name="description" content="Visuele sitemap van Remka: snelle navigatie naar alle hoofdonderdelen, categorieën, subcategorieën, producten en contentpagina’s." />
+    <link rel="canonical" href="https://remka-prototype.netlify.app/sitemap.html" />
+    <meta property="og:title" content="Sitemap – Remka B.V." />
+    <meta property="og:description" content="Interactieve sitemap voor snelle demo-navigatie." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://remka-prototype.netlify.app/sitemap.html" />
+    <meta property="og:image" content="/assets/images/placeholder-16x9.svg" />
+    <meta name="theme-color" content="#9E0059" />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/logo-remka.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { brand: '#9E0059', accent: '#F77F00', teal: '#00A99D', dark: '#333333', light: '#E6E6E6' },
+            fontFamily: { sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'] }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="/assets/css/base.css" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <div id="header-placeholder"></div>
+
+    <main id="main" class="flex-1">
+      <section class="section-brand-tint">
+        <div class="container mx-auto px-4 py-8">
+          <div class="flex items-center justify-between gap-4">
+            <h1 class="text-2xl md:text-3xl font-extrabold text-dark">Sitemap</h1>
+            <a href="/index.html" class="pill"><span class="dot"></span> Home</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="container mx-auto px-4 py-8 space-y-8">
+        <!-- Assortiment boom -->
+        <article class="card p-4 md:p-6">
+          <header class="flex items-center justify-between flex-wrap gap-3">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-white bg-brand">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M4 4h7v7H4V4Zm9 0h7v7h-7V4ZM4 13h7v7H4v-7Zm9 7v-7h7v7h-7Z"/></svg>
+              </span>
+              <h2 class="text-xl font-extrabold text-dark">Assortiment</h2>
+            </div>
+            <div class="text-sm text-dark/70">Klik om te openen en navigeer</div>
+          </header>
+          <div id="sitemapTree" class="mt-4"></div>
+        </article>
+
+        <!-- Demo producten met voorraadstatus -->
+        <article class="card p-4 md:p-6">
+          <header class="flex items-center gap-3">
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-white bg-accent">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 2l9 6v8l-9 6-9-6V8l9-6Zm0 3.2L6 9v6l6 3.8L18 15V9l-6-3.8Z"/></svg>
+            </span>
+            <h2 class="text-xl font-extrabold text-dark">Demo producten (voorraadstatus)</h2>
+          </header>
+          <nav class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3" aria-label="Demo producten">
+            <a class="card card--hover p-4 flex items-center justify-between gap-3" href="/product-op-voorraad.html">
+              <span class="font-semibold">Op voorraad</span>
+              <span class="stock-ok"><span class="dot"></span> Op voorraad</span>
+            </a>
+            <a class="card card--hover p-4 flex items-center justify-between gap-3" href="/product-ordergestuurd.html">
+              <span class="font-semibold">Ordergestuurd</span>
+              <span class="stock-backorder"><span class="dot"></span> 3–6 werkdagen</span>
+            </a>
+            <a class="card card--hover p-4 flex items-center justify-between gap-3" href="/product-niet-op-voorraad.html">
+              <span class="font-semibold">Niet op voorraad</span>
+              <span class="stock-out"><span class="dot"></span> Verwachte datum</span>
+            </a>
+          </nav>
+        </article>
+
+        <!-- Contentpagina's -->
+        <article class="card p-4 md:p-6">
+          <header class="flex items-center gap-3">
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-white bg-teal">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 3l9 6v12H3V9l9-6Zm0 2.2L5 10v9h14v-9l-7-4.8Z"/></svg>
+            </span>
+            <h2 class="text-xl font-extrabold text-dark">Content</h2>
+          </header>
+          <nav class="mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3" aria-label="Contentpagina's">
+            <a class="card card--hover p-3 flex items-center gap-2" href="/over-ons.html" aria-label="Over ons">
+              <span class="w-6 h-6 text-brand" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5Z"/></svg></span>
+              <span class="font-semibold">Over ons</span>
+            </a>
+            <a class="card card--hover p-3 flex items-center gap-2" href="/duurzaamheid.html"><span class="w-6 h-6 text-brand" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10C22 6.477 17.523 2 12 2Zm1 17.93V13h6.93A8.001 8.001 0 0 1 13 19.93ZM11 4.07V11H4.07A8.001 8.001 0 0 1 11 4.07Z"/></svg></span><span class="font-semibold">Duurzaamheid</span></a>
+            <a class="card card--hover p-3 flex items-center gap-2" href="/samenwerkingen.html"><span class="w-6 h-6 text-brand" aria-hidden><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 5a3 3 0 1 1-3 3 3 3 0 0 1 3-3Zm0 6a5 5 0 0 0-5 5v3h10v-3a5 5 0 0 0-5-5Z"/></svg></span><span class="font-semibold">Samenwerkingen</span></a>
+            <a class="card card--hover p-3 flex items-center gap-2" href="/contact.html"><span class="w-6 h-6 text-brand" aria-hidden><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v3a2 2 0 0 1-2 2h-3l-4-4H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v11Z"/></svg></span><span class="font-semibold">Contact</span></a>
+            <a class="card card--hover p-3 flex items-center gap-2" href="/bestellen-en-betalen.html"><span class="w-6 h-6 text-brand" aria-hidden><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18v4H3V4Zm0 6h18v10H3V10Zm3 3v2h6v-2H6Z"/></svg></span><span class="font-semibold">Bestellen en betalen</span></a>
+            <a class="card card--hover p-3 flex items-center gap-2" href="/verzending-en-retour.html"><span class="w-6 h-6 text-brand" aria-hidden><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 8h-3V4H3v16h18V8Zm-9 7H6v-2h5v2Zm7 0h-6v-2h6v2Z"/></svg></span><span class="font-semibold">Retourneren</span></a>
+            <a class="card card--hover p-3 flex items-center gap-2" href="/voorraadbeheer.html"><span class="w-6 h-6 text-brand" aria-hidden><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v4H4V4Zm0 6h16v4H4v-4Zm0 6h16v4H4v-4Z"/></svg></span><span class="font-semibold">Voorraadbeheer</span></a>
+            <a class="card card--hover p-3 flex items-center gap-2" href="/onderhoud-technische-dienst.html"><span class="w-6 h-6 text-brand" aria-hidden><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 13.72 12.28 4 10 6.28 17.72 14 22 13.72ZM2 20h8l8-8-8-8-8 8v8Zm4-6 6-6 4 4-6 6H6Z"/></svg></span><span class="font-semibold">Onderhoud en technische dienst</span></a>
+            <a class="card card--hover p-3 flex items-center gap-2" href="/faq.html"><span class="w-6 h-6 text-brand" aria-hidden><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm1 15h-2v-2h2v2Zm2.07-7.75-.9.92A3.5 3.5 0 0 0 13 13h-2v-.5a2.5 2.5 0 0 1 .73-1.77l1.24-1.26a1.5 1.5 0 1 0-2.12-2.12 1.49 1.49 0 0 0-.44 1.06H8.29A3.49 3.49 0 0 1 14.07 9.25Z"/></svg></span><span class="font-semibold">Veelgestelde vragen</span></a>
+            <a class="card card--hover p-3 flex items-center gap-2" href="/blog.html"><span class="w-6 h-6 text-brand" aria-hidden><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 4h14v2H5V4Zm0 4h14v2H5V8Zm0 4h9v2H5v-2Zm0 4h9v2H5v-2Z"/></svg></span><span class="font-semibold">Blog</span></a>
+            <a class="card card--hover p-3 flex items-center gap-2" href="/brands.html"><span class="w-6 h-6 text-brand" aria-hidden><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l9 6-9 6-9-6 9-6Zm0 8.197L18.197 9 12 5.803 5.803 9 12 11.197Z"/></svg></span><span class="font-semibold">Merken</span></a>
+            <a class="card card--hover p-3 flex items-center gap-2" href="/privacyverklaring.html"><span class="w-6 h-6 text-brand" aria-hidden><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5l-8-3Zm0 9a3 3 0 1 1 3-3 3 3 0 0 1-3 3Z"/></svg></span><span class="font-semibold">Privacyverklaring</span></a>
+            <a class="card card--hover p-3 flex items-center gap-2" href="/algemene-voorwaarden.html"><span class="w-6 h-6 text-brand" aria-hidden><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 2h9l5 5v15H6V2Zm9 1.5V8h4.5L15 3.5Z"/></svg></span><span class="font-semibold">Algemene voorwaarden</span></a>
+            <a class="card card--hover p-3 flex items-center gap-2" href="/cart.html"><span class="w-6 h-6 text-brand" aria-hidden><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4H3v2h2l3.6 7.59L7.24 17a2 2 0 0 0 1.76 3h9v-2h-9l1.1-2h7.45a2 2 0 0 0 1.8-1.11L21 7H7.42L7 4Zm0 16a2 2 0 1 0 2-2 2 2 0 0 0-2 2Zm10 0a2 2 0 1 0 2-2 2 2 0 0 0-2 2Z"/></svg></span><span class="font-semibold">Winkelmand</span></a>
+            <a class="card card--hover p-3 flex items-center gap-2" href="/checkout-shipping.html"><span class="w-6 h-6 text-brand" aria-hidden><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 8h-3V4H3v12h2a4 4 0 0 0 8 0h2a4 4 0 0 0 8 0v-6h-3V8Z"/></svg></span><span class="font-semibold">Checkout – adres</span></a>
+            <a class="card card--hover p-3 flex items-center gap-2" href="/checkout-payment.html"><span class="w-6 h-6 text-brand" aria-hidden><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 6h20v12H2V6Zm2 3h16V8H4v1Zm0 7h6v-2H4v2Z"/></svg></span><span class="font-semibold">Checkout – betalen</span></a>
+            <a class="card card--hover p-3 flex items-center gap-2" href="/checkout-success.html"><span class="w-6 h-6 text-brand" aria-hidden><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm-1 15-5-5 1.41-1.41L11 13.17l5.59-5.58L18 9l-7 8Z"/></svg></span><span class="font-semibold">Checkout – succes</span></a>
+          </nav>
+        </article>
+
+        <!-- Account -->
+        <article class="card p-4 md:p-6">
+          <header class="flex items-center gap-3">
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-white bg-brand">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5Z"/></svg>
+            </span>
+            <h2 class="text-xl font-extrabold text-dark">Account</h2>
+          </header>
+          <nav class="mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3" aria-label="Account">
+            <a class="card card--hover p-3" href="/account-login.html"><span class="font-semibold">Inloggen</span></a>
+            <a class="card card--hover p-3" href="/account-register.html"><span class="font-semibold">Nieuw account</span></a>
+            <a class="card card--hover p-3" href="/account-forgot.html"><span class="font-semibold">Wachtwoord vergeten</span></a>
+            <a class="card card--hover p-3" href="/account-dashboard.html"><span class="font-semibold">Dashboard</span></a>
+            <a class="card card--hover p-3" href="/account-personal.html"><span class="font-semibold">Persoonlijke gegevens</span></a>
+            <a class="card card--hover p-3" href="/account-addresses.html"><span class="font-semibold">Adresboek</span></a>
+            <a class="card card--hover p-3" href="/account-orders.html"><span class="font-semibold">Mijn bestellingen</span></a>
+            <a class="card card--hover p-3" href="/account-order-detail.html?id=200000001"><span class="font-semibold">Orderdetails</span></a>
+            <a class="card card--hover p-3" href="/account-wishlist.html"><span class="font-semibold">Verlanglijst</span></a>
+            <a class="card card--hover p-3" href="/account-reviews.html"><span class="font-semibold">Mijn reviews</span></a>
+            <a class="card card--hover p-3" href="/account-invoices.html"><span class="font-semibold">Facturen & creditnota’s</span></a>
+            <a class="card card--hover p-3" href="/account-newsletter.html"><span class="font-semibold">Nieuwsbriefinstellingen</span></a>
+            <a class="card card--hover p-3" href="/account-requisition-lists.html"><span class="font-semibold">Bestellijsten</span></a>
+            <a class="card card--hover p-3" href="/account-company.html"><span class="font-semibold">Zakelijke gegevens</span></a>
+          </nav>
+        </article>
+      </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="/assets/js/menu.js" defer></script>
+    <script src="/assets/js/index.js" defer></script>
+    <script src="/assets/js/sitemap.js" defer></script>
+  </body>
+  </html>
+
+

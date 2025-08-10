@@ -1,0 +1,30 @@
+<!-- COPY TO PHTML: Vendor/Theme/RemkaCms/templates/content/accordion.phtml → In: list of {id, question, answer}. Out: accessible accordion. -->
+<section class="container mx-auto px-4 py-10" aria-labelledby="accordion-heading">
+  <h2 id="accordion-heading" class="sr-only">Veelgestelde vragen</h2>
+  <div class="space-y-3" role="tablist" aria-multiselectable="true">
+    <!-- Example item; duplicate per item in data source -->
+    <div class="card" id="item-{{ id }}">
+      <h3>
+        <button class="w-full text-left p-4 font-semibold" role="tab" aria-expanded="false" aria-controls="panel-{{ id }}" id="tab-{{ id }}">
+          {{ question }}
+        </button>
+      </h3>
+      <div id="panel-{{ id }}" role="tabpanel" aria-labelledby="tab-{{ id }}" hidden>
+        <div class="p-4 pt-0 text-sm text-dark/80">{{ answer }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  document.addEventListener('click', function(e){
+    const btn = e.target.closest('button[role="tab"][id^="tab-"]');
+    if(!btn) return;
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    const panelId = btn.getAttribute('aria-controls');
+    const panel = document.getElementById(panelId);
+    btn.setAttribute('aria-expanded', String(!expanded));
+    if(panel) panel.hidden = expanded;
+  });
+</script>
+
+

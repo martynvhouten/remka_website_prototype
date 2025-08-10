@@ -145,6 +145,13 @@
         nav.parentNode.insertBefore(host, nav.nextSibling);
       }
 
+      // Hyvä-ready: als er geen menu-data is (prototype), verberg de menubalk volledig
+      if (!this.state.data || this.state.data.length === 0) {
+        if (nav) nav.classList.add('hidden');
+        if (host) host.classList.add('hidden');
+        return;
+      }
+
       this.state.data.forEach((cat, i) => {
         const hasChildren = Array.isArray(cat.children) && cat.children.length > 0;
         const li = this.create('li', { role: 'none' });
@@ -237,6 +244,12 @@
       }
       if (!wrap) wrap = offcanvas.querySelector('#mobileMenu');
       wrap.innerHTML = '';
+
+      // Geen data? Houd offcanvas verborgen en doe niets
+      if (!this.state.data || this.state.data.length === 0) {
+        if (offcanvas) offcanvas.classList.add('hidden');
+        return;
+      }
 
       this.state.data.forEach((cat, i) => {
         const hasChildren = cat.children && cat.children.length > 0;
