@@ -38,7 +38,20 @@ body { font-family: var(--font-sans); color: var(--dark); background-color: #fff
 .badge--ok { border-color: rgba(0,169,157,0.3); color: #066; background: rgba(0,169,157,0.08); }
 
 /* Images */
-img { max-width: 100%; height: auto; }
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem; /* nette afgeronde hoeken voor alle images */
+  border: 0; /* nooit een rand direct om de afbeelding */
+}
+
+/* Containers die alléén een afbeelding tonen: geen border/frame rond het beeld */
+/* Gebruik :has zodat bestaande card/figure wrappers borderloos worden als ze enkel een img/picture bevatten */
+:where(figure, .card, .image, .img-wrap, .media, .media-frame):has(> img:only-child),
+:where(figure, .card, .image, .img-wrap, .media, .media-frame):has(> picture:only-child) {
+  border: 0 !important;
+  box-shadow: none !important;
+}
 
 /* Category tiles */
 .cat-card { display: block; background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: var(--radius); overflow: hidden; transition: transform .15s ease, box-shadow .2s ease; }

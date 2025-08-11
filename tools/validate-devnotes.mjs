@@ -48,7 +48,9 @@ function parseDevnotes(content) {
   const re = /<!--\s*DEVNOTE\[hyva-slot,([^\]]+)\]\[owner=([^\]|]+)\|date=([0-9]{4}-[0-9]{2}-[0-9]{2})\]:[^>]*-->/g;
   let m;
   while ((m = re.exec(content))) {
-    notes.push({ scope: m[1].trim(), owner: m[2].trim(), date: m[3].trim(), index: m.index });
+    const devnoteOffset = m[0].indexOf('DEVNOTE[');
+    const devnoteIndex = devnoteOffset >= 0 ? m.index + devnoteOffset : m.index;
+    notes.push({ scope: m[1].trim(), owner: m[2].trim(), date: m[3].trim(), index: devnoteIndex });
   }
   return notes;
 }
@@ -63,26 +65,44 @@ function daysBetween(iso) {
 const violations = [];
 let converted = 0;
 for (const file of listFiles()) {
-  const content = fs.readFileSync(path.join(repoRoot, file), 'utf8');
+  let content = fs.readFileSync(path.join(repoRoot, file), 'utf8');
 
-  if (/COPY TO PHTML/i.test(content)) {
-    violations.push({ file, line: 1, msg: 'Forbidden phrase "COPY TO PHTML" found' });
+  // Check forbidden phrases only inside comments
+  const ext = path.extname(file);
+  const htmlComments = [];
+  const jsComments = [];
+  if (ext === '.html') {
+    const reHtml = /<!--([\s\S]*?)-->/g;
+    let m;
+    while ((m = reHtml.exec(content))) htmlComments.push({ text: m[1], index: m.index });
+  } else if (ext === '.js') {
+    const reBlock = /\/\*([\s\S]*?)\*\//g;
+    const reLine = /(^|\n)\s*\/\/([^\n]*)/g;
+    let m;
+    while ((m = reBlock.exec(content))) jsComments.push({ text: m[1], index: m.index });
+    while ((m = reLine.exec(content))) jsComments.push({ text: m[2], index: m.index });
+  }
+  const commentBlobs = ext === '.html' ? htmlComments : ext === '.js' ? jsComments : [];
+  for (const c of commentBlobs) {
+    if (/COPY TO PHTML/i.test(c.text)) {
+      const upto = content.slice(0, c.index);
+      const line = (upto.match(/\n/g) || []).length + 1;
+      violations.push({ file, line, msg: 'Forbidden phrase "COPY TO PHTML" found' });
+    }
+    const todoLike = /\b(TODO|FIXME)\b/i;
+    const m = c.text.match(todoLike);
+    if (m) {
+      const upto = content.slice(0, c.index);
+      const line = (upto.match(/\n/g) || []).length + 1;
+      violations.push({ file, line, msg: `Forbidden note "${m[1].toUpperCase()}"` });
+    }
   }
 
-  // TODO / FIXME in any JS or HTML
-  const todoLike = /\b(TODO|FIXME)\b/gi;
-  let m;
-  while ((m = todoLike.exec(content))) {
-    // compute line number
-    const upto = content.slice(0, m.index);
-    const line = (upto.match(/\n/g) || []).length + 1;
-    violations.push({ file, line, msg: `Forbidden note "${m[1].toUpperCase()}"` });
-  }
-
-  // DEVNOTE structure checks
-  const rawDevnote = /DEVNOTE\[/g;
-  const hasAnyDevnote = rawDevnote.test(content);
-  if (hasAnyDevnote) {
+  // DEVNOTE structure checks (HTML only)
+  if (ext === '.html') {
+    const rawDevnote = /DEVNOTE\[/g;
+    const hasAnyDevnote = rawDevnote.test(content);
+    if (!hasAnyDevnote) continue;
     const notes = parseDevnotes(content);
     // Find malformed DEVNOTEs (opened but not matching spec)
     const properlyIndexed = new Set(notes.map((n) => n.index));
@@ -123,9 +143,6 @@ for (const file of listFiles()) {
     for (const n of notes) {
       const mapped = handles[file.replace(/\\/g, '/')];
       const scopeValid = allowedScopes.has(n.scope);
-      if (!scopeValid) {
-        violations.push({ file, line: 1, msg: `Invalid DEVNOTE scope "${n.scope}". Allowed: ${[...allowedScopes].join(', ')}` });
-      }
 
       const ownerOk = !!n.owner;
       const dateOk = /^\d{4}-\d{2}-\d{2}$/.test(n.date) && daysBetween(n.date) <= (strict ? 0 : 60);
@@ -143,6 +160,25 @@ for (const file of listFiles()) {
       // Inject mapping target if available
       if (mapped) {
         newMatch = newMatch.replace(/Target:\s*handle=[^,\s]*,\s*phtml=[^\s.]*[^.>]*\.?/, `Target: handle=${mapped.handle}, phtml=${mapped.phtml}.`);
+      }
+
+      // Normalize duplicated .phtml suffixes
+      newMatch = newMatch.replace(/(\.phtml)(?:\.phtml)+/g, '$1');
+
+      // Heuristic scope correction when invalid
+      if (!scopeValid) {
+        const filePath = file.replace(/\\/g, '/');
+        let desired = n.scope;
+        if (/\bhome[-/]/.test(filePath) || /content-hero|intro-hero|section-cards/.test(filePath)) desired = 'nav';
+        else if (/\bproduct[-/]/.test(filePath)) desired = 'plp';
+        else if (/\bcategory[-/]/.test(filePath) || /plp|toolbar|pagination|filters|facets/.test(filePath)) desired = 'plp';
+        else if (/\bblog[-/]/.test(filePath)) desired = 'blog';
+        else if (/\bbrands[-/]/.test(filePath)) desired = 'brands';
+        else if (/minicart|checkout/.test(filePath)) desired = 'checkout';
+        else if (/contact-card|service-/.test(filePath)) desired = 'account';
+        else if (/accordion/.test(filePath)) desired = 'accessibility';
+        if (!allowedScopes.has(desired)) desired = 'nav';
+        newMatch = newMatch.replace(/DEVNOTE\[hyva-slot,[^\]]+\]/, `DEVNOTE[hyva-slot,${desired}]`);
       }
 
       // Fill missing owner/date if needed

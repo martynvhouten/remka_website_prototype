@@ -1020,20 +1020,12 @@ video {
   max-height: 5rem;
 }
 
-.max-h-60 {
-  max-height: 15rem;
+.max-h-48 {
+  max-height: 12rem;
 }
 
 .max-h-64 {
   max-height: 16rem;
-}
-
-.max-h-56 {
-  max-height: 14rem;
-}
-
-.max-h-40 {
-  max-height: 10rem;
 }
 
 .min-h-\[2\.75rem\] {
@@ -1092,10 +1084,6 @@ video {
   width: 2.25rem;
 }
 
-.w-\[min\(100\%\2c 320px\)\] {
-  width: min(100%,320px);
-}
-
 .w-auto {
   width: auto;
 }
@@ -1129,8 +1117,8 @@ video {
   max-width: 56rem;
 }
 
-.max-w-\[320px\] {
-  max-width: 320px;
+.max-w-\[200px\] {
+  max-width: 200px;
 }
 
 .max-w-\[55\%\] {
@@ -1157,12 +1145,8 @@ video {
   max-width: 20rem;
 }
 
-.max-w-\[260px\] {
-  max-width: 260px;
-}
-
-.max-w-\[160px\] {
-  max-width: 160px;
+.max-w-\[280px\] {
+  max-width: 280px;
 }
 
 .flex-1 {
@@ -1272,10 +1256,6 @@ video {
   place-items: center;
 }
 
-.content-start {
-  align-content: flex-start;
-}
-
 .items-start {
   align-items: flex-start;
 }
@@ -1302,10 +1282,6 @@ video {
 
 .justify-between {
   justify-content: space-between;
-}
-
-.justify-items-end {
-  justify-items: end;
 }
 
 .gap-1 {
@@ -1755,6 +1731,10 @@ video {
   padding-left: 1.25rem;
 }
 
+.pr-3 {
+  padding-right: 0.75rem;
+}
+
 .pr-8 {
   padding-right: 2rem;
 }
@@ -1773,10 +1753,6 @@ video {
 
 .pt-4 {
   padding-top: 1rem;
-}
-
-.pr-3 {
-  padding-right: 0.75rem;
 }
 
 .text-left {
@@ -1951,16 +1927,16 @@ video {
   opacity: 0.5;
 }
 
+.opacity-70 {
+  opacity: 0.7;
+}
+
 .opacity-80 {
   opacity: 0.8;
 }
 
 .opacity-90 {
   opacity: 0.9;
-}
-
-.opacity-70 {
-  opacity: 0.7;
 }
 
 .shadow {
@@ -2244,14 +2220,6 @@ video {
 }
 
 @media (min-width: 768px) {
-  .md\:sticky {
-    position: sticky;
-  }
-
-  .md\:top-20 {
-    top: 5rem;
-  }
-
   .md\:order-1 {
     order: 1;
   }
@@ -2298,14 +2266,6 @@ video {
 
   .md\:h-10 {
     height: 2.5rem;
-  }
-
-  .md\:max-h-56 {
-    max-height: 14rem;
-  }
-
-  .md\:max-w-\[260px\] {
-    max-width: 260px;
   }
 
   .md\:grid-cols-12 {
@@ -2407,14 +2367,6 @@ video {
 
   .lg\:block {
     display: block;
-  }
-
-  .lg\:max-h-64 {
-    max-height: 16rem;
-  }
-
-  .lg\:max-w-\[280px\] {
-    max-width: 280px;
   }
 
   .lg\:grid-cols-2 {
