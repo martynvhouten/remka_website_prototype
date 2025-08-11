@@ -76,8 +76,8 @@
     children.forEach((ch, idx) => {
       const a = document.createElement('a');
       a.href = `/subcategory.html?c=${encodeURIComponent(ch.slug)}`;
-      a.className = 'card card--hover p-4 flex flex-col items-center text-center';
-      a.innerHTML = `<img src="${fallback}" alt="${ch.name}" loading="lazy" class="rounded-md border border-light object-cover aspect-square" /><span class="mt-3 font-medium">${ch.name}</span>`;
+      a.className = 'cat-card';
+      a.innerHTML = `<div class="cat-card__media"><img src="${fallback}" alt="${ch.name}" loading="lazy" class="cat-card__img"/></div><span class="cat-card__title">${ch.name}</span>`;
       if(idx < limit) host.appendChild(a);
       if (chips) {
         const chip = document.createElement('a'); chip.href = a.href; chip.className = 'pill pill--sm'; chip.innerHTML = `<span class="dot"></span>${ch.name}`; chips.appendChild(chip);
@@ -91,8 +91,8 @@
         children.forEach((ch) => {
           const a = document.createElement('a');
           a.href = `/subcategory.html?c=${encodeURIComponent(ch.slug)}`;
-          a.className = 'card card--hover p-4 flex flex-col items-center text-center';
-          a.innerHTML = `<img src="${fallback}" alt="${ch.name}" loading="lazy" class="rounded-md border border-light object-cover aspect-square" /><span class="mt-3 font-medium">${ch.name}</span>`;
+          a.className = 'cat-card';
+          a.innerHTML = `<div class=\"cat-card__media\"><img src=\"${fallback}\" alt=\"${ch.name}\" loading=\"lazy\" class=\"cat-card__img\"/></div><span class=\"cat-card__title\">${ch.name}</span>`;
           host.appendChild(a);
         });
         btn.remove();
