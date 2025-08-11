@@ -1,0 +1,10 @@
+[
+  { "sku": "DEMO-HAND-1", "brand": "Remka", "title": "Nitril handschoenen blauw – S", "price": 11.95, "image": "/assets/images/placeholder-square.svg", "categories": ["handschoenen","verbruiksmaterialen"], "stock": "in_stock" },
+  { "sku": "DEMO-HAND-2", "brand": "Remka", "title": "Nitril handschoenen blauw – M", "price": 12.95, "image": "/assets/images/placeholder-square.svg", "categories": ["handschoenen","verbruiksmaterialen"], "stock": "in_stock" },
+  { "sku": "DEMO-DES-1", "brand": "CleanLab", "title": "Alcohol 70% 1L", "price": 8.75, "image": "/assets/images/placeholder-square.svg", "categories": ["reiniging-desinfectie","verbruiksmaterialen"], "stock": "in_stock" },
+  { "sku": "DEMO-DES-2", "brand": "CleanLab", "title": "Handdesinfectie 500ml pomp", "price": 6.90, "image": "/assets/images/placeholder-square.svg", "categories": ["reiniging-desinfectie","verbruiksmaterialen"], "stock": "backorder" },
+  { "sku": "DEMO-DIAG-1", "brand": "Heine", "title": "Otoscoop BETA 200", "price": 385.00, "image": "/assets/images/placeholder-square.svg", "categories": ["diagnostische-apparaten","apparatuur"], "stock": "out_of_stock", "eta": "2025-09-12" },
+  { "sku": "DEMO-WEGEN-1", "brand": "seca", "title": "Personenweegschaal basis", "price": 129.00, "image": "/assets/images/placeholder-square.svg", "categories": ["wegen-meten","apparatuur"], "stock": "in_stock" }
+]
+
+

@@ -1,14 +1,12 @@
-<!-- COPY TO PHTML: Magento_Catalog/templates/category/header.phtml -->
+<!-- DEVNOTE[hyva-slot,plp][owner=remka|date=2025-08-11]: Category header + breadcrumbs. Target: handle=category_view, phtml=Magento_Catalog::category/header.phtml. Docs: style-guide.html#pagina-titel -->
 <!-- Hyvä: combineer breadcrumbs + heading in layout blocks indien gewenst -->
 <section class="section-alt">
   <div class="container mx-auto px-4 py-8">
   <nav class="text-sm text-dark/80 breadcrumbs" aria-label="Breadcrumb">
-      <ol class="flex flex-wrap items-center gap-2">
+      <ol id="crumbList" class="flex flex-wrap items-center gap-2">
         <li><a href="/">Home</a></li>
         <li>›</li>
-        <li><a href="/category.html" id="crumbCat">Assortiment</a></li>
-        <li class="hidden" id="crumbSep">›</li>
-        <li class="hidden" id="crumbLeafWrap"><span id="crumbLeaf">Categorie</span></li>
+        <li><a href="/category.html" aria-current="page" id="crumbRoot">Assortiment</a></li>
       </ol>
     </nav>
     <header class="mt-4 grid lg:grid-cols-3 gap-6 items-start" id="categoryHeader">
@@ -21,6 +19,7 @@
           <a href="#productGrid" class="pill pill--teal"><span class="dot"></span> Producten</a>
           <a href="#advice" class="pill pill--accent"><span class="dot"></span> Advies</a>
         </div>
+        <div class="sr-only" id="resultCount" aria-live="polite"></div>
       </div>
       <aside class="hidden lg:block">
         <div class="card p-4">

@@ -9,10 +9,10 @@ Wat is er gedaan
 - Tailwind utilities geharmoniseerd (tokens `brand/accent/teal/dark/light`): grijs-klassen vervangen, hover-achtergronden geünificeerd, `border-light` i.p.v. `border-gray-300`.
 - Sitemap JS ontdaan van inline styles; Tailwind margin utilities voor nesting.
 - Mobiel menu: login-link gecorrigeerd.
-- TODO’s vervangen door duidelijke placeholders voor CMS/PHTML.
+- DEVNOTE’s toegevoegd als placeholders voor CMS/PHTML.
 - Bevestigd: geen `!important`, geen inline `style`, geen `console`/`debugger`. Afbeeldingen met `alt` en `loading="lazy"` waar zinvol.
 
-Wat Magento/Hyvä nog moet (aparte TODO)
+Wat Magento/Hyvä nog moet (aparte DEVNOTE)
 - Tailwind config in child theme, CDN verwijderen, PHTML mapping van partials, collections aansluiten, Hyvä minicart/checkout, structured data, i18n.
 
 Testen/Review

@@ -1,0 +1,19 @@
+{
+  "children": [
+    { "name": "Verbruiksmaterialen", "children": [
+      { "name": "Handschoenen" },
+      { "name": "Reiniging & Desinfectie" },
+      { "name": "Hechtmateriaal" }
+    ]},
+    { "name": "Apparatuur", "children": [
+      { "name": "Diagnostische apparaten" },
+      { "name": "Wegen & Meten" }
+    ]},
+    { "name": "Laboratorium", "children": [
+      { "name": "Bloedonderzoek" },
+      { "name": "Urineonderzoek" }
+    ]}
+  ]
+}
+
+

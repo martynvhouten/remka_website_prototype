@@ -48,26 +48,69 @@
 
       <section class="container mx-auto px-4 py-10 grid md:grid-cols-[260px,1fr] gap-8" id="inhoud">
         <!-- Sticky inhoudsopgave -->
-        <aside class="md:sticky md:top-20 self-start">
+        <aside class="sticky-sidebar self-start">
           <div class="card p-4">
             <h2 class="text-base font-extrabold">Inhoud</h2>
             <nav class="mt-3 text-sm space-y-2">
+              <a class="block hover:text-brand" href="#design-tokens">Design tokens</a>
               <a class="block hover:text-brand" href="#kleuren">Kleurenpalet</a>
               <a class="block hover:text-brand" href="#typografie">Typografie</a>
               <a class="block hover:text-brand" href="#buttons">Buttons</a>
               <a class="block hover:text-brand" href="#forms">Form elementen</a>
               <a class="block hover:text-brand" href="#cards">Kaarten en containers</a>
               <a class="block hover:text-brand" href="#navigatie">Navigatie en footer</a>
+               <a class="block hover:text-brand" href="#pagina-titel">Pagina titel</a>
+              <a class="block hover:text-brand" href="#navigation-details">Navigatie details</a>
               <a class="block hover:text-brand" href="#componenten">Componenten</a>
               <a class="block hover:text-brand" href="#grid">Grid en layout</a>
               <a class="block hover:text-brand" href="#iconen">Iconen</a>
               <a class="block hover:text-brand" href="#toasts">Toasts</a>
+              <a class="block hover:text-brand" href="#loading-states">Loading en empty</a>
+               <a class="block hover:text-brand" href="#tekst">Tekst & content</a>
             </nav>
           </div>
         </aside>
 
         <!-- Content kolom -->
         <div class="space-y-10">
+          <!-- Design tokens -->
+          <section id="design-tokens" class="sg-section">
+            <h2 class="text-2xl font-black">Design tokens</h2>
+            <div class="mt-3 text-sm text-dark/80 space-y-4">
+              <div class="card p-4">
+                <div class="font-semibold">Kleuren (Tailwind + CSS tokens)</div>
+                <div class="mt-2 grid sm:grid-cols-2 lg:grid-cols-3 gap-2 text-sm">
+                  <div class="sg-kleur bg-brand text-white"><span>brand</span><span>#9E0059</span></div>
+                  <div class="sg-kleur bg-accent text-[#111]"><span>accent</span><span>#F77F00</span></div>
+                  <div class="sg-kleur bg-teal text-white"><span>teal</span><span>#00A99D</span></div>
+                  <div class="sg-kleur bg-dark text-white"><span>dark</span><span>#333333</span></div>
+                  <div class="sg-kleur bg-light text-[#111]"><span>light</span><span>#E6E6E6</span></div>
+                </div>
+                <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto"><code>&lt;!-- Utilities --&gt;
+&lt;button class=&quot;btn btn-brand&quot;&gt;cta&lt;/button&gt;
+&lt;div class=&quot;border border-brand/30 bg-brand/5 text-brand&quot;&gt;accent&lt;/div&gt;
+&lt;div class=&quot;text-dark bg-light&quot;&gt;neutraal&lt;/div&gt;</code></pre>
+              </div>
+              <div class="card p-4">
+                <div class="font-semibold">Radius en container-breedtes</div>
+                <div class="mt-2 text-dark/70">Radius: <code>--radius: 0.5rem</code>. Container-max: <code>--container-max</code> per breakpoint.</div>
+                <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto"><code>&lt;div class=&quot;container mx-auto px-4&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;rounded-[0.5rem] border border-light p-4&quot;&gt;kaart&lt;/div&gt;</code></pre>
+              </div>
+              <div class="card p-4">
+                <div class="font-semibold">Z-index lagen</div>
+                <div class="mt-2 text-dark/70">Header: 70, Mega: 65, Overlay: 60 (zie Tailwind extend.zIndex en CSS ids).</div>
+                <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto"><code>&lt;header class=&quot;z-[70]&quot;&gt;...&lt;/header&gt;
+&lt;div id=&quot;megaHost&quot; class=&quot;z-[65]&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;fixed inset-0 z-50 bg-black/40&quot;&gt;&lt;/div&gt;</code></pre>
+              </div>
+              <div class="card p-4">
+                <div class="font-semibold">Focus-ring beleid</div>
+                <div class="mt-2 text-dark/70">Gebruik merk-kleur; subtiel maar duidelijk. Respecteer <code>:focus-visible</code>.</div>
+                <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto"><code>&lt;button class=&quot;btn btn-outline focus-visible:ring-2 focus-visible:ring-brand&quot;&gt;Focus&lt;/button&gt;</code></pre>
+              </div>
+            </div>
+          </section>
           <!-- Kleurenpalet -->
           <section id="kleuren" class="sg-section">
             <h2 class="text-2xl font-black">Kleurenpalet</h2>
@@ -82,6 +125,36 @@
             </div>
             <div class="mt-4 text-sm text-dark/70">
               <p><strong>Focus</strong>: outline in merk-kleur. <strong>Hover</strong>: lichte schaduw of kleur-tint; geen flashy effecten.</p>
+            </div>
+          </section>
+
+          <!-- Tekst & content richtlijnen -->
+          <section id="tekst" class="sg-section">
+            <h2 class="text-2xl font-black">Tekst & content</h2>
+            <ul class="mt-3 list-disc pl-5 space-y-1 text-sm text-dark/80">
+              <li>Gebruik je-vorm (geen u).</li>
+              <li>Schrijf in zin-hoofdletters: alleen de eerste letter van de zin met hoofdletter; geen woorden in ALL CAPS.</li>
+              <li>Koppen met sterke typografie: gewichten 800–900 voor hiërarchie.</li>
+              <li>Hover-states subtiel; focus-ring in merk-kleur voor toegankelijkheid.</li>
+              <li>Geen gradients in secties; gebruik effen achtergronden. Donkere modus wordt niet ondersteund.</li>
+              <li>Beeldgebruik: plaats afbeeldingen bij voorkeur naast tekst; houd ze subtiel en niet te dominant.</li>
+            </ul>
+          </section>
+
+          <!-- Pagina titel -->
+          <section id="pagina-titel" class="sg-section">
+            <h2 class="text-2xl font-black">Pagina titel</h2>
+            <p class="mt-1 text-sm text-dark/70">Gebruik een zachte teal-tint zonder gradient. Structuur: header, paginatitel, content, footer.</p>
+            <div class="mt-4 section-teal-tint border border-light rounded-[0.75rem]">
+              <div class="container mx-auto px-4 py-6">
+                <div class="flex items-center justify-between gap-3">
+                  <div>
+                    <div class="text-sm font-semibold text-dark/70">Assortiment</div>
+                    <h1 class="text-3xl md:text-4xl font-black tracking-tight">Hygiëne en desinfectie</h1>
+                    <p class="mt-1 text-sm text-dark/70 max-w-prose">Korte, functionele inleiding. Houd beelden subtiel en niet te groot.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -111,11 +184,10 @@
           <section id="buttons" class="sg-section">
             <h2 class="text-2xl font-black">Buttons</h2>
             <p class="mt-1 text-sm text-dark/70">Primaire, secundaire en outline. Gebruik disabled met lagere opacity.</p>
-            <div class="mt-4 flex flex-wrap gap-3 items-center">
+              <div class="mt-4 flex flex-wrap gap-3 items-center">
               <button class="btn btn-brand">Primaire</button>
               <button class="btn btn-accent">Secundaire</button>
               <button class="btn btn-outline">Outline</button>
-              <button class="btn btn-outline">Ghost</button>
               <button class="btn btn-brand disabled:opacity-50 disabled:cursor-not-allowed" disabled>Disabled</button>
               <a href="#" class="btn btn-brand">Link button</a>
             </div>
@@ -222,6 +294,45 @@
               </ol>
             </nav>
             <div class="mt-4 text-sm text-dark/70">Bekijk de bovenste header en footer onderaan de pagina voor de volledige weergave.</div>
+          </section>
+
+          <!-- Navigatie details -->
+          <section id="navigation-details" class="sg-section">
+            <h2 class="text-2xl font-black">Navigatie details</h2>
+            <div class="mt-3 grid md:grid-cols-2 gap-6 text-sm text-dark/80">
+              <div class="card p-4">
+                <div class="font-semibold">Underline en hover intent</div>
+                <p class="mt-1">Topmenu-links hebben een subtiele underline-animatie en kleurwisseling naar merk-kleur.</p>
+                <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto"><code>&lt;a class=&quot;mainnav-link hover:text-brand&quot; href=&quot;#&quot;&gt;Categorie&lt;/a&gt;</code></pre>
+              </div>
+              <div class="card p-4">
+                <div class="font-semibold">Mega-menu gedrag</div>
+                <p class="mt-1">Paneel opent onder nav, met lichte elevatie. Hover/focus op links geeft achtergrondtint en underline. <code>aria-expanded</code> op de trigger.</p>
+                <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto"><code>&lt;button class=&quot;mainnav-link&quot; aria-expanded=&quot;false&quot;&gt;Hygiëne&lt;/button&gt;
+&lt;div class=&quot;mega-panel&quot; data-state=&quot;open&quot;&gt;...&lt;/div&gt;</code></pre>
+              </div>
+              <div class="card p-4">
+                <div class="font-semibold">Mobiele drawer</div>
+                <p class="mt-1">Offcanvas gebruikt fade voor overlay en slide voor panel. Sluiten via overlay, close-knop of ESC.</p>
+                <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto"><code>&lt;div id=&quot;offcanvas&quot; class=&quot;hidden&quot;&gt;
+  &lt;button data-close=&quot;offcanvas&quot; class=&quot;hdr-overlay fixed inset-0 bg-black/40&quot;&gt;&lt;/button&gt;
+  &lt;aside class=&quot;hdr-drawer fixed inset-y-0 left-0 w-80 bg-white&quot;&gt;...&lt;/aside&gt;
+&lt;/div&gt;</code></pre>
+              </div>
+              <div class="card p-4">
+                <div class="font-semibold">Sticky-on-scroll</div>
+                <p class="mt-1">Header verbergt/tonen met soepele translatie. Respecteert reduced motion.</p>
+                <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto"><code>header[role=&quot;banner&quot;].is-hidden { transform: translateY(-100%); }</code></pre>
+              </div>
+              <div class="card p-4 md:col-span-2">
+                <div class="font-semibold">A11y</div>
+                <ul class="mt-2 list-disc pl-5 space-y-1">
+                  <li>Gebruik <code>aria-expanded</code> op triggers; focus-ring zichtbaar.</li>
+                  <li>Focus-trap in modals; sluit met ESC.</li>
+                  <li>Navigatielinks en mega-links moeten <code>:focus-visible</code> outline krijgen in merk-kleur.</li>
+                </ul>
+              </div>
+            </div>
           </section>
 
           <!-- Componenten -->
@@ -377,6 +488,295 @@
                   <button class="btn btn-brand btn-sm" data-demo-toast="cart">Simuleer toevoeging</button>
                 </div>
                 <p class="mt-3 text-sm text-dark/70">Bevat thumbnail (max 40px), twee acties en sluitknop. Interne scroll voorkomt afsnijden; acties blijven zichtbaar.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Loading & Empty states -->
+          <section id="loading-states" class="sg-section">
+            <h2 class="text-2xl font-black">Loading en empty</h2>
+            <div class="mt-3 grid md:grid-cols-2 gap-6 text-sm text-dark/80">
+              <div class="card p-4">
+                <div class="font-semibold">Skeletons</div>
+                <p class="mt-1">Gebruik <code>.skeleton</code> voor placeholders en <code>.skeleton-card</code> voor productkaarten.</p>
+                <div class="mt-3 grid grid-cols-2 gap-3">
+                  <div class="skeleton h-24 rounded-md"></div>
+                  <div class="skeleton h-24 rounded-md"></div>
+                  <div class="skeleton-card"></div>
+                  <div class="skeleton-card"></div>
+                </div>
+              </div>
+              <div class="card p-4">
+                <div class="font-semibold">Spinner en knoppen</div>
+                <p class="mt-1">Compacte spinner en disabled knoppen met lagere opacity.</p>
+                <div class="mt-3 flex items-center gap-3">
+                  <div class="spinner" aria-label="Bezig"></div>
+                  <button class="btn btn-brand disabled:opacity-50" disabled>Bezig…</button>
+                </div>
+              </div>
+              <div class="card p-4 md:col-span-2">
+                <div class="font-semibold">Empty en errors</div>
+                <div class="mt-2 grid md:grid-cols-2 gap-3">
+                  <div class="empty">
+                    <div class="empty__title">Geen resultaten</div>
+                    <div class="empty__text">Pas je filters aan of probeer opnieuw.</div>
+                  </div>
+                  <div class="rounded-md border border-red-300 bg-red-50 text-red-800 px-3 py-2">Er ging iets mis. Probeer het later opnieuw.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Handover checklist -->
+          <section id="handover-checklist" class="sg-section">
+            <h2 class="text-2xl font-black">Handover checklist</h2>
+            <p class="mt-1 text-sm text-dark/70">Inventaris van aanwezige templates/componenten en één checklist om de Hyvä implementatie gericht over te dragen.</p>
+
+            <div class="mt-4 card p-4 text-sm text-dark/80">
+              <div class="font-semibold">Inventaris t.o.v. Hyvä storefront oppervlak</div>
+              <div class="mt-3 grid md:grid-cols-2 gap-3">
+                <div class="p-3 rounded-md border border-light">
+                  <div class="font-semibold">Home</div>
+                  <div class="mt-1 flex items-center gap-2"><span class="badge badge-success">aanwezig</span><code class="opacity-70">index.html</code></div>
+                </div>
+                <div class="p-3 rounded-md border border-light">
+                  <div class="font-semibold">Categorie L1/L2/L3 &amp; PLP</div>
+                  <div class="mt-1 space-y-1">
+                    <div class="flex items-center gap-2"><span class="badge badge-success">aanwezig</span><code class="opacity-70">category.html</code>, <code class="opacity-70">subcategory.html</code></div>
+                    <div class="flex items-center gap-2"><span class="badge">partials</span><code class="opacity-70">partials/category-*.html</code></div>
+                  </div>
+                </div>
+                <div class="p-3 rounded-md border border-light">
+                  <div class="font-semibold">PDP</div>
+                  <div class="mt-1 space-y-1">
+                    <div class="flex items-center gap-2"><span class="badge badge-success">aanwezig</span><code class="opacity-70">product.html</code></div>
+                    <div class="flex items-center gap-2"><span class="badge">varianten</span><code class="opacity-70">product-op-voorraad.html</code>, <code class="opacity-70">product-niet-op-voorraad.html</code>, <code class="opacity-70">product-ordergestuurd.html</code></div>
+                  </div>
+                </div>
+                <div class="p-3 rounded-md border border-light">
+                  <div class="font-semibold">Zoeken (autosuggest/resultaten)</div>
+                  <div class="mt-1 space-y-1">
+                    <div class="flex items-center gap-2"><span class="badge badge-success">resultaten</span><code class="opacity-70">search.html</code></div>
+                    <div class="flex items-center gap-2"><span class="badge badge-warning">autosuggest</span><span class="opacity-70">nog te bouwen</span></div>
+                  </div>
+                </div>
+                <div class="p-3 rounded-md border border-light">
+                  <div class="font-semibold">Merken hub/PLP</div>
+                  <div class="mt-1 flex items-center gap-2"><span class="badge badge-success">aanwezig</span><code class="opacity-70">brands.html</code>, <code class="opacity-70">brand-johnson-johnson.html</code></div>
+                </div>
+                <div class="p-3 rounded-md border border-light">
+                  <div class="font-semibold">Winkelwagen + mini cart</div>
+                  <div class="mt-1 space-y-1">
+                    <div class="flex items-center gap-2"><span class="badge badge-success">cart</span><code class="opacity-70">cart.html</code></div>
+                    <div class="flex items-center gap-2"><span class="badge badge-success">mini cart</span><code class="opacity-70">partials/minicart-drawer.html</code></div>
+                  </div>
+                </div>
+                <div class="p-3 rounded-md border border-light">
+                  <div class="font-semibold">Checkout (stappen/validatie)</div>
+                  <div class="mt-1 space-y-1">
+                    <div class="flex items-center gap-2"><span class="badge badge-success">stappen</span><code class="opacity-70">checkout-shipping.html</code>, <code class="opacity-70">checkout-payment.html</code>, <code class="opacity-70">checkout-success.html</code></div>
+                    <div class="flex items-center gap-2"><span class="badge">validatie</span><span class="opacity-70">patronen in <a class="underline hover:text-brand" href="#forms">forms</a> / <a class="underline hover:text-brand" href="#componenten">alerts</a></span></div>
+                  </div>
+                </div>
+                <div class="p-3 rounded-md border border-light">
+                  <div class="font-semibold">Account (login/register, orders, retouren, adressen, facturen, wishlist)</div>
+                  <div class="mt-1 space-y-1">
+                    <div class="flex flex-wrap items-center gap-2"><span class="badge badge-success">aanwezig</span><code class="opacity-70">account-login.html</code>, <code class="opacity-70">account-register.html</code>, <code class="opacity-70">account-orders.html</code>, <code class="opacity-70">account-order-detail.html</code>, <code class="opacity-70">account-addresses.html</code>, <code class="opacity-70">account-invoices.html</code>, <code class="opacity-70">account-wishlist.html</code></div>
+                    <div class="flex items-center gap-2"><span class="badge badge-warning">retouren</span><span class="opacity-70">ontbreekt</span></div>
+                  </div>
+                </div>
+                <div class="p-3 rounded-md border border-light">
+                  <div class="font-semibold">CMS (over ons, contact, verzenden &amp; retour, privacy, voorwaarden, 404, onderhoud)</div>
+                  <div class="mt-1 space-y-1">
+                    <div class="flex flex-wrap items-center gap-2"><span class="badge badge-success">aanwezig</span><code class="opacity-70">over-ons.html</code>, <code class="opacity-70">contact.html</code>, <code class="opacity-70">verzending-en-retour.html</code>, <code class="opacity-70">privacyverklaring.html</code>, <code class="opacity-70">algemene-voorwaarden.html</code>, <code class="opacity-70">404.html</code></div>
+                    <div class="flex items-center gap-2"><span class="badge badge-warning">onderhoud</span><span class="opacity-70">ontbreekt</span></div>
+                  </div>
+                </div>
+                <div class="p-3 rounded-md border border-light">
+                  <div class="font-semibold">Componenten</div>
+                  <div class="mt-1 space-y-1">
+                    <div>• breadcrumbs/pagination: <span class="badge badge-success">aanwezig</span> <code class="opacity-70">partials/category-breadcrumbs.html</code>, <code class="opacity-70">partials/category-pagination.html</code></div>
+                    <div>• accordion/modal/drawer/tooltip/badge: <span class="badge badge-success">aanwezig</span> (<a class="underline hover:text-brand" href="#componenten">componenten</a>, <a class="underline hover:text-brand" href="#navigation-details">drawer</a>)</div>
+                    <div>• stepper: <span class="badge badge-warning">ontbreekt</span></div>
+                  </div>
+                </div>
+                <div class="p-3 rounded-md border border-light">
+                  <div class="font-semibold">Systeem</div>
+                  <div class="mt-1 space-y-1">
+                    <div>• toasts/alerts: <span class="badge badge-success">aanwezig</span> (<a class="underline hover:text-brand" href="#toasts">toasts</a>, <a class="underline hover:text-brand" href="#componenten">alerts</a>)</div>
+                    <div>• form validatie: <span class="badge">patroon</span> (<a class="underline hover:text-brand" href="#forms">forms</a>)</div>
+                    <div>• loading/empty/error: <span class="badge badge-success">aanwezig</span> (<a class="underline hover:text-brand" href="#loading-states">loading</a>)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 card p-4">
+              <div class="font-semibold text-sm">Checklist (MUST / SHOULD / NICE-TO-HAVE)</div>
+              <div class="mt-3 overflow-x-auto">
+                <table class="w-full text-sm align-top">
+                  <thead>
+                    <tr class="text-left text-dark/70">
+                      <th class="py-2 pr-3">Niveau</th>
+                      <th class="py-2 pr-3">Item</th>
+                      <th class="py-2 pr-3">Acceptatie</th>
+                      <th class="py-2 pr-3">Mobiel/desktop</th>
+                      <th class="py-2 pr-3">A11y</th>
+                      <th class="py-2">Link</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-light/70">
+                    <!-- MUST -->
+                    <tr>
+                      <td class="py-2 pr-3"><span class="badge badge-success">must</span></td>
+                      <td class="py-2 pr-3">Header en navigatie</td>
+                      <td class="py-2 pr-3">Hoofdmenu werkt met hover/focus en drawer, zonder overlap of clipping.</td>
+                      <td class="py-2 pr-3">Mobiel drawer; desktop mega-menu.</td>
+                      <td class="py-2 pr-3">Focus zichtbaar; ESC sluit drawer; aria-expanded op triggers.</td>
+                      <td class="py-2"><a class="underline hover:text-brand" href="#navigatie">navigatie</a>, <a class="underline hover:text-brand" href="#navigation-details">details</a></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 pr-3"><span class="badge badge-success">must</span></td>
+                      <td class="py-2 pr-3">Paginatitel sectie</td>
+                      <td class="py-2 pr-3">Zachte teal-tint, duidelijke h1 en subtitel per pagina.</td>
+                      <td class="py-2 pr-3">Stabiele spacing tussen header/titel/content.</td>
+                      <td class="py-2 pr-3">Kop-hiërarchie correct (1× h1).</td>
+                      <td class="py-2"><a class="underline hover:text-brand" href="#pagina-titel">pagina titel</a></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 pr-3"><span class="badge badge-success">must</span></td>
+                      <td class="py-2 pr-3">Typografie en kleuren</td>
+                      <td class="py-2 pr-3">Kopgewichten 800–900 en tokens voor kleurgebruik consequent toegepast.</td>
+                      <td class="py-2 pr-3">Leesbaar bij 320–1440px; contrast behouden.</td>
+                      <td class="py-2 pr-3">Focus-ring in merk-kleur; geen kleur-alleen signalering.</td>
+                      <td class="py-2"><a class="underline hover:text-brand" href="#typografie">typografie</a>, <a class="underline hover:text-brand" href="#kleuren">kleuren</a>, <a class="underline hover:text-brand" href="#design-tokens">tokens</a></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 pr-3"><span class="badge badge-success">must</span></td>
+                      <td class="py-2 pr-3">Buttons</td>
+                      <td class="py-2 pr-3">Primaire/secundaire/outline met disabled en consistente hover/focus.</td>
+                      <td class="py-2 pr-3">Hit-area ≥ 44×44px op mobiel.</td>
+                      <td class="py-2 pr-3">Label duidelijk; focus-visible zichtbaar.</td>
+                      <td class="py-2"><a class="underline hover:text-brand" href="#buttons">buttons</a></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 pr-3"><span class="badge badge-success">must</span></td>
+                      <td class="py-2 pr-3">Formulieren en validatie</td>
+                      <td class="py-2 pr-3">Inputs/selects tonen foutstatus en melding bij ongeldige invoer.</td>
+                      <td class="py-2 pr-3">Touchvriendelijke velden en toetsenbordtoegang desktop.</td>
+                      <td class="py-2 pr-3">Labels gekoppeld; foutmeldingen geassocieerd met velden.</td>
+                      <td class="py-2"><a class="underline hover:text-brand" href="#forms">forms</a>, <a class="underline hover:text-brand" href="#componenten">alerts</a></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 pr-3"><span class="badge badge-success">must</span></td>
+                      <td class="py-2 pr-3">Productkaart en add-to-cart</td>
+                      <td class="py-2 pr-3">Productkaart toont prijs, badge en voegt toe met bevestiging.</td>
+                      <td class="py-2 pr-3">Mini cart werkt in drawer op mobiel en desktop.</td>
+                      <td class="py-2 pr-3">Knop heeft aria-label; toast niet uitsluitend visueel.</td>
+                      <td class="py-2"><a class="underline hover:text-brand" href="#cards">kaarten</a>, <a class="underline hover:text-brand" href="#toasts">toasts</a></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 pr-3"><span class="badge badge-success">must</span></td>
+                      <td class="py-2 pr-3">Breadcrumbs en paginatie</td>
+                      <td class="py-2 pr-3">Broodkruimel zichtbaar; paginatie navigeert zonder layout jump.</td>
+                      <td class="py-2 pr-3">Paginatie tappable; states duidelijk op desktop.</td>
+                      <td class="py-2 pr-3">Gebruik nav/aria-current; links focusbaar.</td>
+                      <td class="py-2"><a class="underline hover:text-brand" href="#navigatie">navigatie</a></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 pr-3"><span class="badge badge-success">must</span></td>
+                      <td class="py-2 pr-3">Zoeken resultaten</td>
+                      <td class="py-2 pr-3">Zoekresultaten tonen grid met empty-state bij 0 resultaten.</td>
+                      <td class="py-2 pr-3">Form bovenaan; grid wrappen goed op mobiel.</td>
+                      <td class="py-2 pr-3">Formulier labelbaar; resultaten navigeerbaar.</td>
+                      <td class="py-2"><a class="underline hover:text-brand" href="#forms">forms</a>, <a class="underline hover:text-brand" href="#loading-states">empty</a></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 pr-3"><span class="badge badge-success">must</span></td>
+                      <td class="py-2 pr-3">Toasts</td>
+                      <td class="py-2 pr-3">Max 3 zichtbaar, rest in wachtrij; consistente timing.</td>
+                      <td class="py-2 pr-3">Mobiel onderaan; desktop rechtsboven.</td>
+                      <td class="py-2 pr-3">Niet alleen kleur; role="status" of aria-live toegepast.</td>
+                      <td class="py-2"><a class="underline hover:text-brand" href="#toasts">toasts</a></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 pr-3"><span class="badge badge-success">must</span></td>
+                      <td class="py-2 pr-3">Loading/empty/error</td>
+                      <td class="py-2 pr-3">Skeletons binnen 200ms, empty-tekst en foutmelding aanwezig.</td>
+                      <td class="py-2 pr-3">Skeletons schaalbaar; geen layout shift.</td>
+                      <td class="py-2 pr-3">ARIA voor spinners; teksten voor screenreaders.</td>
+                      <td class="py-2"><a class="underline hover:text-brand" href="#loading-states">loading</a></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 pr-3"><span class="badge badge-success">must</span></td>
+                      <td class="py-2 pr-3">Modals en drawers</td>
+                      <td class="py-2 pr-3">Open/close werkt; focus-trap actief; achtergrond inert.</td>
+                      <td class="py-2 pr-3">Drawer voor mobiel, modal centraal op desktop.</td>
+                      <td class="py-2 pr-3">ESC sluit; trap focus; aria-modal/role gezet.</td>
+                      <td class="py-2"><a class="underline hover:text-brand" href="#componenten">modal</a>, <a class="underline hover:text-brand" href="#navigation-details">drawer</a></td>
+                    </tr>
+
+                    <!-- SHOULD -->
+                    <tr>
+                      <td class="py-2 pr-3"><span class="badge">should</span></td>
+                      <td class="py-2 pr-3">Zoek autosuggest</td>
+                      <td class="py-2 pr-3">Suggesties tonen met keyboard-navigatie en submit fallback.</td>
+                      <td class="py-2 pr-3">Volledige breedte op mobiel; max-hoogte met scroll.</td>
+                      <td class="py-2 pr-3">Role="listbox"/"option"; aria-activedescendant.</td>
+                      <td class="py-2"><a class="underline hover:text-brand" href="#forms">forms</a>, <a class="underline hover:text-brand" href="#componenten">tooltip/modal</a></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 pr-3"><span class="badge">should</span></td>
+                      <td class="py-2 pr-3">Checkout stepper</td>
+                      <td class="py-2 pr-3">Actieve stap duidelijk; voltooid/gedeactiveerd visueel onderscheid.</td>
+                      <td class="py-2 pr-3">Horizontaal op desktop; stacked op mobiel.</td>
+                      <td class="py-2 pr-3">Gebruik list/aria-current voor actieve stap.</td>
+                      <td class="py-2"><a class="underline hover:text-brand" href="#grid">grid</a>, <a class="underline hover:text-brand" href="#componenten">componenten</a></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 pr-3"><span class="badge">should</span></td>
+                      <td class="py-2 pr-3">Merken grid en PLP</td>
+                      <td class="py-2 pr-3">Consistente kaarten/filters net als categorieën.</td>
+                      <td class="py-2 pr-3">2–3 kolommen mobiel; 4–6 desktop.</td>
+                      <td class="py-2 pr-3">Afbeeldingen met alt; link-tekst beschrijvend.</td>
+                      <td class="py-2"><a class="underline hover:text-brand" href="#cards">kaarten</a>, <a class="underline hover:text-brand" href="#grid">grid</a></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 pr-3"><span class="badge">should</span></td>
+                      <td class="py-2 pr-3">Tooltips en badges</td>
+                      <td class="py-2 pr-3">Tooltips enkel als supplement; badges consequent gestijld.</td>
+                      <td class="py-2 pr-3">Touch: tooltip vervalt of klik; desktop hover.</td>
+                      <td class="py-2 pr-3">Tooltip niet voor essentiële info; aria-describedby.</td>
+                      <td class="py-2"><a class="underline hover:text-brand" href="#componenten">componenten</a></td>
+                    </tr>
+
+                    <!-- NICE-TO-HAVE -->
+                    <tr>
+                      <td class="py-2 pr-3"><span class="badge badge-warning">nice</span></td>
+                      <td class="py-2 pr-3">Print-styles (facturen/ordes)</td>
+                      <td class="py-2 pr-3">Duidelijke afdruk zonder navigatie/achtergronden.</td>
+                      <td class="py-2 pr-3">A4 geoptimaliseerd; schalen op mobiel/desktop.</td>
+                      <td class="py-2 pr-3">Voldoende contrast; leesbare lettergrootte.</td>
+                      <td class="py-2"><a class="underline hover:text-brand" href="#typografie">typografie</a>, <a class="underline hover:text-brand" href="#kleuren">kleuren</a></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 pr-3"><span class="badge badge-warning">nice</span></td>
+                      <td class="py-2 pr-3">Onderhoud/503 pagina</td>
+                      <td class="py-2 pr-3">Eenvoudige pagina met logo, uitleg en link naar contact.</td>
+                      <td class="py-2 pr-3">Vol scherm; lichte teal-tint achtergrond.</td>
+                      <td class="py-2 pr-3">Role="main"; duidelijke kop en linkfocus.</td>
+                      <td class="py-2"><a class="underline hover:text-brand" href="#pagina-titel">pagina titel</a></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 pr-3"><span class="badge badge-warning">nice</span></td>
+                      <td class="py-2 pr-3">Micro-animaties</td>
+                      <td class="py-2 pr-3">Subtiele hover/transitions (200ms) consistent toegepast.</td>
+                      <td class="py-2 pr-3">Geen jitter op mobiel; soepele transitions desktop.</td>
+                      <td class="py-2 pr-3">Respecteer prefers-reduced-motion.</td>
+                      <td class="py-2"><a class="underline hover:text-brand" href="#design-tokens">tokens</a></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </section>

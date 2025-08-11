@@ -1,5 +1,24 @@
 # Remka website prototype (Hyvä-ready)
 
+## Category templates (L1/L2/L3)
+
+- Files: `category.html` (L1/L2 hub), `subcategory.html` (L2/L3 depending on `?c=`), partials under `partials/`:
+  - `category-header.html` (breadcrumbs + H1 + short intro)
+  - `category-subgrid.html` (child tiles for L1/L2)
+  - `category-productlist.html` (grid, cards, advice band, view-all link for L2)
+  - `category-longdesc.html` (collapsible long body copy)
+- Data: primary fixtures at `data/categories.json`, `data/products.json`. If absent/empty, minimal examples load from `fixtures/categories.json` and `fixtures/products.json`.
+- Dynamic SEO: `assets/js/category.js` sets `<title>`, `<meta name="description">`, and synchronizes H1 from the resolved category name. Breadcrumbs are built from the ancestor path.
+
+### Mapping to Magento/Hyvä
+
+- Copy the partials into Magento theme:
+  - `category-header.html` → `Magento_Catalog/templates/category/header.phtml`
+  - `category-subgrid.html` → `Magento_Catalog/templates/category/list/children.phtml`
+  - `category-productlist.html` → `Magento_Catalog/templates/product/list.phtml`
+  - `category-longdesc.html` → `Magento_Catalog/templates/category/description.phtml`
+- Hook `assets/js/category.js` logic into a view-model or via Alpine/Hyvä scripts to read the active category and product collection; replace fetch calls with server-provided data.
+
 Statische referentiesite voor een Magento 2 Hyvä child theme. HTML + Tailwind + minimale JS.
 
 ## Starten

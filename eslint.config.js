@@ -11,7 +11,18 @@ export default [
     },
     rules: {
       'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
-      'no-console': 'warn'
+      'no-console': 'warn',
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: "Program:has(Comment[value=/.*\\bTODO\\b|\\bFIXME\\b.*/i])",
+          message: 'Use DEVNOTE[...] format instead of TODO/FIXME.'
+        },
+        {
+          selector: "Program:has(Comment[value=/.*COPY TO PHTML.*/i])",
+          message: 'Use DEVNOTE[hyva-slot,...] format. "COPY TO PHTML" is forbidden.'
+        }
+      ]
     }
   }
 ];

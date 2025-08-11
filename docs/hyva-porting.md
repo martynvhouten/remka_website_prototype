@@ -5,11 +5,11 @@ Deze gids helpt om de prototype-partials 1-op-1 over te zetten naar Hyvä (Magen
 ### Mapping: partial → Magento template
 
 - `partials/header.html`
-  - COPY TO PHTML: `Magento_Theme/templates/html/header.phtml`
+  - DEVNOTE: `Magento_Theme::html/header.phtml`
   - Opmerkingen: integreer Hyvä navigatie en zoekblok; vervang hardcoded logo door `getLogoSrc()` en `getLogoAlt()` helpers.
 
 - `partials/footer.html`
-  - COPY TO PHTML: `Magento_Theme/templates/html/footer.phtml`
+  - DEVNOTE: `Magento_Theme::html/footer.phtml`
   - Vervang jaartal-script door Magento copyright block indien gewenst.
 
 - Home

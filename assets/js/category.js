@@ -12,6 +12,20 @@
     return out.charAt(0).toUpperCase()+out.slice(1);
   }
 
+  function setHeadTags(node, intro){
+    try {
+      var name = node && node.name ? node.name : 'Assortiment';
+      var title = name + ' | Remka';
+      document.title = title;
+      var descText = (intro && intro.short) ? intro.short : 'Ontdek ' + name + ' bij Remka. Professionele kwaliteit en snelle levering.';
+      var metaDesc = document.querySelector('meta[name="description"]');
+      if(!metaDesc){ metaDesc = document.createElement('meta'); metaDesc.setAttribute('name','description'); document.head.appendChild(metaDesc); }
+      metaDesc.setAttribute('content', descText);
+      var ogTitle = document.querySelector('meta[property="og:title"]'); if(ogTitle) ogTitle.setAttribute('content', title);
+      var ogDesc = document.querySelector('meta[property="og:description"]'); if(ogDesc) ogDesc.setAttribute('content', descText);
+    } catch {}
+  }
+
   function withSlugs(node){
     return { name: node.name, slug: node.slug || slugify(node.name||''), children: Array.isArray(node.children)?node.children.map(withSlugs):[] };
   }
@@ -22,6 +36,14 @@
       const res = await fetch('/data/categories.json', { cache: 'no-store' });
       if(res.ok){
         const json = await res.json();
+        return Array.isArray(json.children) ? json : { children: json.children || [] };
+      }
+    } catch {}
+    // fallback to fixtures
+    try {
+      const resFx = await fetch('/fixtures/categories.json', { cache: 'no-store' });
+      if(resFx.ok){
+        const json = await resFx.json();
         return Array.isArray(json.children) ? json : { children: json.children || [] };
       }
     } catch {}
@@ -53,15 +75,22 @@
   }
 
   function renderBreadcrumbs(node){
-    const leaf = document.getElementById('crumbLeaf');
-    const sep = document.getElementById('crumbSep');
-    const wrap = document.getElementById('crumbLeafWrap');
-    const crumbCat = document.getElementById('crumbCat');
-    if(leaf && sep && wrap){ leaf.textContent = node.name; sep.classList.remove('hidden'); wrap.classList.remove('hidden'); }
-    if(crumbCat){ crumbCat.textContent = node.name; }
+    const list = document.getElementById('crumbList');
     const title = document.getElementById('catTitle'); if(title) title.textContent = node.name;
     const count = document.getElementById('catCount'); if(count) count.textContent = '0';
     const shortDesc = document.getElementById('catShortDesc'); if(shortDesc) shortDesc.textContent = 'SHORT_DESC';
+    if(!list) return;
+    // Reset to Home › Assortiment
+    while(list.children.length > 3){ list.removeChild(list.lastElementChild); }
+    // Build ancestry if present on node.meta.breadcrumbs
+    const crumbs = (node.meta && Array.isArray(node.meta.ancestors)) ? node.meta.ancestors : [];
+    crumbs.forEach(c => {
+      const sep = document.createElement('li'); sep.textContent = '›'; list.appendChild(sep);
+      const li = document.createElement('li');
+      const a = document.createElement('a'); a.href = '/subcategory.html?c=' + encodeURIComponent(c.slug); a.textContent = c.name; li.appendChild(a); list.appendChild(li);
+    });
+    const sep = document.createElement('li'); sep.textContent = '›'; list.appendChild(sep);
+    const current = document.createElement('li'); current.innerHTML = '<span aria-current="page">'+node.name+'</span>'; list.appendChild(current);
   }
 
   function renderSubcategoryGrid(node){
@@ -449,14 +478,6 @@
     return apply;
   }
 
-  function detectLevel(node){
-    const depth = (node && Array.isArray(node.children)) ? 1 + Math.max(0, ...node.children.map(ch => detectLevel(ch))) : 1;
-    // Using breadcrumb depth: root (level1), child (level2), leaf (level3)
-    const isLeaf = !node || !Array.isArray(node.children) || node.children.length === 0;
-    // If current node has children -> treat as level 1 or 2 depending on parentlessness. For simplicity: if node has children and parent is root -> level 2; if node is root -> level 1
-    return { isLeaf, depth };
-  }
-
   function applyLevelLayout(level){
     const left = document.getElementById('categoryLeftCol');
     const productsSection = document.getElementById('productsSection');
@@ -508,7 +529,19 @@
       const nodesWithSlugs = nodes.map(withSlugs);
       const params = new URLSearchParams(window.location.search);
       const slug = params.get('c');
-      const node = slug ? findBySlug(nodesWithSlugs, slug) : nodesWithSlugs[0];
+      let node = slug ? findBySlug(nodesWithSlugs, slug) : { name: 'Assortiment', slug: 'assortiment', children: nodesWithSlugs };
+      // Generate simple ancestors for breadcrumbs
+      const findPath = (n, path=[]) => {
+        for(const child of n){
+          const next = [...path, { name: child.name, slug: child.slug }];
+          if(child.slug === (node && node.slug)) return next.slice(0, -1);
+          const deep = findPath(child.children||[], next);
+          if(deep) return deep;
+        }
+        return null;
+      };
+      const ancestors = slug ? findPath(nodesWithSlugs) : [];
+      if(node){ node.meta = Object.assign({}, node.meta, { ancestors }); }
       if(!node) return;
       renderBreadcrumbs(node);
       renderSubcategoryGrid(node);
@@ -517,10 +550,24 @@
       const isLeaf = !node.children || node.children.length === 0;
       const isRoot = !slug;
       const level = isRoot ? 1 : (isLeaf ? 3 : 2);
+      // Generate short/long intro copy
+      const intro = {
+        short: `${node.name} voor professionele zorgomgevingen. Selecteer op merk, specificaties en beschikbaarheid.`,
+        long: `${node.name} vormen een essentieel onderdeel van de dagelijkse praktijk. Kies op basis van toepassing, materiaal en compatibiliteit met bestaande apparatuur. Bij Remka vind je betrouwbare kwaliteit met duidelijke beschikbaarheid en ondersteuning. Bestel direct of neem contact op voor advies over combinaties, onderhoud en naleveringen. Ontdek veelgekozen varianten, toebehoren en serviceopties om je workflow efficiënt en veilig te houden.`
+      };
+      const shortDesc = document.getElementById('catShortDesc'); if(shortDesc) shortDesc.textContent = intro.short;
+      const longDesc = document.getElementById('longDescText'); if(longDesc) longDesc.textContent = intro.long;
+      setHeadTags(node, intro);
       applyLevelLayout(level);
       // Show skeletons while preparing
       const skel = document.getElementById('productGridSkeletons'); if(skel) skel.classList.remove('hidden');
-      const allProducts = await loadProducts();
+      let allProducts = await loadProducts();
+      if(!Array.isArray(allProducts) || allProducts.length === 0){
+        try {
+          const res = await fetch('/fixtures/products.json', { cache: 'no-store' });
+          if(res.ok){ allProducts = await res.json(); }
+        } catch {}
+      }
       const subtreeSlugs = collectSubtreeSlugs(node);
       const productsForCategory = allProducts.filter(p => Array.isArray(p.categories) && p.categories.some(c => subtreeSlugs.has(c)));
       const products = productsForCategory.length ? productsForCategory : allProducts.slice(0, 16);
@@ -538,6 +585,7 @@
         if(typeof apply === 'function') apply();
       }); }
       const count = document.getElementById('catCount'); if(count) count.textContent = String(products.length);
+      const viewAll = document.getElementById('viewAllLink'); if(viewAll){ viewAll.classList.toggle('hidden', level !== 2); if(level===2){ viewAll.href = '/subcategory.html?c='+encodeURIComponent(node.slug); viewAll.setAttribute('aria-label', 'Bekijk alle producten in '+node.name); } }
       // long desc toggle
       const longSection = document.getElementById('longDescSection');
       const longBody = document.getElementById('longDescBody');

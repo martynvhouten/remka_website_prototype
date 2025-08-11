@@ -30,7 +30,7 @@
     return '<svg class="toast__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'+path+'</svg>';
   }
 
-  function closeButton(){ return '<button class="toast__close" type="button" aria-label="Sluiten">✕</button>'; }
+  function closeButton(){ return ''; }
 
   function render(kind, content){
     var host = ensureHost();
@@ -116,7 +116,7 @@
       close: function(){ if(!api.el) return; api.el.removeAttribute('data-state'); setTimeout(function(){ unmount(api); }, 200); },
       show: function(){
         el = render(kind, body); api.el = el;
-        var closeBtn = el.querySelector('.toast__close'); if(closeBtn){ closeBtn.addEventListener('click', function(){ api.close(); }); closeBtn.setAttribute('tabindex','0'); }
+        /* no close button */
         var act = el.querySelector('[data-toast-action="primary"]'); if(act && typeof opts.onAction === 'function'){ act.addEventListener('click', function(){ try { opts.onAction(); } catch {} api.close(); }); }
         el.addEventListener('mouseenter', function(){ pause(api); });
         el.addEventListener('mouseleave', function(){ resume(api); });
@@ -158,7 +158,7 @@
       close: function(){ if(!api.el) return; api.el.removeAttribute('data-state'); setTimeout(function(){ unmount(api); }, 200); },
       show: function(){
         api.el = render('cart', body);
-        var closeBtn = api.el.querySelector('.toast__close'); if(closeBtn){ closeBtn.addEventListener('click', function(){ api.close(); }); closeBtn.setAttribute('tabindex','0'); }
+         /* no close button */
         var btnView = api.el.querySelector('[data-toast-action="view-cart"]');
         var btnCont = api.el.querySelector('[data-toast-action="continue"]');
         if(btnView){ btnView.addEventListener('click', function(){ try { if (window.openMinicart) window.openMinicart(); else location.assign('/cart.html'); } catch(_) { try { location.assign('/cart'); } catch{} } api.close(); }); }

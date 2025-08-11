@@ -50,6 +50,20 @@ async function loadPartials() {
 
 document.addEventListener('DOMContentLoaded', async () => {
   await loadPartials();
+  // Compute sticky offset so sticky sidebars (TOCs) never sit under the header
+  try {
+    const header = document.getElementById('site-header');
+    const root = document.documentElement;
+    const compute = () => {
+      const h = header ? header.getBoundingClientRect().height : 0;
+      root.style.setProperty('--sticky-offset', (h + 8) + 'px'); // small extra gap
+    };
+    compute();
+    const ro = new (window.ResizeObserver || function(fn){ return { observe(){}, disconnect(){} }; })(() => compute());
+    if (header && ro.observe) ro.observe(header);
+    window.addEventListener('resize', compute);
+    document.addEventListener('partials:loaded', compute);
+  } catch {}
   // Let menu.js initialize itself after partials:loaded to avoid double init
   try {
     const y = document.getElementById('year');

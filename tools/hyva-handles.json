@@ -1,0 +1,43 @@
+{
+  "partials/header.html": { "handle": "default", "phtml": "Magento_Theme::html/header.phtml" },
+  "partials/footer.html": { "handle": "default", "phtml": "Magento_Theme::html/footer.phtml" },
+  "partials/category-breadcrumbs.html": { "handle": "category_view", "phtml": "Magento_Theme::html/breadcrumbs.phtml" },
+  "partials/category-header.html": { "handle": "category_view", "phtml": "Magento_Catalog::category/header.phtml" },
+  "partials/category-subgrid.html": { "handle": "category_view", "phtml": "Magento_Catalog::category/list/children.phtml" },
+  "partials/category-longdesc.html": { "handle": "category_view", "phtml": "Magento_Catalog::category/description.phtml" },
+  "partials/category-productlist.html": { "handle": "category_view", "phtml": "Magento_Catalog::product/list.phtml" },
+  "partials/category-toolbar.html": { "handle": "category_view", "phtml": "Magento_Catalog::product/list/toolbar.phtml" },
+  "partials/category-pagination.html": { "handle": "category_view", "phtml": "Magento_Theme::html/pager.phtml" },
+  "partials/category-filters.html": { "handle": "category_view", "phtml": "Magento_LayeredNavigation::layer/view.phtml" },
+  "partials/category-facets.html": { "handle": "category_view", "phtml": "Magento_LayeredNavigation::layer/view.phtml" },
+  "partials/category-best-rated.html": { "handle": "category_view", "phtml": "RemkaCatalog::category/best-rated.phtml" },
+  "partials/category-recently-viewed.html": { "handle": "category_view", "phtml": "RemkaCatalog::category/recently-viewed.phtml" },
+  "partials/category-brands-strip.html": { "handle": "category_view", "phtml": "RemkaCatalog::category/brands-strip.phtml" },
+
+  "partials/product-gallery.html": { "handle": "catalog_product_view", "phtml": "Magento_Catalog::product/view/gallery.phtml" },
+  "partials/product-info.html": { "handle": "catalog_product_view", "phtml": "Magento_Catalog::product/view/details.phtml" },
+  "partials/product-related.html": { "handle": "catalog_product_view", "phtml": "Magento_Catalog::product/list/related.phtml" },
+
+  "partials/minicart-drawer.html": { "handle": "default", "phtml": "Magento_Checkout::minicart.phtml" },
+
+  "partials/home-hero.html": { "handle": "cms_index_index", "phtml": "Magento_Theme::html/home/hero.phtml" },
+  "partials/home-usp.html": { "handle": "cms_index_index", "phtml": "RemkaCms::home/usp.phtml" },
+  "partials/home-features.html": { "handle": "cms_index_index", "phtml": "RemkaCms::home/features.phtml" },
+  "partials/home-categories.html": { "handle": "cms_index_index", "phtml": "Magento_Catalog::category/list.phtml" },
+  "partials/home-popular-products.html": { "handle": "cms_index_index", "phtml": "Magento_Catalog::product/list/home_popular.phtml" },
+  "partials/home-blog-teaser.html": { "handle": "cms_index_index", "phtml": "RemkaCms::home/blog-teaser.phtml" },
+
+  "partials/blog-header.html": { "handle": "amblog_index_index", "phtml": "Amasty_Blog::list/header.phtml" },
+  "partials/blog-grid.html": { "handle": "amblog_index_index", "phtml": "Amasty_Blog::list.phtml" },
+  "partials/blogpost-hero.html": { "handle": "amblog_post_view", "phtml": "Amasty_Blog::post/hero.phtml" },
+  "partials/blogpost-body.html": { "handle": "amblog_post_view", "phtml": "Amasty_Blog::post/body.phtml" },
+
+  "partials/content-hero.html": { "handle": "cms_page_view", "phtml": "Magento_Cms::page/header.phtml" },
+  "partials/content/intro-hero.html": { "handle": "cms_page_view", "phtml": "RemkaCms::content/intro-hero.phtml" },
+  "partials/content/section-cards.html": { "handle": "cms_page_view", "phtml": "RemkaCms::content/section-cards.phtml" },
+  "partials/content/accordion.html": { "handle": "cms_page_view", "phtml": "RemkaCms::content/accordion.phtml" },
+  "partials/content/brand-wall.html": { "handle": "cms_page_view", "phtml": "RemkaCms::content/brand-wall.phtml" },
+  "partials/brands-grid.html": { "handle": "cms_page_view", "phtml": "RemkaCms::cms/brands.phtml" },
+  "partials/brands-carousel.html": { "handle": "cms_page_view", "phtml": "RemkaCms::content/brands-carousel.phtml" }
+}
+

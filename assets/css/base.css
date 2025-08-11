@@ -40,6 +40,13 @@ body { font-family: var(--font-sans); color: var(--dark); background-color: #fff
 /* Images */
 img { max-width: 100%; height: auto; }
 
+/* Category tiles */
+.cat-card { display: block; background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: var(--radius); overflow: hidden; transition: transform .15s ease, box-shadow .2s ease; }
+.cat-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+.cat-card__media { position: relative; width: 100%; aspect-ratio: 1 / 1; background: #fff; }
+.cat-card__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.cat-card__title { display: block; padding: .75rem .875rem; font-weight: 600; color: var(--dark); }
+
 /* Skip link */
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 1px, 1px); white-space: nowrap; border: 0;
@@ -70,7 +77,14 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 /* Sections max-widths per spec */
 .container { max-width: var(--container-max); margin-left: auto; margin-right: auto; }
 .section, .section-alt { border-radius: var(--radius); }
-.sticky-sidebar { position: sticky; top: 1rem; }
+.sticky-sidebar { position: sticky; top: var(--sticky-offset, 1rem); }
+
+/* Cart summary sticky helper: offset equals header height (set inline via JS) */
+.sticky-summary { position: sticky; top: var(--sticky-offset, 1rem); }
+
+/* Simple accordion animation (no layout shift, respects reduced motion) */
+.accordion-panel { overflow: hidden; transition: max-height .2s ease; max-height: 0; }
+@media (prefers-reduced-motion: reduce){ .accordion-panel { transition: none; } }
 
 /* Pills */
 .pill { display:inline-flex; align-items:center; gap:.375rem; border:1px solid var(--light); padding:.25rem .5rem; border-radius:.5rem; background:#fff; font-size:.8125rem; }
@@ -231,7 +245,7 @@ header[role="banner"].is-hidden { transform: translateY(-100%); }
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='11' cy='11' r='6' fill='none' stroke='%23666' stroke-width='2'/><path d='M21 21l-4.3-4.3' stroke='%23666' stroke-width='2' stroke-linecap='round' fill='none'/></svg>");
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
-  background-size: 18px 18px;
+  background-size: 20px 20px;
   padding-right: 2.25rem; /* room for icon */
 }
 
@@ -573,7 +587,7 @@ a.text-sm.font-semibold.text-brand:hover::after { transform: translateX(2px); }
 }
 .header-cart:hover { background: #7d0047; }
 .header-cart:active { box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
-.header-icon { width: 18px; height: 18px; display: inline-block; }
+.header-icon { width: 20px; height: 20px; display: inline-block; }
 .header-logo { padding-left: .25rem; }
 @media (min-width: 768px) { .header-logo { padding-left: .5rem; } }
 .header-badge {
@@ -661,7 +675,8 @@ a.text-sm.font-semibold.text-brand:hover::after { transform: translateX(2px); }
 .col-gold td { border-left-color: var(--tier-gold); }
 
 /* ---- Category UX Enhancements ---- */
-.sticky-sidebar { position: sticky; top: 1rem; }
+/* Deprecated duplicate; unified above to use --sticky-offset */
+.sticky-sidebar { position: sticky; top: var(--sticky-offset, 1rem); }
 .filter-toggle { display: inline-flex; align-items: center; gap: .5rem; padding: .5rem .75rem; border-radius: .5rem; border: 1px solid var(--light); background: #fff; font-weight: 700; }
 .filter-toggle:hover { background: #f9fafb; }
 .filter-count { display: inline-flex; align-items: center; justify-content: center; min-width: 1.25rem; height: 1.25rem; border-radius: 9999px; background: var(--brand); color:#fff; font-size:.75rem; font-weight:900; padding:0 .25rem; }
@@ -726,11 +741,11 @@ a.text-sm.font-semibold.text-brand:hover::after { transform: translateX(2px); }
   border-left: 3px solid var(--brand);
   border-radius: .75rem;
   box-shadow: 0 10px 30px rgba(0,0,0,.08);
-  padding: .65rem .8rem;
+  padding: .5rem .65rem;
   display: grid;
   grid-template-columns: auto 1fr auto;
   gap: .6rem;
-  align-items: start;
+  align-items: center;
   opacity: 0;
   transform: translateY(6px);
   transition: opacity .2s ease-out, transform .2s ease-out;
@@ -741,16 +756,13 @@ a.text-sm.font-semibold.text-brand:hover::after { transform: translateX(2px); }
 @media (prefers-reduced-motion: reduce){
   .toast { transition: none; }
 }
-.toast__icon { width: 20px; height: 20px; color: var(--brand); margin-top: .1rem; }
-.toast__title { font-weight: 800; letter-spacing: -.01em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.toast__text { font-size: .9rem; color: rgba(51,51,51,.8); }
-.toast__body { overflow: auto; max-height: 48vh; }
-.toast__actions { display: inline-flex; align-items: center; gap: .5rem; }
+.toast__icon { width: 20px; height: 20px; color: var(--brand); }
+.toast__title { font-weight: 800; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.toast__text { display: none; }
+.toast__body { min-width: 0; overflow: hidden; white-space: nowrap; }
+.toast__actions { display: inline-flex; align-items: center; gap: .4rem; flex-wrap: nowrap; }
 .toast__actions .btn { white-space: nowrap; }
-@media (max-width: 767.98px){
-  .toast__actions { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr; }
-  .toast__actions .btn { width: 100%; }
-}
+.toast__close { display: none; }
 .toast__close { background: transparent; border: 1px solid var(--light); border-radius: .5rem; padding: .25rem .4rem; color: var(--dark); }
 .toast--success { border-left-color: var(--teal); }
 .toast--success .toast__icon { color: var(--teal); }
@@ -764,9 +776,12 @@ a.text-sm.font-semibold.text-brand:hover::after { transform: translateX(2px); }
 .toast--cart .toast__icon { color: var(--brand); }
 /* Cart toast layout: room for thumbnail */
 .toast--cart { grid-template-columns: auto auto 1fr auto; gap: .6rem; }
-.toast--cart { align-items: center; padding: .55rem .75rem; }
+.toast--cart { align-items: center; padding: .45rem .6rem; }
 .toast--cart .toast__actions { align-self: center; }
 .toast__thumb { width: 40px; height: 40px; border-radius: .5rem; object-fit: cover; border: 1px solid var(--light); }
+@media (max-width: 400px){
+  .toast--cart [data-toast-action="continue"] { display: none; }
+}
 
 /* Empty state */
 .empty { text-align: center; padding: 2rem; border: 1px solid var(--light); border-radius: .75rem; background: #fff; }

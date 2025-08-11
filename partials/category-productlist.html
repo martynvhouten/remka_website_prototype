@@ -1,7 +1,10 @@
-<!-- COPY TO PHTML: Magento_Catalog/templates/product/list.phtml (category listing) -->
-<section class="container mx-auto px-4 py-8 section-alt" id="productsSection" hidden>
+<!-- DEVNOTE[hyva-slot,plp][owner=remka|date=2025-08-11]: Category product grid markup. Target: handle=category_view, phtml=Magento_Catalog::product/list.phtml. Docs: style-guide.html#grid -->
+<section class="container mx-auto px-4 py-8 section-alt" id="productsSection" hidden aria-label="Productoverzicht">
   <div class="container-narrow">
-    <h2 class="text-xl font-bold">Producten</h2>
+    <div class="flex items-center justify-between gap-4">
+      <h2 class="text-xl font-bold">Producten</h2>
+      <a href="#" id="viewAllLink" class="text-sm text-brand hover:underline hidden">Alles bekijken</a>
+    </div>
     <div data-partial="components/ProductCard"></div>
     <div id="productGrid" class="mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
     <div id="productGridSkeletons" class="mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 hidden" aria-hidden="true">

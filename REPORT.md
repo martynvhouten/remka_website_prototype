@@ -6,7 +6,7 @@ Gevonden & gefixt
 - Tailwind tokens geharmoniseerd: `text-gray-600/700` → `text-dark/70|80`, `hover:bg-gray-50` → `hover:bg-light/40`, `border-gray-300` → `border-light`.
 - Sitemap tree: geen inline styles; consistente hover/indentatie utilities.
 - Menu mobiele login-link gecorrigeerd naar `account-login.html`.
-- TODO’s vervangen door duidelijke placeholders (CMS/PHTML te vullen).
+- DEVNOTE’s toegevoegd als placeholders (CMS/PHTML te vullen).
 - Geen `!important` of `style=""` meer; geen inline `<script>` (behoudens externe Tailwind CDN); geen `console.log`/`debugger`.
 - Alle afbeeldingen voorzien van `alt` en waar zinvol `loading="lazy"`.
 - Interne links naar bestaande demo-pagina’s gecheckt in header/footer/partials.
