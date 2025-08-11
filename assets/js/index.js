@@ -304,7 +304,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const a = document.createElement('a');
         a.href = w.link;
         a.className = 'card card--hover p-4 flex items-center gap-4';
-        a.innerHTML = `<img src=\"${w.thumb}\" alt=\"${w.name}\" class=\"w-16 h-16 object-contain border border-light rounded\"/>\n                       <div class=\"flex-1\"><div class=\"font-semibold\">${w.name}</div><div class=\"text-sm text-dark/70\">SKU: ${w.sku}</div></div>\n                       <div class=\"font-semibold\">€ ${w.price.toFixed(2)}</div>`;
+        a.innerHTML = `<img src=\"${w.thumb}\" alt=\"${w.name}\" loading=\"lazy\" decoding=\"async\" width=\"64\" height=\"64\" class=\"w-16 h-16 object-contain border border-light rounded\"/>\n                       <div class=\"flex-1\"><div class=\"font-semibold\">${w.name}</div><div class=\"text-sm text-dark/70\">SKU: ${w.sku}</div></div>\n                       <div class=\"font-semibold\">€ ${w.price.toFixed(2)}</div>`;
         wishlistGrid.appendChild(a);
       });
     }

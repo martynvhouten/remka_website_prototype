@@ -54,6 +54,7 @@
       img.alt = data.imageAlt || data.title || '';
       img.loading = 'lazy';
       img.decoding = 'async';
+      img.sizes = '(min-width: 768px) 25vw, 50vw';
       if(data.width) img.setAttribute('width', String(data.width)); else img.setAttribute('width', '400');
       if(data.height) img.setAttribute('height', String(data.height)); else img.setAttribute('height', '400');
     }
@@ -66,9 +67,11 @@
 
     var hasCompare = (data.compareAtPrice && Number(data.compareAtPrice) > Number(data.price));
     if(priceEl){
-      priceEl.innerHTML = hasCompare
+      var main = hasCompare
         ? '<div class="flex items-center gap-2"><span>'+formatPrice(data.price)+'</span><s class="text-dark/60">'+formatPrice(data.compareAtPrice)+'</s></div>'
         : '<span>'+formatPrice(data.price)+'</span>';
+      var vat = '<div class="text-xs text-dark/70">excl. btw</div>';
+      priceEl.innerHTML = main + vat;
     }
 
     if(stockEl) stockEl.innerHTML = stockBadge(data.availability);

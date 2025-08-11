@@ -17,11 +17,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = { theme: { extend: { colors: { brand: '#9E0059', accent: '#F77F00', teal: '#00A99D', dark: '#333333', light: '#E6E6E6' }, fontFamily: { sans: ['"Plus Jakarta Sans"','ui-sans-serif','system-ui','sans-serif'] } } } }
-    </script>
+<link rel="stylesheet" href="/assets/css/tailwind.css" />
     <link rel="stylesheet" href="/assets/css/base.css" />
     
   </head>
@@ -41,18 +37,18 @@
 
       <div class="container mx-auto px-4 py-10 grid lg:grid-cols-2 gap-10 items-start">
         <section class="section-block p-6">
-          <form class="space-y-4" action="#" method="post" data-navigate="#">
+          <form class="form-standard space-y-4" action="#" method="post" data-navigate="#">
             <div>
               <label for="name" class="block text-sm font-medium">Naam</label>
-              <input id="name" name="name" type="text" required class="mt-1 w-full rounded-md border border-light px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal" />
+              <input id="name" name="name" type="text" required class="input mt-1" />
             </div>
             <div>
               <label for="email" class="block text-sm font-medium">E‑mail</label>
-              <input id="email" name="email" type="email" required class="mt-1 w-full rounded-md border border-light px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal" />
+              <input id="email" name="email" type="email" required class="input mt-1" />
             </div>
             <div>
               <label for="message" class="block text-sm font-medium">Bericht</label>
-              <textarea id="message" name="message" rows="5" required class="mt-1 w-full rounded-md border border-light px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal"></textarea>
+              <textarea id="message" name="message" rows="5" required class="textarea mt-1"></textarea>
             </div>
             <div class="flex items-center justify-between">
               <p class="text-sm text-dark/70">We gebruiken je gegevens alleen om te reageren op je bericht.</p>
@@ -70,7 +66,7 @@
           </section>
           <div data-partial="content/contact-card"></div>
           <section class="section-block overflow-hidden">
-            <img src="/assets/images/placeholder-16x9.svg" alt="Kaart van ons kantoor" loading="lazy" class="w-full" />
+            <img src="/assets/images/placeholder-16x9.svg" alt="Kaart van ons kantoor" loading="lazy" decoding="async" width="800" height="450" class="w-full" />
           </section>
         </aside>
       </div>

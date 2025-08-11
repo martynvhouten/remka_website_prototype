@@ -23,12 +23,24 @@
   }
 
   async function loadCategories(){
-    // Hyvä/Magento: server-side sitemap tree; fallback to empty set
+    try {
+      const res = await fetch('/data/categories.json', { cache: 'no-store' });
+      if(res.ok){
+        const json = await res.json();
+        return Array.isArray(json.children) ? json : { children: json.children || [] };
+      }
+    } catch {}
     return { children: [] };
   }
 
   async function loadProducts(){
+    try{ const res = await fetch('/data/products.json', { cache: 'no-store' }); if(res.ok) return await res.json(); } catch{}
     return [];
+  }
+
+  async function loadFeatured(){
+    try{ const res = await fetch('/data/featured.json', { cache: 'no-store' }); if(res.ok) return await res.json(); } catch{}
+    return { shortcuts: [], cats: [], products: [] };
   }
 
   function collectProductsByCategory(products){
@@ -194,6 +206,34 @@
     host.appendChild(tree);
   }
 
+  function renderFeatured(data){
+    const section = document.getElementById('featuredSection');
+    const shortcuts = document.getElementById('featuredShortcuts');
+    const catsHost = document.getElementById('featuredCats');
+    const prodsHost = document.getElementById('featuredProds');
+    if(!section || !shortcuts || !catsHost || !prodsHost) return;
+    const { shortcuts: sc = [], cats = [], products = [] } = data || {};
+    section.hidden = !(sc.length || cats.length || products.length);
+    shortcuts.innerHTML = '';
+    sc.forEach(s => {
+      const a = document.createElement('a');
+      a.href = s.href; a.className = 'pill'; a.innerHTML = `<span class="dot"></span> ${s.label}`; shortcuts.appendChild(a);
+    });
+    catsHost.innerHTML = '';
+    cats.forEach(c => {
+      const a = document.createElement('a');
+      a.href = c.href || `/subcategory.html?c=${encodeURIComponent(c.slug||'')}`;
+      a.className = 'card card--hover p-3'; a.innerHTML = `<div class="font-semibold">${c.label || c.name}</div>`;
+      catsHost.appendChild(a);
+    });
+    prodsHost.innerHTML = '';
+    products.forEach(p => {
+      const a = document.createElement('a'); a.href = p.href || '/product.html'; a.className = 'card card--hover p-3 flex items-center gap-3';
+     a.innerHTML = `<img src="${p.image || '/assets/images/placeholder-square.svg'}" alt="${p.label||''}" loading="lazy" decoding="async" width="48" height="48" class="w-12 h-12 object-contain border border-light rounded"/><div class="font-semibold">${p.label}</div>`;
+      prodsHost.appendChild(a);
+    });
+  }
+
   async function init(){
     try {
       const catsRaw = await loadCategories();
@@ -202,6 +242,8 @@
       const products = await loadProducts();
       const productsByCat = collectProductsByCategory(products);
       renderTree(nodesWithSlugs, productsByCat);
+      const featured = await loadFeatured();
+      renderFeatured(featured);
     } catch {}
   }
 

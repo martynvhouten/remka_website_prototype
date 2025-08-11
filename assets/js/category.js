@@ -77,7 +77,7 @@
       const a = document.createElement('a');
       a.href = `/subcategory.html?c=${encodeURIComponent(ch.slug)}`;
       a.className = 'cat-card';
-      a.innerHTML = `<div class="cat-card__media"><img src="${fallback}" alt="${ch.name}" loading="lazy" class="cat-card__img"/></div><span class="cat-card__title">${ch.name}</span>`;
+      a.innerHTML = `<div class="cat-card__media"><img src="${fallback}" alt="${ch.name}" loading="lazy" decoding="async" width="600" height="600" class="cat-card__img"/></div><span class="cat-card__title">${ch.name}</span>`;
       if(idx < limit) host.appendChild(a);
       if (chips) {
         const chip = document.createElement('a'); chip.href = a.href; chip.className = 'pill pill--sm'; chip.innerHTML = `<span class="dot"></span>${ch.name}`; chips.appendChild(chip);
@@ -92,7 +92,7 @@
           const a = document.createElement('a');
           a.href = `/subcategory.html?c=${encodeURIComponent(ch.slug)}`;
           a.className = 'cat-card';
-          a.innerHTML = `<div class=\"cat-card__media\"><img src=\"${fallback}\" alt=\"${ch.name}\" loading=\"lazy\" class=\"cat-card__img\"/></div><span class=\"cat-card__title\">${ch.name}</span>`;
+         a.innerHTML = `<div class=\"cat-card__media\"><img src=\"${fallback}\" alt=\"${ch.name}\" loading=\"lazy\" decoding=\"async\" width=\"600\" height=\"600\" class=\"cat-card__img\"/></div><span class=\"cat-card__title\">${ch.name}</span>`;
           host.appendChild(a);
         });
         btn.remove();
@@ -253,7 +253,7 @@
       const card = document.createElement('a'); card.href = '/product.html'; card.className = 'card card--hover p-4 flex flex-col';
       const stars = '★★★★★'.slice(0, 5); // dummy 5/5
       card.innerHTML = `
-        <div class="card-product__media"><img src="${p.image || '/assets/images/placeholder-4x3.svg'}" alt="${p.title}" loading="lazy" class="media-img"/></div>
+        <div class="card-product__media"><img src="${p.image || '/assets/images/placeholder-4x3.svg'}" alt="${p.title}" loading="lazy" decoding="async" width="600" height="600" class="media-img"/></div>
         <div class="mt-3 text-sm text-dark/70">${p.brand}</div>
         <h3 class="mt-1 font-semibold text-dark line-clamp-2">${p.title}</h3>
         <div class="mt-1 text-sm text-dark/80">${stars} <span class="badge--soft">5.0</span></div>
@@ -262,6 +262,34 @@
       host.appendChild(card);
     });
     if(section) section.hidden = top.length === 0;
+  }
+
+  function renderPopular(products){
+    const host = document.getElementById('popularGrid'); if(!host) return;
+    const section = document.getElementById('popularSection');
+    host.innerHTML = '';
+    const list = products.slice(0, 12);
+    list.forEach(p=>{
+      var card = (window.ProductCard && window.ProductCard.create) ? window.ProductCard.create({
+        url: '/product.html', title: p.title, imageSrc: p.image || '/assets/images/placeholder-square.svg', imageAlt: p.title, price: p.price, sku: p.sku, availability: p.stock === 'out_of_stock' ? 'outOfStock' : (p.stock === 'backorder' ? 'backorder' : 'inStock'), badges: ['Populair']
+      }) : null;
+      if(card) host.appendChild(card);
+    });
+    if(section) section.hidden = list.length === 0;
+  }
+
+  function renderNew(products){
+    const host = document.getElementById('newGrid'); if(!host) return;
+    const section = document.getElementById('newSection');
+    host.innerHTML = '';
+    const list = products.slice(0, 12).reverse();
+    list.forEach(p=>{
+      var card = (window.ProductCard && window.ProductCard.create) ? window.ProductCard.create({
+        url: '/product.html', title: p.title, imageSrc: p.image || '/assets/images/placeholder-square.svg', imageAlt: p.title, price: p.price, sku: p.sku, availability: p.stock === 'out_of_stock' ? 'outOfStock' : (p.stock === 'backorder' ? 'backorder' : 'inStock'), badges: ['Nieuw']
+      }) : null;
+      if(card) host.appendChild(card);
+    });
+    if(section) section.hidden = list.length === 0;
   }
 
   function renderRecentlyViewed(){
@@ -275,7 +303,7 @@
     items.slice(0, 12).forEach(p => {
       const card = document.createElement('a'); card.href = '/product.html'; card.className = 'card card--hover p-3 flex flex-col';
       card.innerHTML = `
-        <div class="card-product__media"><img src="${p.image || '/assets/images/placeholder-4x3.svg'}" alt="${p.title}" loading="lazy" class="media-img"/></div>
+        <div class="card-product__media"><img src="${p.image || '/assets/images/placeholder-4x3.svg'}" alt="${p.title}" loading="lazy" decoding="async" width="600" height="600" class="media-img"/></div>
         <div class="mt-2 text-sm text-dark/70">${p.title}</div>
       `; host.appendChild(card);
     });

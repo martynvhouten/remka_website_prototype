@@ -1,8 +1,8 @@
 <!-- COPY TO PHTML: Magento_Theme/templates/html/footer.phtml -->
 <!-- Betaal-iconen als CMS static block of view/frontend/web/images in Hyvä -->
 <footer class="mt-16 footer-premium" role="contentinfo">
-  <div class="container mx-auto px-4 py-12 grid md:grid-cols-6 footer-grid">
-    <div class="md:col-span-2">
+  <div class="container mx-auto px-4 py-12 grid footer-grid">
+    <div>
       <h2 class="font-semibold text-dark">Over Remka</h2>
       <p class="mt-3 text-sm text-dark/80 max-w-prose">Remka is een Nederlandse medische groothandel met meer dan 120 jaar ervaring. We leveren een breed assortiment aan zorgprofessionals én particulieren: van instrumenten en praktijkinrichting tot verbandmiddelen, drogisterij-artikelen en apparatuur.</p>
       <div class="mt-4 flex flex-wrap gap-2 justify-center md:justify-start">
@@ -11,20 +11,19 @@
         <span class="pill pill--sm pill--accent"><span class="dot"></span> Snelle levering</span>
       </div>
     </div>
-    <div class="md:col-span-1">
+    <div>
       <h2 class="font-semibold text-dark">Contact</h2>
       <address class="not-italic mt-3 space-y-1 text-sm text-dark/80">
         <p>Remka B.V.</p>
         <p>Frijdastraat 6e</p>
         <p>2288 EX Rijswijk</p>
         <p>T: <a class="text-brand hover:underline" href="tel:+31786144498">+31 (0) 78 614 44 98</a></p>
-        <p>F: +31 (0) 78 631 78 83</p>
         <p>E: <a class="text-brand hover:underline" href="mailto:info@remka.nl">info@remka.nl</a></p>
         <p>KvK: 88203867</p>
         <p>Btw: NL864536720B01</p>
       </address>
     </div>
-    <div class="md:col-span-1">
+    <div>
       <h2 class="font-semibold text-dark">Klantenservice</h2>
       <ul class="mt-3 space-y-2 text-sm text-dark/80">
         <li><a href="/bestellen-en-betalen.html">Bestel- en betaalprocedure</a></li>
@@ -36,7 +35,7 @@
         <li><a href="/contact.html">Contact</a></li>
       </ul>
     </div>
-    <div class="md:col-span-1">
+    <div>
       <h2 class="font-semibold text-dark">Remka B.V.</h2>
       <ul class="mt-3 space-y-2 text-sm text-dark/80">
         <li><a href="/over-ons.html">Over ons</a></li>
@@ -49,7 +48,7 @@
       </ul>
     </div>
     <!-- Social rechts in de footer -->
-    <div class="md:col-span-1 md:justify-self-end">
+    <div class="md:col-span-1">
       <nav class="flex flex-wrap items-center justify-end social-links" aria-label="Social media">
         <a class="social-link" href="#" aria-label="Volg ons op LinkedIn">
           <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
@@ -65,7 +64,7 @@
         </a>
         <a class="social-link" href="#" aria-label="Volg ons op Facebook">
           <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-            <path fill="currentColor" d="M22.675 0h-21.35C.595 0 0 .595 0 1.326v21.348C0 23.406.595 24 1.325 24h11.495v-9.294H9.69v-3.622h3.13V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.464.098 2.795.142v3.24l-1.918.001c-1.504 0-1.796.716-1.796 1.767v2.318h3.59l-.467 3.622h-3.123V24h6.116C23.405 24 24 23.406 24 22.674V1.326C24 .595 23.405 0 22.675 0z"/>
+            <path fill="currentColor" d="M24 12A12 12 0 1 1 0 12a12 12 0 0 1 24 0zm-7.281-2.812h-1.641c-.193 0-.409.254-.409.594V12h2.05l-.327 2.094h-1.723V20h-2.5v-5.906H10v-2.094h1.169v-1.47c0-1.34.92-3.03 3.03-3.03 1.02 0 1.77.097 1.77.097v1.593z"/>
           </svg>
         </a>
       </nav>
@@ -77,12 +76,12 @@
     <div class="container mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-4">
       <div class="text-sm text-dark/70">© <span id="year"></span> Remka B.V.</div>
       <div class="flex items-center gap-3 opacity-80">
-        <img class="h-6 w-auto" src="assets/images/payment-icons/ideal-logo.png" alt="iDEAL" loading="lazy" />
-        <img class="h-6 w-auto" src="assets/images/payment-icons/Bancontact-logo.png" alt="Bancontact" loading="lazy" />
-        <img class="h-6 w-auto" src="assets/images/payment-icons/Visa_Brandmark_Blue_RGB_2021.png" alt="Visa" loading="lazy" />
-        <img class="h-6 w-auto" src="assets/images/payment-icons/ma_symbol_rgb.png" alt="Mastercard" loading="lazy" />
-        <img class="h-6 w-auto" src="assets/images/payment-icons/PayPal-logo.png" alt="PayPal" loading="lazy" />
-        <img class="h-6 w-auto" src="assets/images/payment-icons/Apple-Pay-Logo.png" alt="Apple Pay" loading="lazy" />
+        <img class="h-6 w-auto" src="assets/images/payment-icons/ideal-logo.webp" alt="iDEAL" loading="lazy" decoding="async" />
+        <img class="h-6 w-auto" src="assets/images/payment-icons/Bancontact-logo.webp" alt="Bancontact" loading="lazy" decoding="async" />
+        <img class="h-6 w-auto" src="assets/images/payment-icons/Visa_Brandmark_Blue_RGB_2021.webp" alt="Visa" loading="lazy" decoding="async" />
+        <img class="h-6 w-auto" src="assets/images/payment-icons/ma_symbol_rgb.webp" alt="Mastercard" loading="lazy" decoding="async" />
+        <img class="h-6 w-auto" src="assets/images/payment-icons/PayPal-logo.webp" alt="PayPal" loading="lazy" decoding="async" />
+        <img class="h-6 w-auto" src="assets/images/payment-icons/Apple-Pay-Logo.webp" alt="Apple Pay" loading="lazy" decoding="async" />
       </div>
     </div>
   </div>
