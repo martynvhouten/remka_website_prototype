@@ -100,14 +100,20 @@
     if(opts.actionLabel){
       actionHtml = '<div class="toast__actions"><button class="btn btn-outline btn-sm" data-toast-action="primary">'+opts.actionLabel+'</button></div>';
     }
-    var body = iconSvg(kind) + '<div><div class="toast__title">'+(title||'Melding')+'</div>' + (text?'<div class="toast__text">'+text+'</div>':'') + '</div>' + actionHtml + closeButton();
+    var body = iconSvg(kind)
+      + '<div class="toast__body">'
+      +   '<div class="toast__title">'+(title||'Melding')+'</div>'
+      +   (text?'<div class="toast__text">'+text+'</div>':'')
+      + '</div>'
+      + actionHtml
+      + closeButton();
     var el = null;
     var api = {
       el: null,
       timer: null,
       remaining: timeout,
       startTime: 0,
-      close: function(){ if(!api.el) return; api.el.removeAttribute('data-state'); setTimeout(function(){ unmount(api); }, 180); },
+      close: function(){ if(!api.el) return; api.el.removeAttribute('data-state'); setTimeout(function(){ unmount(api); }, 200); },
       show: function(){
         el = render(kind, body); api.el = el;
         var closeBtn = el.querySelector('.toast__close'); if(closeBtn){ closeBtn.addEventListener('click', function(){ api.close(); }); closeBtn.setAttribute('tabindex','0'); }
@@ -132,17 +138,24 @@
     var text = details.length ? details.join(' • ') : '';
     var thumb = p.thumbnail ? '<img class="toast__thumb" src="'+p.thumbnail+'" alt="" aria-hidden="true" />' : '';
     var viewLabel = (opts.actionText || 'Bekijk winkelwagen');
-    var body = iconSvg('cart') + thumb + '<div><div class="toast__title">'+title+'</div>' + (text?'<div class="toast__text">'+text+'</div>':'') + '</div>' + '<div class="toast__actions">'
-      + '<button class="btn btn-outline btn-sm" data-toast-action="view-cart">'+viewLabel+'</button>'
-      + '<button class="btn btn-brand btn-sm" data-toast-action="continue">Verder winkelen</button>'
-      + '</div>' + closeButton();
+    var body = iconSvg('cart')
+      + thumb
+      + '<div class="toast__body">'
+      +   '<div class="toast__title">'+title+'</div>'
+      +   (text?'<div class="toast__text">'+text+'</div>':'')
+      + '</div>'
+      + '<div class="toast__actions">'
+      +   '<button class="btn btn-outline btn-sm" data-toast-action="view-cart">'+viewLabel+'</button>'
+      +   '<button class="btn btn-brand btn-sm" data-toast-action="continue">Verder winkelen</button>'
+      + '</div>'
+      + closeButton();
     var timeout = 'timeout' in opts ? opts.timeout : DEFAULT_TIMEOUT;
     var api = {
       el: null,
       timer: null,
       remaining: timeout,
       startTime: 0,
-      close: function(){ if(!api.el) return; api.el.removeAttribute('data-state'); setTimeout(function(){ unmount(api); }, 180); },
+      close: function(){ if(!api.el) return; api.el.removeAttribute('data-state'); setTimeout(function(){ unmount(api); }, 200); },
       show: function(){
         api.el = render('cart', body);
         var closeBtn = api.el.querySelector('.toast__close'); if(closeBtn){ closeBtn.addEventListener('click', function(){ api.close(); }); closeBtn.setAttribute('tabindex','0'); }

@@ -9,18 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: { brand: '#9E0059', accent: '#F77F00', teal: '#00A99D', dark: '#333333', light: '#E6E6E6' },
-            fontFamily: { sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'] }
-          }
-        }
-      };
-    </script>
+<link rel="stylesheet" href="/assets/css/tailwind.css" />
     <link rel="stylesheet" href="/assets/css/base.css" />
     
 
@@ -72,6 +61,7 @@
               <a class="block hover:text-brand" href="#componenten">Componenten</a>
               <a class="block hover:text-brand" href="#grid">Grid en layout</a>
               <a class="block hover:text-brand" href="#iconen">Iconen</a>
+              <a class="block hover:text-brand" href="#toasts">Toasts</a>
             </nav>
           </div>
         </aside>
@@ -366,6 +356,31 @@
             </div>
           </section>
 
+          <!-- Toasts -->
+          <section id="toasts" class="sg-section">
+            <h2 class="text-2xl font-black">Toasts</h2>
+            <p class="mt-1 text-sm text-dark/70">Compacte meldingen. Op mobiel onderaan gecentreerd, op desktop rechtsboven. Maximaal 3 tegelijk zichtbaar; rest in wachtrij. Animatie 200ms fade+slide, respecteert reduced motion.</p>
+            <div class="mt-4 grid md:grid-cols-2 gap-6">
+              <div class="card p-4">
+                <h3 class="text-lg font-extrabold">Basis toasts</h3>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <button class="btn btn-outline btn-sm" data-demo-toast="success">Success</button>
+                  <button class="btn btn-outline btn-sm" data-demo-toast="info">Info</button>
+                  <button class="btn btn-outline btn-sm" data-demo-toast="warning">Waarschuwing</button>
+                  <button class="btn btn-outline btn-sm" data-demo-toast="error">Fout</button>
+                </div>
+                <p class="mt-3 text-sm text-dark/70">Titel semibold, tekst <code>text-sm</code>. Acties zijn klein en wrappen niet. Op mobiel worden acties gestapeld en 100% breed.</p>
+              </div>
+              <div class="card p-4">
+                <h3 class="text-lg font-extrabold">Winkelwagen toast</h3>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <button class="btn btn-brand btn-sm" data-demo-toast="cart">Simuleer toevoeging</button>
+                </div>
+                <p class="mt-3 text-sm text-dark/70">Bevat thumbnail (max 40px), twee acties en sluitknop. Interne scroll voorkomt afsnijden; acties blijven zichtbaar.</p>
+              </div>
+            </div>
+          </section>
+
         </div>
       </section>
     </main>
@@ -378,6 +393,17 @@
     <script src="/assets/js/index.js" defer></script>
     <script src="/assets/js/toasts.js" defer></script>
     <script>
+      // Toast demos
+      document.addEventListener('click', function(e){
+        var btn = e.target.closest('[data-demo-toast]');
+        if(!btn) return;
+        var kind = btn.getAttribute('data-demo-toast');
+        if(kind === 'success') window.toast && window.toast.success('Actie voltooid', { actionLabel: 'Ongedaan maken' });
+        if(kind === 'info') window.toast && window.toast.info('Informatie', { actionLabel: 'Meer info' });
+        if(kind === 'warning') window.toast && window.toast.warning('Let op', { actionLabel: 'Bekijk' });
+        if(kind === 'error') window.toast && window.toast.error('Er ging iets mis', { actionLabel: 'Probeer opnieuw' });
+        if(kind === 'cart') window.toast && window.toast.cart({ title: 'Toegevoegd aan winkelmand', qty: 2, thumbnail: '/assets/images/placeholder-4x3.svg' }, { actionText: 'Bekijk winkelwagen' });
+      });
       // Simple accordion behaviour for the demo
       document.addEventListener('click', function(e){
         var btn = e.target.closest('button[role="tab"][id^="sg-acc-tab-"]');

@@ -125,26 +125,6 @@
     const mobileHost = document.querySelector(SELECTORS.mobileHost);
     if (mobileHost) {
       mobileHost.innerHTML = '';
-      // Popular shortlist as a horizontal chip row under the sticky search
-      // One-line, horizontally scrollable; small label title
-      const popular = document.createElement('section');
-      popular.setAttribute('aria-label','Populair');
-      popular.className = 'pb-1';
-      const popularTitle = document.createElement('div');
-      popularTitle.className = 'px-3 pt-2 pb-1 text-xs font-semibold text-dark/70';
-      popularTitle.textContent = 'Populair';
-      const rowScroll = document.createElement('div');
-      rowScroll.className = 'h-scroll px-3 pb-2';
-      const row = document.createElement('div');
-      row.className = 'flex flex-nowrap gap-2';
-      MENU.filter(m => m.children && m.children.length).slice(0, 10).forEach(m => {
-        const chip = document.createElement('a');
-        chip.href = m.href || '#'; chip.className = 'pill pill--sm';
-        chip.innerHTML = '<span class="dot"></span>' + (m.label || 'Categorie');
-        row.appendChild(chip);
-      });
-      if (row.children.length) { rowScroll.appendChild(row); popular.appendChild(popularTitle); popular.appendChild(rowScroll); mobileHost.appendChild(popular); }
-
       // All categories accordion
       const allWrap = document.createElement('section');
       const allTitle = document.createElement('div');
@@ -380,7 +360,8 @@
       // Expand upwards to create a hover-safe bridge (approx 12px)
       return { left: r.left, right: r.right, top: r.top - 12, bottom: r.bottom };
     };
-    const getNavRect = () => ul.getBoundingClientRect();
+    // Use full nav bar width (not just the UL) so hovering inside the colored band keeps menu open
+    const getNavRect = () => nav.getBoundingClientRect();
     const pointInRect = (x, y, r) => r && x >= r.left && x <= r.right && y >= r.top && y <= r.bottom;
     const onMouseMove = (e) => {
       if (currentOpen == null) return;
@@ -400,63 +381,13 @@
     const header = document.querySelector(SELECTORS.header);
     if (!header) return;
 
-    // Sticky hide/show on scroll (intent-based, single class .is-hidden)
-    let lastY = window.scrollY || 0;
-    let anchorY = lastY; // last reveal point
-    let isHidden = false;
-    const HIDE_AFTER_PX = 72; // slower to hide; header remains longer
-    const REVEAL_AFTER_PX = 14; // tiny increase to match feel
-    let ticking = false;
+    // Standard behavior: header remains visible (no hide-on-scroll)
     const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
     const setHidden = (hidden) => {
-      if (hidden === isHidden) return;
-      isHidden = hidden;
       if (prefersReduced) header.style.transition = 'none';
-      header.classList.toggle('is-hidden', hidden);
-      if (prefersReduced) {
-        // restore asynchronously to avoid disabling future transitions completely
-        requestAnimationFrame(() => { header.style.transition = ''; });
-      }
+      header.classList.toggle('is-hidden', false);
+      if (prefersReduced) requestAnimationFrame(() => { header.style.transition = ''; });
     };
-
-    const updateHeader = () => {
-      ticking = false;
-      const y = window.scrollY || 0;
-      const delta = y - lastY;
-      lastY = y;
-
-      const mobileRoot = document.querySelector(SELECTORS.mobileRoot);
-      const mobileOpen = mobileRoot && !mobileRoot.classList.contains('hidden');
-      const focusInsideHeader = header.contains(document.activeElement);
-      if (mobileOpen || focusInsideHeader) {
-        setHidden(false);
-        anchorY = y;
-        return;
-      }
-
-      // Reveal on small upward scroll
-      if (delta < 0 && Math.abs(delta) >= REVEAL_AFTER_PX) {
-        setHidden(false);
-        anchorY = y; // reset anchor to new reveal point
-        return;
-      }
-
-      // Hide only after threshold downward from last reveal point
-      if (delta > 0 && (y - anchorY) >= HIDE_AFTER_PX) {
-        setHidden(true);
-        return;
-      }
-    };
-
-    const onScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(updateHeader);
-        ticking = true;
-      }
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    // initialize
     setHidden(false);
 
     // Mobile drawer
@@ -485,6 +416,39 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMobile(); }, { passive: true });
     const mobile = document.querySelector(SELECTORS.mobileRoot);
     if (mobile) mobile.addEventListener('click', (e) => { const a = e.target.closest && e.target.closest('a[href]'); if (a) closeMobile(); });
+
+    // Inject a mobile-only search button in header actions without touching markup
+    try {
+      const existing = header.querySelector('[data-nav="search"]');
+      if (!existing) {
+        // Prefer the actions container; fallback to cart link parent
+        let actions = header.querySelector('.ml-auto.flex.items-center');
+        if (!actions) {
+          const cartLink = header.querySelector('a[aria-label="Winkelmand"]');
+          actions = cartLink && cartLink.parentElement;
+        }
+        if (actions) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.setAttribute('aria-label', 'Zoeken');
+          btn.setAttribute('data-nav', 'search');
+          btn.className = 'px-3 py-2 rounded-md hover:bg-light/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand inline-flex items-center md:hidden';
+          btn.innerHTML = '<svg class="w-5 h-5 text-dark/80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2" fill="none"/></svg>';
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openMobile(btn);
+            // Focus the mobile search input when drawer is open
+            setTimeout(() => {
+              try {
+                const input = document.getElementById('mobile-search');
+                if (input) input.focus();
+              } catch {}
+            }, 250);
+          });
+          actions.insertBefore(btn, actions.firstChild);
+        }
+      }
+    } catch {}
 
     // Ensure mega closes when leaving header context
     try {

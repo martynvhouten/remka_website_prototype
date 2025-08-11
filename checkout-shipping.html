@@ -9,10 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = { theme: { extend: { colors: { brand: '#9E0059', accent: '#F77F00', teal: '#00A99D', dark: '#333333', light: '#E6E6E6' }, fontFamily: { sans: ['"Plus Jakarta Sans"','ui-sans-serif','system-ui','sans-serif'] } } } }
-    </script>
+<link rel="stylesheet" href="/assets/css/tailwind.css" />
     <link rel="stylesheet" href="/assets/css/base.css" />
     
   </head>
@@ -32,7 +29,7 @@
         <div class="grid lg:grid-cols-3 gap-8">
           <section class="lg:col-span-2">
             <h1 class="text-xl md:text-2xl font-extrabold tracking-tight">Contactgegevens</h1>
-            <form class="mt-4 space-y-4 form-compact" data-navigate="/checkout-payment.html">
+            <form class="form-standard space-y-4" data-navigate="/checkout-payment.html">
               <div>
                 <label class="block text-sm font-medium" for="email">E‑mail</label>
                 <input id="email" type="email" required class="mt-1 input" placeholder="jij@voorbeeld.nl" />

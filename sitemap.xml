@@ -11,7 +11,42 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://remka-prototype.netlify.app/subcategory.html?c=diagnostische-apparaten</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://remka-prototype.netlify.app/subcategory.html?c=urineonderzoek</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://remka-prototype.netlify.app/subcategory.html?c=onderzoekslampen</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://remka-prototype.netlify.app/subcategory.html?c=nitrile-handschoenen</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://remka-prototype.netlify.app/product.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://remka-prototype.netlify.app/product-op-voorraad.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://remka-prototype.netlify.app/product-ordergestuurd.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://remka-prototype.netlify.app/product-niet-op-voorraad.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

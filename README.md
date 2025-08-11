@@ -1,11 +1,16 @@
 # Remka website prototype (Hyvä-ready)
 
-Statische referentiesite voor een Magento 2 Hyvä child theme. HTML + Tailwind (CDN) + minimale JS.
+Statische referentiesite voor een Magento 2 Hyvä child theme. HTML + Tailwind + minimale JS.
 
 ## Starten
 
-- Open `index.html` lokaal in je browser.
+- npm install
+- npm run dev
 - Partials uit `partials/` worden client-side ingeladen door `assets/js/index.js`.
+
+## Build
+
+- npm run build (genereert `assets/css/tailwind.css`)
 
 ## Structuur
 ```

@@ -6,8 +6,7 @@
     <title>Persoonlijke gegevens – Remka B.V.</title>
     <meta name="description" content="Beheer je persoonlijke gegevens en wachtwoord." />
     <link rel="icon" type="image/svg+xml" href="/assets/images/logo-remka.svg" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config = { theme: { extend: { colors: { brand: '#9E0059', teal: '#00A99D', dark: '#333333', light: '#E6E6E6' }, fontFamily: { sans: ['\"Plus Jakarta Sans\"','ui-sans-serif','system-ui','sans-serif'] } } } }</script>
+<link rel="stylesheet" href="/assets/css/tailwind.css" />
     <link rel="stylesheet" href="/assets/css/base.css" />
     
   </head>
@@ -22,7 +21,7 @@
       <section class="container mx-auto px-4 py-8 grid md:grid-cols-3 gap-6">
         <div class="md:col-span-1"><div data-partial="account-nav"></div></div>
         <div class="md:col-span-2 space-y-6">
-          <form id="personalForm" class="card p-4 md:p-6 grid md:grid-cols-2 gap-4 form-compact">
+          <form id="personalForm" class="card form-standard grid md:grid-cols-2 gap-4">
             <h2 class="md:col-span-2 text-xl font-extrabold">Je gegevens</h2>
             <label class="block"><span class="text-sm">Voornaam</span><input class="input mt-1" name="firstName" required /></label>
             <label class="block"><span class="text-sm">Achternaam</span><input class="input mt-1" name="lastName" required /></label>
@@ -33,7 +32,7 @@
             </div>
             <div id="personalSaved" class="md:col-span-2 hidden text-teal font-semibold">Je gegevens zijn bijgewerkt.</div>
           </form>
-          <form class="card p-4 md:p-6 grid md:grid-cols-2 gap-4 form-compact">
+          <form class="card form-standard grid md:grid-cols-2 gap-4">
             <h2 class="md:col-span-2 text-xl font-extrabold">Wachtwoord wijzigen</h2>
             <label class="block md:col-span-2"><span class="text-sm">Huidig wachtwoord</span><input class="input mt-1" type="password" /></label>
             <label class="block"><span class="text-sm">Nieuw wachtwoord</span><input class="input mt-1" type="password" /></label>

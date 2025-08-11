@@ -1,0 +1,19 @@
+{
+  "shortcuts": [
+    { "label": "Assortiment (overzicht)", "href": "/category.html" },
+    { "label": "Merken", "href": "/brands.html" },
+    { "label": "EHBO koffers", "href": "/subcategory.html?c=ehbo-koffers-tassen" },
+    { "label": "Heine wandunits", "href": "/subcategory.html?c=wandunits-wandsets" },
+    { "label": "Nitril handschoenen", "href": "/subcategory.html?c=nitrile-handschoenen" }
+  ],
+  "cats": [
+    { "name": "Diagnostische apparaten", "slug": "diagnostische-apparaten" },
+    { "name": "Urineonderzoek", "slug": "urineonderzoek" },
+    { "name": "Onderzoekslampen", "slug": "onderzoekslampen" }
+  ],
+  "products": [
+    { "label": "Heine EN200 powersource", "href": "/product.html", "image": "/assets/images/Products/HEINE/A-095.12.218-HEINE-PowerSource-EN200-main.jpg" },
+    { "label": "Kai huidcurette set", "href": "/product.html", "image": "/assets/images/Products/KAI_huidcurette_packaging.jpg" }
+  ]
+}
+

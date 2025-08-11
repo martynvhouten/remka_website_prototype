@@ -6,10 +6,7 @@
     <title>Inloggen – Remka B.V.</title>
     <meta name="description" content="Log in op je Remka-account om bestellingen te bekijken en gegevens te beheren." />
     <link rel="icon" type="image/svg+xml" href="/assets/images/logo-remka.svg" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = { theme: { extend: { colors: { brand: '#9E0059', teal: '#00A99D', dark: '#333333', light: '#E6E6E6' }, fontFamily: { sans: ['\"Plus Jakarta Sans\"','ui-sans-serif','system-ui','sans-serif'] } } } }
-    </script>
+<link rel="stylesheet" href="/assets/css/tailwind.css" />
     <link rel="stylesheet" href="/assets/css/base.css" />
     
   </head>
@@ -22,7 +19,7 @@
         </div>
       </section>
       <section class="container mx-auto px-4 py-8 grid md:grid-cols-2 gap-6">
-        <form id="loginForm" class="card p-4 md:p-6 space-y-4 form-compact" aria-labelledby="loginTitle">
+        <form id="loginForm" class="card form-standard space-y-4" aria-labelledby="loginTitle">
           <h2 id="loginTitle" class="text-xl font-extrabold">Bestaande klant</h2>
           <label class="block">
             <span class="text-sm">E-mailadres</span>
@@ -38,7 +35,7 @@
           </div>
         </form>
 
-        <div class="card p-4 md:p-6 space-y-3 form-compact">
+        <div class="card form-standard space-y-3">
           <h2 class="text-xl font-extrabold">Nieuw bij Remka?</h2>
           <p class="text-dark/80">Maak snel een account aan om sneller te bestellen, adressen te bewaren en bestellingen terug te vinden.</p>
           <a class="btn btn-outline w-fit" href="/account-register.html">Nieuw account aanmaken</a>

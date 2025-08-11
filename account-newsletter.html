@@ -6,8 +6,7 @@
     <title>Nieuwsbriefinstellingen – Remka B.V.</title>
     <meta name="description" content="Beheer je nieuwsbriefvoorkeuren." />
     <link rel="icon" type="image/svg+xml" href="/assets/images/logo-remka.svg" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config = { theme: { extend: { colors: { brand: '#9E0059', teal: '#00A99D', dark: '#333333', light: '#E6E6E6' }, fontFamily: { sans: ['\"Plus Jakarta Sans\"','ui-sans-serif','system-ui','sans-serif'] } } } }</script>
+<link rel="stylesheet" href="/assets/css/tailwind.css" />
     <link rel="stylesheet" href="/assets/css/base.css" />
     
   </head>
@@ -22,7 +21,7 @@
       <section class="container mx-auto px-4 py-8 grid md:grid-cols-3 gap-6">
         <div class="md:col-span-1"><div data-partial="account-nav"></div></div>
         <div class="md:col-span-2">
-          <form id="newsletterForm" class="card p-4 md:p-6 space-y-4 form-compact">
+          <form id="newsletterForm" class="card form-standard space-y-4">
             <label class="flex items-center gap-3"><input type="checkbox" name="newsletter" class="h-4 w-4"> <span>Ja, ik ontvang graag de nieuwsbrief</span></label>
             <div class="flex justify-end"><button type="submit" class="btn btn-brand">Opslaan</button></div>
             <div id="newsletterSaved" class="hidden text-teal font-semibold">Je voorkeur is opgeslagen.</div>

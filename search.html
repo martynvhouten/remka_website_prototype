@@ -8,10 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = { theme: { extend: { colors: { brand: '#9E0059', accent: '#F77F00', teal: '#00A99D', dark: '#333333', light: '#E6E6E6' }, fontFamily: { sans: ['"Plus Jakarta Sans"','ui-sans-serif','system-ui','sans-serif'] } } } }
-    </script>
+<link rel="stylesheet" href="/assets/css/tailwind.css" />
     <link rel="stylesheet" href="/assets/css/base.css" />
     
   </head>
@@ -30,9 +27,9 @@
           </nav>
           <header class="mt-4 flex flex-wrap items-center gap-3">
             <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">Zoekresultaten voor <span id="qLabel">“”</span></h1>
-            <form class="ml-auto flex items-center gap-2" role="search">
+            <form class="ml-auto form-standard flex items-center gap-2" role="search">
               <label class="sr-only" for="q">Zoek</label>
-              <input id="q" name="q" type="search" class="input w-64" placeholder="Zoek opnieuw" />
+              <input id="q" name="q" type="search" class="input" placeholder="Zoek opnieuw" />
               <button class="btn btn-brand">Zoek</button>
             </form>
           </header>

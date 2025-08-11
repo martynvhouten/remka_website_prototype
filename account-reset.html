@@ -6,8 +6,7 @@
     <title>Wachtwoord resetten – Remka B.V.</title>
     <meta name="description" content="Stel een nieuw wachtwoord in voor je account." />
     <link rel="icon" type="image/svg+xml" href="/assets/images/logo-remka.svg" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config = { theme: { extend: { colors: { brand: '#9E0059', teal: '#00A99D', dark: '#333333', light: '#E6E6E6' }, fontFamily: { sans: ['\"Plus Jakarta Sans\"','ui-sans-serif','system-ui','sans-serif'] } } } }</script>
+<link rel="stylesheet" href="/assets/css/tailwind.css" />
     <link rel="stylesheet" href="/assets/css/base.css" />
     
   </head>
@@ -20,7 +19,7 @@
         </div>
       </section>
       <section class="container mx-auto px-4 py-8">
-        <form id="resetForm" class="card p-4 md:p-6 space-y-4 form-compact" aria-labelledby="resetTitle">
+        <form id="resetForm" class="card form-standard space-y-4" aria-labelledby="resetTitle">
           <h2 id="resetTitle" class="text-xl font-extrabold">Nieuw wachtwoord</h2>
           <label class="block"><span class="text-sm">Nieuw wachtwoord</span><input class="input mt-1" type="password" required /></label>
           <label class="block"><span class="text-sm">Herhaal wachtwoord</span><input class="input mt-1" type="password" required /></label>

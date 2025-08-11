@@ -17,18 +17,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: { brand: '#9E0059', accent: '#F77F00', teal: '#00A99D', dark: '#333333', light: '#E6E6E6' },
-            fontFamily: { sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'] }
-          }
-        }
-      }
-    </script>
+<link rel="stylesheet" href="/assets/css/tailwind.css" />
     <link rel="stylesheet" href="/assets/css/base.css" />
     
   </head>
@@ -46,6 +35,66 @@
       </section>
 
       <section class="container mx-auto px-4 py-8 space-y-8">
+        <!-- Categoriepagina's (niveaus) -->
+        <article class="card p-4 md:p-6">
+          <header class="flex items-center justify-between flex-wrap gap-3">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-white bg-brand">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M4 4h7v7H4V4Zm9 0h7v7h-7V4ZM4 13h7v7H4v-7Zm9 7v-7h7v7h-7Z"/></svg>
+              </span>
+              <h2 class="text-xl font-extrabold text-dark">Categoriepagina's (niveaus)</h2>
+            </div>
+            <div class="text-sm text-dark/70">Snelle toegang tot de drie varianten</div>
+          </header>
+          <nav class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3" aria-label="Categoriepagina's (niveaus)">
+            <a class="card card--hover p-4 flex items-center justify-between gap-3" href="/category.html">
+              <div class="flex items-center gap-2">
+                <span class="badge">Level 1</span>
+                <span class="font-semibold">Assortiment (root)</span>
+              </div>
+              <span class="text-dark/70">Overzicht</span>
+            </a>
+            <a class="card card--hover p-4 flex items-center justify-between gap-3" href="/subcategory.html?c=diagnostische-apparaten">
+              <div class="flex items-center gap-2">
+                <span class="badge">Level 2</span>
+                <span class="font-semibold">Diagnostische apparaten</span>
+              </div>
+              <span class="text-dark/70">Met subcategorieën</span>
+            </a>
+            <a class="card card--hover p-4 flex items-center justify-between gap-3" href="/subcategory.html?c=wandmodellen">
+              <div class="flex items-center gap-2">
+                <span class="badge">Level 3</span>
+                <span class="font-semibold">Wandmodellen</span>
+              </div>
+              <span class="text-dark/70">Leaf categorie</span>
+            </a>
+          </nav>
+        </article>
+        <!-- Snelle links / Uitgelicht -->
+        <article class="card p-4 md:p-6" id="featuredSection" hidden>
+          <header class="flex items-center justify-between flex-wrap gap-3">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-white bg-teal">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 2l9 6v8l-9 6-9-6V8l9-6Zm0 3.2L6 9v6l6 3.8L18 15V9l-6-3.8Z"/></svg>
+              </span>
+              <h2 class="text-xl font-extrabold text-dark">Snelle links</h2>
+            </div>
+            <div class="text-sm text-dark/70">Direct naar veelbezochte pagina's</div>
+          </header>
+          <div class="mt-4 space-y-6">
+            <nav id="featuredShortcuts" class="flex flex-wrap gap-2" aria-label="Snelle links"></nav>
+            <div class="grid md:grid-cols-2 gap-6">
+              <section>
+                <h3 class="font-semibold">Uitgelichte categorieën</h3>
+                <nav id="featuredCats" class="mt-3 grid grid-cols-2 sm:grid-cols-3 gap-3" aria-label="Uitgelichte categorieën"></nav>
+              </section>
+              <section>
+                <h3 class="font-semibold">Uitgelichte producten</h3>
+                <nav id="featuredProds" class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3" aria-label="Uitgelichte producten"></nav>
+              </section>
+            </div>
+          </div>
+        </article>
         <!-- Assortiment boom -->
         <article class="card p-4 md:p-6">
           <header class="flex items-center justify-between flex-wrap gap-3">
