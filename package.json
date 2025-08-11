@@ -5,7 +5,6 @@
   "description": "Static prototype for Remka website",
   "scripts": {
     "dev": "live-server --port=5173 --open=index.html --watch=.",
-    "images:catalog": "node tools/build-various-catalog.mjs",
     "images:process": "node tools/process-images.mjs",
     "images:dry": "node tools/process-images.mjs --dry",
     "images:revert": "node tools/revert-webp.mjs",

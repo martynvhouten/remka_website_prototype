@@ -1,19 +1,19 @@
 (function(){
   const brands = [
-    { name:'3M', slug:'3m', image:'/assets/images/Brands/3M_logo.jpg' },
-    { name:'BD', slug:'bd', image:'/assets/images/Brands/BD_logo.jpg' },
-    { name:'HEINE', slug:'heine', image:'/assets/images/Brands/HEINE_logo.jpg' },
-    { name:'Johnson & Johnson', slug:'johnson-johnson', image:'/assets/images/Brands/Johnson_Johnson_logo.jpg' },
-    { name:'KAI Medical', slug:'kai-medical', image:'/assets/images/Brands/KAI_Medical_logo.jpg' },
-    { name:'Mada', slug:'mada', image:'/assets/images/Brands/Mada_logo.jpg' },
-    { name:'Medipharchem', slug:'medipharchem', image:'/assets/images/Brands/Medipharchem_logo.jpg' },
-    { name:'Mölnlycke', slug:'molnlycke', image:'/assets/images/Brands/Molnlycke_logo.jpg' },
-    { name:'Orphi Farma', slug:'orphi-farma', image:'/assets/images/Brands/Orphi_Farma_logo.jpg' },
-    { name:'Roche', slug:'roche', image:'/assets/images/Brands/Roche_logo.jpg' },
-    { name:'Schülke', slug:'schulke', image:'/assets/images/Brands/Schulke_logo.jpg' },
-    { name:'seca', slug:'seca', image:'/assets/images/Brands/seca_logo.jpg' },
-    { name:'Servoprax', slug:'servoprax', image:'/assets/images/Brands/Servoprax_logo.jpg' },
-    { name:'Welch Allyn', slug:'welch-allyn', image:'/assets/images/Brands/Welch_Allyn_logo.jpg' },
+    { name:'3M', slug:'3m', image:'/assets/images/Brands/3M_logo.webp' },
+    { name:'BD', slug:'bd', image:'/assets/images/Brands/BD_logo.webp' },
+    { name:'HEINE', slug:'heine', image:'/assets/images/Brands/HEINE_logo.webp' },
+    { name:'Johnson & Johnson', slug:'johnson-johnson', image:'/assets/images/Brands/Johnson_Johnson_logo.webp' },
+    { name:'KAI Medical', slug:'kai-medical', image:'/assets/images/Brands/KAI_Medical_logo.webp' },
+    { name:'Mada', slug:'mada', image:'/assets/images/Brands/Mada_logo.webp' },
+    { name:'Medipharchem', slug:'medipharchem', image:'/assets/images/Brands/Medipharchem_logo.webp' },
+    { name:'Mölnlycke', slug:'molnlycke', image:'/assets/images/Brands/Molnlycke_logo.webp' },
+    { name:'Orphi Farma', slug:'orphi-farma', image:'/assets/images/Brands/Orphi_Farma_logo.webp' },
+    { name:'Roche', slug:'roche', image:'/assets/images/Brands/Roche_logo.webp' },
+    { name:'Schülke', slug:'schulke', image:'/assets/images/Brands/Schulke_logo.webp' },
+    { name:'seca', slug:'seca', image:'/assets/images/Brands/seca_logo.webp' },
+    { name:'Servoprax', slug:'servoprax', image:'/assets/images/Brands/Servoprax_logo.webp' },
+    { name:'Welch Allyn', slug:'welch-allyn', image:'/assets/images/Brands/Welch_Allyn_logo.webp' },
   ];
 
   function renderCarousel(){

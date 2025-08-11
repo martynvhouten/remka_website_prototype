@@ -1,9 +1,12 @@
 <!-- COPY TO PHTML: Magento_Catalog/templates/category/list/children.phtml -->
-<section class="container mx-auto px-4 py-8 section">
+<section class="container mx-auto px-4 py-8 section" id="subcatSection" hidden>
   <div class="flex items-center justify-between">
     <h2 class="text-xl font-bold">Subcategorieën</h2>
     <div class="hidden sm:flex flex-wrap gap-2" id="subcatChips"></div>
   </div>
   <div id="subcatGrid" class="mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+  <div class="mt-4 flex justify-center">
+    <button id="showMoreSubcats" class="btn btn-outline" type="button">Meer tonen</button>
+  </div>
 </section>
 

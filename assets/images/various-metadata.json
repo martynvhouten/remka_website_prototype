@@ -1,0 +1,350 @@
+{
+  "generatedAt": "2025-08-10T21:14:58.504Z",
+  "images": [
+    {
+      "file": "assets/images/Various/AdobeStock_1110906828.jpeg",
+      "format": "jpeg",
+      "convertedToWebp": true,
+      "webpPath": "assets/images/Various/AdobeStock_1110906828.webp",
+      "bytesOriginal": 5713577,
+      "bytesWebp": 461618,
+      "bytesSaved": 5251959,
+      "metadata": {
+        "sharp": {
+          "format": "jpeg",
+          "width": 6240,
+          "height": 4160,
+          "space": "srgb",
+          "channels": 3,
+          "density": 300,
+          "hasProfile": false,
+          "hasAlpha": false
+        },
+        "exifIptcXmp": {}
+      },
+      "error": null
+    },
+    {
+      "file": "assets/images/Various/AdobeStock_1172147328.png",
+      "format": "png",
+      "convertedToWebp": true,
+      "webpPath": "assets/images/Various/AdobeStock_1172147328.webp",
+      "bytesOriginal": 17924839,
+      "bytesWebp": 6907636,
+      "bytesSaved": 11017203,
+      "metadata": {
+        "sharp": {
+          "format": "png",
+          "width": 11705,
+          "height": 6881,
+          "space": "srgb",
+          "channels": 4,
+          "density": 300,
+          "hasProfile": false,
+          "hasAlpha": true
+        },
+        "exifIptcXmp": {}
+      },
+      "error": null
+    },
+    {
+      "file": "assets/images/Various/AdobeStock_1267575956.png",
+      "format": "png",
+      "convertedToWebp": true,
+      "webpPath": "assets/images/Various/AdobeStock_1267575956.webp",
+      "bytesOriginal": 4207088,
+      "bytesWebp": 1353624,
+      "bytesSaved": 2853464,
+      "metadata": {
+        "sharp": {
+          "format": "png",
+          "width": 6000,
+          "height": 3375,
+          "space": "srgb",
+          "channels": 4,
+          "density": 300,
+          "hasProfile": false,
+          "hasAlpha": true
+        },
+        "exifIptcXmp": {}
+      },
+      "error": null
+    },
+    {
+      "file": "assets/images/Various/AdobeStock_1284352352.jpeg",
+      "format": "jpeg",
+      "convertedToWebp": true,
+      "webpPath": "assets/images/Various/AdobeStock_1284352352.webp",
+      "bytesOriginal": 5384258,
+      "bytesWebp": 693756,
+      "bytesSaved": 4690502,
+      "metadata": {
+        "sharp": {
+          "format": "jpeg",
+          "width": 6000,
+          "height": 4000,
+          "space": "srgb",
+          "channels": 3,
+          "density": 300,
+          "hasProfile": false,
+          "hasAlpha": false
+        },
+        "exifIptcXmp": {}
+      },
+      "error": null
+    },
+    {
+      "file": "assets/images/Various/AdobeStock_1311316078.jpeg",
+      "format": "jpeg",
+      "convertedToWebp": true,
+      "webpPath": "assets/images/Various/AdobeStock_1311316078.webp",
+      "bytesOriginal": 7370008,
+      "bytesWebp": 1469252,
+      "bytesSaved": 5900756,
+      "metadata": {
+        "sharp": {
+          "format": "jpeg",
+          "width": 6720,
+          "height": 4480,
+          "space": "srgb",
+          "channels": 3,
+          "density": 300,
+          "hasProfile": false,
+          "hasAlpha": false
+        },
+        "exifIptcXmp": {}
+      },
+      "error": null
+    },
+    {
+      "file": "assets/images/Various/AdobeStock_231843788.jpeg",
+      "format": "jpeg",
+      "convertedToWebp": true,
+      "webpPath": "assets/images/Various/AdobeStock_231843788.webp",
+      "bytesOriginal": 4175809,
+      "bytesWebp": 379058,
+      "bytesSaved": 3796751,
+      "metadata": {
+        "sharp": {
+          "format": "jpeg",
+          "width": 5760,
+          "height": 3840,
+          "space": "srgb",
+          "channels": 3,
+          "density": 300,
+          "hasProfile": false,
+          "hasAlpha": false
+        },
+        "exifIptcXmp": {}
+      },
+      "error": null
+    },
+    {
+      "file": "assets/images/Various/AdobeStock_246274114.jpeg",
+      "format": "jpeg",
+      "convertedToWebp": true,
+      "webpPath": "assets/images/Various/AdobeStock_246274114.webp",
+      "bytesOriginal": 4366308,
+      "bytesWebp": 465262,
+      "bytesSaved": 3901046,
+      "metadata": {
+        "sharp": {
+          "format": "jpeg",
+          "width": 5760,
+          "height": 3840,
+          "space": "srgb",
+          "channels": 3,
+          "density": 300,
+          "hasProfile": false,
+          "hasAlpha": false
+        },
+        "exifIptcXmp": {}
+      },
+      "error": null
+    },
+    {
+      "file": "assets/images/Various/AdobeStock_299213353.jpeg",
+      "format": "jpeg",
+      "convertedToWebp": true,
+      "webpPath": "assets/images/Various/AdobeStock_299213353.webp",
+      "bytesOriginal": 3733851,
+      "bytesWebp": 297476,
+      "bytesSaved": 3436375,
+      "metadata": {
+        "sharp": {
+          "format": "jpeg",
+          "width": 5760,
+          "height": 3840,
+          "space": "srgb",
+          "channels": 3,
+          "density": 300,
+          "hasProfile": false,
+          "hasAlpha": false
+        },
+        "exifIptcXmp": {}
+      },
+      "error": null
+    },
+    {
+      "file": "assets/images/Various/AdobeStock_329971.jpeg",
+      "format": "jpeg",
+      "convertedToWebp": true,
+      "webpPath": "assets/images/Various/AdobeStock_329971.webp",
+      "bytesOriginal": 1680720,
+      "bytesWebp": 559250,
+      "bytesSaved": 1121470,
+      "metadata": {
+        "sharp": {
+          "format": "jpeg",
+          "width": 3984,
+          "height": 2600,
+          "space": "srgb",
+          "channels": 3,
+          "density": 300,
+          "hasProfile": false,
+          "hasAlpha": false
+        },
+        "exifIptcXmp": {}
+      },
+      "error": null
+    },
+    {
+      "file": "assets/images/Various/AdobeStock_342125112.jpeg",
+      "format": "jpeg",
+      "convertedToWebp": true,
+      "webpPath": "assets/images/Various/AdobeStock_342125112.webp",
+      "bytesOriginal": 1917898,
+      "bytesWebp": 179672,
+      "bytesSaved": 1738226,
+      "metadata": {
+        "sharp": {
+          "format": "jpeg",
+          "width": 3908,
+          "height": 2605,
+          "space": "srgb",
+          "channels": 3,
+          "density": 300,
+          "hasProfile": false,
+          "hasAlpha": false
+        },
+        "exifIptcXmp": {}
+      },
+      "error": null
+    },
+    {
+      "file": "assets/images/Various/AdobeStock_357294365.jpeg",
+      "format": "jpeg",
+      "convertedToWebp": true,
+      "webpPath": "assets/images/Various/AdobeStock_357294365.webp",
+      "bytesOriginal": 2832949,
+      "bytesWebp": 324234,
+      "bytesSaved": 2508715,
+      "metadata": {
+        "sharp": {
+          "format": "jpeg",
+          "width": 4500,
+          "height": 3000,
+          "space": "srgb",
+          "channels": 3,
+          "density": 300,
+          "hasProfile": false,
+          "hasAlpha": false
+        },
+        "exifIptcXmp": {}
+      },
+      "error": null
+    },
+    {
+      "file": "assets/images/Various/AdobeStock_421658533.jpeg",
+      "format": "jpeg",
+      "convertedToWebp": true,
+      "webpPath": "assets/images/Various/AdobeStock_421658533.webp",
+      "bytesOriginal": 4293930,
+      "bytesWebp": 806054,
+      "bytesSaved": 3487876,
+      "metadata": {
+        "sharp": {
+          "format": "jpeg",
+          "width": 5347,
+          "height": 4568,
+          "space": "srgb",
+          "channels": 3,
+          "density": 300,
+          "hasProfile": false,
+          "hasAlpha": false
+        },
+        "exifIptcXmp": {}
+      },
+      "error": null
+    },
+    {
+      "file": "assets/images/Various/AdobeStock_520966924.jpeg",
+      "format": "jpeg",
+      "convertedToWebp": true,
+      "webpPath": "assets/images/Various/AdobeStock_520966924.webp",
+      "bytesOriginal": 4136758,
+      "bytesWebp": 368774,
+      "bytesSaved": 3767984,
+      "metadata": {
+        "sharp": {
+          "format": "jpeg",
+          "width": 5400,
+          "height": 3600,
+          "space": "srgb",
+          "channels": 3,
+          "density": 300,
+          "hasProfile": false,
+          "hasAlpha": false
+        },
+        "exifIptcXmp": {}
+      },
+      "error": null
+    },
+    {
+      "file": "assets/images/Various/AdobeStock_84815398.jpeg",
+      "format": "jpeg",
+      "convertedToWebp": true,
+      "webpPath": "assets/images/Various/AdobeStock_84815398.webp",
+      "bytesOriginal": 2989814,
+      "bytesWebp": 240544,
+      "bytesSaved": 2749270,
+      "metadata": {
+        "sharp": {
+          "format": "jpeg",
+          "width": 4501,
+          "height": 3000,
+          "space": "srgb",
+          "channels": 3,
+          "density": 300,
+          "hasProfile": false,
+          "hasAlpha": false
+        },
+        "exifIptcXmp": {}
+      },
+      "error": null
+    },
+    {
+      "file": "assets/images/Various/AdobeStock_91021266.jpeg",
+      "format": "jpeg",
+      "convertedToWebp": true,
+      "webpPath": "assets/images/Various/AdobeStock_91021266.webp",
+      "bytesOriginal": 5162937,
+      "bytesWebp": 442088,
+      "bytesSaved": 4720849,
+      "metadata": {
+        "sharp": {
+          "format": "jpeg",
+          "width": 5760,
+          "height": 3840,
+          "space": "srgb",
+          "channels": 3,
+          "density": 300,
+          "hasProfile": false,
+          "hasAlpha": false
+        },
+        "exifIptcXmp": {}
+      },
+      "error": null
+    }
+  ]
+}

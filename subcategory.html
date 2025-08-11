@@ -34,16 +34,18 @@
       <section class="container mx-auto px-4 py-6">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
           <!-- Left: facets -->
-          <div class="md:col-span-3">
+          <div class="md:col-span-3" id="categoryLeftCol">
             <div data-partial="category-facets"></div>
           </div>
 
           <!-- Right: content -->
           <div class="md:col-span-9 space-y-6" id="categoryRightCol">
+            <div data-partial="category-filters"></div>
             <div data-partial="category-toolbar"></div>
             <div data-partial="brands-carousel"></div>
             <div data-partial="category-productlist"></div>
             <div data-partial="category-pagination"></div>
+            <div data-partial="category-longdesc"></div>
           </div>
         </div>
       </section>
