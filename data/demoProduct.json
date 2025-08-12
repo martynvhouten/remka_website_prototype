@@ -1,0 +1,22 @@
+{
+  "sku": "HEINE-SET-NT4",
+  "name": "HEINE BETA400 LED Otoscope + BETA200 LED Ophthalmoscope Kit (NT4)",
+  "brand": "HEINE",
+  "price": 1295.0,
+  "stock": "in_stock",
+  "eta": null,
+  "shortDescription": "Compacte samenvatting van het product voor snelle oriëntatie. Beschrijf in 2–3 zinnen het doel, de belangrijkste eigenschappen en geschikte toepassingen.",
+  "longHtml": "<p>Deze demo beschrijving illustreert de opmaak en typografie van een langere producttekst. Leg hier de context, toepassingen en voordelen van het product uit.</p><p>Gebruik duidelijke kopjes, korte alinea’s en opsommingen voor leesbaarheid. Technische details horen in de specificaties; gebruik deze sectie voor toelichting en advies.</p>",
+  "images": [
+    "/assets/images/Products/HEINE/A-153.24.422-HEINE-BETA400-LED-otoscope-BETA200-LED-ophthalmoscope-kit-nt4.webp",
+    "/assets/images/Products/HEINE/A-153.24.422-HEINE-BETA400-LED-otoscope-BETA200-LED-ophthalmoscope-kit-nt4-2.webp",
+    "/assets/images/Products/HEINE/A-153.24.422-HEINE-BETA400-LED-otoscope-BETA200-LED-ophthalmoscope-kit-nt4-3.webp"
+  ],
+  "attributes": [
+    { "label": "Type", "value": "Diagnostische set" },
+    { "label": "Voeding", "value": "NT4 compatibel" },
+    { "label": "Verlichting", "value": "LEDHQ" }
+  ]
+}
+
+

@@ -111,11 +111,20 @@
     const ul = document.querySelector(SELECTORS.desktopMenu);
     if (ul) {
       ul.innerHTML = '';
+      // detect active L1 from path
+      const pathParts = location.pathname.split('/').filter(Boolean);
+      const isCategoryPath = pathParts[0] === 'c';
+      const activeL1 = isCategoryPath ? decodeURIComponent(pathParts[1] || '') : '';
       MENU.forEach((item, i) => {
         const li = document.createElement('li'); li.setAttribute('role','none');
         const a = document.createElement('a');
         a.href = item.href || '#'; a.className = 'px-3 py-2 rounded-md hover:bg-light/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand text-white mainnav-link';
         a.textContent = item.label; a.setAttribute('role','menuitem');
+        // aria-current for active L1
+        try {
+          const l1Slug = (item.pathSlug || (item.href||'').split('/').filter(Boolean)[1]) || '';
+          if (activeL1 && l1Slug && l1Slug === activeL1) { a.setAttribute('aria-current','page'); a.classList.add('bg-light/20'); }
+        } catch {}
         if (item.children && item.children.length) {
           a.setAttribute('aria-haspopup','true'); a.setAttribute('aria-expanded','false'); a.dataset.idx = String(i); a.dataset.trigger = '1';
         }
@@ -152,7 +161,7 @@
         if (hasChildren) {
           (item.children || []).slice(0, 8).forEach(child => {
             const a = document.createElement('a');
-            a.href = child.href || `/category.html?c=${encodeURIComponent(child.slug || child.name || child.label || '')}`;
+            a.href = child.href || `/c/${encodeURIComponent(child.slug || child.name || child.label || '')}`;
             a.className = 'block px-3 py-2 rounded hover:bg-light/40 mobile-subitem';
             a.textContent = child.name || child.label;
             panel.appendChild(a);
@@ -163,7 +172,7 @@
             moreWrap.setAttribute('data-more-wrap', '');
             (item.children || []).slice(8).forEach(child => {
               const a = document.createElement('a');
-              a.href = child.href || `/category.html?c=${encodeURIComponent(child.slug || child.name || child.label || '')}`;
+              a.href = child.href || `/c/${encodeURIComponent(child.slug || child.name || child.label || '')}`;
               a.className = 'block px-3 py-2 rounded hover:bg-light/40 mobile-subitem';
               a.textContent = child.name || child.label;
               moreWrap.appendChild(a);
@@ -260,14 +269,22 @@
       const grid = document.createElement('div');
       grid.className = 'mega-grid';
 
+      const pathParts = location.pathname.split('/').filter(Boolean);
+      const isCategoryPath = pathParts[0] === 'c';
+      const activeL2 = isCategoryPath ? decodeURIComponent(pathParts[2] || '') : '';
+      const segs = location.pathname.split('/').filter(Boolean);
+      const l2Seg = segs[2] || '';
+      const l3Seg = segs[3] || '';
       item.children.forEach(group => {
         const col = document.createElement('div');
         const h = document.createElement('h3'); h.className = 'mega-heading'; h.textContent = fmtLabel(group.name || group.label);
+        try { const gSlug = (group.href||'').split('/').filter(Boolean).pop(); if (gSlug && l2Seg && gSlug === l2Seg) h.setAttribute('aria-current','page'); } catch {}
         const ul2 = document.createElement('ul'); ul2.className = 'mega-list';
         (group.children || []).forEach(sub => {
           const li2 = document.createElement('li');
           const a2 = document.createElement('a'); a2.className = 'mega-link';
           a2.href = sub.href || `/subcategory.html?c=${encodeURIComponent(sub.slug || sub.name || sub.label || '')}`; a2.textContent = fmtLabel(sub.name || sub.label);
+          try { const sSlug = (a2.href||'').split('/').filter(Boolean).pop(); if (sSlug && l3Seg && sSlug === l3Seg) a2.setAttribute('aria-current','page'); } catch {}
           li2.appendChild(a2); ul2.appendChild(li2);
         });
         col.appendChild(h); col.appendChild(ul2); grid.appendChild(col);
@@ -424,7 +441,7 @@
         // Prefer the actions container; fallback to cart link parent
         let actions = header.querySelector('.ml-auto.flex.items-center');
         if (!actions) {
-          const cartLink = header.querySelector('a[aria-label="Winkelmand"]');
+          const cartLink = header.querySelector('a[aria-label="Winkelwagen"]');
           actions = cartLink && cartLink.parentElement;
         }
         if (actions) {
@@ -520,7 +537,8 @@
     } catch {}
     // Try to load categories tree for mega menu
     try {
-      const res = await fetch('/data/categories.json', { cache: 'no-store' });
+      // Use relative path to work without a server
+      const res = await fetch('data/categories.json', { cache: 'no-store' });
       const text = await res.text();
       let parsed = null;
       try { parsed = JSON.parse(text); }
@@ -542,7 +560,17 @@
       }
       const nodes = Array.isArray(parsed) ? parsed : (parsed && parsed.children) || [];
       if (nodes && nodes.length) {
-        MENU = nodes.map(n => ({ label: n.name || n.label, href: `/category.html?c=${encodeURIComponent(n.slug || n.name || n.label || '')}`, children: n.children || [] }));
+        const slugify = (s) => (s || '').toLowerCase().normalize('NFD').replace(/[^\p{Letter}\p{Number}]+/gu, '-').replace(/(^-|-$)/g, '');
+        const normalize = (list, ancestors=[]) => (list||[]).map((node) => {
+          const title = node.name || node.label || '';
+          const slug = node.slug || slugify(title);
+          const parts = ancestors.concat(slug);
+          const path = '/c/' + parts.join('/');
+          const children = normalize(node.children || [], parts);
+          return { key: parts.join(':'), title, slug, path, children };
+        });
+        const tree = normalize(nodes);
+        MENU = tree.map(l1 => ({ label: l1.title, href: l1.path, pathSlug: l1.slug, children: (l1.children||[]).map(l2 => ({ name: l2.title, href: l2.path, children: (l2.children||[]).map(l3 => ({ name: l3.title, href: l3.path })) })) }));
       }
     } catch {}
 

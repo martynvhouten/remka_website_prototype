@@ -38,15 +38,16 @@
     var brandEl = node.querySelector('[data-brand]');
     var priceEl = node.querySelector('[data-price]');
     var stockEl = node.querySelector('[data-stock]');
+    var skuEl = node.querySelector('[data-sku]');
     var ratingEl = node.querySelector('[data-rating]');
-    var view = node.querySelector('[data-view]');
+    var view = null; // view CTA tekst verwijderd
     var add = node.querySelector('[data-add]');
+    var addToListBtn = node.querySelector('[data-orderlist]');
     var badgesHost = node.querySelector('[data-badges]');
     var discountHost = node.querySelector('[data-discount]');
 
     var url = data.url || '/product.html';
     if(link) { link.href = url; link.setAttribute('aria-label', data.title || 'Product'); }
-    if(view) { view.href = url; view.setAttribute('aria-label', 'Bekijk '+(data.title || 'product')); }
 
     var src = data.imageSrc || '/assets/images/placeholder-square.svg';
     if(img){
@@ -60,6 +61,10 @@
     }
 
     if(ttl) ttl.textContent = data.title || '';
+    if(skuEl){
+      var sku = data.sku || '';
+      if(sku){ skuEl.textContent = 'SKU: ' + sku; skuEl.hidden = false; }
+    }
     if(brandEl){
       var brand = data.brand || '';
       if(brand){ brandEl.textContent = brand; brandEl.hidden = false; }
@@ -93,6 +98,12 @@
       if(data.title) add.setAttribute('data-title', String(data.title));
       if(data.price) add.setAttribute('data-price', String(data.price));
       if(src) add.setAttribute('data-image', String(src));
+    }
+
+    if(addToListBtn){
+      if(data.sku) addToListBtn.setAttribute('data-sku', String(data.sku));
+      if(data.title) addToListBtn.setAttribute('data-title', String(data.title));
+      if(data.price) addToListBtn.setAttribute('data-price', String(data.price));
     }
 
     if(data.badges && Array.isArray(data.badges) && badgesHost){

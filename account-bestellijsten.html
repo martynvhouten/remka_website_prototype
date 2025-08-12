@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bestellijsten – Remka B.V.</title>
+    <meta name="description" content="Beheer je B2B bestellijsten voor snel herbestellen." />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/logo-remka.svg" />
+    <link rel="stylesheet" href="/assets/css/tailwind.css" />
+    <link rel="stylesheet" href="/assets/css/base.css" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <div id="header-placeholder"></div>
+    <main id="main" class="flex-1">
+      <section class="section-brand-tint">
+        <div class="container mx-auto px-4 py-8">
+          <h1 class="text-2xl md:text-3xl font-extrabold text-dark">Bestellijsten</h1>
+        </div>
+      </section>
+      <section class="container mx-auto px-4 py-8 grid md:grid-cols-3 gap-6">
+        <div class="md:col-span-1"><div data-partial="account-nav"></div></div>
+        <div class="md:col-span-2">
+          <div class="card p-4 md:p-6 space-y-4">
+            <form id="newListForm" class="flex flex-col sm:flex-row items-stretch gap-2" aria-label="Nieuwe bestellijst">
+              <label for="listName" class="sr-only">Naam van de bestellijst</label>
+              <input id="listName" name="name" type="text" class="input flex-1" placeholder="Naam van de bestellijst" required />
+              <button class="btn btn-brand" type="submit">Toevoegen</button>
+            </form>
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+              <div class="flex-1">
+                <label for="listSearch" class="sr-only">Zoek in bestellijsten</label>
+                <input id="listSearch" type="search" class="input w-full" placeholder="Zoek op artikelnummmer of productnaam" />
+              </div>
+            </div>
+            <div id="listsGrid" class="grid sm:grid-cols-2 gap-4" aria-live="polite"></div>
+            <div id="listsEmpty" class="empty hidden"><div class="empty__title">Nog geen bestellijsten</div><div class="empty__text">Maak je eerste lijst en voeg producten toe.</div></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div id="footer-placeholder"></div>
+
+    <template id="OrderListCardTemplate">
+      <article class="card p-4 flex flex-col gap-3" data-card>
+        <div class="flex items-start justify-between gap-3">
+          <div class="min-w-0">
+            <h3 class="font-extrabold truncate" data-name></h3>
+            <div class="text-sm text-dark/70" data-count></div>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <button type="button" class="btn btn-outline btn-sm" data-open>Openen</button>
+            <button type="button" class="btn btn-outline btn-sm" data-delete>Verwijderen</button>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="/assets/js/nav.js" defer></script>
+    <script src="/assets/js/index.js" defer></script>
+    <script src="/assets/js/store/orderLists.js" type="module"></script>
+    <script type="module">
+      import { OrderLists } from '/assets/js/store/orderLists.js';
+
+      function createCard(list){
+        const tpl = document.getElementById('OrderListCardTemplate');
+        const node = tpl.content.firstElementChild.cloneNode(true);
+        node.querySelector('[data-name]').textContent = list.name || '';
+        node.querySelector('[data-count]').textContent = `${list.items.length} artikelen`;
+        node.querySelector('[data-open]').addEventListener('click', () => { window.location.href = `/account-bestellijsten-detail.html?id=${encodeURIComponent(list.id)}`; });
+        node.querySelector('[data-delete]').addEventListener('click', () => {
+          if(confirm('Weet je zeker dat je deze bestellijst wilt verwijderen?')){
+            OrderLists.deleteList(list.id);
+          }
+        });
+        return node;
+      }
+
+      function render(){
+        const grid = document.getElementById('listsGrid');
+        const empty = document.getElementById('listsEmpty');
+        const q = (document.getElementById('listSearch').value || '').toLowerCase();
+        const { lists } = OrderLists.getState();
+        const arr = Object.values(lists);
+        const filtered = q
+          ? arr.filter(l => l.name.toLowerCase().includes(q) || (l.items||[]).some(i => (i.sku||'').toLowerCase().includes(q) || (i.name||'').toLowerCase().includes(q)))
+          : arr;
+        grid.innerHTML = '';
+        if(filtered.length === 0){ empty.classList.remove('hidden'); return; }
+        empty.classList.add('hidden');
+        const frag = document.createDocumentFragment();
+        filtered.forEach(l => frag.appendChild(createCard(l)));
+        grid.appendChild(frag);
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('newListForm');
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = document.getElementById('listName').value.trim();
+          if(!name) return;
+          const id = OrderLists.createList(name);
+          document.getElementById('listName').value = '';
+          window.location.href = `/account-bestellijsten-detail.html?id=${encodeURIComponent(id)}`;
+        });
+        const search = document.getElementById('listSearch');
+        let t = null;
+        search.addEventListener('input', () => { clearTimeout(t); t = setTimeout(render, 150); });
+        search.addEventListener('keydown', (e) => { if(e.key === 'Escape'){ search.value=''; render(); } });
+        OrderLists.subscribe(render);
+        render();
+      });
+    </script>
+  </body>
+  </html>
+
+

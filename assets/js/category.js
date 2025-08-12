@@ -55,6 +55,19 @@
     return null;
   }
 
+  function findByPath(nodes, parts){
+    let current = { name: 'Assortiment', slug: 'assortiment', children: nodes };
+    const ancestors = [];
+    for(const part of parts){
+      const list = current.children || [];
+      const next = list.find(c => c.slug === part);
+      if(!next){ return { node: current, ancestors }; }
+      ancestors.push({ name: current.name, slug: current.slug });
+      current = next;
+    }
+    return { node: current, ancestors };
+  }
+
   async function loadProducts(){
     try {
       const res = await fetch('/data/products.json', { cache: 'no-store' });
@@ -83,11 +96,11 @@
     // Reset to Home › Assortiment
     while(list.children.length > 3){ list.removeChild(list.lastElementChild); }
     // Build ancestry if present on node.meta.breadcrumbs
-    const crumbs = (node.meta && Array.isArray(node.meta.ancestors)) ? node.meta.ancestors : [];
+      const crumbs = (node.meta && Array.isArray(node.meta.ancestors)) ? node.meta.ancestors : [];
     crumbs.forEach(c => {
       const sep = document.createElement('li'); sep.textContent = '›'; list.appendChild(sep);
       const li = document.createElement('li');
-      const a = document.createElement('a'); a.href = '/subcategory.html?c=' + encodeURIComponent(c.slug); a.textContent = c.name; li.appendChild(a); list.appendChild(li);
+        const a = document.createElement('a'); a.href = '/c/' + encodeURIComponent(c.slug); a.textContent = c.name; li.appendChild(a); list.appendChild(li);
     });
     const sep = document.createElement('li'); sep.textContent = '›'; list.appendChild(sep);
     const current = document.createElement('li'); current.innerHTML = '<span aria-current="page">'+node.name+'</span>'; list.appendChild(current);
@@ -99,12 +112,12 @@
     host.innerHTML = '';
     const fallback = '/assets/images/placeholder-square.svg';
     const chips = document.getElementById('subcatChips'); if (chips) chips.innerHTML = '';
-    const children = (node.children||[]);
+      const children = (node.children||[]);
     if(section) section.hidden = children.length === 0;
     const limit = 16;
     children.forEach((ch, idx) => {
       const a = document.createElement('a');
-      a.href = `/subcategory.html?c=${encodeURIComponent(ch.slug)}`;
+        a.href = `/c/${encodeURIComponent(node.slug)}/${encodeURIComponent(ch.slug)}`;
       a.className = 'cat-card';
       a.innerHTML = `<div class="cat-card__media"><img src="${fallback}" alt="${ch.name}" loading="lazy" decoding="async" width="600" height="600" class="cat-card__img"/></div><span class="cat-card__title">${ch.name}</span>`;
       if(idx < limit) host.appendChild(a);
@@ -119,7 +132,7 @@
         host.innerHTML = '';
         children.forEach((ch) => {
           const a = document.createElement('a');
-          a.href = `/subcategory.html?c=${encodeURIComponent(ch.slug)}`;
+          a.href = `/c/${encodeURIComponent(node.slug)}/${encodeURIComponent(ch.slug)}`;
           a.className = 'cat-card';
          a.innerHTML = `<div class=\"cat-card__media\"><img src=\"${fallback}\" alt=\"${ch.name}\" loading=\"lazy\" decoding=\"async\" width=\"600\" height=\"600\" class=\"cat-card__img\"/></div><span class=\"cat-card__title\">${ch.name}</span>`;
           host.appendChild(a);
@@ -527,29 +540,18 @@
       const data = await loadCategories();
       const nodes = Array.isArray(data)?data:(data.children||[]);
       const nodesWithSlugs = nodes.map(withSlugs);
-      const params = new URLSearchParams(window.location.search);
-      const slug = params.get('c');
-      let node = slug ? findBySlug(nodesWithSlugs, slug) : { name: 'Assortiment', slug: 'assortiment', children: nodesWithSlugs };
-      // Generate simple ancestors for breadcrumbs
-      const findPath = (n, path=[]) => {
-        for(const child of n){
-          const next = [...path, { name: child.name, slug: child.slug }];
-          if(child.slug === (node && node.slug)) return next.slice(0, -1);
-          const deep = findPath(child.children||[], next);
-          if(deep) return deep;
-        }
-        return null;
-      };
-      const ancestors = slug ? findPath(nodesWithSlugs) : [];
-      if(node){ node.meta = Object.assign({}, node.meta, { ancestors }); }
-      if(!node) return;
+
+      // Determine level from pathname /c/:l1/:l2/:l3
+      const pathParts = location.pathname.split('/').filter(Boolean);
+      const isC = pathParts[0] === 'c';
+      const slugs = isC ? pathParts.slice(1) : [];
+      const { node, ancestors } = findByPath(nodesWithSlugs, slugs);
+      if(node){ node.meta = Object.assign({}, node.meta, { ancestors: ancestors.filter(a=>a.slug!=='assortiment') }); }
       renderBreadcrumbs(node);
       renderSubcategoryGrid(node);
       renderCategoryDynamicBlocks(node);
-      // level detection based on taxonomy depth and presence of children
-      const isLeaf = !node.children || node.children.length === 0;
-      const isRoot = !slug;
-      const level = isRoot ? 1 : (isLeaf ? 3 : 2);
+      // level detection based on path depth
+      const level = slugs.length === 0 ? 1 : (slugs.length === 1 ? 2 : 3);
       // Generate short/long intro copy
       const intro = {
         short: `${node.name} voor professionele zorgomgevingen. Selecteer op merk, specificaties en beschikbaarheid.`,
@@ -585,7 +587,7 @@
         if(typeof apply === 'function') apply();
       }); }
       const count = document.getElementById('catCount'); if(count) count.textContent = String(products.length);
-      const viewAll = document.getElementById('viewAllLink'); if(viewAll){ viewAll.classList.toggle('hidden', level !== 2); if(level===2){ viewAll.href = '/subcategory.html?c='+encodeURIComponent(node.slug); viewAll.setAttribute('aria-label', 'Bekijk alle producten in '+node.name); } }
+      const viewAll = document.getElementById('viewAllLink'); if(viewAll){ viewAll.classList.toggle('hidden', level !== 2); if(level===2){ viewAll.href = '/c/'+encodeURIComponent(node.slug); viewAll.setAttribute('aria-label', 'Bekijk alle producten in '+node.name); } }
       // long desc toggle
       const longSection = document.getElementById('longDescSection');
       const longBody = document.getElementById('longDescBody');

@@ -119,7 +119,7 @@
       const catRowWrap = document.createElement('div'); catRowWrap.className = 'space-y-2';
       const catLine = document.createElement('div'); catLine.className = 'flex items-center gap-2';
       const t = makeToggle();
-      const catRow = createItem(cat.name, `/subcategory.html?c=${encodeURIComponent(cat.slug)}`, 0, 'category');
+      const catRow = createItem(cat.name, `/c/${encodeURIComponent(cat.slug)}`, 0, 'category');
       catLine.appendChild(t); catLine.appendChild(catRow);
       catRowWrap.appendChild(catLine);
       const catChildren = createChildrenWrap();
@@ -131,7 +131,7 @@
         const subWrap = document.createElement('div'); subWrap.className = 'space-y-2';
         const subLine = document.createElement('div'); subLine.className = 'flex items-center gap-2';
         const t2 = makeToggle();
-        const subRow = createItem(sub.name, `/subcategory.html?c=${encodeURIComponent(sub.slug)}`, 1, 'sub');
+        const subRow = createItem(sub.name, `/c/${encodeURIComponent(cat.slug)}/${encodeURIComponent(sub.slug)}`, 1, 'sub');
         subLine.appendChild(t2); subLine.appendChild(subRow);
         subWrap.appendChild(subLine);
         const prodWrap = createChildrenWrap();
@@ -222,7 +222,7 @@
     catsHost.innerHTML = '';
     cats.forEach(c => {
       const a = document.createElement('a');
-      a.href = c.href || `/subcategory.html?c=${encodeURIComponent(c.slug||'')}`;
+      a.href = c.href || `/c/${encodeURIComponent(c.slug||'')}`;
       a.className = 'card card--hover p-3'; a.innerHTML = `<div class="font-semibold">${c.label || c.name}</div>`;
       catsHost.appendChild(a);
     });

@@ -1,13 +1,13 @@
 <!-- DEVNOTE[hyva-slot,brands][owner=remka|date=2025-08-11]: Brands A–Z overview. Target: handle=cms_page_view, phtml=Vendor_Theme::cms/brands.phtml (verify). Docs: style-guide.html#componenten -->
 <section class="section">
-  <div class="container mx-auto px-4 py-12 lg:py-16">
+  <div class="container mx-auto py-12 lg:py-16">
 
     <div class="flex flex-wrap items-center gap-3 mb-8">
       <div class="relative">
         <input id="brandSearch" type="search" placeholder="Zoek merk" class="rounded-md border border-light px-3 py-2 pr-8 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-teal" />
         <span class="absolute right-2 top-1/2 -translate-y-1/2 text-dark/50">⌕</span>
       </div>
-      <nav class="flex flex-wrap gap-1" aria-label="A–Z">
+      <nav class="flex flex-wrap gap-1 brands-az" aria-label="A–Z">
       <button class="px-2 py-1 text-sm rounded-md border border-light bg-white hover:bg-light/40" data-letter="all">Alles</button>
         <div id="azNav" class="flex flex-wrap gap-1"></div>
       </nav>

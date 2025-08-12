@@ -1,0 +1,19 @@
+<section class="section container mx-auto" aria-labelledby="pdp-related-title">
+  <h2 id="pdp-related-title" class="text-xl font-bold">Gerelateerde producten</h2>
+  <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4" id="relatedGrid"></div>
+  <script>
+    (function(){
+      // Fallback demo list if nothing else renders
+      var items = [
+        { url: '/product.html', title: 'Handschoenen zwart – L', price: 13.95, imageSrc: '/assets/images/Products/Hartmann/37958_43.webp', imageAlt: 'Handschoenen zwart – L', availability: 'inStock' },
+        { url: '/product.html', title: 'Alcohol 70% 5L', price: 32.00, imageSrc: '/assets/images/Products/HEINE/A-095.12.220-HEINE-PowerSource-EN200-main.webp', imageAlt: 'Alcohol 70% 5L', availability: 'backorder' },
+        { url: '/product.html', title: 'Steriele kompressen 5x5', price: 3.10, imageSrc: '/assets/images/Products/Hartmann/42092_43.webp', imageAlt: 'Steriele kompressen 5x5', availability: 'inStock' },
+        { url: '/product.html', title: 'Infrarood thermometer', price: 39.95, imageSrc: '/assets/images/Products/HEINE/A-180.01.000-HEINE-Soft-Pouch-Otoscopes-Ophthalmoscopes-main.webp', imageAlt: 'Infrarood thermometer', availability: 'outOfStock' }
+      ];
+      var grid = document.getElementById('relatedGrid');
+      if(window.ProductCard && grid && grid.children.length === 0){ window.ProductCard.render(grid, items); }
+    })();
+  </script>
+</section>
+
+

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bestellijst – Remka B.V.</title>
+    <meta name="description" content="Beheer je bestellijst: voorraad, besteladvies en snel toevoegen aan winkelwagen." />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/logo-remka.svg" />
+    <link rel="stylesheet" href="/assets/css/tailwind.css" />
+    <link rel="stylesheet" href="/assets/css/base.css" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <div id="header-placeholder"></div>
+    <main id="main" class="flex-1">
+      <section class="section-brand-tint">
+        <div class="container mx-auto px-4 py-8">
+          <div class="flex items-center gap-3">
+            <h1 id="listTitle" class="text-2xl md:text-3xl font-extrabold text-dark" contenteditable="true" role="textbox" aria-label="Naam van bestellijst"></h1>
+          </div>
+        </div>
+      </section>
+      <section class="container mx-auto px-4 py-8 grid md:grid-cols-3 gap-6">
+        <div class="md:col-span-1"><div data-partial="account-nav"></div></div>
+        <div class="md:col-span-2 space-y-4">
+          <div class="card p-4 md:p-6">
+            <div class="flex flex-col lg:flex-row gap-3 lg:items-center justify-between">
+              <div class="flex-1 flex items-center gap-3">
+                <label for="inListSearch" class="sr-only">Zoek binnen de lijst</label>
+                <input id="inListSearch" type="search" class="input w-full" placeholder="Zoek op artikelnummmer of productnaam" />
+              </div>
+              <div class="flex items-center gap-3">
+                <label for="notifySelect" class="text-sm font-semibold">Notificatie bij onvoldoende voorraad</label>
+                <select id="notifySelect" class="select">
+                  <option value="none">Geen</option>
+                  <option value="daily">Dagelijks</option>
+                  <option value="weekly">Wekelijks</option>
+                </select>
+              </div>
+              <div>
+                <button id="addAllBtn" class="btn btn-brand">Alles aan winkelwagen toevoegen</button>
+              </div>
+            </div>
+
+            <div class="mt-4 overflow-auto hidden md:block">
+              <table class="min-w-full text-sm" aria-label="Bestellijst tabel">
+                <thead class="sticky top-0 bg-white border-b border-light">
+                  <tr class="text-left text-dark/70">
+                    <th class="py-2 px-3">Positie</th>
+                    <th class="py-2 px-3">Artikelnr</th>
+                    <th class="py-2 px-3">Productnaam</th>
+                    <th class="py-2 px-3">Minimale voorraad</th>
+                    <th class="py-2 px-3">Maximale voorraad</th>
+                    <th class="py-2 px-3">Huidige voorraad</th>
+                    <th class="py-2 px-3">Besteladvies</th>
+                    <th class="py-2 px-3">Prijs</th>
+                    <th class="py-2 px-3 text-right">Acties</th>
+                  </tr>
+                </thead>
+                <tbody id="listTbody" class="divide-y divide-light"></tbody>
+              </table>
+              <div id="detailEmpty" class="empty hidden mt-4"><div class="empty__title">Geen producten</div><div class="empty__text">Zoek of voeg producten toe.</div></div>
+            </div>
+            <div id="listCards" class="block md:hidden space-y-3"></div>
+            <div class="mt-4 text-sm text-dark/70" id="tableTotals"></div>
+          </div>
+          <div class="card p-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <input id="scannerToggle" type="checkbox" class="h-4 w-4" />
+              <label for="scannerToggle" class="select-none">Gebruik de productscanner</label>
+            </div>
+            <div class="text-sm text-dark/60">(demo: geen actie)</div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div id="footer-placeholder"></div>
+
+    <template id="RowTemplate">
+      <tr data-row>
+        <td class="py-2 px-3 align-top text-dark/70" data-pos></td>
+        <td class="py-2 px-3 align-top font-mono" data-sku></td>
+        <td class="py-2 px-3 align-top">
+          <div class="font-semibold" data-name></div>
+        </td>
+        <td class="py-2 px-3 align-top">
+          <label class="sr-only">Min</label>
+          <input type="number" inputmode="numeric" min="0" class="input input-sm w-28" data-min />
+        </td>
+        <td class="py-2 px-3 align-top">
+          <label class="sr-only">Max</label>
+          <input type="number" inputmode="numeric" min="0" class="input input-sm w-28" data-max />
+        </td>
+        <td class="py-2 px-3 align-top">
+          <label class="sr-only">Huidig</label>
+          <input type="number" inputmode="numeric" min="0" class="input input-sm w-28" data-current />
+        </td>
+        <td class="py-2 px-3 align-top" data-adv></td>
+        <td class="py-2 px-3 align-top" data-price></td>
+        <td class="py-2 px-3 align-top text-right">
+          <div class="inline-flex items-center gap-1">
+            <button type="button" class="btn btn-outline btn-sm" data-add>naar winkelwagen</button>
+            <button type="button" class="btn btn-outline btn-sm" data-remove>verwijderen</button>
+          </div>
+        </td>
+      </tr>
+    </template>
+
+    <script src="/assets/js/nav.js" defer></script>
+    <script src="/assets/js/index.js" defer></script>
+    <script type="module" src="/assets/js/store/orderLists.js"></script>
+    <script type="module" src="/assets/js/utils/quantityCalculator.js"></script>
+    <script type="module">
+      import { OrderLists } from '/assets/js/store/orderLists.js';
+      import { computeAdvice } from '/assets/js/utils/quantityCalculator.js';
+
+      function formatPrice(n){ n = Number(n||0); return '€ ' + n.toFixed(2).replace('.', ','); }
+
+      const url = new URL(location.href);
+      const listId = url.searchParams.get('id');
+
+      function renderTitle(list){
+        const h1 = document.getElementById('listTitle');
+        h1.textContent = list?.name || '';
+        h1.addEventListener('blur', () => { OrderLists.renameList(listId, h1.textContent.trim()); });
+        h1.addEventListener('keydown', (e) => { if(e.key==='Enter'){ e.preventDefault(); h1.blur(); } });
+      }
+
+      function renderRows(){
+        const list = OrderLists.getList(listId);
+        const tbody = document.getElementById('listTbody');
+        const empty = document.getElementById('detailEmpty');
+        const cards = document.getElementById('listCards');
+        const search = (document.getElementById('inListSearch').value || '').toLowerCase();
+        tbody.innerHTML = '';
+        cards.innerHTML = '';
+        if(!list || (list.items||[]).length === 0){ empty.classList.remove('hidden'); return; }
+        empty.classList.add('hidden');
+        const tpl = document.getElementById('RowTemplate');
+        let pos = 1;
+        const filtered = list.items.filter(i => !search || (i.sku||'').toLowerCase().includes(search) || (i.name||'').toLowerCase().includes(search));
+        filtered.forEach((it) => {
+            const row = tpl.content.firstElementChild.cloneNode(true);
+            row.querySelector('[data-pos]').textContent = String(pos++);
+            row.querySelector('[data-sku]').textContent = it.sku;
+            row.querySelector('[data-name]').textContent = it.name;
+            row.querySelector('[data-price]').textContent = formatPrice(it.price);
+
+            const advEl = row.querySelector('[data-adv]');
+            const minEl = row.querySelector('[data-min]');
+            const maxEl = row.querySelector('[data-max]');
+            const curEl = row.querySelector('[data-current]');
+            const addBtn = row.querySelector('[data-add]');
+            const delBtn = row.querySelector('[data-remove]');
+
+            minEl.value = String(it.min ?? 0);
+            maxEl.value = String(it.max ?? 0);
+            curEl.value = String(it.current ?? 0);
+
+            function updateAdvice(){
+              const min = Number(minEl.value || 0);
+              const max = Number(maxEl.value || 0);
+              const current = Number(curEl.value || 0);
+              if(min > max){ minEl.classList.add('ring-2','ring-red-500'); } else { minEl.classList.remove('ring-2','ring-red-500'); }
+              if(current < 0){ curEl.classList.add('ring-2','ring-red-500'); } else { curEl.classList.remove('ring-2','ring-red-500'); }
+              const advies = computeAdvice({ min, max, current });
+              advEl.innerHTML = advies === 0 ? '<span class="badge badge--ok">OK</span>' : String(advies);
+            }
+            updateAdvice();
+
+            function persist(){
+              OrderLists.updateItem(listId, it.id, { min: Number(minEl.value||0), max: Number(maxEl.value||0), current: Number(curEl.value||0) });
+            }
+
+            minEl.addEventListener('input', () => { updateAdvice(); });
+            maxEl.addEventListener('input', () => { updateAdvice(); });
+            curEl.addEventListener('input', () => { updateAdvice(); });
+            minEl.addEventListener('change', persist);
+            maxEl.addEventListener('change', persist);
+            curEl.addEventListener('change', persist);
+
+            addBtn.addEventListener('click', () => {
+              const advies = computeAdvice({ min: Number(minEl.value||0), max: Number(maxEl.value||0), current: Number(curEl.value||0) });
+              if(advies <= 0) return;
+              try { window.dispatchEvent(new CustomEvent('cart:addItems', { detail: [{ sku: it.sku, qty: advies }] })); } catch {}
+            });
+            delBtn.addEventListener('click', () => { if(confirm('Verwijderen?')) OrderLists.removeItem(listId, it.id); });
+
+            tbody.appendChild(row);
+          });
+
+        // Mobile cards
+        filtered.forEach((it) => {
+          const card = document.createElement('article');
+          card.className = 'card p-4 space-y-2';
+          const title = document.createElement('div');
+          title.className = 'font-semibold';
+          title.textContent = it.name;
+          const sku = document.createElement('div');
+          sku.className = 'text-sm text-dark/70';
+          sku.textContent = 'SKU: ' + it.sku;
+          const grid = document.createElement('div');
+          grid.className = 'grid grid-cols-3 gap-2';
+          function makeField(label, value){
+            const wrap = document.createElement('div');
+            const lab = document.createElement('div'); lab.className = 'text-xs text-dark/70'; lab.textContent = label;
+            const input = document.createElement('input'); input.type='number'; input.inputMode='numeric'; input.min='0'; input.className='input input-sm'; input.value=String(value||0);
+            wrap.appendChild(lab); wrap.appendChild(input); return { wrap, input };
+          }
+          const fMin = makeField('Min', it.min);
+          const fMax = makeField('Max', it.max);
+          const fCur = makeField('Huidig', it.current);
+          grid.appendChild(fMin.wrap); grid.appendChild(fMax.wrap); grid.appendChild(fCur.wrap);
+          const meta = document.createElement('div');
+          meta.className = 'flex items-center justify-between';
+          const adv = document.createElement('div');
+          const price = document.createElement('div'); price.className='font-semibold'; price.textContent = formatPrice(it.price);
+          meta.appendChild(adv); meta.appendChild(price);
+          const actions = document.createElement('div');
+          actions.className='flex gap-2';
+          const addBtn = document.createElement('button'); addBtn.className='btn btn-outline btn-sm'; addBtn.textContent='naar winkelwagen';
+          const delBtn = document.createElement('button'); delBtn.className='btn btn-outline btn-sm'; delBtn.textContent='verwijderen';
+          actions.appendChild(addBtn); actions.appendChild(delBtn);
+
+          function update(){
+            const advies = computeAdvice({ min: Number(fMin.input.value||0), max: Number(fMax.input.value||0), current: Number(fCur.input.value||0) });
+            adv.innerHTML = advies === 0 ? '<span class="badge badge--ok">OK</span>' : 'Advies: ' + String(advies);
+          }
+          update();
+          [fMin.input, fMax.input, fCur.input].forEach((el) => el.addEventListener('input', update));
+          [fMin.input, fMax.input, fCur.input].forEach((el) => el.addEventListener('change', () => {
+            OrderLists.updateItem(listId, it.id, { min: Number(fMin.input.value||0), max: Number(fMax.input.value||0), current: Number(fCur.input.value||0) });
+          }));
+          addBtn.addEventListener('click', () => {
+            const advies = computeAdvice({ min: Number(fMin.input.value||0), max: Number(fMax.input.value||0), current: Number(fCur.input.value||0) });
+            if(advies<=0) return; try { window.dispatchEvent(new CustomEvent('cart:addItems', { detail: [{ sku: it.sku, qty: advies }] })); } catch {}
+          });
+          delBtn.addEventListener('click', () => { if(confirm('Verwijderen?')) OrderLists.removeItem(listId, it.id); });
+
+          card.appendChild(title);
+          card.appendChild(sku);
+          card.appendChild(grid);
+          card.appendChild(meta);
+          card.appendChild(actions);
+          cards.appendChild(card);
+        });
+
+        const totals = OrderLists.computeTotals(listId);
+        document.getElementById('tableTotals').textContent = `${totals.items} artikelen • advies: ${totals.adviceQty} stuks • waarde: ${formatPrice(totals.sum)}`;
+      }
+
+      function init(){
+        const list = OrderLists.getList(listId);
+        if(!list){ window.location.href = '/account-bestellijsten.html'; return; }
+        renderTitle(list);
+        const notify = document.getElementById('notifySelect');
+        notify.value = list.notify || 'none';
+        notify.addEventListener('change', () => { OrderLists.setNotify(listId, notify.value); });
+        const search = document.getElementById('inListSearch');
+        let t = null; search.addEventListener('input', () => { clearTimeout(t); t = setTimeout(renderRows, 150); });
+        search.addEventListener('keydown', (e) => { if(e.key==='Escape'){ search.value=''; renderRows(); }});
+        document.getElementById('addAllBtn').addEventListener('click', () => { OrderLists.addAllToCart(listId); });
+        OrderLists.subscribe(() => { renderTitle(OrderLists.getList(listId)); renderRows(); });
+        renderRows();
+      }
+
+      document.addEventListener('DOMContentLoaded', init);
+    </script>
+  </body>
+  </html>
+
+

@@ -1,24 +1,28 @@
 <!-- DEVNOTE[hyva-slot,plp][owner=remka|date=2025-08-11]: Category product grid markup. Target: handle=category_view, phtml=Magento_Catalog::product/list.phtml. Docs: style-guide.html#grid -->
-<section class="container mx-auto px-4 py-8 section-alt" id="productsSection" hidden aria-label="Productoverzicht">
+<section class="py-8 section-alt" id="productsSection" hidden aria-label="Productoverzicht">
   <div class="container-narrow">
     <div class="flex items-center justify-between gap-4">
       <h2 class="text-xl font-bold">Producten</h2>
       <a href="#" id="viewAllLink" class="text-sm text-brand hover:underline hidden">Alles bekijken</a>
     </div>
-    <div data-partial="components/ProductCard"></div>
-    <div id="productGrid" class="mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
-    <div id="productGridSkeletons" class="mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 hidden" aria-hidden="true">
-      <div class="card p-4 skeleton"></div>
-      <div class="card p-4 skeleton"></div>
-      <div class="card p-4 skeleton"></div>
-      <div class="card p-4 skeleton"></div>
-    </div>
-    <div id="productEmpty" class="mt-6 empty hidden" role="status" aria-live="polite">
-      <div class="empty__title">Geen resultaten</div>
-      <div class="empty__text mt-1">Probeer een andere filtercombinatie of wis je filters.</div>
-      <div class="mt-3"><button id="clearAllFilters" class="btn btn-outline">Wis filters</button></div>
-    </div>
-    <div id="advice" class="mt-10">
+  </div>
+
+  <div data-partial="components/ProductCard"></div>
+  <div id="productGrid" class="mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+  <div id="productGridSkeletons" class="mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 hidden" aria-hidden="true">
+    <div class="card p-4 skeleton"></div>
+    <div class="card p-4 skeleton"></div>
+    <div class="card p-4 skeleton"></div>
+    <div class="card p-4 skeleton"></div>
+  </div>
+  <div id="productEmpty" class="mt-6 empty hidden" role="status" aria-live="polite">
+    <div class="empty__title">Geen resultaten</div>
+    <div class="empty__text mt-1">Probeer een andere filtercombinatie of wis je filters.</div>
+    <div class="mt-3"><button id="clearAllFilters" class="btn btn-outline">Wis filters</button></div>
+  </div>
+
+  <div id="advice" class="mt-10">
+    <div class="container-narrow">
       <h3 class="font-extrabold text-lg">Advies en veelgekozen</h3>
       <div class="mt-3 grid md:grid-cols-2 gap-4">
         <article class="card p-4">
@@ -55,4 +59,6 @@
     </div>
   </div>
 </section>
+
+<script type="module" src="/assets/js/orderlist/addToOrderListModal.js"></script>
 

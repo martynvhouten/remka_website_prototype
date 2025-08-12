@@ -1,0 +1,8 @@
+[
+  { "sku": "HART-37958-L", "name": "Handschoenen zwart – L", "price": 13.95, "image": "/assets/images/Products/Hartmann/37958_43.webp", "stock": "in_stock" },
+  { "sku": "ALC-70-5L", "name": "Alcohol 70% 5L", "price": 32.0, "image": "/assets/images/Products/HEINE/A-095.12.220-HEINE-PowerSource-EN200-main.webp", "stock": "backorder" },
+  { "sku": "HART-42092", "name": "Steriele kompressen 5x5", "price": 3.1, "image": "/assets/images/Products/Hartmann/42092_43.webp", "stock": "in_stock" },
+  { "sku": "IR-THERM", "name": "Infrarood thermometer", "price": 39.95, "image": "/assets/images/Products/HEINE/A-180.01.000-HEINE-Soft-Pouch-Otoscopes-Ophthalmoscopes-main.webp", "stock": "out_of_stock" }
+]
+
+

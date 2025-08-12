@@ -1,0 +1,25 @@
+<!-- PDP Layout wrappers: use as reference/wrapper for consistent sections. Not auto-including other partials due to single-pass injection. -->
+<div class="container mx-auto py-8">
+  <!-- Place section partials explicitly in templates in this order:
+    1) Gallery
+    2) Buy box (+ RFQ)
+    3) Specs
+    4) Long description
+    5) Related products
+  -->
+  <section class="grid lg:grid-cols-2 gap-10" aria-labelledby="pdp-gallery-title">
+    <div data-partial="pdp/Gallery"></div>
+    <div data-partial="pdp/BuyBox"></div>
+  </section>
+  <section class="mt-10" aria-labelledby="pdp-specs-title">
+    <div data-partial="pdp/Specs"></div>
+  </section>
+  <section class="mt-10" aria-labelledby="pdp-long-title">
+    <div data-partial="pdp/LongDescription"></div>
+  </section>
+  <section class="mt-10" aria-labelledby="pdp-related-title">
+    <div data-partial="pdp/RelatedProducts"></div>
+  </section>
+</div>
+
+

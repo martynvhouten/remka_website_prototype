@@ -131,7 +131,7 @@
   function makeCart(payload, opts){
     opts = opts || {};
     var p = payload || {};
-    var title = p.title || 'Toegevoegd aan winkelmand';
+    var title = p.title || 'Toegevoegd aan winkelwagen';
     var details = [];
     if(p.qty) details.push('Aantal: '+p.qty);
     if(p.sku) details.push('SKU: '+p.sku);
@@ -203,6 +203,15 @@
     var qty = parseInt(btn.getAttribute('data-qty') || '1', 10) || 1;
     var thumb = btn.getAttribute('data-image') || '';
     toast.cart({ title: title, qty: qty, thumbnail: thumb }, { actionText: 'Bekijk winkelwagen' });
+  });
+
+  // Listen for bulk add items events from Bestellijsten
+  window.addEventListener('cart:addItems', function(e){
+    try {
+      var items = (e && e.detail) || [];
+      var totalQty = items.reduce(function(sum, it){ return sum + (Number(it && it.qty || 0)); }, 0);
+      api.cart({ title: 'Toegevoegd aan winkelwagen', qty: totalQty }, { actionText: 'Bekijk winkelwagen' });
+    } catch(_) {}
   });
 })();
 

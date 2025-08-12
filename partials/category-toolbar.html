@@ -1,6 +1,6 @@
 <!-- DEVNOTE[hyva-slot,plp][owner=remka|date=2025-08-11]: Product toolbar (filters/sort/view). Target: handle=category_view, phtml=Magento_Catalog::product/list/toolbar.phtml. Docs: style-guide.html#forms -->
-<section class="container mx-auto px-4 py-4" aria-label="Product toolbar">
-  <div class="flex flex-wrap items-center justify-between gap-3 border border-light rounded-lg bg-white px-3 py-2">
+<section class="py-4" aria-label="Product toolbar">
+  <div class="flex flex-wrap items-center justify-between gap-3 border border-light rounded-lg bg-white px-3 py-2 category-toolbar">
   <div class="flex items-center gap-2">
     <div class="text-sm text-dark/80" id="resultCount">0 producten</div>
     <div class="hidden md:flex items-center gap-1" id="activeChips" aria-live="polite"></div>
@@ -14,7 +14,7 @@
     <label class="text-sm text-dark/80 flex items-center gap-2" for="sortSelect">
         Sorteer:
       </label>
-      <select id="sortSelect" class="border border-light rounded-md px-2 py-1 text-sm" aria-label="Sorteer op">
+      <select id="sortSelect" class="border border-light rounded-md px-2 py-1 text-sm category-sort" aria-label="Sorteer op">
         <option value="popularity">Populair</option>
         <option value="price-asc">Prijs laag-hoog</option>
         <option value="price-desc">Prijs hoog-laag</option>

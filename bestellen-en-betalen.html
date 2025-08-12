@@ -4,11 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Bestel- en betaalprocedure – Remka B.V.</title>
-    <meta name="description" content="Zo bestel en betaal je bij Remka. iDEAL, Bancontact, creditcard en PayPal. B2B op rekening in overleg." />
+    <meta name="description" content="Alles over bestellen, betaalopties, verzendkosten, intracommunautaire levering en duurzaam verzenden met DHL GoGreen." />
     <link rel="icon" type="image/svg+xml" href="/assets/images/logo-remka.svg" />
     <link rel="stylesheet" href="/assets/css/tailwind.css" />
     <link rel="stylesheet" href="/assets/css/base.css" />
-</head>
+  </head>
   <body class="min-h-screen flex flex-col">
     <div id="header-placeholder"></div>
     <main id="main" class="flex-1">
@@ -17,27 +17,110 @@
           <header>
             <div class="eyebrow">Klantenservice</div>
             <h1 class="mt-1 text-3xl font-extrabold tracking-tight">Bestel- en betaalprocedure</h1>
-            <p class="mt-2 section-subtitle">Bestellen in enkele stappen. Betalen met iDEAL, Bancontact, creditcard of PayPal. B2B op rekening in overleg.</p>
+            <p class="mt-2 section-subtitle">Bestellen in enkele stappen. Betaal met iDEAL, Bancontact, creditcard, Apple Pay of PayPal. B2B: betalen op rekening in overleg.</p>
           </header>
         </div>
       </section>
+
       <section class="container mx-auto px-4 py-10 grid lg:grid-cols-3 gap-8 items-start">
-        <article class="lg:col-span-2 space-y-6">
-          <h2 class="text-xl font-extrabold">Bestellen</h2>
-          <ol class="grid md:grid-cols-3 gap-4 text-sm">
-            <li class="card p-4"><h3 class="font-semibold">Product kiezen</h3><p class="text-dark/80 mt-1">Selecteer product, aantallen en opties.</p></li>
-            <li class="card p-4"><h3 class="font-semibold">Gegevens</h3><p class="text-dark/80 mt-1">Vul bezorg‑ en factuurgegevens in.</p></li>
-            <li class="card p-4"><h3 class="font-semibold">Betalen</h3><p class="text-dark/80 mt-1">Kies betaalmethode en rond af.</p></li>
-          </ol>
-          <h2 class="text-xl font-extrabold">Betalen</h2>
-          <ul class="grid sm:grid-cols-2 gap-3 text-sm text-dark/90">
-            <li class="card p-3">iDEAL</li>
-            <li class="card p-3">Bancontact</li>
-            <li class="card p-3">Creditcard (Visa/Mastercard)</li>
-            <li class="card p-3">PayPal</li>
-            <li class="card p-3">B2B: betalen op rekening (op aanvraag)</li>
-          </ul>
+        <article class="lg:col-span-2 space-y-8">
+          <section>
+            <h2 class="text-xl font-extrabold">Bestellen</h2>
+            <ol class="mt-4 grid md:grid-cols-3 gap-4 text-sm">
+              <li class="card p-4"><div class="font-semibold">1. Product kiezen</div><div class="text-dark/80 mt-1">Selecteer product, aantallen en opties.</div></li>
+              <li class="card p-4"><div class="font-semibold">2. Gegevens</div><div class="text-dark/80 mt-1">Vul bezorg‑ en factuurgegevens in.</div></li>
+              <li class="card p-4"><div class="font-semibold">3. Betalen</div><div class="text-dark/80 mt-1">Kies betaalmethode en rond af.</div></li>
+            </ol>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-extrabold">Betaalmogelijkheden</h2>
+            <div class="mt-4 overflow-auto">
+              <table class="pricing-table min-w-full text-sm">
+                <thead>
+                  <tr>
+                    <th class="text-left">Betaaloptie</th>
+                    <th class="text-left">Kosten</th>
+                    <th class="text-left">Beschrijving</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>iDEAL</td><td>Gratis</td><td>Veilig en gemakkelijk online betalen via iDEAL, direct vanuit je bankrekening.</td></tr>
+                  <tr><td>Creditcard</td><td>Gratis</td><td>We ondersteunen Visa, Mastercard, American Express, PostePay en Cartes Bancaires.</td></tr>
+                  <tr><td>Apple Pay</td><td>Gratis</td><td>Eenvoudig en veilig betalen met je Apple‑apparaat.</td></tr>
+                  <tr><td>PayPal</td><td>3% van het totaalbedrag</td><td>Betaal met je PayPal‑saldo of een gekoppelde rekening/creditcard.</td></tr>
+                  <tr><td>KBC/CBC</td><td>Gratis</td><td>Handige betaaloptie voor klanten van KBC/CBC, direct vanuit je online bankomgeving.</td></tr>
+                  <tr><td>Bankoverschrijving</td><td>Gratis</td><td>Traditionele methode. Je ontvangt instructies na het plaatsen van de bestelling.</td></tr>
+                  <tr><td>Bancontact</td><td>Gratis</td><td>De meest gebruikte betaalmethode in België, direct vanuit je bankomgeving.</td></tr>
+                  <tr><td>Belfius Direct Net</td><td>Gratis</td><td>Snelle en veilige betaalmethode voor klanten van Belfius.</td></tr>
+                  <tr><td>Giropay</td><td>Gratis</td><td>Populaire Duitse betaalmethode: directe online overboeking.</td></tr>
+                  <tr><td>EPS</td><td>Gratis</td><td>Oostenrijkse betaalmethode, vergelijkbaar met iDEAL en Giropay.</td></tr>
+                  <tr><td>Przelewy24</td><td>Gratis</td><td>Veelgebruikte betaalmethode in Polen, met diverse opties.</td></tr>
+                  <tr><td>Betalen op rekening (B2B)</td><td>Gratis</td><td>Beschikbaar voor goedgekeurde zakelijke klanten na positieve kredietcontrole.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-extrabold">Verzendinformatie</h2>
+            <div class="mt-4 overflow-auto">
+              <table class="pricing-table min-w-full text-sm">
+                <thead>
+                  <tr>
+                    <th class="text-left">Land</th>
+                    <th class="text-left">Kosten</th>
+                    <th class="text-left">Beschrijving</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Nederland</td><td>Gratis boven € 100, anders € 6,95</td><td>Voor 15:00 besteld, dezelfde dag verzonden.</td></tr>
+                  <tr><td>België</td><td>Gratis boven € 100, anders € 6,95</td><td>Levering binnen 1–2 werkdagen.</td></tr>
+                  <tr><td>Duitsland</td><td>€ 9,95</td><td>Levering binnen 2–3 werkdagen.</td></tr>
+                  <tr><td>Luxemburg</td><td>€ 12,95</td><td>Levering binnen 2–3 werkdagen.</td></tr>
+                  <tr><td>Overige landen</td><td>Variabel</td><td>Neem contact op met de klantenservice voor tarieven en levertijden.</td></tr>
+                  <tr><td>Afhaalpunten (DHL)</td><td>Variabel</td><td>Haal je pakket op bij een van de vele DHL‑afhaalpunten in Europa.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="grid md:grid-cols-2 gap-6">
+            <article class="card p-6">
+              <h2 class="font-extrabold text-lg">Intracommunautaire levering (zakelijk)</h2>
+              <ul class="mt-3 text-sm text-dark/90 space-y-2 list-disc list-inside">
+                <li>Zakelijke leveringen binnen de EU zijn mogelijk met 0% btw na verificatie.</li>
+                <li>Voer je btw-nummer in het daarvoor bestemde veld in; verificatie gebeurt automatisch.</li>
+                <li>Bij positieve verificatie wordt btw verlaagd naar 0% en het nummer op de factuur vermeld.</li>
+                <li>Let op: vul alleen de cijfers van het btw-nummer in, zonder landcode (zoals “BE”).</li>
+              </ul>
+            </article>
+            <article class="card p-6">
+              <h2 class="font-extrabold text-lg">Afhalen in Rijswijk</h2>
+              <p class="mt-3 text-sm text-dark/90">Je kunt je bestelling tijdens kantooruren afhalen in Rijswijk. Handig als je in de buurt bent of liever niet laat bezorgen. Neem even contact op voor afstemming.</p>
+              <div class="mt-4"><a href="/contact.html" class="btn btn-outline btn-sm">Afhalen afstemmen</a></div>
+            </article>
+          </section>
+
+          <section class="section-alt rounded-[0.75rem] p-0">
+            <div class="px-4 py-6 md:py-8">
+              <h2 class="text-xl font-extrabold">Klimaatneutraal verzenden met DHL GoGreen</h2>
+              <ul class="mt-3 text-sm text-dark/90 space-y-2 list-disc list-inside max-w-prose">
+                <li>We verminderen onze ecologische voetafdruk in processen, logistiek en IT.</li>
+                <li>Ons pand is energiezuinig (A+++) met eigen energieopwek en circulaire materialen.</li>
+                <li>Samen met DHL werken we aan emissiereductie; doelstellingen sluiten aan bij onze visie.</li>
+                <li>CO₂‑compensatie via DHL GoGreen en extra inspanningen voor Benelux‑zendingen.</li>
+                <li>Investeringen in herbebossingsprojecten (o.a. via Land Life Company) voor extra impact.</li>
+                <li>Elektrische voertuigen voor bezorging waar mogelijk, passend bij lokale milieuregels.</li>
+              </ul>
+              <div class="mt-5 flex gap-3">
+                <a href="/duurzaamheid.html" class="btn btn-brand btn-sm">Meer over duurzaamheid</a>
+                <a href="/contact.html" class="btn btn-outline btn-sm">Vragen? Neem contact op</a>
+              </div>
+            </div>
+          </section>
         </article>
+
         <aside>
           <div data-partial="content/contact-card"></div>
         </aside>
@@ -47,53 +130,6 @@
     <script src="/assets/js/nav.js" defer></script>
     <script src="/assets/js/index.js" defer></script>
   </body>
-  </html>
-
-<!DOCTYPE html>
-<html lang="nl">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bestellen & betalen – Remka B.V.</title>
-    <meta name="description" content="Informatie over bestellen en betalen bij Remka B.V." />
-    <link rel="canonical" href="https://remka-prototype.netlify.app/bestellen-en-betalen.html" />
-    <meta property="og:title" content="Bestellen & betalen – Remka B.V." />
-    <meta property="og:description" content="Betalingsmogelijkheden en bestelproces." />
-    <meta property="og:type" content="website" />
-    <link rel="stylesheet" href="/assets/css/base.css" />
-</head>
-  <body class="min-h-screen flex flex-col">
-    <div id="header-placeholder"></div>
-    <main id="main" class="flex-1">
-      <section class="section-teal-tint">
-        <div class="container mx-auto px-4 py-12 lg:py-16">
-          <header>
-            <div class="eyebrow">Service</div>
-            <h1 class="mt-1 text-3xl font-extrabold tracking-tight">Bestellen & betalen</h1>
-            <p class="mt-2 section-subtitle">Voorbeeldpagina met informatie over het bestelproces en betaalmethoden.</p>
-          </header>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container mx-auto px-4 py-12 lg:py-16">
-          <div class="grid md:grid-cols-2 gap-6">
-            <section class="card p-6">
-              <h2 class="font-semibold">Bestellen</h2>
-              <p class="mt-2 text-sm text-dark/80">Plaats producten in je winkelmand en ga naar afrekenen.</p>
-            </section>
-            <section class="card p-6">
-              <h2 class="font-semibold">Betalen</h2>
-              <p class="mt-2 text-sm text-dark/80">We ondersteunen o.a. iDEAL, Bancontact, Visa, Mastercard en PayPal. Voorbeeldinhoud.</p>
-            </section>
-          </div>
-        </div>
-      </section>
-    </main>
-    <div id="footer-placeholder"></div>
-    <script src="/assets/js/nav.js" defer></script>
-    <script src="/assets/js/index.js" defer></script>
-  </body>
-  </html>
+</html>
 
 

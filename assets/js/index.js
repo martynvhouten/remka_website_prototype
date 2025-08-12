@@ -2,7 +2,8 @@
 
 async function injectPartial(el, name) {
   try {
-    const path = name.startsWith('components/') ? `/${name}.html` : `/partials/${name}.html`;
+    // Use relative paths so it also works when opening files directly (file://)
+    const path = name.startsWith('components/') ? `${name}.html` : `partials/${name}.html`;
     const res = await fetch(path, { cache: 'no-store' });
     if (!res.ok) return;
     const html = await res.text();
@@ -17,9 +18,14 @@ async function loadPartials() {
   if (headerPh) await injectPartial(headerPh, 'header');
   if (footerPh) await injectPartial(footerPh, 'footer');
 
-  // Generic component placeholders
-  const blocks = Array.from(document.querySelectorAll('[data-partial]'));
-  await Promise.all(blocks.map((el) => injectPartial(el, el.getAttribute('data-partial'))));
+  // Generic component placeholders (support nested placeholders introduced by injected partials)
+  let safety = 0;
+  while (safety < 3) { // limit recursion depth
+    const blocks = Array.from(document.querySelectorAll('[data-partial]'));
+    if (blocks.length === 0) break;
+    await Promise.all(blocks.map((el) => injectPartial(el, el.getAttribute('data-partial'))));
+    safety += 1;
+  }
 
   // Notify others that partials are loaded
   try { document.dispatchEvent(new CustomEvent('partials:loaded')); } catch {}
@@ -109,9 +115,63 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     const registerForm = document.getElementById('registerForm');
     if (registerForm) {
+      // Minimal UX for business vs consumer fields
+      const typeRadios = registerForm.querySelectorAll('input[name="accountType"]');
+      const bizIntro = document.getElementById('bizIntro');
+      const bizAddressRow = document.getElementById('bizAddressRow');
+      const bizAddressConfirm = document.getElementById('bizAddressConfirm');
+      const company = document.getElementById('company');
+      const kvk = document.getElementById('kvk');
+      const vat = document.getElementById('vat');
+      const vatHint = document.getElementById('vatHint');
+      const onAccountRequest = document.getElementById('onAccountRequest');
+
+      function setBusinessRequired(isBiz){
+        if (!company || !kvk || !vat || !bizAddressRow || !bizIntro) return;
+        company.required = isBiz;
+        kvk.required = isBiz;
+        vat.required = isBiz;
+        bizIntro.hidden = !isBiz;
+        bizAddressRow.hidden = !isBiz;
+        if (!isBiz) {
+          bizAddressConfirm.checked = false;
+          vat.setCustomValidity('');
+          if (vatHint) vatHint.textContent = '';
+        }
+      }
+
+      function getAccountType(){
+        const checked = Array.from(typeRadios).find(r => r.checked);
+        return checked ? checked.value : 'consumer';
+      }
+
+      typeRadios.forEach(r => r.addEventListener('change', () => setBusinessRequired(getAccountType()==='business')));
+      setBusinessRequired(getAccountType()==='business');
+
+      // Very lightweight VAT pattern hint (not a real validation)
+      if (vat && vatHint) {
+        vat.addEventListener('input', () => {
+          const v = (vat.value || '').trim().toUpperCase();
+          const looksNl = /^NL[0-9]{9}B[0-9]{2}$/.test(v);
+          if (!v) { vatHint.textContent = ''; return; }
+          vatHint.textContent = looksNl ? 'Btw-nummer lijkt geldig van formaat (NL).' : 'Controleer het formaat. Voor NL: NL123456789B01';
+        });
+      }
+
       registerForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        try { window.toast && window.toast.success('Ingelogd'); } catch {}
+        // Simple client-side guard for business address confirm
+        if (getAccountType() === 'business' && bizAddressRow && !bizAddressConfirm.checked) {
+          try { window.toast && window.toast.warning('Bevestig dat je met een zakelijk adres registreert.'); } catch {}
+          bizAddressConfirm.focus();
+          return;
+        }
+        // Simulate request/notification for on-account requests
+        if (onAccountRequest && onAccountRequest.checked) {
+          // In Magento/Hyvä: trigger email to sales/admin; here we just toast
+          try { window.toast && window.toast.info('Aanvraag "betalen op rekening" verzonden.'); } catch {}
+        }
+        try { window.toast && window.toast.success('Account aangemaakt'); } catch {}
         setTimeout(() => { window.location.href = 'account-dashboard.html'; }, 300);
       });
     }
@@ -347,7 +407,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       user.requisitionLists.forEach((list) => {
         const div = document.createElement('div');
         div.className = 'card p-4';
-        div.innerHTML = `<div class=\"flex items-start justify-between\">\n            <div>\n              <div class=\"font-semibold\">${list.name}</div>\n              <div class=\"text-sm text-dark/70\">Aangemaakt: ${list.createdAt} • ${list.items.length} artikelen</div>\n            </div>\n            <a href=\"#\" class=\"btn btn-outline\">In winkelmand</a>\n          </div>`;
+        div.innerHTML = `<div class=\"flex items-start justify-between\">\n            <div>\n              <div class=\"font-semibold\">${list.name}</div>\n              <div class=\"text-sm text-dark/70\">Aangemaakt: ${list.createdAt} • ${list.items.length} artikelen</div>\n            </div>\n            <a href=\"#\" class=\"btn btn-outline\">In winkelwagen</a>\n          </div>`;
         rlList.appendChild(div);
       });
     }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Categorie | Remka</title>
+    <meta name="description" content="Bekijk producten binnen deze categorie bij Remka." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/tailwind.css" />
+    <link rel="stylesheet" href="/assets/css/base.css" />
+  </head>
+  <body class="min-h-screen flex flex-col layout-wide">
+    <div id="header-placeholder"></div>
+
+    <main id="main" class="flex-1">
+      <div data-partial="category-header"></div>
+
+      <section class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+          <div class="md:col-span-3" id="categoryLeftCol">
+            <div data-partial="category-facets"></div>
+          </div>
+          <div class="md:col-span-9 space-y-8" id="categoryRightCol">
+            <div data-partial="category-filters"></div>
+            <div data-partial="category-toolbar"></div>
+            <div data-partial="category-productlist"></div>
+            <div data-partial="category-pagination"></div>
+            <div data-partial="category-longdesc"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="/assets/js/nav.js" defer></script>
+    <script src="/assets/js/index.js" defer></script>
+    <script src="/assets/js/category.js" defer></script>
+    <script src="/assets/js/brands.js" defer></script>
+  </body>
+  </html>
+

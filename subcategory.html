@@ -21,13 +21,13 @@
     <link rel="stylesheet" href="/assets/css/base.css" />
     
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body class="min-h-screen flex flex-col layout-wide">
     <div id="header-placeholder"></div>
 
     <main id="main" class="flex-1">
       <div data-partial="category-header"></div>
 
-      <section class="container mx-auto px-4 py-6">
+      <section class="container mx-auto px-4 py-8">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
           <!-- Left: facets -->
           <div class="md:col-span-3" id="categoryLeftCol">
@@ -35,7 +35,7 @@
           </div>
 
           <!-- Right: content -->
-          <div class="md:col-span-9 space-y-6" id="categoryRightCol">
+          <div class="md:col-span-9 space-y-8" id="categoryRightCol">
             <div data-partial="category-filters"></div>
             <div data-partial="category-toolbar"></div>
             <div data-partial="category-subgrid"></div>

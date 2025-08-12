@@ -66,7 +66,7 @@ Zie `docs/hyva-porting.md` voor PHTML-bestemmingen en aanpassingen.
 
 ## Demo functionaliteit
 
-- Minicart: offcanvas met badge, openen via winkelmand in header. Data in `localStorage` (`remka_demo_cart`).
+- Minicart: offcanvas met badge, openen via winkelwagen in header. Data in `localStorage` (`remka_demo_cart`).
 - Add to cart: knoppen met `data-add-to-cart` attributen tonen een cart-toast en openen de minicart.
 
 ## Toasts (unified)
@@ -78,7 +78,7 @@ toast.success('Ingelogd');
 toast.error('Er ging iets mis');
 toast.info('Informatie');
 toast.warning('Let op');
-toast.cart({ title: 'Toegevoegd aan winkelmand', qty: 2, thumbnail: '/img.jpg' }, { actionText: 'Bekijk winkelwagen' });
+toast.cart({ title: 'Toegevoegd aan winkelwagen', qty: 2, thumbnail: '/img.jpg' }, { actionText: 'Bekijk winkelwagen' });
 ```
 
 Gedrag: max 3 zichtbaar, rest in wachtrij; autodismiss na 3.5s; pauze bij hover; ESC/✕ sluit; mobiel onderin, desktop rechtsboven. Cart-variant bevat acties “Bekijk winkelwagen” (opent minicart of navigeert naar `/cart.html`) en “Verder winkelen”.

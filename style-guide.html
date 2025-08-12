@@ -14,35 +14,26 @@
     
 
     <style>
+      /* Page-specific container: slightly narrower on desktop */
+      :root { --container-xl: 68rem; --container-2xl: 68rem; }
       /* Demo helper */
       .demo-grid > * { min-height: 3rem; display: grid; place-items: center; }
       .sg-section h3 { font-weight: 900; letter-spacing: -0.01em; }
       .sg-kleur { height: 64px; border-radius: .5rem; border: 1px solid rgba(0,0,0,.06); display:flex; align-items:center; justify-content:space-between; gap:.75rem; padding:.5rem .75rem; font-size:.85rem; }
     </style>
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body class="min-h-screen flex flex-col layout-wide">
     <!-- Header via partials loader -->
     <div id="header-placeholder"></div>
 
     <main id="main" class="flex-1">
-      <section class="border-b border-light/60 bg-white/70 backdrop-blur">
-        <div class="container mx-auto px-4 py-8">
-          <div class="flex items-start justify-between gap-6">
-            <div>
-              <h1 class="text-3xl md:text-4xl font-black tracking-tight">Remka style guide</h1>
-              <p class="mt-2 text-dark/70 max-w-prose">Overzicht van kleuren, typografie, componenten en UI-elementen. Direct toepasbaar in Hyvä/Tailwind en modulair opgezet.</p>
-              <nav class="mt-4 text-sm breadcrumbs" aria-label="Broodkruimel">
-                <ol class="flex items-center gap-2 text-dark/70">
-                  <li><a href="index.html" class="hover:text-brand">Home</a></li>
-                  <li aria-hidden="true">/</li>
-                  <li>Style guide</li>
-                </ol>
-              </nav>
-            </div>
-            <div class="ml-auto flex items-center gap-2">
-              <a href="#inhoud" class="btn btn-brand text-sm">Naar inhoud</a>
-            </div>
-          </div>
+      <section class="section-teal-tint border-b border-light/60">
+        <div class="container mx-auto px-4 py-12 lg:py-16">
+          <header>
+            <div class="eyebrow">Design system</div>
+            <h1 class="mt-1 text-3xl font-extrabold tracking-tight">Remka style guide</h1>
+            <p class="mt-2 section-subtitle max-w-prose">Overzicht van kleuren, typografie, componenten en UI-elementen. Direct toepasbaar in Hyvä/Tailwind en modulair opgezet.</p>
+          </header>
         </div>
       </section>
 
@@ -52,21 +43,36 @@
           <div class="card p-4">
             <h2 class="text-base font-extrabold">Inhoud</h2>
             <nav class="mt-3 text-sm space-y-2">
+              <!-- Fundamenten -->
               <a class="block hover:text-brand" href="#design-tokens">Design tokens</a>
               <a class="block hover:text-brand" href="#kleuren">Kleurenpalet</a>
               <a class="block hover:text-brand" href="#typografie">Typografie</a>
+              <a class="block hover:text-brand" href="#grid">Grid en layout</a>
+              <a class="block hover:text-brand" href="#pagina-titel">Pagina titel</a>
+
+              <!-- UI-elementen -->
               <a class="block hover:text-brand" href="#buttons">Buttons</a>
               <a class="block hover:text-brand" href="#forms">Form elementen</a>
               <a class="block hover:text-brand" href="#cards">Kaarten en containers</a>
-              <a class="block hover:text-brand" href="#navigatie">Navigatie en footer</a>
-               <a class="block hover:text-brand" href="#pagina-titel">Pagina titel</a>
-              <a class="block hover:text-brand" href="#navigation-details">Navigatie details</a>
               <a class="block hover:text-brand" href="#componenten">Componenten</a>
-              <a class="block hover:text-brand" href="#grid">Grid en layout</a>
+
+              <!-- Navigatie -->
+              <a class="block hover:text-brand" href="#navigatie">Navigatie en footer</a>
+              <a class="block hover:text-brand" href="#navigation-details">Navigatie details</a>
               <a class="block hover:text-brand" href="#iconen">Iconen</a>
+
+              <!-- Feedback -->
               <a class="block hover:text-brand" href="#toasts">Toasts</a>
-              <a class="block hover:text-brand" href="#loading-states">Loading en empty</a>
+               <a class="block hover:text-brand" href="#loading-states">Loading en empty</a>
+
+              <!-- Commerce -->
+               <a class="block hover:text-brand" href="#order-lists">Bestellijsten</a>
+               <a class="block hover:text-brand" href="#order-list-table">Bestellijst tabel</a>
+               <a class="block hover:text-brand" href="#order-list-add">Bestellijst toevoegen</a>
+
+              <!-- Richtlijnen & handover -->
                <a class="block hover:text-brand" href="#tekst">Tekst & content</a>
+              <a class="block hover:text-brand" href="#handover-checklist">Handover checklist</a>
             </nav>
           </div>
         </aside>
@@ -111,6 +117,10 @@
               </div>
             </div>
           </section>
+
+          
+
+          
           <!-- Kleurenpalet -->
           <section id="kleuren" class="sg-section">
             <h2 class="text-2xl font-black">Kleurenpalet</h2>
@@ -150,7 +160,7 @@
                 <div class="flex items-center justify-between gap-3">
                   <div>
                     <div class="text-sm font-semibold text-dark/70">Assortiment</div>
-                    <h1 class="text-3xl md:text-4xl font-black tracking-tight">Hygiëne en desinfectie</h1>
+                    <h1 class="text-3xl font-extrabold tracking-tight">Hygiëne en desinfectie</h1>
                     <p class="mt-1 text-sm text-dark/70 max-w-prose">Korte, functionele inleiding. Houd beelden subtiel en niet te groot.</p>
                   </div>
                 </div>
@@ -524,7 +534,80 @@
                   <div class="rounded-md border border-red-300 bg-red-50 text-red-800 px-3 py-2">Er ging iets mis. Probeer het later opnieuw.</div>
                 </div>
               </div>
+              <div class="card p-4 md:col-span-2">
+                <div class="font-semibold">Voorbeelden voor commerce</div>
+                <div class="mt-2 grid md:grid-cols-2 gap-3">
+                  <div>
+                    <div class="text-sm font-semibold">Bestellijsten leeg</div>
+                    <div class="mt-2 empty"><div class="empty__title">Nog geen bestellijsten</div><div class="empty__text">Zoek of voeg producten toe.</div></div>
+                  </div>
+                  <div>
+                    <div class="text-sm font-semibold">Tabel leeg</div>
+                    <div class="mt-2 empty"><div class="empty__title">Geen producten</div><div class="empty__text">Zoek of voeg producten toe.</div></div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </section>
+
+          <!-- Commerce: bestellijsten -->
+          <section id="order-lists" class="sg-section">
+            <h2 class="text-2xl font-black">Bestellijsten</h2>
+            <p class="mt-1 text-sm text-dark/70">B2B vervanging voor wishlist. Clinics beheren lijsten met min/max/huidig per artikel. Geen gradients of dark mode; je-vorm.</p>
+            <div class="mt-4 grid sm:grid-cols-2 gap-4">
+              <div class="card p-4">
+                <div class="font-semibold">Kaart</div>
+                <pre class="mt-2 bg-white border border-light rounded-md p-3 overflow-x-auto"><code>&lt;article class=&quot;card p-4&quot;&gt;
+  &lt;div class=&quot;font-extrabold&quot;&gt;Maandelijkse verbruiksartikelen&lt;/div&gt;
+  &lt;div class=&quot;text-sm text-dark/70&quot;&gt;12 artikelen&lt;/div&gt;
+  &lt;div class=&quot;mt-3 flex gap-2&quot;&gt;
+    &lt;button class=&quot;btn btn-outline btn-sm&quot;&gt;Openen&lt;/button&gt;
+    &lt;button class=&quot;btn btn-outline btn-sm&quot;&gt;Verwijderen&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+              </div>
+              <div class="card p-4">
+                <div class="font-semibold">Zoeken</div>
+                <pre class="mt-2 bg-white border border-light rounded-md p-3 overflow-x-auto"><code>&lt;input type=&quot;search&quot; class=&quot;input&quot; placeholder=&quot;Zoek op artikelnummmer of productnaam&quot; /&gt;</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <!-- Commerce: bestellijst tabel -->
+          <section id="order-list-table" class="sg-section">
+            <h2 class="text-2xl font-black">Bestellijst tabel</h2>
+            <ul class="mt-2 list-disc pl-5 space-y-1 text-sm text-dark/80">
+              <li>Kolommen: Positie, Artikelnr, Productnaam, Minimale voorraad, Maximale voorraad, Huidige voorraad, Besteladvies, Prijs, Acties.</li>
+              <li>Sticky header op desktop. Mobiel stapelt tot kaarten met dezelfde velden.</li>
+              <li>Inline validatie: min ≤ max, huidig ≥ 0; focus-ring in merk-kleur.</li>
+              <li>Besteladvies = max(0, max - huidig); bij 0 een zachte “OK”-badge.</li>
+            </ul>
+            <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto"><code>// JS
+function computeAdvice({min,max,current}){ return Math.max(0, max - current); }</code></pre>
+          </section>
+
+          <!-- Commerce: PLP/PDP entry points -->
+          <section id="order-list-add" class="sg-section">
+            <h2 class="text-2xl font-black">Bestellijst toevoegen</h2>
+            <p class="mt-1 text-sm text-dark/70">Vervangt wishlist-icoon. Kleine tertiaire knop “Bestellijst”.</p>
+            <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto"><code>&lt;button class=&quot;btn btn-outline btn-sm&quot; data-orderlist&gt;Bestellijst&lt;/button&gt;</code></pre>
+            <div class="mt-3 text-sm text-dark/70 space-y-1">
+              <div>DEVNOTE-koppelingen:</div>
+              <div><code>&lt;!-- DEVNOTE[hyva-slot,plp][owner=remka|date=2025-08-11]: Order List quick-add. Target: handle=catalog_category_view, phtml=Magento_Catalog::product/list.phtml. Docs: style-guide.html#order-list-add --&gt;</code></div>
+              <div><code>&lt;!-- DEVNOTE[hyva-slot,pdp][owner=remka|date=2025-08-11]: Order List add on PDP. Target: handle=catalog_product_view, phtml=Magento_Catalog::product/view/addto.phtml. Docs: style-guide.html#order-list-add --&gt;</code></div>
+            </div>
+          </section>
+
+          <!-- PDP – Beschrijving anchor -->
+          <section id="pdp-long-description" class="sg-section">
+            <h2 class="text-2xl font-black">PDP – Beschrijving</h2>
+            <p class="mt-1 text-sm text-dark/70">De uitgebreide beschrijving verschijnt onder de specificaties in een leesvriendelijke breedte (ca. 60–75&nbsp;tekens). De sectie wordt verborgen als er geen content is.</p>
+          </section>
+
+          <!-- PDP – Gerelateerde producten anchor -->
+          <section id="pdp-related" class="sg-section">
+            <h2 class="text-2xl font-black">PDP – Gerelateerde producten</h2>
+            <p class="mt-1 text-sm text-dark/70">Toont 4–8 kaarten met de bestaande ProductCard. Laad inline; verberg de sectie als er geen resultaten zijn.</p>
           </section>
 
           <!-- Handover checklist -->
@@ -792,6 +875,7 @@
     <script src="/assets/js/nav.js" defer></script>
     <script src="/assets/js/index.js" defer></script>
     <script src="/assets/js/toasts.js" defer></script>
+    <script src="/assets/js/rfq-demo.js" defer></script>
     <script>
       // Toast demos
       document.addEventListener('click', function(e){
@@ -802,7 +886,7 @@
         if(kind === 'info') window.toast && window.toast.info('Informatie', { actionLabel: 'Meer info' });
         if(kind === 'warning') window.toast && window.toast.warning('Let op', { actionLabel: 'Bekijk' });
         if(kind === 'error') window.toast && window.toast.error('Er ging iets mis', { actionLabel: 'Probeer opnieuw' });
-        if(kind === 'cart') window.toast && window.toast.cart({ title: 'Toegevoegd aan winkelmand', qty: 2, thumbnail: '/assets/images/placeholder-4x3.svg' }, { actionText: 'Bekijk winkelwagen' });
+        if(kind === 'cart') window.toast && window.toast.cart({ title: 'Toegevoegd aan winkelwagen', qty: 2, thumbnail: '/assets/images/placeholder-4x3.svg' }, { actionText: 'Bekijk winkelwagen' });
       });
       // Simple accordion behaviour for the demo
       document.addEventListener('click', function(e){

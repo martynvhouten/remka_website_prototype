@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Product – Niet op voorraad | Remka B.V.</title>
     <meta name="description" content="Product demo – niet op voorraad, met verwachte leverdatum." />
-    <link rel="icon" type="image/svg+xml" href="/assets/images/logo-remka.svg" />
+    <link rel="icon" type="image/svg+xml" href="assets/images/logo-remka.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/css/tailwind.css" />
-    <link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="assets/css/tailwind.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
   </head>
   <body class="min-h-screen flex flex-col" data-stock="out_of_stock" data-eta="2025-08-15">
     <div id="header-placeholder"></div>
@@ -28,22 +28,21 @@
           </nav>
         </div>
       </section>
-      <div class="container mx-auto py-8 grid lg:grid-cols-2 gap-10">
-        <div data-partial="product-gallery"></div>
-        <div data-partial="product-info"></div>
-      </div>
-      <div data-partial="product-related"></div>
+      <div data-partial="pdp/Layout"></div>
     </main>
     <div id="footer-placeholder"></div>
-    <script src="/assets/js/nav.js" defer></script>
-    <script src="/assets/js/index.js" defer></script>
+    <script src="assets/js/nav.js" defer></script>
+    <script src="assets/js/index.js" defer></script>
+    <script src="assets/js/productCard.js" defer></script>
+    <script src="assets/js/rfq-demo.js" defer></script>
+    <script src="assets/js/pdp.js" defer></script>
     <script>
       window.addEventListener('DOMContentLoaded', () => {
         const main = document.getElementById('mainImg');
         document.querySelectorAll('[data-src]').forEach(btn => btn.addEventListener('click', () => { main.src = btn.getAttribute('data-src'); }));
       });
     </script>
-    <script src="/assets/js/product-stock.js" defer></script>
+    <script src="assets/js/product-stock.js" defer></script>
   </body>
   </html>
 
