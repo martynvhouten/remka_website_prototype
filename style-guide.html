@@ -13,14 +13,7 @@
     <link rel="stylesheet" href="/assets/css/base.css" />
     
 
-    <style>
-      /* Page-specific container: slightly narrower on desktop */
-      :root { --container-xl: 68rem; --container-2xl: 68rem; }
-      /* Demo helper */
-      .demo-grid > * { min-height: 3rem; display: grid; place-items: center; }
-      .sg-section h3 { font-weight: 900; letter-spacing: -0.01em; }
-      .sg-kleur { height: 64px; border-radius: .5rem; border: 1px solid rgba(0,0,0,.06); display:flex; align-items:center; justify-content:space-between; gap:.75rem; padding:.5rem .75rem; font-size:.85rem; }
-    </style>
+    <style></style>
   </head>
   <body class="min-h-screen flex flex-col layout-wide">
     <!-- Header via partials loader -->
@@ -86,11 +79,11 @@
               <div class="card p-4">
                 <div class="font-semibold">Kleuren (Tailwind + CSS tokens)</div>
                 <div class="mt-2 grid sm:grid-cols-2 lg:grid-cols-3 gap-2 text-sm">
-                  <div class="sg-kleur bg-brand text-white"><span>brand</span><span>#9E0059</span></div>
-                  <div class="sg-kleur bg-accent text-[#111]"><span>accent</span><span>#F77F00</span></div>
-                  <div class="sg-kleur bg-teal text-white"><span>teal</span><span>#00A99D</span></div>
-                  <div class="sg-kleur bg-dark text-white"><span>dark</span><span>#333333</span></div>
-                  <div class="sg-kleur bg-light text-[#111]"><span>light</span><span>#E6E6E6</span></div>
+                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-brand text-white"><span>brand</span><span>#9E0059</span></div>
+                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-accent text-[#111]"><span>accent</span><span>#F77F00</span></div>
+                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-teal text-white"><span>teal</span><span>#00A99D</span></div>
+                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-dark text-white"><span>dark</span><span>#333333</span></div>
+                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-light text-[#111]"><span>light</span><span>#E6E6E6</span></div>
                 </div>
                 <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto"><code>&lt;!-- Utilities --&gt;
 &lt;button class=&quot;btn btn-brand&quot;&gt;cta&lt;/button&gt;
@@ -203,6 +196,39 @@
               <a href="#" class="btn btn-brand">Link button</a>
             </div>
             <div class="mt-4 text-sm text-dark/70">Hover: subtiele schaduw of tint. Focus: duidelijke focus-ring.</div>
+          </section>
+
+          <!-- Pills (incl. footer context) -->
+          <section id="pills" class="sg-section">
+            <h2 class="text-2xl font-black">Pills</h2>
+            <div class="mt-3 flex flex-wrap items-center gap-2">
+              <span class="pill pill--primary">Primary</span>
+              <span class="pill pill--secondary">Secondary</span>
+              <span class="pill pill--neutral">Neutral</span>
+              <button class="pill pill--primary" aria-pressed="true">Active</button>
+            </div>
+            <div class="mt-4 footer-premium rounded-md p-4">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="pill">Footer pill</span>
+                <span class="pill pill--primary">Primary</span>
+                <span class="pill pill--secondary">Secondary</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Payment icons demo -->
+          <section id="payment-icons" class="sg-section">
+            <h2 class="text-2xl font-black">Payment icons</h2>
+            <div class="mt-3 subfooter rounded-md p-3">
+              <nav class="payicons flex flex-row flex-wrap items-center gap-3" aria-label="Betaalmethoden">
+                <img class="h-6 w-auto" src="/assets/images/payment-icons/ideal-logo.webp" alt="iDEAL" />
+                <img class="h-6 w-auto" src="/assets/images/payment-icons/Bancontact-logo.webp" alt="Bancontact" />
+                <img class="h-6 w-auto" src="/assets/images/payment-icons/Visa_Brandmark_Blue_RGB_2021.webp" alt="Visa" />
+                <img class="h-6 w-auto" src="/assets/images/payment-icons/ma_symbol_rgb.webp" alt="Mastercard" />
+                <img class="h-6 w-auto" src="/assets/images/payment-icons/PayPal-logo.webp" alt="PayPal" />
+                <img class="h-6 w-auto" src="/assets/images/payment-icons/Apple-Pay-Logo.webp" alt="Apple Pay" />
+              </nav>
+            </div>
           </section>
 
           <!-- Form elementen -->
@@ -593,7 +619,7 @@
               <li>Kolommen: Positie, Artikelnr, Productnaam, Minimale voorraad, Maximale voorraad, Huidige voorraad, Besteladvies, Prijs, Acties.</li>
               <li>Sticky header op desktop. Mobiel stapelt tot kaarten met dezelfde velden.</li>
               <li>Inline validatie: min ≤ max, huidig ≥ 0; focus-ring in merk-kleur.</li>
-              <li>Besteladvies = max(0, max - huidig); bij 0 een zachte “OK”-badge.</li>
+              <li>Besteladvies = max(0, max - huidig); bij 0 een zachte "OK"-badge.</li>
             </ul>
             <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto"><code>// JS
 function computeAdvice({min,max,current}){ return Math.max(0, max - current); }</code></pre>
@@ -602,7 +628,7 @@ function computeAdvice({min,max,current}){ return Math.max(0, max - current); }<
           <!-- Commerce: PLP/PDP entry points -->
           <section id="order-list-add" class="sg-section">
             <h2 class="text-2xl font-black">Bestellijst toevoegen</h2>
-            <p class="mt-1 text-sm text-dark/70">Vervangt wishlist-icoon. Kleine tertiaire knop “Bestellijst”.</p>
+            <p class="mt-1 text-sm text-dark/70">Vervangt wishlist-icoon. Kleine tertiaire knop "Bestellijst".</p>
             <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto"><code>&lt;button class=&quot;btn btn-outline btn-sm&quot; data-orderlist&gt;Bestellijst&lt;/button&gt;</code></pre>
             <div class="mt-3 text-sm text-dark/70 space-y-1">
               <div>DEVNOTE-koppelingen:</div>
