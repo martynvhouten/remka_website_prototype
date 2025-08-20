@@ -4,19 +4,29 @@
     <!-- Main content -->
     <div>
       <div class="post-prose">
-        <p>Een schoon werkproces begint bij helder beleid. Houd het kort, maak het zichtbaar en train je team.</p>
+        <p>Een schoon werkproces begint bij helder beleid. Houd het kort, maak het zichtbaar en train je team. Zorg dat iedereen weet waar middelen staan en wat de standaard werkwijze is.</p>
         <h2>1. Voorbereiding</h2>
-        <p>Zorg voor schone werkplekken en voldoende middelen. Denk aan handschoenen, doekjes en desinfectie.</p>
+        <p>Zorg voor schone werkplekken en voldoende middelen. Denk aan handschoenen, doekjes en desinfectie. Controleer voorraad wekelijks en werk met vaste locaties.</p>
+        <ul>
+          <li>Leg een korte checklist klaar per behandelkamer.</li>
+          <li>Werk met kleurcodering voor doekjes en emmers.</li>
+          <li>Vervang flacons tijdig; noteer datum van opening.</li>
+        </ul>
         <h2>2. Handhygiëne</h2>
-        <p>Was of desinfecteer handen voor en na elke behandeling. Maak het makkelijk met vaste dispensers.</p>
+        <p>Was of desinfecteer handen voor en na elke behandeling. Maak het makkelijk met vaste dispensers op logische plekken. Droog met papieren doekjes.</p>
         <blockquote>“Kleine gewoontes bepalen het grote verschil in hygiëne.”</blockquote>
         <h2>3. Materialen</h2>
-        <p>Werk zoveel mogelijk met wegwerp waar dat kan. Steriliseer instrumenten volgens protocol.</p>
+        <p>Werk zoveel mogelijk met wegwerp waar dat kan. Steriliseer instrumenten volgens protocol en registreer cycli in een logboek.</p>
+        <ol>
+          <li>Voorreinigen direct na gebruik.</li>
+          <li>Desinfecteren met geschikt middel.</li>
+          <li>Steriliseren volgens fabrikant.</li>
+        </ol>
         <h2>4. Reiniging</h2>
-        <p>Reinig contactpunten meerdere keren per dag. Gebruik voor elk oppervlak het juiste middel.</p>
+        <p>Reinig contactpunten meerdere keren per dag. Gebruik voor elk oppervlak het juiste middel. Werk van schoon naar vuil om kruisbesmetting te voorkomen.</p>
+        <pre><code>const steps = ["voorbereiding","handhygiëne","materialen","reiniging","evaluatie"]; steps.forEach(s => console.log(s));</code></pre>
         <h2>5. Evaluatie</h2>
-        <p>Evalueer periodiek en stuur bij. Koppel bevindingen terug naar het team.</p>
-        <pre><code>const steps = ["voorbereiding","handhygiëne","materialen","reiniging","evaluatie"]; console.log(steps.join(", "));</code></pre>
+        <p>Evalueer periodiek en stuur bij. Plan maandelijks een korte check met het team en houd verbeterpunten bij. Koppel bevindingen terug via een vast kanaal.</p>
       </div>
 
       <!-- Footer related products band -->
@@ -25,23 +35,7 @@
           <h2 class="text-xl md:text-2xl font-extrabold tracking-tight">Bekijk relevante producten</h2>
           <a href="/category.html" class="btn btn-outline btn-sm">Bekijk alles</a>
         </header>
-        <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div class="card p-4">
-            <div class="text-sm text-dark/70">Handdesinfectie</div>
-            <div class="mt-1 font-extrabold">Alcohol 70%</div>
-            <a href="/product.html" class="mt-3 btn btn-brand btn-sm w-full">Bekijk</a>
-          </div>
-          <div class="card p-4">
-            <div class="text-sm text-dark/70">Doekjes</div>
-            <div class="mt-1 font-extrabold">Desinfectiedoekjes</div>
-            <a href="/product.html" class="mt-3 btn btn-brand btn-sm w-full">Bekijk</a>
-          </div>
-          <div class="card p-4 hidden lg:block">
-            <div class="text-sm text-dark/70">Handverzorging</div>
-            <div class="mt-1 font-extrabold">Handcrème</div>
-            <a href="/product.html" class="mt-3 btn btn-brand btn-sm w-full">Bekijk</a>
-          </div>
-        </div>
+        <div id="relatedGrid" class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
       </section>
     </div>
 
@@ -57,9 +51,27 @@
         <section class="sidebar-card">
           <h3 class="text-base font-extrabold">Gerelateerde artikelen</h3>
           <nav class="related-list">
-            <a href="#">Desinfectie: wat werkt echt?</a>
-            <a href="#">Checklist schoonmaak</a>
-            <a href="#">Instrumenten steriliseren</a>
+            <a class="item" href="#">
+              <img src="/assets/images/placeholder-4x3.svg" alt="Desinfectie" />
+              <div>
+                <div class="title">Desinfectie: wat werkt echt?</div>
+                <div class="meta">5 min • Praktijktips</div>
+              </div>
+            </a>
+            <a class="item" href="#">
+              <img src="/assets/images/placeholder-4x3.svg" alt="Checklist" />
+              <div>
+                <div class="title">Checklist schoonmaak per dagdeel</div>
+                <div class="meta">4 min • Checklist</div>
+              </div>
+            </a>
+            <a class="item" href="#">
+              <img src="/assets/images/placeholder-4x3.svg" alt="Steriliseren" />
+              <div>
+                <div class="title">Instrumenten steriliseren in 3 stappen</div>
+                <div class="meta">6 min • Protocol</div>
+              </div>
+            </a>
           </nav>
         </section>
 

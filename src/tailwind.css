@@ -253,6 +253,10 @@
   .sidebar-card { @apply bg-white border border-light rounded-xl shadow-card p-4; }
   .related-list { @apply mt-2 space-y-2; }
   .related-list a { @apply block text-sm hover:text-brand; }
+  .related-list .item { @apply flex items-center gap-3 rounded-md p-2 hover:bg-black/5 transition-colors; }
+  .related-list img { @apply w-14 h-10 object-cover rounded-md border border-light; }
+  .related-list .title { @apply font-semibold leading-snug; }
+  .related-list .meta { @apply text-xs text-dark/60; }
   .cta-card { @apply sidebar-card bg-[rgba(158,0,89,0.06)] border-[rgba(158,0,89,0.15)]; }
 }
 
