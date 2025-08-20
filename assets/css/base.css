@@ -95,11 +95,7 @@
   }
 }
 
-/* Skip link */
-.sr-only {
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 1px, 1px); white-space: nowrap; border: 0;
-}
-.not-sr-only { position: static; width: auto; height: auto; margin: 0; overflow: visible; clip: auto; white-space: normal; }
+/* Skip link helpers are provided by Tailwind; duplicate removed */
 
 /* Breadcrumbs */
 .breadcrumbs a { color: var(--dark); }
@@ -232,33 +228,14 @@ body { color: var(--dark); background: #fff; }
   margin-top: 0.375rem; /* subtle vertical rhythm between bullets */
 }
 
-/* Color helpers */
-.text-brand { color: var(--brand); }
-.bg-brand { background-color: var(--brand); }
-.bg-accent { background-color: var(--accent); }
-.bg-teal { background-color: var(--teal); }
-.bg-dark { background-color: var(--dark); }
-.border-brand { border-color: var(--brand); }
-.text-dark { color: var(--dark); }
-.bg-light { background-color: var(--light); }
+/* Color helpers removed — use Tailwind tokens from tailwind.config.js */
 
 /* Focus ring */
 .focus-ring:focus { outline: 2px solid var(--brand); outline-offset: 2px; }
 
-/* Buttons */
-.btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.5rem 1rem; border-radius: var(--radius); font-weight: 600; transition: background-color .2s ease, color .2s ease, border-color .2s ease; white-space: nowrap; }
-.btn-brand { background: var(--brand); color: #fff; font-weight: 800; }
-.btn-brand:hover { background: #7d0047; }
-.btn-accent { background: var(--accent); color: #111; }
-.btn-accent:hover { background: #e06f00; }
-.btn-outline { border: 1px solid var(--dark); color: var(--dark); background: transparent; font-weight: 800; }
-.btn-outline:hover { background: var(--light); }
+/* Buttons moved to Tailwind @layer components */
 
-/* Cards */
-.card { background: #fff; border-radius: 1rem; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 10px rgba(0,0,0,0.04); overflow: hidden; }
-.card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.10); }
-.card.flex { display: flex; flex-direction: column; }
-.card-body { padding: 1rem; }
+/* Cards moved to Tailwind @layer components */
 
 /* Consistent ProductCard CTA sizing */
 .btn-card { font-size: .875rem; padding: .5rem .75rem; }
@@ -353,8 +330,7 @@ input[type="number"] { -moz-appearance: textfield; }
 @media (min-width: 1536px){ .layout-wide .container { max-width: 90rem; } }
 .header-shadow { box-shadow: 0 1px 0 rgba(0,0,0,0.06); }
 
-/* Accessibility helpers */
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
+/* Accessibility helpers are provided by Tailwind */
 
 /* Premium header */
 /* Top band stays light; primary navigation band uses the brand color */
@@ -663,71 +639,12 @@ header[role="banner"].is-hidden { transform: translateY(-100%); }
 .mega-link:hover { color: var(--brand); background: rgba(230,230,230,0.35); }
 .mega-link:hover::after { transform: scaleX(1); }
 
-/* Top nav main menu links: animated underline (no layout jump) */
-.mainnav-link {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  white-space: nowrap;
-}
-.mainnav-link::after {
-  content: "";
-  position: absolute;
-  left: 0.75rem;
-  right: 0.75rem;
-  bottom: 0.35rem;
-  height: 2px;
-  border-radius: 1px;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .2s ease-out;
-  opacity: 0.95;
-}
-.mainnav-link:hover::after,
-.mainnav-link[aria-expanded="true"]::after,
-.mainnav-link:focus-visible::after {
-  transform: scaleX(1);
-}
+/* mainnav-link effects moved to Tailwind */
 .mega-link:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
 .mega-link--all { font-weight: 700; color: var(--brand); }
 .mega-link--all:hover { background: rgba(158,0,89,0.06); }
 
-/* Premium nav links */
-.nav-link-premium {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  padding: .8rem 1rem; /* more vertical space */
-  border-radius: .5rem;
-  color: rgba(255,255,255,0.92);
-  font-weight: 900;
-  font-size: .9rem;
-  letter-spacing: .01em;
-  transition: color .2s ease, background-color .2s ease, opacity .2s ease;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0;
-  max-width: clamp(100px, 12vw, 200px);
-}
-.nav-link-premium:hover { color: #fff; background: rgba(255,255,255,0.08); }
-.nav-link-premium::after {
-  content: "";
-  position: absolute;
-  left: 1rem;
-  right: 1rem;
-  bottom: .35rem;
-  height: 2px;
-  border-radius: 1px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .25s ease;
-}
-.nav-link-premium:hover::after { transform: scaleX(1); }
+/* nav-link-premium moved to Tailwind */
 
 /* Keep primary nav on one line, no scrollbar */
 #mainNav ul {

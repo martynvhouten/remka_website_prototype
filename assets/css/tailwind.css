@@ -2390,9 +2390,24 @@ img {
   margin-right: auto;
 }
 
+.my-12 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
 .my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.my-8 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .mb-1 {
@@ -4016,6 +4031,10 @@ img {
   border-bottom-width: 1px;
 }
 
+.border-b-2 {
+  border-bottom-width: 2px;
+}
+
 .border-e {
   border-inline-end-width: 1px;
 }
@@ -4038,6 +4057,10 @@ img {
 
 .border-t {
   border-top-width: 1px;
+}
+
+.border-t-2 {
+  border-top-width: 2px;
 }
 
 .border-solid {
@@ -4435,6 +4458,11 @@ img {
 
 .border-light\/95 {
   border-color: rgb(230 230 230 / 0.95);
+}
+
+.border-red-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(254 202 202 / var(--tw-border-opacity, 1));
 }
 
 .border-red-300 {
@@ -5386,6 +5414,14 @@ img {
   padding-left: 1.25rem;
 }
 
+.pl-6 {
+  padding-left: 1.5rem;
+}
+
+.pl-8 {
+  padding-left: 2rem;
+}
+
 .pr-3 {
   padding-right: 0.75rem;
 }
@@ -5918,6 +5954,11 @@ img {
   color: rgb(51 51 51 / 0.95);
 }
 
+.text-gray-700 {
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity, 1));
+}
+
 .text-gray-800 {
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity, 1));
@@ -6195,6 +6236,10 @@ img {
 
 .opacity-70 {
   opacity: 0.7;
+}
+
+.opacity-75 {
+  opacity: 0.75;
 }
 
 .opacity-80 {
@@ -6598,6 +6643,38 @@ img {
 
 .forced-color-adjust-none {
   forced-color-adjust: none;
+}
+
+.\[contain-intrinsic-size\:420px_1200px\] {
+  contain-intrinsic-size: 420px 1200px;
+}
+
+.\[contain-intrinsic-size\:600px_1200px\] {
+  contain-intrinsic-size: 600px 1200px;
+}
+
+.\[contain-intrinsic-size\:600px_800px\] {
+  contain-intrinsic-size: 600px 800px;
+}
+
+.\[contain-intrinsic-size\:700px_1200px\] {
+  contain-intrinsic-size: 700px 1200px;
+}
+
+.\[contain-intrinsic-size\:800px_1000px\] {
+  contain-intrinsic-size: 800px 1000px;
+}
+
+.\[contain-intrinsic-size\:800px_1200px\] {
+  contain-intrinsic-size: 800px 1200px;
+}
+
+.\[contain\:content\] {
+  contain: content;
+}
+
+.\[content-visibility\:auto\] {
+  content-visibility: auto;
 }
 
 .footer-premium :where(.focus\:text-dark:focus) {
