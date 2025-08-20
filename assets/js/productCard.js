@@ -125,8 +125,8 @@
       if(homeGrid && homeGrid.children.length === 0){
         var list = [
           { sku: 'KAI-PO-4', title: 'KAI Biopsy Punch 4 mm', price: 12.95, url: '/product.html', imageSrc: '/assets/images/kai_biopsy_punch_4.jpg', imageAlt: 'KAI Biopsy Punch 4 mm', availability: 'inStock' },
-          { sku: 'HART-42080', title: 'Hartmann 42080', price: 8.75, url: '/product.html', imageSrc: '/assets/images/Products/Hartmann/42080_43.jpg', imageAlt: 'Hartmann 42080', availability: 'inStock' },
-          { sku: 'HART-38150', title: 'Hartmann 38150', price: 5.40, url: '/product.html', imageSrc: '/assets/images/Products/Hartmann/38150_43.jpg', imageAlt: 'Hartmann 38150', availability: 'inStock' },
+          { sku: 'HART-42080', title: 'Hartmann MoliCare Body Lotion', price: 8.75, url: '/product.html', imageSrc: '/assets/images/Products/Hartmann/42080_43.jpg', imageAlt: 'Hartmann 42080', availability: 'inStock' },
+          { sku: 'HART-38150', title: 'Hartmann Peha', price: 5.40, url: '/product.html', imageSrc: '/assets/images/Products/Hartmann/38150_43.jpg', imageAlt: 'Hartmann 38150', availability: 'inStock' },
           { sku: 'HEINE-BETA200', title: 'HEINE BETA200 Otoscope/Ophthalmoscope Set USB', price: 14.50, url: '/product.html', imageSrc: '/assets/images/Products/HEINE/A-132.27.388-HEINE-BETA200-otoscope-ophtalmoscope-set-usb.jpg', imageAlt: 'HEINE BETA200 Otoscope/Ophthalmoscope Set USB', availability: 'inStock' }
         ];
         renderCards(homeGrid, list);

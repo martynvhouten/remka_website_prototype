@@ -195,6 +195,31 @@
   // Expose
   window.toast = api;
 
+  // Alpine store (if Alpine is present). Mirrors window.toast API and enables x-for rendering.
+  try {
+    document.addEventListener('alpine:init', function(){
+      var A = window.Alpine;
+      if (!A) return;
+      A.store('toasts', {
+        items: [],
+        _seq: 1,
+        _mk(kind, title, extra){
+          return { id: String(Date.now()) + '-' + (this._seq++), kind: kind, title: title || '', extra: extra||null, timeout: DEFAULT_TIMEOUT, auto: true, paused: false, start: Date.now(), remaining: DEFAULT_TIMEOUT };
+        },
+        success: function(message, _opts){ this.items.push(this._mk('success', message||'Gelukt')); },
+        error: function(message, _opts){ this.items.push(this._mk('error', message||'Mislukt')); },
+        warning: function(message, _opts){ this.items.push(this._mk('warning', message||'Let op')); },
+        info: function(message, _opts){ this.items.push(this._mk('info', message||'Info')); },
+        cart: function(payload, _opts){ this.items.push(this._mk('cart', (payload&&payload.title)||'Toegevoegd aan winkelwagen', payload||null)); },
+        close: function(id){ this.items = this.items.filter(function(t){ return t.id !== id; }); },
+        pause: function(id){ var t=this.items.find(function(x){return x.id===id}); if(t){ t.paused=true; t.remaining=Math.max(0,t.timeout-(Date.now()-t.start)); } },
+        resume: function(id){ var t=this.items.find(function(x){return x.id===id}); if(t){ t.paused=false; t.start=Date.now(); var self=this; setTimeout(function(){ self.close(id); }, Math.max(0,t.remaining||0)); } }
+      });
+      // Redirect window.toast calls to Alpine store methods
+      try { window.toast = A.store('toasts'); } catch {}
+    });
+  } catch {}
+
   // Removed: legacy add-to-cart toast hook (replaced by AddToCartDialog)
 
   // Removed: bulk add listener moved to AddToCartDialog

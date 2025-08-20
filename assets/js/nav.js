@@ -593,4 +593,20 @@
   else initWhenReady();
 })();
 
+// Alpine adapter to provide x-data hooks for Hyvä templates
+try {
+  document.addEventListener('alpine:init', function(){
+    var A = window.Alpine; if(!A) return;
+    A.data('remkaNav', function(){
+      return {
+        open: false,
+        openMega: null,
+        openMobile(){ this.open = true; document.documentElement.classList.add('menu-open'); },
+        closeMobile(){ this.open = false; document.documentElement.classList.remove('menu-open'); this.openMega = null; },
+        toggleMega(i){ this.openMega = (this.openMega === i ? null : i); },
+        closeMega(){ this.openMega = null; }
+      };
+    });
+  });
+} catch {}
 
