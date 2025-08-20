@@ -103,7 +103,10 @@
   .header-topband { @apply bg-white border-b border-light shadow-sm; }
   .header-navband { @apply bg-brand text-white; }
   .mainnav-link { @apply relative inline-flex items-center gap-2 whitespace-nowrap; }
-  .mega-panel { @apply bg-white border border-light rounded-brand shadow-2xl overflow-hidden opacity-0 -translate-y-1.5 transition data-[state=open]:opacity-100 data-[state=open]:translate-y-0; }
+  /* Ensure mega host anchors flush under nav with no white bar */
+  #megaHost { @apply relative z-[65] h-0; }
+  .mega-wrap { position: absolute; left: 0; right: 0; top: 0; }
+  .mega-panel { @apply bg-white border border-light rounded-brand shadow-2xl overflow-hidden opacity-0 -translate-y-1.5 transition data-[state=open]:opacity-100 data-[state=open]:translate-y-0 border-t-0 rounded-t-none; }
   .mega-link { @apply block px-1.5 py-1 text-[0.95rem] leading-snug text-dark/95 rounded hover:text-brand hover:bg-light/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand; }
   .nav-link-premium { @apply relative inline-flex items-center gap-2 px-4 py-3 rounded-md text-white/90 font-black text-[0.9rem] tracking-[.01em] transition-colors hover:text-white; }
 
@@ -222,5 +225,10 @@
   .pill.is-active, .pill[aria-pressed="true"] { @apply bg-brand border-brand text-white; }
   .pill--secondary.is-active, .pill--secondary[aria-pressed="true"] { @apply bg-teal border-teal text-white; }
   .pill--neutral.is-active, .pill--neutral[aria-pressed="true"] { @apply bg-[#111827] border-[#111827] text-white; }
+  /* Footer-scoped readable pills */
+  .footer-premium .pill { @apply text-white border-white/35 bg-white/10 hover:bg-white/15; }
+  .footer-premium .pill--primary { @apply text-white border-white/35 bg-white/10 hover:bg-white/20; }
+  .footer-premium .pill--secondary { @apply text-white border-white/35 bg-white/10 hover:bg-white/20; }
+  .footer-premium .pill--neutral { @apply text-white border-white/35 bg-white/10 hover:bg-white/15; }
 }
 
