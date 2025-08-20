@@ -120,6 +120,12 @@
   /* Ensure text-dark utilities don't invert footer */
   .footer-premium :where(.text-dark) { color: #fff !important; }
   .footer-premium :where([class*="text-dark/"]) { color: rgba(255,255,255,0.92) !important; }
+  /* Subfooter payment band */
+  .subfooter { @apply bg-[#f8fafc] border-t border-black/10; }
+  .subfooter > .container { @apply max-w-[80rem] 2xl:max-w-[90rem]; }
+  .subfooter .payicons { @apply inline-flex gap-2 sm:gap-3 flex-wrap; }
+  .subfooter .payicon { @apply inline-flex items-center justify-center text-dark/75 leading-none p-[0.15rem] rounded-md hover:text-dark/95 hover:bg-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand; }
+  .subfooter .payicon svg, .subfooter .payicon img { @apply w-9 h-6 block; }
   .footer-grid { @apply grid gap-6 md:[grid-template-columns:minmax(0,2fr)_repeat(3,minmax(0,1fr))_auto] md:[column-gap:3rem] md:[row-gap:2rem]; }
   .social-link { @apply inline-flex items-center justify-center text-white hover:bg-white/10 rounded-md p-1; }
   .social-icon { @apply w-5 h-5; }
@@ -155,6 +161,8 @@
   .hero-brand-strong { @apply bg-gradient-to-b from-brand/30 via-white to-white; }
   .hero-brand-soft { @apply bg-gradient-to-b from-brand/20 via-white to-white; }
   .hero-brand-calm { @apply bg-gradient-to-b from-brand/10 via-white to-white; }
+  .section-brand-tint { @apply bg-brand/5; }
+  .section-teal-tint { @apply bg-teal/5; }
 
   /* Typography helpers */
   .eyebrow { @apply text-[0.8rem] tracking-wider font-extrabold text-dark/70; }
@@ -184,5 +192,35 @@
   /* Price */
   .price { @apply text-[1.35rem] font-black tracking-tight text-dark sm:text-[1.5rem]; }
   .price small { @apply text-[0.8rem] font-bold text-dark/70; }
+
+  /* Header spacing & divider cleanup */
+  #mainNav .container { @apply py-2; }
+  #mainNav ul { @apply m-0 p-0; }
+  #site-header > .border-b { border-bottom-width: 0; }
+
+  /* Mega panel grid spacing */
+  .mega-panel .mega-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(252px, 1fr));
+    column-gap: 24px;
+    row-gap: 14px;
+    padding: 16px;
+    max-height: 62vh;
+    overflow: auto;
+    padding-right: 18px;
+  }
+  .mega-panel .mega-grid::-webkit-scrollbar { height: 8px; width: 8px; }
+  .mega-panel .mega-grid::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 8px; }
+  .mega-panel .mega-grid::-webkit-scrollbar-track { background: transparent; }
+
+  /* Pills improvements */
+  .pill { @apply inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full font-extrabold text-sm border transition-colors; }
+  .pill--primary { @apply border-brand/20 bg-brand/10 text-[#7d0047] hover:bg-brand/15; }
+  .pill--secondary { @apply border-teal/20 bg-teal/10 text-teal hover:bg-teal/15; }
+  .pill--neutral { @apply border-black/10 bg-black/5 text-dark hover:bg-black/10; }
+  .pill:focus-visible { @apply outline-none ring-2 ring-brand; }
+  .pill.is-active, .pill[aria-pressed="true"] { @apply bg-brand border-brand text-white; }
+  .pill--secondary.is-active, .pill--secondary[aria-pressed="true"] { @apply bg-teal border-teal text-white; }
+  .pill--neutral.is-active, .pill--neutral[aria-pressed="true"] { @apply bg-[#111827] border-[#111827] text-white; }
 }
 
