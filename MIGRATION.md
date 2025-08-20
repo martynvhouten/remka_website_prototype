@@ -27,4 +27,8 @@ Files touched
 - components/ProductCard.html (minor inline utilities)
 - assets/css/base.css (to be reduced in later phases)
 
+### Size delta
+- BEFORE: base.css=TBD, tailwind.css=TBD
+- AFTER: base.css=51347, tailwind.css=TBD
+
 
