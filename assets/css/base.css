@@ -68,31 +68,7 @@
   .slider__dots .slider__dot { width: 8px; height: 8px; border-radius: 9999px; border: 1px solid var(--light); background: #fff; transition: background-color .2s ease, transform .2s ease; }
   .slider__dots .slider__dot.is-active { background: var(--brand); border-color: var(--brand); transform: scale(1.06); }
 
-  /* Hero background gradients (restored) */
-  .hero-brand-strong {
-    background-image:
-      linear-gradient(180deg,
-        rgba(158, 0, 89, 0.30) 0%,
-        rgba(158, 0, 89, 0.15) 60%,
-        rgba(255, 255, 255, 1) 100%
-      );
-  }
-  .hero-brand-soft {
-    background-image:
-      linear-gradient(180deg,
-        rgba(158, 0, 89, 0.20) 0%,
-        rgba(158, 0, 89, 0.10) 60%,
-        rgba(255, 255, 255, 1) 100%
-      );
-  }
-  .hero-brand-calm {
-    background-image:
-      linear-gradient(180deg,
-        rgba(158, 0, 89, 0.10) 0%,
-        rgba(158, 0, 89, 0.05) 60%,
-        rgba(255, 255, 255, 1) 100%
-      );
-  }
+  /* Hero gradients moved to Tailwind (@layer components) */
 }
 
 /* Skip link helpers are provided by Tailwind; duplicate removed */
