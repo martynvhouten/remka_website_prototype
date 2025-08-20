@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html, body { overflow-x: hidden; }
+  img { max-width: 100%; height: auto; }
+}
+
 @layer components {
   /* Buttons */
   .btn {
@@ -90,5 +95,81 @@
   .dialog--sm { @apply max-w-[520px]; }
   .dialog--md { @apply max-w-[720px]; }
   .dialog--lg { @apply max-w-[880px]; }
+
+  /* Navigation & header */
+  .header-topband { @apply bg-white border-b border-light shadow-sm; }
+  .header-navband { @apply bg-brand text-white; }
+  .mainnav-link { @apply relative inline-flex items-center gap-2 whitespace-nowrap; }
+  .mega-panel { @apply bg-white border border-light rounded-brand shadow-2xl overflow-hidden opacity-0 -translate-y-1.5 transition data-[state=open]:opacity-100 data-[state=open]:translate-y-0; }
+  .mega-link { @apply block px-1.5 py-1 text-[0.95rem] leading-snug text-dark/95 rounded hover:text-brand hover:bg-light/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand; }
+  .nav-link-premium { @apply relative inline-flex items-center gap-2 px-4 py-3 rounded-md text-white/90 font-black text-[0.9rem] tracking-[.01em] transition-colors hover:text-white; }
+
+  /* Footer */
+  .footer-premium { @apply bg-brand text-white relative; }
+  .footer-divider { @apply bg-white border-t border-black/10 shadow-[inset_0_-1px_0_rgba(255,255,255,0.6),0_-8px_24px_rgba(0,0,0,0.05)]; }
+  .footer-grid { @apply grid gap-6 md:[grid-template-columns:minmax(0,2fr)_repeat(3,minmax(0,1fr))_auto] md:[column-gap:3rem] md:[row-gap:2rem]; }
+  .social-link { @apply inline-flex items-center justify-center text-white hover:bg-white/10 rounded-md p-1; }
+  .social-icon { @apply w-5 h-5; }
+
+  /* Pricing & tiers */
+  .tier-card { @apply relative border border-light rounded-xlplus bg-white shadow-card transition hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(0,0,0,0.12)] hover:border-black/10; }
+  .tier-card__bar { @apply absolute inset-x-0 top-0 h-1 rounded-t-xlplus; }
+  .tier-card__head { @apply flex items-center justify-between gap-2; }
+  .tier-card__title { @apply font-black tracking-tight; }
+  .tier-card__text { @apply text-[0.95rem] text-dark/80; }
+  .tier-card__list { @apply mt-2 text-[0.9rem]; }
+  .list-check { @apply mt-2; }
+  .list-check li { @apply flex items-start gap-2; }
+  .tier-dot { @apply inline-block w-2.5 h-2.5 rounded-full; }
+  .pricing-table { @apply w-full border border-light rounded-xl overflow-hidden bg-white; }
+  .pricing-table thead th { @apply bg-brand text-white font-black tracking-[.01em]; }
+  .pricing-table th, .pricing-table td { @apply px-4 py-3 text-left; }
+  .pricing-table tbody tr:nth-child(odd) { @apply bg-white; }
+  .pricing-table tbody tr:nth-child(even) { @apply bg-[#f7f7f7]; }
+  .pricing-table tbody tr:hover { @apply bg-brand/5; }
+
+  /* Category tiles */
+  .cat-card { @apply flex flex-col items-center text-center bg-white border border-black/10 rounded-2xl p-4 transition hover:-translate-y-0.5 hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand; }
+  .cat-card__media { @apply w-full aspect-square rounded-[0.8rem] overflow-hidden bg-white; }
+  .cat-card__img { @apply w-full h-full object-cover object-center block; }
+  .cat-card__title { @apply mt-3 font-black tracking-tight text-dark; }
+
+  /* Utilities */
+  .divider { @apply h-px bg-black/10; }
+  .h-scroll { @apply overflow-x-auto overflow-y-hidden touch-pan-x overscroll-x-contain; }
+
+  /* Hero backgrounds */
+  .hero-brand-strong { @apply bg-gradient-to-b from-brand/30 via-white to-white; }
+  .hero-brand-soft { @apply bg-gradient-to-b from-brand/20 via-white to-white; }
+  .hero-brand-calm { @apply bg-gradient-to-b from-brand/10 via-white to-white; }
+
+  /* Typography helpers */
+  .eyebrow { @apply text-[0.8rem] tracking-wider font-extrabold text-dark/70; }
+  .section-title { @apply font-black text-dark tracking-tight; }
+  .section-subtitle { @apply text-dark/80 text-subheading font-bold; }
+
+  /* Feature cards */
+  .feature-card { @apply flex gap-4 p-[1.1rem] bg-white border border-light rounded-xlplus shadow-card transition hover:-translate-y-0.5 hover:shadow-2xl; }
+  .feature-icon { @apply flex-none w-11 h-11 rounded-full inline-flex items-center justify-center text-white bg-brand shadow-[inset_0_0_0_1px_rgba(255,255,255,0.15)]; }
+  .feature-icon--teal { @apply bg-teal; }
+  .feature-icon--accent { @apply bg-accent text-[#111]; }
+  .feature-title { @apply font-extrabold text-dark tracking-tight; }
+  .feature-text { @apply text-dark/80 text-[0.95rem]; }
+
+  /* Skeletons */
+  @keyframes sg-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+  .skeleton { @apply rounded-brand relative overflow-hidden; background: linear-gradient(90deg, rgba(0,0,0,0.04) 25%, rgba(0,0,0,0.06) 37%, rgba(0,0,0,0.04) 63%); background-size: 400% 100%; animation: sg-shimmer 1.4s ease infinite; }
+  .skeleton-card { @apply rounded-lg min-h-[320px]; background: linear-gradient(90deg, rgba(0,0,0,0.03) 25%, rgba(0,0,0,0.06) 37%, rgba(0,0,0,0.03) 63%); background-size: 400% 100%; animation: sg-shimmer 1.4s ease infinite; }
+
+  /* Empty & spinner */
+  .empty { @apply text-center p-8 border border-light rounded-xl bg-white; }
+  .empty__title { @apply font-extrabold tracking-tight; }
+  .empty__text { @apply text-dark/75; }
+  @keyframes sg-spin { to { transform: rotate(360deg); } }
+  .spinner { @apply w-5 h-5 rounded-full border-2; border-color: rgba(0,0,0,.15); border-top-color: theme('colors.brand'); animation: sg-spin 1s linear infinite; }
+
+  /* Price */
+  .price { @apply text-[1.35rem] font-black tracking-tight text-dark sm:text-[1.5rem]; }
+  .price small { @apply text-[0.8rem] font-bold text-dark/70; }
 }
 
