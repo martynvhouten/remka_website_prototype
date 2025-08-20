@@ -230,5 +230,29 @@
   .footer-premium .pill--primary { @apply text-white border-white/35 bg-white/10 hover:bg-white/20; }
   .footer-premium .pill--secondary { @apply text-white border-white/35 bg-white/10 hover:bg-white/20; }
   .footer-premium .pill--neutral { @apply text-white border-white/35 bg-white/10 hover:bg-white/15; }
+
+  /* Blog: reusable pieces */
+  .meta-pill { @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[0.78rem] font-extrabold border border-black/10 bg-black/5 text-dark; }
+  .post-prose {
+    @apply mx-auto max-w-prose text-dark/90;
+  }
+  .post-prose h1 { @apply text-3xl md:text-4xl font-black tracking-tight text-dark; }
+  .post-prose h2 { @apply mt-8 text-2xl md:text-3xl font-extrabold tracking-tight text-dark; }
+  .post-prose h3 { @apply mt-6 text-xl md:text-2xl font-extrabold text-dark; }
+  .post-prose p { @apply mt-4 text-copy; }
+  .post-prose a { @apply text-brand underline-offset-2 hover:underline; }
+  .post-prose ul { @apply mt-4 list-disc pl-6 space-y-1; }
+  .post-prose ol { @apply mt-4 list-decimal pl-6 space-y-1; }
+  .post-prose blockquote { @apply mt-6 border-l-4 border-brand pl-4 italic text-dark/80; }
+  .post-prose pre,
+  .post-prose code { @apply bg-black/5 rounded-md px-1.5 py-0.5; }
+  .post-prose pre { @apply p-3 overflow-x-auto; }
+  .post-prose figure { @apply my-6; }
+  .post-prose figcaption { @apply mt-2 text-sm text-dark/70 text-center; }
+
+  .sidebar-card { @apply bg-white border border-light rounded-xl shadow-card p-4; }
+  .related-list { @apply mt-2 space-y-2; }
+  .related-list a { @apply block text-sm hover:text-brand; }
+  .cta-card { @apply sidebar-card bg-[rgba(158,0,89,0.06)] border-[rgba(158,0,89,0.15)]; }
 }
 

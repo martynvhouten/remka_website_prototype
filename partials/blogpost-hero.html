@@ -1,11 +1,36 @@
 <!-- DEVNOTE[hyva-slot,blog][owner=remka|date=2025-08-11]: Blog post header/hero. Target: handle=blog_post_view, phtml=Vendor_Blog::post/hero.phtml (verify). Docs: style-guide.html#pagina-titel -->
-<section class="hero-brand-strong">
-  <div class="container mx-auto px-4 py-12 lg:py-16">
-    <header class="max-w-3xl">
-      <div class="eyebrow">Praktijktips</div>
-      <h1 class="mt-1 text-3xl font-extrabold tracking-tight">Hygiëneprotocol in 5 stappen</h1>
-      <p class="mt-2 section-subtitle max-w-prose">Praktisch stappenplan voor een schoon en veilig werkproces in de praktijk.</p>
+<section class="hero-brand-soft border-b border-light/60">
+  <div class="container mx-auto px-4 py-10 lg:py-14">
+    <header class="mx-auto max-w-3xl text-center">
+      <!-- Meta bar -->
+      <div class="flex flex-wrap items-center justify-center gap-2 text-sm">
+        <span class="meta-pill">Praktijktips</span>
+        <span class="meta-pill">11 apr 2025</span>
+        <span class="meta-pill">5 min lezen</span>
+        <div class="inline-flex items-center gap-1">
+          <a href="#" class="meta-pill" aria-label="Deel op LinkedIn">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V24h-4V8.5zM8.5 8.5h3.8v2.1h.1c.5-1 1.8-2.1 3.7-2.1 3.9 0 4.6 2.5 4.6 5.7V24h-4v-7c0-1.7 0-3.9-2.4-3.9s-2.8 1.8-2.8 3.8V24h-4V8.5z"/></svg>
+            <span class="sr-only">LinkedIn</span>
+          </a>
+          <a href="#" class="meta-pill" aria-label="Deel via e-mail">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5Z"/></svg>
+            <span class="sr-only">E-mail</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Title & intro -->
+      <h1 class="mt-2 text-3xl md:text-4xl font-black tracking-tight">Hygiëneprotocol in 5 stappen</h1>
+      <p class="mt-2 section-subtitle mx-auto max-w-prose">Praktisch stappenplan voor een schoon en veilig werkproces in de praktijk.</p>
     </header>
+
+    <!-- Small, centered hero image -->
+    <figure class="mt-6 mx-auto w-full max-w-[800px]">
+      <div class="aspect-[16/9] rounded-lg shadow overflow-hidden bg-white">
+        <img src="/assets/images/placeholder-16x9.svg" alt="Hygiëne in de praktijk" class="w-full h-full object-cover" loading="eager" />
+      </div>
+      <figcaption class="mt-2 text-sm text-dark/70 text-center">Voorbeeldafbeelding. Houd beelden subtiel en ondersteunend.</figcaption>
+    </figure>
   </div>
 </section>
 
