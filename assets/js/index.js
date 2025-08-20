@@ -2,12 +2,20 @@
 
 async function injectPartial(el, name) {
   try {
-    // Use relative paths so it also works when opening files directly (file://)
-    const path = name.startsWith('components/') ? `${name}.html` : `partials/${name}.html`;
-    const res = await fetch(path, { cache: 'no-store' });
-    if (!res.ok) return;
-    const html = await res.text();
-    el.outerHTML = html;
+    // Prefer relative path (works on file://), but fall back to absolute from site root
+    const paths = name.startsWith('components/')
+      ? [ `${name}.html`, `/${name}.html` ]
+      : [ `partials/${name}.html`, `/partials/${name}.html` ];
+    for (const path of paths) {
+      try {
+        const res = await fetch(path, { cache: 'no-store' });
+        if (res && res.ok) {
+          const html = await res.text();
+          el.outerHTML = html;
+          return;
+        }
+      } catch {}
+    }
   } catch {}
 }
 
@@ -56,6 +64,55 @@ async function loadPartials() {
 
 document.addEventListener('DOMContentLoaded', async () => {
   await loadPartials();
+  // Footer safety net: if footer failed to inject, add minimal divider bar
+  try {
+    const hasFooter = !!document.querySelector('footer.footer-premium');
+    const ph = document.getElementById('footer-placeholder');
+    if (!hasFooter && ph) {
+      const year = new Date().getFullYear();
+      const div = document.createElement('div');
+      div.innerHTML = `
+        <footer class="footer-premium" role="contentinfo">
+          <div class="footer-divider">
+            <div class="container mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-4">
+              <div class="text-sm text-dark/70">© <span id="year">${year}</span> Remka B.V.</div>
+              <div class="flex items-center gap-3 opacity-80">
+                <img class="h-6 w-auto" src="/assets/images/payment-icons/ideal-logo.webp" alt="iDEAL" loading="lazy" decoding="async" />
+                <img class="h-6 w-auto" src="/assets/images/payment-icons/Bancontact-logo.webp" alt="Bancontact" loading="lazy" decoding="async" />
+                <img class="h-6 w-auto" src="/assets/images/payment-icons/Visa_Brandmark_Blue_RGB_2021.webp" alt="Visa" loading="lazy" decoding="async" />
+                <img class="h-6 w-auto" src="/assets/images/payment-icons/ma_symbol_rgb.webp" alt="Mastercard" loading="lazy" decoding="async" />
+                <img class="h-6 w-auto" src="/assets/images/payment-icons/PayPal-logo.webp" alt="PayPal" loading="lazy" decoding="async" />
+                <img class="h-6 w-auto" src="/assets/images/payment-icons/Apple-Pay-Logo.webp" alt="Apple Pay" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          </div>
+        </footer>`;
+      ph.replaceWith(div.firstElementChild);
+    }
+  } catch {}
+  // Ensure Subfooter is present even if nested partial injection didn't run
+  try {
+    const hasSubfooter = !!document.querySelector('.subfooter');
+    const footerEl = document.querySelector('footer.footer-premium');
+    if (!hasSubfooter && footerEl) {
+      let html = '';
+      try {
+        const res = await fetch('partials/subfooter.html', { cache: 'no-store' });
+        if (res && res.ok) html = await res.text();
+      } catch {}
+      if (html) {
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = html;
+        const el = wrapper.firstElementChild;
+        if (el) {
+          footerEl.insertAdjacentElement('afterend', el);
+          // Set current year for subfooter if placeholder present
+          const y = el.querySelector('[data-year]');
+          if (y) y.textContent = String(new Date().getFullYear());
+        }
+      }
+    }
+  } catch {}
   // Compute sticky offset so sticky sidebars (TOCs) never sit under the header
   try {
     const header = document.getElementById('site-header');

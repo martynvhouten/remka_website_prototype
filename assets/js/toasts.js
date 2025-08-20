@@ -195,24 +195,9 @@
   // Expose
   window.toast = api;
 
-  // Replace legacy demo hook for add-to-cart
-  document.addEventListener('click', function(e){
-    var btn = e.target.closest && e.target.closest('[data-add-to-cart]');
-    if(!btn) return;
-    var title = btn.getAttribute('data-title') || 'Product';
-    var qty = parseInt(btn.getAttribute('data-qty') || '1', 10) || 1;
-    var thumb = btn.getAttribute('data-image') || '';
-    toast.cart({ title: title, qty: qty, thumbnail: thumb }, { actionText: 'Bekijk winkelwagen' });
-  });
+  // Removed: legacy add-to-cart toast hook (replaced by AddToCartDialog)
 
-  // Listen for bulk add items events from Bestellijsten
-  window.addEventListener('cart:addItems', function(e){
-    try {
-      var items = (e && e.detail) || [];
-      var totalQty = items.reduce(function(sum, it){ return sum + (Number(it && it.qty || 0)); }, 0);
-      api.cart({ title: 'Toegevoegd aan winkelwagen', qty: totalQty }, { actionText: 'Bekijk winkelwagen' });
-    } catch(_) {}
-  });
+  // Removed: bulk add listener moved to AddToCartDialog
 })();
 
 

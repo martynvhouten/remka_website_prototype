@@ -36,17 +36,17 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://remka-prototype.netlify.app/product-op-voorraad.html</loc>
+    <loc>https://remka-prototype.netlify.app/product.html?stock=in_stock</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://remka-prototype.netlify.app/product-ordergestuurd.html</loc>
+    <loc>https://remka-prototype.netlify.app/product.html?stock=backorder</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://remka-prototype.netlify.app/product-niet-op-voorraad.html</loc>
+    <loc>https://remka-prototype.netlify.app/product.html?stock=out_of_stock</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

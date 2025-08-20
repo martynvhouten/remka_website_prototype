@@ -1,8 +1,9 @@
 (function(){
   function fillStock(){
     const host = document.getElementById('stockArea'); if(!host) return;
-    const stock = document.body.getAttribute('data-stock') || new URLSearchParams(location.search).get('stock') || 'in_stock';
-    const eta = document.body.getAttribute('data-eta') || new URLSearchParams(location.search).get('eta') || '';
+    const params = new URLSearchParams(location.search);
+    const stock = params.get('stock') || document.body.getAttribute('data-stock') || 'in_stock';
+    const eta = params.get('eta') || document.body.getAttribute('data-eta') || '';
     let badge = '';
     let note = '';
     if(stock === 'in_stock'){

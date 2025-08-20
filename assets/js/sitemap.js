@@ -145,9 +145,9 @@
           const a = document.createElement('a');
           // Route to demo variants based on stock where possible
            let href = '/product.html';
-          if(p.stock === 'in_stock') href = '/product-op-voorraad.html';
-          else if(p.stock === 'backorder') href = '/product-ordergestuurd.html';
-          else if(p.stock === 'out_of_stock') href = '/product-niet-op-voorraad.html';
+          if(p.stock === 'in_stock') href = '/product.html?stock=in_stock';
+          else if(p.stock === 'backorder') href = '/product.html?stock=backorder';
+          else if(p.stock === 'out_of_stock') href = '/product.html?stock=out_of_stock';
           a.href = href;
           a.className = 'card card--hover p-2 flex items-center justify-between gap-2';
           a.setAttribute('aria-label', p.title);

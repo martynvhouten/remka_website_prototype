@@ -12,16 +12,16 @@
   
   <!-- Korte beschrijving (short description) -->
   <div class="mt-5 text-dark/80" id="shortDescription">
-    Compacte samenvatting van het product voor snelle oriëntatie. Beschrijf in 2–3 zinnen het doel, de belangrijkste eigenschappen en geschikte toepassingen.
+    Korte, duidelijke productomschrijving. Focus op toepassing, kernspecificaties en praktische voordelen voor professioneel gebruik.
   </div>
   <div class="mt-6 flex gap-3 items-center">
     <button class="btn btn-brand inline-flex items-center gap-2" data-add-to-cart aria-label="In winkelwagen" data-sku="HEINE-SET-NT4" data-title="HEINE BETA400 + BETA200 Kit (NT4)" data-price="1295.00" data-image="/assets/images/Products/HEINE/A-153.24.422-HEINE-BETA400-LED-otoscope-BETA200-LED-ophthalmoscope-kit-nt4.webp">
       <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4h-2l-1 2v2h2l3.6 7.59a2 2 0 0 0 1.8 1.16h6.9v-2h-6.58l-.27-.54L18 11a2 2 0 0 0 1-1.73V6H7Zm-1 16a2 2 0 1 0 2-2 2 2 0 0 0-2 2Zm10 0a2 2 0 1 0 2-2 2 2 0 0 0-2 2Z"/><path d="M20 4v2h2v2h-2v2h-2V8h-2V6h2V4z"/></svg>
       <span>In winkelwagen</span>
     </button>
-    <button class="btn btn-outline inline-flex items-center gap-2" data-orderlist aria-label="Bestellijst">
-      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 2h10a2 2 0 0 1 2 2v3h-2V4H6v16h10v-3h2v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm12.293 6.293 1.414 1.414L16.414 13l3.293 3.293-1.414 1.414L15 14.414l-3.293 3.293-1.414-1.414L13.586 13 10.293 9.707l1.414-1.414L15 11.586l3.293-3.293Z"/></svg>
+    <button class="btn btn-outline btn--orderlist btn--icon-first inline-flex items-center gap-2 whitespace-nowrap" data-orderlist aria-label="Bestellijst">
       <span>Bestellijst</span>
+      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 2h10a2 2 0 0 1 2 2v3h-2V4H6v16h10v-3h2v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm12.293 6.293 1.414 1.414L16.414 13l3.293 3.293-1.414 1.414L15 14.414l-3.293 3.293-1.414-1.414L13.586 13 10.293 9.707l1.414-1.414L15 11.586l3.293-3.293Z"/></svg>
     </button>
     <!-- DEVNOTE[hyva-slot,pdp][owner=remka|date=2025-08-11]: Order List add on PDP. Target: handle=catalog_product_view, phtml=Magento_Catalog::product/view/addto.phtml. Docs: style-guide.html#order-list-add -->
   </div>
@@ -54,10 +54,11 @@
 
   <!-- Trust/USP bar -->
   <div class="mt-6 grid sm:grid-cols-3 gap-3">
-    <div class="pill"><span class="dot"></span> Vandaag besteld, vaak morgen in huis</div>
-    <div class="pill pill--teal"><span class="dot"></span> Gecertificeerde service & onderhoud</div>
-    <div class="pill pill--accent"><span class="dot"></span> Deskundig advies door specialisten</div>
+    <div class="pill pill--neutral">Vandaag besteld, vaak morgen in huis</div>
+    <div class="pill pill--secondary">Gecertificeerde service en onderhoud</div>
+    <div class="pill pill--primary">Deskundig advies door specialisten</div>
   </div>
 <script type="module" src="/assets/js/orderlist/addToOrderListModal.js"></script>
+<script src="/assets/js/baseDialog.js" defer></script>
 </section>
 

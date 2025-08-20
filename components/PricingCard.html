@@ -1,0 +1,27 @@
+<!-- Reusable Pricing/Service Card (Tailwind-only)
+     Usage: duplicate and replace placeholders {{ ... }}.
+     Accent bar color examples: bg-amber-500, bg-zinc-500, bg-amber-600, bg-slate-500, bg-brand.
+-->
+<article class="group relative flex flex-col rounded-2xl border border-light bg-white p-7 shadow-sm transition-transform duration-150 ease-out hover:-translate-y-1 hover:shadow-2xl focus-within:-translate-y-1 focus-within:shadow-2xl lg:p-8" aria-label="{{ tier }} – {{ subtitle }}">
+  <div class="absolute inset-x-0 top-0 h-1 rounded-t-2xl {{ accent }}" aria-hidden="true"></div>
+  <!-- Optional: featured badge (remove if not featured) -->
+  <!-- <span class="absolute -top-3 right-4 inline-flex items-center rounded-full border border-brand/30 bg-brand/10 px-2.5 py-0.5 text-xs font-extrabold text-brand">Meest populair</span> -->
+  <div class="flex items-center justify-between">
+    <h3 class="text-xl font-extrabold tracking-tight">{{ tier }}</h3>
+  </div>
+  <p class="mt-2 text-[0.95rem] leading-relaxed text-dark/80">{{ description }}</p>
+  <div class="mt-4 text-3xl font-black text-dark">
+    <span class="text-sm font-extrabold text-dark/70">{{ price_prefix }}</span>
+    {{ price_value }}
+    <span class="text-sm font-extrabold text-dark/70">{{ price_suffix }}</span>
+  </div>
+  <ul class="mt-5 space-y-3">
+    <!-- Feature item (duplicate per feature) -->
+    <li class="flex items-start gap-3 text-[0.95rem] text-dark/90">
+      <span class="inline-flex h-6 w-6 flex-none items-center justify-center rounded-full {{ icon_bg }}"><svg class="h-4 w-4 {{ icon_color }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
+      <span>{{ feature_1 }}</span>
+    </li>
+  </ul>
+</article>
+
+

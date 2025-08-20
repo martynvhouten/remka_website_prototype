@@ -34,9 +34,9 @@
             </form>
           </header>
           <div class="mt-4 flex flex-wrap items-center gap-2">
-            <a href="#" class="pill" data-suggest>Merken</a>
-            <a href="#" class="pill pill--teal" data-suggest>Categorieën</a>
-            <a href="#" class="pill pill--accent" data-suggest>Populair</a>
+            <a href="#" class="pill pill--neutral" data-suggest role="button" aria-pressed="false">Merken</a>
+            <a href="#" class="pill pill--secondary" data-suggest role="button" aria-pressed="false">Categorieën</a>
+            <a href="#" class="pill pill--primary" data-suggest role="button" aria-pressed="false">Populair</a>
           </div>
         </div>
       </section>
@@ -86,6 +86,7 @@
     <script src="/assets/js/index.js" defer></script>
     <script src="/assets/js/productCard.js" defer></script>
     <script src="/assets/js/toasts.js" defer></script>
+    <script src="/assets/js/cartDrawer.js" defer></script>
     <script>
       (function(){
         const params = new URLSearchParams(location.search);

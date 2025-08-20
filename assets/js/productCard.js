@@ -42,7 +42,7 @@
     var ratingEl = node.querySelector('[data-rating]');
     var view = null; // view CTA tekst verwijderd
     var add = node.querySelector('[data-add]');
-    var addToListBtn = node.querySelector('[data-orderlist]');
+    var addToListBtn = null; // product cards no longer have orderlist button
     var badgesHost = node.querySelector('[data-badges]');
     var discountHost = node.querySelector('[data-discount]');
 
@@ -100,11 +100,7 @@
       if(src) add.setAttribute('data-image', String(src));
     }
 
-    if(addToListBtn){
-      if(data.sku) addToListBtn.setAttribute('data-sku', String(data.sku));
-      if(data.title) addToListBtn.setAttribute('data-title', String(data.title));
-      if(data.price) addToListBtn.setAttribute('data-price', String(data.price));
-    }
+    // no-op: orderlist button removed from product cards
 
     if(data.badges && Array.isArray(data.badges) && badgesHost){
       badgesHost.innerHTML = data.badges.map(function(b){ return '<span class="badge">'+String(b)+'</span>'; }).join('');

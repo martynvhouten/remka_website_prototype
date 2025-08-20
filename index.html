@@ -21,8 +21,7 @@
     <link rel="preload" href="/assets/css/tailwind.css" as="style" />
     <link rel="stylesheet" href="/assets/css/tailwind.css" />
     <link rel="stylesheet" href="/assets/css/base.css" />
-    <link rel="preload" href="/assets/css/slider.css" as="style" />
-    <link rel="stylesheet" href="/assets/css/slider.css" />
+    <!-- slider.css merged into assets/css/base.css -->
     
   </head>
   <body class="min-h-screen flex flex-col layout-wide">
@@ -32,13 +31,13 @@
       <!-- Home sections via partials -->
       <div data-partial="components/ProductCard"></div>
       <div data-partial="home-hero"></div>
-      <div data-partial="home-usp"></div>
-      <div data-partial="home-categories"></div>
+      <div data-partial="home-usp" style="content-visibility: auto; contain-intrinsic-size: 600px 800px"></div>
+      <div data-partial="home-categories" style="content-visibility: auto; contain-intrinsic-size: 800px 1000px"></div>
       
-      <div data-partial="brands-carousel"></div>
-      <div data-partial="home-features"></div>
-      <div data-partial="home-popular-products"></div>
-      <div data-partial="home-blog-teaser"></div>
+      <div data-partial="brands-carousel" style="content-visibility: auto; contain-intrinsic-size: 420px 1200px"></div>
+      <div data-partial="home-features" style="content-visibility: auto; contain-intrinsic-size: 600px 1200px"></div>
+      <div data-partial="home-popular-products" style="content-visibility: auto; contain-intrinsic-size: 800px 1200px"></div>
+      <div data-partial="home-blog-teaser" style="content-visibility: auto; contain-intrinsic-size: 700px 1200px"></div>
     </main>
 
     <div id="footer-placeholder"></div>
@@ -46,10 +45,12 @@
     <div class="toasts" id="toasts" aria-live="polite" aria-atomic="true"></div>
     <script src="/assets/js/nav.js" defer></script>
     <script src="/assets/js/index.js" defer></script>
+    <script src="/assets/js/baseDialog.js" defer></script>
     <script src="/assets/js/productCard.js" defer></script>
     <script src="/assets/js/slider.js" defer></script>
     <script src="/assets/js/brands.js" defer></script>
     <script src="/assets/js/toasts.js" defer></script>
+    <script src="/assets/js/cartDrawer.js" defer></script>
   </body>
 </html>
 

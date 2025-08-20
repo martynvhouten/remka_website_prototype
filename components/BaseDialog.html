@@ -1,0 +1,49 @@
+<!-- BaseDialog usage docs/examples -->
+<section class="container mx-auto px-4 py-10">
+  <header>
+    <div class="eyebrow">Component</div>
+    <h2 class="text-2xl font-black">BaseDialog</h2>
+    <p class="mt-1 text-sm text-dark/70">Herbruikbare gecentreerde modal met glaslook, focus-trap en toegankelijke ARIA-attrs.</p>
+  </header>
+
+  <div class="mt-4 grid md:grid-cols-2 gap-6 text-sm">
+    <div class="card p-4">
+      <div class="font-semibold">Voorbeeld – Offerte (RFQ)</div>
+      <div class="mt-2">
+        <button class="btn btn-brand" id="exRfq">Open RFQ</button>
+      </div>
+      <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto text-xs"><code>BaseDialog.open({
+  title: 'Offerte aanvragen',
+  size: 'md',
+  offsetTop: 36,
+  body: '&lt;p class="text-sm text-dark/80"&gt;Vul je aanvraag in.&lt;/p&gt;',
+  footer: '&lt;div class="flex justify-end gap-2"&gt;...&lt;/div&gt;',
+  ariaLabel: 'Offerte dialoog'
+});</code></pre>
+    </div>
+    <div class="card p-4">
+      <div class="font-semibold">Voorbeeld – Bestellijst</div>
+      <div class="mt-2">
+        <button class="btn btn-outline" id="exOrderlist">Open bestellijst</button>
+      </div>
+      <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto text-xs"><code>BaseDialog.open({
+  title: 'Toevoegen aan bestellijst',
+  size: 'sm',
+  body: '&lt;label class="block text-sm font-semibold"&gt;Lijst&lt;/label&gt;...'
+});</code></pre>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('click', function(e){
+      if(e.target && e.target.id === 'exRfq'){
+        window.BaseDialog && window.BaseDialog.open({ title: 'Offerte aanvragen', size: 'md', offsetTop: 36, body: '<div class="space-y-3"><label class="block text-sm font-semibold" for="ex-qty">Aantal</label><input id="ex-qty" type="number" class="input w-28" value="1" min="1" step="1" /></div>', footer: '<div class="flex justify-end gap-2"><button class="btn btn-outline" data-close="basedialog">Annuleren</button><button class="btn btn-brand">Versturen</button></div>' });
+      }
+      if(e.target && e.target.id === 'exOrderlist'){
+        window.BaseDialog && window.BaseDialog.open({ title: 'Toevoegen aan bestellijst', size: 'sm', offsetTop: 36, body: '<div class="space-y-3"><label class="block text-sm font-semibold">Kies lijst</label><select class="select w-full"><option>Voorraad maart</option></select></div>', footer: '<div class="flex justify-end gap-2"><button class="btn btn-outline" data-close="basedialog">Annuleren</button><button class="btn btn-brand">Toevoegen</button></div>' });
+      }
+    });
+  </script>
+</section>
+
+

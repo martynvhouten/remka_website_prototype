@@ -1,6 +1,6 @@
 <!-- DEVNOTE[hyva-slot,plp][owner=remka|date=2025-08-11]: Category header + breadcrumbs. Target: handle=category_view, phtml=Magento_Catalog::category/header.phtml. Docs: style-guide.html#pagina-titel -->
 <!-- Hyvä: combineer breadcrumbs + heading in layout blocks indien gewenst -->
-<section class="section-alt">
+<section class="hero-brand-strong">
   <div class="container mx-auto px-4 py-8">
   <nav class="text-sm text-dark/80 breadcrumbs" aria-label="Breadcrumb">
       <ol id="crumbList" class="flex flex-wrap items-center gap-2">
@@ -15,17 +15,22 @@
         <p class="mt-2 section-subtitle max-w-2xl" id="catShortDesc">SHORT_DESC</p>
         <div class="mt-2 text-sm text-dark/70"><span id="catCount">0</span> producten</div>
         <div class="mt-4 flex flex-wrap gap-2">
-          <a href="#subcatGrid" class="pill"><span class="dot"></span> Subcategorieën</a>
-          <a href="#productGrid" class="pill pill--teal"><span class="dot"></span> Producten</a>
-          <a href="#advice" class="pill pill--accent"><span class="dot"></span> Advies</a>
+          <a href="#subcatGrid" class="pill pill--neutral">Subcategorieën</a>
+          <a href="#productGrid" class="pill pill--secondary">Producten</a>
+          <a href="#advice" class="pill pill--primary">Advies nodig?</a>
+        </div>
+        <div class="mt-5">
+          <a href="#productsSection" class="btn btn-brand">
+            Bekijk assortiment
+          </a>
         </div>
         <div class="sr-only" id="resultCount" aria-live="polite"></div>
       </div>
       <aside class="hidden lg:block">
         <div class="card p-4">
-          <div class="text-sm text-dark/80">Tip</div>
+          <div class="text-sm text-dark/80">Voor professionals</div>
           <div class="mt-1 font-semibold">Vandaag besteld, vaak morgen in huis</div>
-          <div class="mt-2 text-sm text-dark/70">Gecertificeerde service & onderhoud. Deskundig advies beschikbaar.</div>
+          <div class="mt-2 text-sm text-dark/70">Gecertificeerde service en onderhoud. Deskundig advies wanneer je het nodig hebt.</div>
         </div>
       </aside>
     </header>

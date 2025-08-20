@@ -119,10 +119,10 @@
       const a = document.createElement('a');
         a.href = `/c/${encodeURIComponent(node.slug)}/${encodeURIComponent(ch.slug)}`;
       a.className = 'cat-card';
-      a.innerHTML = `<div class="cat-card__media"><img src="${fallback}" alt="${ch.name}" loading="lazy" decoding="async" width="600" height="600" class="cat-card__img"/></div><span class="cat-card__title">${ch.name}</span>`;
+      a.innerHTML = `<div class="cat-card__media"><img src="${fallback}" alt="${ch.name}" loading="lazy" decoding="async" width="600" height="600" class="cat-card__img" sizes="(min-width: 1280px) 18vw, (min-width: 1024px) 22vw, (min-width: 640px) 28vw, 48vw"/></div><span class="cat-card__title">${ch.name}</span>`;
       if(idx < limit) host.appendChild(a);
       if (chips) {
-        const chip = document.createElement('a'); chip.href = a.href; chip.className = 'pill pill--sm'; chip.innerHTML = `<span class="dot"></span>${ch.name}`; chips.appendChild(chip);
+        const chip = document.createElement('a'); chip.href = a.href; chip.className = 'pill pill--sm pill--neutral'; chip.setAttribute('role','link'); chip.setAttribute('aria-label', ch.name); chip.innerHTML = `<svg class="pill__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h7v7H4V4zm9 0h7v7h-7V4zM4 13h7v7H4v-7zm9 0h7v7h-7v-7z"/></svg>${ch.name}`; chips.appendChild(chip);
       }
     });
     const btn = document.getElementById('showMoreSubcats');
@@ -134,7 +134,7 @@
           const a = document.createElement('a');
           a.href = `/c/${encodeURIComponent(node.slug)}/${encodeURIComponent(ch.slug)}`;
           a.className = 'cat-card';
-         a.innerHTML = `<div class=\"cat-card__media\"><img src=\"${fallback}\" alt=\"${ch.name}\" loading=\"lazy\" decoding=\"async\" width=\"600\" height=\"600\" class=\"cat-card__img\"/></div><span class=\"cat-card__title\">${ch.name}</span>`;
+         a.innerHTML = `<div class=\"cat-card__media\"><img src=\"${fallback}\" alt=\"${ch.name}\" loading=\"lazy\" decoding=\"async\" width=\"600\" height=\"600\" class=\"cat-card__img\" sizes=\"(min-width: 1280px) 18vw, (min-width: 1024px) 22vw, (min-width: 640px) 28vw, 48vw\"/></div><span class=\"cat-card__title\">${ch.name}</span>`;
           host.appendChild(a);
         });
         btn.remove();
@@ -320,6 +320,16 @@
     if(section) section.hidden = list.length === 0;
   }
 
+  function toggleTrustSection(show){
+    const trust = document.getElementById('trustSection');
+    if(trust){ trust.hidden = !show; }
+  }
+
+  function toggleBanners(show){
+    const banners = document.getElementById('categoryBannersSection');
+    if(banners){ banners.hidden = !show; }
+  }
+
   function renderNew(products){
     const host = document.getElementById('newGrid'); if(!host) return;
     const section = document.getElementById('newSection');
@@ -452,8 +462,11 @@
         chipsHost.innerHTML = '';
         filters.forEach(f=>{
           const chip = document.createElement('button');
-          chip.className = 'pill pill--sm';
-          chip.innerHTML = `<span class="dot"></span>${f}`;
+          chip.type = 'button';
+          chip.className = 'pill pill--sm pill--primary';
+          chip.setAttribute('aria-pressed','true');
+          chip.setAttribute('aria-label', `Verwijder filter ${f}`);
+          chip.innerHTML = `<svg class=\"pill__icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M19 13H5v-2h14v2z\"/></svg>${f}`;
           chip.addEventListener('click', ()=>{
             const cb = document.querySelector(`#facetHost input[type=checkbox][value="${f}"]`);
             const cbm = document.querySelector(`#facetHostMobile input[type=checkbox][value="${f}"]`);
@@ -498,6 +511,8 @@
     const brandsStrip = document.getElementById('brandsStrip');
     const bestRatedSection = document.getElementById('bestRatedSection');
     const recentlyViewedSection = document.getElementById('recentlyViewedSection');
+    const popularSection = document.getElementById('popularSection');
+    const newSection = document.getElementById('newSection');
     const toolbar = document.querySelector('[data-partial="category-toolbar"]');
     const filtersBar = document.querySelector('[data-partial="category-filters"]');
     const longdesc = document.querySelector('[data-partial="category-longdesc"]');
@@ -509,19 +524,25 @@
       if(brandsStrip) brandsStrip.hidden = false;
       if(bestRatedSection) bestRatedSection.hidden = false;
       if(recentlyViewedSection) recentlyViewedSection.hidden = false;
+      if(popularSection) popularSection.hidden = false;
+      if(newSection) newSection.hidden = true;
       if(toolbar) toolbar.removeAttribute('hidden');
       if(filtersBar) filtersBar.setAttribute('hidden','true');
       if(longdesc) longdesc.removeAttribute('hidden');
+      toggleBanners(true);
     } else if(level === 2){
       if(left) left.style.display = '';
       if(productsSection) productsSection.hidden = false;
-      if(subcatSection) subcatSection.hidden = true;
-      if(brandsStrip) brandsStrip.hidden = false; // optional compact
-      if(bestRatedSection) bestRatedSection.hidden = true;
+      // leave subcatSection visibility as rendered (only show if children exist)
+      if(brandsStrip) brandsStrip.hidden = false;
+      if(bestRatedSection) bestRatedSection.hidden = false;
       if(recentlyViewedSection) recentlyViewedSection.hidden = true;
+      if(popularSection) popularSection.hidden = false;
+      if(newSection) newSection.hidden = false;
       if(toolbar) toolbar.removeAttribute('hidden');
       if(filtersBar) filtersBar.removeAttribute('hidden');
       if(longdesc) longdesc.removeAttribute('hidden');
+      toggleBanners(true);
     } else { // level 3
       if(left) left.style.display = '';
       if(productsSection) productsSection.hidden = false;
@@ -529,9 +550,12 @@
       if(brandsStrip) brandsStrip.hidden = true;
       if(bestRatedSection) bestRatedSection.hidden = true;
       if(recentlyViewedSection) recentlyViewedSection.hidden = true;
+      if(popularSection) popularSection.hidden = true;
+      if(newSection) newSection.hidden = false;
       if(toolbar) toolbar.removeAttribute('hidden');
       if(filtersBar) filtersBar.removeAttribute('hidden');
       if(longdesc) longdesc.removeAttribute('hidden');
+      toggleBanners(true);
     }
   }
 
@@ -576,7 +600,10 @@
       const state = { allProducts: products };
       renderProducts(products);
       renderBestRated(products);
+      renderPopular(products);
+      renderNew(products);
       renderRecentlyViewed();
+      toggleTrustSection(level === 1);
       buildBrandFacet(products, () => apply());
       const apply = bindToolbar(state);
       apply && apply();
