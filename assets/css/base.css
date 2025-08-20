@@ -18,10 +18,7 @@
   :where(a, button, input, select, textarea):focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
   .focus-ring { outline: none; outline-offset: 0; }
 
-  /* Card */
-  .card { background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
-  .card--hover { transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease; }
-  .card--hover:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,0.12); border-color: rgba(0,0,0,0.12); }
+  /* Card moved to Tailwind @layer components */
 
   /* Utility */
   .container-narrow { max-width: 56rem; margin-inline: auto; }
