@@ -1,45 +1,132 @@
-<!-- DEVNOTE[hyva-slot,home][owner=remka|date=2025-08-11]: Home featured categories. Target: handle=cms_index_index, phtml=Magento_Catalog::category/list.phtml (verify). Docs: style-guide.html#cards -->
-<section class="container mx-auto px-4 py-14 section-alt rounded-[1rem]">
-  <div class="flex items-end justify-between gap-4 mb-6">
-    <div>
-      <div class="eyebrow">Assortiment</div>
-      <h2 class="text-2xl md:text-3xl section-title">Categorieën</h2>
-    </div>
-    <a class="link-cta" href="/category.html">Bekijk alles</a>
+<!-- DEVNOTE[hyva-slot,home][owner=remka|date=2025-08-19]: Home categories band. Tailwind-only implementation (no custom CSS classes). -->
+<section class="relative isolate py-16 sm:py-20">
+  <!-- Background accents for a premium hero-like band -->
+  <div class="absolute inset-0 -z-10 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-brand/15 via-white to-white"></div>
   </div>
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-4 gap-4">
-    <a href="/category.html?c=wondzorg" class="cat-card">
-      <div class="cat-card__media"><img class="cat-card__img" src="/assets/images/Various/AdobeStock_299213353.webp" alt="Wondzorg" loading="lazy" /></div>
-      <span class="cat-card__title">Wondzorg</span>
-    </a>
-    <a href="/category.html?c=desinfectie" class="cat-card">
-      <div class="cat-card__media"><img class="cat-card__img" src="/assets/images/Various/AdobeStock_246274114.webp" alt="Desinfectie" loading="lazy" /></div>
-      <span class="cat-card__title">Desinfectie</span>
-    </a>
-    <a href="/category.html?c=handschoenen" class="cat-card">
-      <div class="cat-card__media"><img class="cat-card__img" src="/assets/images/Various/AdobeStock_91021266.webp" alt="Handschoenen" loading="lazy" /></div>
-      <span class="cat-card__title">Handschoenen</span>
-    </a>
-    <a href="/category.html?c=labmateriaal" class="cat-card">
-      <div class="cat-card__media"><img class="cat-card__img" src="/assets/images/Various/AdobeStock_520966924.webp" alt="Labmateriaal" loading="lazy" /></div>
-      <span class="cat-card__title">Labmateriaal</span>
-    </a>
-    <a href="/category.html?c=sterilisatie" class="cat-card">
-      <div class="cat-card__media"><img class="cat-card__img" src="/assets/images/Various/AdobeStock_342125112.webp" alt="Sterilisatie" loading="lazy" /></div>
-      <span class="cat-card__title">Sterilisatie</span>
-    </a>
-    <a href="/category.html?c=instrumenten" class="cat-card">
-      <div class="cat-card__media"><img class="cat-card__img" src="/assets/images/Various/AdobeStock_84815398.webp" alt="Instrumenten" loading="lazy" /></div>
-      <span class="cat-card__title">Instrumenten</span>
-    </a>
-    <a href="/category.html?c=verband" class="cat-card">
-      <div class="cat-card__media"><img class="cat-card__img" src="/assets/images/Various/AdobeStock_231843788.webp" alt="Verband" loading="lazy" /></div>
-      <span class="cat-card__title">Verband</span>
-    </a>
-    <a href="/category.html?c=meet-test" class="cat-card">
-      <div class="cat-card__media"><img class="cat-card__img" src="/assets/images/Various/AdobeStock_1311316078.webp" alt="Meet &amp; test" loading="lazy" /></div>
-      <span class="cat-card__title">Meet &amp; test</span>
-    </a>
+
+  <div class="container mx-auto px-4">
+    <!-- Heading -->
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="text-teal-700 text-xs font-semibold tracking-wider">Assortiment</p>
+      <h2 class="mt-2 text-3xl md:text-4xl font-extrabold text-slate-900">Categorieën</h2>
+      <p class="mt-3 text-slate-600">Ontdek onze meest gekozen productgroepen. Kies snel de juiste richting voor je praktijk of lab.</p>
+    </div>
+
+    <!-- Grid -->
+    <div class="mt-10 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6" style="contain: content;">
+      <!-- Card 1 -->
+      <a href="/category.html?c=wondzorg" class="group block rounded-2xl p-[1px] bg-gradient-to-b from-teal-300/25 via-transparent to-emerald-300/25 transition-transform duration-300 will-change-transform hover:-translate-y-1">
+        <div class="rounded-2xl bg-white/70 ring-1 ring-slate-200/60 shadow-sm backdrop-blur">
+          <div class="relative overflow-hidden rounded-t-2xl aspect-[4/3]">
+            <img src="/assets/images/placeholder-16x9.svg" alt="Wondzorg" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" decoding="async" />
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/5 via-transparent"></div>
+          </div>
+          <div class="p-4">
+            <h3 class="text-slate-900 text-sm md:text-base font-semibold">Wondzorg</h3>
+            <p class="mt-0.5 text-xs md:text-sm text-slate-600">Pleisters, gaas en meer</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 2 -->
+      <a href="/category.html?c=desinfectie" class="group block rounded-2xl p-[1px] bg-gradient-to-b from-teal-300/25 via-transparent to-emerald-300/25 transition-transform duration-300 will-change-transform hover:-translate-y-1">
+        <div class="rounded-2xl bg-white/70 ring-1 ring-slate-200/60 shadow-sm backdrop-blur">
+          <div class="relative overflow-hidden rounded-t-2xl aspect-[4/3]">
+            <img src="/assets/images/placeholder-16x9.svg" alt="Desinfectie" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" decoding="async" />
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/5 via-transparent"></div>
+          </div>
+          <div class="p-4">
+            <h3 class="text-slate-900 text-sm md:text-base font-semibold">Desinfectie</h3>
+            <p class="mt-0.5 text-xs md:text-sm text-slate-600">Hygiëne voor elke ruimte</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 3 -->
+      <a href="/category.html?c=handschoenen" class="group block rounded-2xl p-[1px] bg-gradient-to-b from-teal-300/25 via-transparent to-emerald-300/25 transition-transform duration-300 will-change-transform hover:-translate-y-1">
+        <div class="rounded-2xl bg-white/70 ring-1 ring-slate-200/60 shadow-sm backdrop-blur">
+          <div class="relative overflow-hidden rounded-t-2xl aspect-[4/3]">
+            <img src="/assets/images/placeholder-16x9.svg" alt="Handschoenen" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" decoding="async" />
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/5 via-transparent"></div>
+          </div>
+          <div class="p-4">
+            <h3 class="text-slate-900 text-sm md:text-base font-semibold">Handschoenen</h3>
+            <p class="mt-0.5 text-xs md:text-sm text-slate-600">Nitril, latex en vinyl</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 4 -->
+      <a href="/category.html?c=labmateriaal" class="group block rounded-2xl p-[1px] bg-gradient-to-b from-teal-300/25 via-transparent to-emerald-300/25 transition-transform duration-300 will-change-transform hover:-translate-y-1">
+        <div class="rounded-2xl bg-white/70 ring-1 ring-slate-200/60 shadow-sm backdrop-blur">
+          <div class="relative overflow-hidden rounded-t-2xl aspect-[4/3]">
+            <img src="/assets/images/placeholder-16x9.svg" alt="Labmateriaal" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" decoding="async" />
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/5 via-transparent"></div>
+          </div>
+          <div class="p-4">
+            <h3 class="text-slate-900 text-sm md:text-base font-semibold">Labmateriaal</h3>
+            <p class="mt-0.5 text-xs md:text-sm text-slate-600">Buisjes, tips en meer</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 5 -->
+      <a href="/category.html?c=sterilisatie" class="group block rounded-2xl p-[1px] bg-gradient-to-b from-teal-300/25 via-transparent to-emerald-300/25 transition-transform duration-300 will-change-transform hover:-translate-y-1">
+        <div class="rounded-2xl bg-white/70 ring-1 ring-slate-200/60 shadow-sm backdrop-blur">
+          <div class="relative overflow-hidden rounded-t-2xl aspect-[4/3]">
+            <img src="/assets/images/placeholder-16x9.svg" alt="Sterilisatie" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" decoding="async" />
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/5 via-transparent"></div>
+          </div>
+          <div class="p-4">
+            <h3 class="text-slate-900 text-sm md:text-base font-semibold">Sterilisatie</h3>
+            <p class="mt-0.5 text-xs md:text-sm text-slate-600">Instrumentverwerking</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 6 -->
+      <a href="/category.html?c=instrumenten" class="group block rounded-2xl p-[1px] bg-gradient-to-b from-teal-300/25 via-transparent to-emerald-300/25 transition-transform duration-300 will-change-transform hover:-translate-y-1">
+        <div class="rounded-2xl bg-white/70 ring-1 ring-slate-200/60 shadow-sm backdrop-blur">
+          <div class="relative overflow-hidden rounded-t-2xl aspect-[4/3]">
+            <img src="/assets/images/placeholder-16x9.svg" alt="Instrumenten" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" decoding="async" />
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/5 via-transparent"></div>
+          </div>
+          <div class="p-4">
+            <h3 class="text-slate-900 text-sm md:text-base font-semibold">Instrumenten</h3>
+            <p class="mt-0.5 text-xs md:text-sm text-slate-600">Precisie en kwaliteit</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 7 -->
+      <a href="/category.html?c=verband" class="group block rounded-2xl p-[1px] bg-gradient-to-b from-teal-300/25 via-transparent to-emerald-300/25 transition-transform duration-300 will-change-transform hover:-translate-y-1">
+        <div class="rounded-2xl bg-white/70 ring-1 ring-slate-200/60 shadow-sm backdrop-blur">
+          <div class="relative overflow-hidden rounded-t-2xl aspect-[4/3]">
+            <img src="/assets/images/placeholder-16x9.svg" alt="Verband" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" decoding="async" />
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/5 via-transparent"></div>
+          </div>
+          <div class="p-4">
+            <h3 class="text-slate-900 text-sm md:text-base font-semibold">Verband</h3>
+            <p class="mt-0.5 text-xs md:text-sm text-slate-600">Steun en fixatie</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 8 -->
+      <a href="/category.html?c=meet-test" class="group block rounded-2xl p-[1px] bg-gradient-to-b from-teal-300/25 via-transparent to-emerald-300/25 transition-transform duration-300 will-change-transform hover:-translate-y-1">
+        <div class="rounded-2xl bg-white/70 ring-1 ring-slate-200/60 shadow-sm backdrop-blur">
+          <div class="relative overflow-hidden rounded-t-2xl aspect-[4/3]">
+            <img src="/assets/images/placeholder-16x9.svg" alt="Meet &amp; test" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" decoding="async" />
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/5 via-transparent"></div>
+          </div>
+          <div class="p-4">
+            <h3 class="text-slate-900 text-sm md:text-base font-semibold">Meet &amp; test</h3>
+            <p class="mt-0.5 text-xs md:text-sm text-slate-600">Diagnostiek en monitoring</p>
+          </div>
+        </div>
+      </a>
+    </div>
   </div>
 </section>
 

@@ -57,7 +57,16 @@
     const gap = Math.max(0, parseInt(container.getAttribute('data-gap'), 10) || 16);
     const itemsSpec = container.getAttribute('data-items') || '';
     const autoplaySpec = container.getAttribute('data-autoplay');
-    const autoplayMs = autoplaySpec ? (parseInt(autoplaySpec, 10) || 3000) : 0;
+    let autoplayMs = autoplaySpec ? (parseInt(autoplaySpec, 10) || 3000) : 0;
+    // Respect reduced motion: disable autoplay when user prefers less motion
+    const prefersReducedMotionMq = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+    let autoplayEnabled = autoplayMs > 0 && !(prefersReducedMotionMq && prefersReducedMotionMq.matches);
+
+    // Reduce work per frame on mobile: slower autoplay or disable below 640px
+    const isMobile = () => (window.innerWidth || document.documentElement.clientWidth) < 640;
+    if (isMobile()) {
+      autoplayMs = autoplayMs ? Math.max(4000, autoplayMs * 1.5) : 0; // slow down
+    }
 
     // Apply gap
     track.style.gap = gap + 'px';
@@ -173,7 +182,7 @@
     // Autoplay
     let autoplayId = 0;
     function startAutoplay() {
-      if (!autoplayMs) return;
+      if (!autoplayMs || !autoplayEnabled) return;
       stopAutoplay();
       autoplayId = window.setInterval(() => {
         const atEnd = Math.ceil(viewport.scrollLeft + viewport.clientWidth + 2) >= viewport.scrollWidth;
@@ -201,12 +210,48 @@
       scrollTimer = window.setTimeout(() => setActiveDot(currentPageIndex()), 80);
     }, { passive: true });
 
+    // Listen to reduced motion changes dynamically
+    if (prefersReducedMotionMq && typeof prefersReducedMotionMq.addEventListener === 'function') {
+      prefersReducedMotionMq.addEventListener('change', () => {
+        autoplayEnabled = autoplayMs > 0 && !prefersReducedMotionMq.matches;
+        if (!autoplayEnabled) stopAutoplay(); else startAutoplay();
+      });
+    }
+
+    // Pause autoplay when slider not visible in viewport (IntersectionObserver)
+    try {
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          const entry = entries[0];
+          if (!entry) return;
+          if (entry.isIntersecting) startAutoplay(); else stopAutoplay();
+        }, { root: null, threshold: 0.2 });
+        io.observe(container);
+      }
+    } catch {}
+
+    // Pause autoplay on tab hidden; resume on visible
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stopAutoplay(); else startAutoplay();
+    });
+
     // Initial layout + on resize
     if (window.ResizeObserver) {
       const ro = new ResizeObserver(() => applyLayout());
       ro.observe(viewport);
     }
-    window.addEventListener('resize', applyLayout);
+    window.addEventListener('resize', () => {
+      applyLayout();
+      // Re-evaluate mobile throttling on resize
+      const wasEnabled = autoplayEnabled;
+      if (isMobile()) {
+        autoplayMs = autoplaySpec ? Math.max(4000, (parseInt(autoplaySpec, 10) || 3000) * 1.5) : 0;
+      } else {
+        autoplayMs = autoplaySpec ? (parseInt(autoplaySpec, 10) || 3000) : 0;
+      }
+      autoplayEnabled = autoplayMs > 0 && !(prefersReducedMotionMq && prefersReducedMotionMq.matches);
+      if (wasEnabled) { stopAutoplay(); startAutoplay(); }
+    }, { passive: true });
     applyLayout();
     startAutoplay();
   }

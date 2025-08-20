@@ -1,45 +1,21 @@
 // Lightweight modal to add a product to an existing/new bestellijst
 import { OrderLists } from '/assets/js/store/orderLists.js';
 
-function ensureHost(){
-  let host = document.getElementById('ol-modal-host');
-  if(host) return host;
-  host = document.createElement('div');
-  host.id = 'ol-modal-host';
-  document.body.appendChild(host);
-  return host;
-}
-
-function template(){
+function templateBody(){
   return `
-  <div class="fixed inset-0 z-50" role="dialog" aria-modal="true" aria-label="Toevoegen aan bestellijst">
-    <button class="absolute inset-0 bg-black/40" data-close aria-label="Sluiten"></button>
-    <div class="absolute inset-0 grid place-items-center p-4">
-      <div class="card w-full max-w-md">
-        <div class="flex items-center justify-between p-4 border-b border-light">
-          <h4 class="font-extrabold">Toevoegen aan bestellijst</h4>
-          <button class="p-2" data-close aria-label="Sluiten">✕</button>
-        </div>
-        <div class="p-4 space-y-3">
-          <div>
-            <label class="block text-sm font-semibold mb-1">Kies een bestellijst</label>
-            <select class="select w-full" data-select></select>
-          </div>
-          <div>
-            <label class="block text-sm font-semibold mb-1" for="ol-new">Of maak een nieuwe lijst</label>
-            <div class="flex items-stretch gap-2">
-              <input id="ol-new" class="input flex-1" type="text" placeholder="Naam van de bestellijst" />
-              <button class="btn btn-outline" data-create>Toevoegen</button>
-            </div>
-          </div>
-        </div>
-        <div class="p-4 border-t border-light flex justify-end gap-2">
-          <button class="btn btn-outline" data-close>Annuleren</button>
-          <button class="btn btn-brand" data-confirm>Toevoegen</button>
+    <div class="space-y-3">
+      <div>
+        <label class="block text-sm font-semibold mb-1">Kies een bestellijst</label>
+        <select class="select w-full" data-select></select>
+      </div>
+      <div>
+        <label class="block text-sm font-semibold mb-1" for="ol-new">Of maak een nieuwe lijst</label>
+        <div class="flex items-stretch gap-2">
+          <input id="ol-new" class="input flex-1" type="text" placeholder="Naam van de bestellijst" />
+          <button class="btn btn-outline" data-create>Toevoegen</button>
         </div>
       </div>
-    </div>
-  </div>`;
+    </div>`;
 }
 
 function fillSelect(sel){
@@ -57,19 +33,21 @@ function fillSelect(sel){
 }
 
 export function openAddToOrderListModal(product){
-  const host = ensureHost();
-  host.innerHTML = template();
-  const modal = host.firstElementChild;
-  const select = modal.querySelector('[data-select]');
-  const newName = modal.querySelector('#ol-new');
-  const createBtn = modal.querySelector('[data-create]');
-  const confirmBtn = modal.querySelector('[data-confirm]');
-  const closeBtns = modal.querySelectorAll('[data-close]');
+  const dialog = window.BaseDialog && window.BaseDialog.open({
+    title: 'Toevoegen aan bestellijst',
+    ariaLabel: 'Toevoegen aan bestellijst',
+    size: 'sm',
+    offsetTop: 36,
+    body: templateBody(),
+    footer: '<div class="flex justify-end gap-2"><button class="btn btn-outline" data-close="basedialog">Annuleren</button><button class="btn btn-brand" data-confirm>Toevoegen</button></div>'
+  });
+  if(!dialog) return;
+  const root = dialog.el;
+  const select = root.querySelector('[data-select]');
+  const newName = root.querySelector('#ol-new');
+  const createBtn = root.querySelector('[data-create]');
+  const confirmBtn = root.querySelector('[data-confirm]');
   fillSelect(select);
-
-  function close(){ if(modal && modal.parentElement){ modal.parentElement.innerHTML = ''; } }
-  closeBtns.forEach((b)=> b.addEventListener('click', close));
-  modal.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
 
   createBtn.addEventListener('click', () => {
     const name = (newName.value || '').trim();
@@ -93,7 +71,7 @@ export function openAddToOrderListModal(product){
       price: Number(product.price || 0),
       min: 0, max: 0, current: 0
     });
-    close();
+    if(dialog && dialog.close) dialog.close();
   });
 }
 

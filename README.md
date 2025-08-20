@@ -68,6 +68,7 @@ Zie `docs/hyva-porting.md` voor PHTML-bestemmingen en aanpassingen.
 
 - Minicart: offcanvas met badge, openen via winkelwagen in header. Data in `localStorage` (`remka_demo_cart`).
 - Add to cart: knoppen met `data-add-to-cart` attributen tonen een cart-toast en openen de minicart.
+- BaseDialog: herbruikbare modal (`assets/js/baseDialog.js`). Voorbeelden: `style-guide.html` (Modal sectie) en `components/BaseDialog.html`. API: `BaseDialog.open({ title, size: 'sm'|'md'|'lg', offsetTop, body, footer, ariaLabel, ariaLabelledby, onClose })`.
 
 ## Toasts (unified)
 

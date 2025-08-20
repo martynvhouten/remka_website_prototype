@@ -13,9 +13,11 @@
     <link rel="stylesheet" href="assets/css/base.css" />
   </head>
   <body class="min-h-screen flex flex-col" data-stock="backorder">
+    <script>window.location.replace('product.html?stock=backorder');</script>
+    <noscript><p>Deze pagina is verplaatst. Ga naar <a href="product.html?stock=backorder">product.html</a>.</p></noscript>
     <div id="header-placeholder"></div>
     <main id="main" class="flex-1">
-      <section class="section-brand-tint">
+      <section class="hero-brand-calm">
         <div class="container mx-auto py-8">
           <nav class="text-sm text-dark/80 breadcrumbs" aria-label="Breadcrumb">
             <ol class="flex flex-wrap items-center gap-2">
@@ -34,6 +36,7 @@
     <script src="assets/js/nav.js" defer></script>
     <script src="assets/js/index.js" defer></script>
     <script src="assets/js/productCard.js" defer></script>
+    <script src="assets/js/baseDialog.js" defer></script>
     <script src="assets/js/rfq-demo.js" defer></script>
     <script src="assets/js/pdp.js" defer></script>
     <script>

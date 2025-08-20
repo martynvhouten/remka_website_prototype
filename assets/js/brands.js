@@ -24,14 +24,19 @@
       li.className = 'slider__slide';
       const a = document.createElement('a');
       a.href = `/brand-${b.slug}.html`;
-      a.className = 'block card card--hover p-4 h-[120px] flex items-center justify-center group';
+      a.className = 'block p-4 h-[110px] flex items-center justify-center group border border-light rounded-[0.75rem] bg-white';
       const img = document.createElement('img');
       img.src = b.image;
       img.alt = b.name;
       img.loading = 'lazy';
-      img.className = 'max-h-16 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity';
-      img.onerror = () => { img.src = '/assets/images/placeholder-square.svg'; img.classList.add('border','border-light','rounded'); };
+      img.decoding = 'async';
+      img.fetchPriority = 'low';
+      img.width = 160; img.height = 48;
+      // Intrinsic sizes only; no srcset variants to avoid 404s (assets not present)
+      img.sizes = '(min-width: 1024px) 10vw, (min-width: 768px) 16vw, 40vw';
       a.appendChild(img);
+      img.className = 'max-h-12 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity';
+      img.onerror = () => { img.src = '/assets/images/placeholder-square.svg'; img.classList.add('border','border-light','rounded'); };
       li.appendChild(a); track.appendChild(li);
     });
     // Slider behavior, arrows, snap, keyboard, autoplay are handled by the generic slider initializer via [data-slider]

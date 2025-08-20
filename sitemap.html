@@ -25,11 +25,11 @@
     <div id="header-placeholder"></div>
 
     <main id="main" class="flex-1">
-      <section class="section-brand-tint">
+      <section class="hero-brand-soft">
         <div class="container mx-auto px-4 py-8">
           <div class="flex items-center justify-between gap-4">
             <h1 class="text-2xl md:text-3xl font-extrabold text-dark">Sitemap</h1>
-            <a href="/index.html" class="pill"><span class="dot"></span> Home</a>
+            <a href="/index.html" class="pill pill--neutral">Home</a>
           </div>
         </div>
       </section>
@@ -118,15 +118,15 @@
             <h2 class="text-xl font-extrabold text-dark">Demo producten (voorraadstatus)</h2>
           </header>
           <nav class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3" aria-label="Demo producten">
-            <a class="card card--hover p-4 flex items-center justify-between gap-3" href="/product-op-voorraad.html">
+            <a class="card card--hover p-4 flex items-center justify-between gap-3" href="/product.html?stock=in_stock">
               <span class="font-semibold">Op voorraad</span>
               <span class="stock-ok"><span class="dot"></span> Op voorraad</span>
             </a>
-            <a class="card card--hover p-4 flex items-center justify-between gap-3" href="/product-ordergestuurd.html">
+            <a class="card card--hover p-4 flex items-center justify-between gap-3" href="/product.html?stock=backorder">
               <span class="font-semibold">Ordergestuurd</span>
               <span class="stock-backorder"><span class="dot"></span> 3–6 werkdagen</span>
             </a>
-            <a class="card card--hover p-4 flex items-center justify-between gap-3" href="/product-niet-op-voorraad.html">
+            <a class="card card--hover p-4 flex items-center justify-between gap-3" href="/product.html?stock=out_of_stock&eta=2025-08-15">
               <span class="font-semibold">Niet op voorraad</span>
               <span class="stock-out"><span class="dot"></span> Verwachte datum</span>
             </a>

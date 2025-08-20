@@ -123,8 +123,9 @@
   }
 
   async function init(){
-    // Only run on PDP pages that have product-info partial
-    if(!document.querySelector('[data-partial="product-info"]')) return;
+    // Run on PDP pages when BuyBox or LongDescription exists
+    var isPdp = document.querySelector('[data-partial="pdp/BuyBox"]') || document.getElementById('pdpLongDescription');
+    if(!isPdp) return;
     var sku = getCurrentSku();
     var name = getCurrentName();
     var productsRaw = await loadProducts();
@@ -143,6 +144,17 @@
     // Related strategy
     var related = selectRelated(current, products);
     renderRelated(related);
+
+    // Quantity increment/decrement
+    try {
+      var qtyInput = document.getElementById('qty');
+      var decBtn = document.querySelector('[data-qty-decrement]');
+      var incBtn = document.querySelector('[data-qty-increment]');
+      function clamp(val){ var n = Math.max(1, Math.floor(Number(val)||1)); return n; }
+      if(qtyInput){ qtyInput.value = clamp(qtyInput.value); }
+      if(decBtn){ decBtn.addEventListener('click', function(){ if(!qtyInput) return; qtyInput.value = clamp((Number(qtyInput.value)||1) - 1); }); }
+      if(incBtn){ incBtn.addEventListener('click', function(){ if(!qtyInput) return; qtyInput.value = clamp((Number(qtyInput.value)||1) + 1); }); }
+    } catch {}
   }
 
   if(document.readyState === 'loading'){

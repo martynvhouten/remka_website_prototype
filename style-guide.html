@@ -27,7 +27,7 @@
     <div id="header-placeholder"></div>
 
     <main id="main" class="flex-1">
-      <section class="section-teal-tint border-b border-light/60">
+      <section class="hero-brand-soft border-b border-light/60">
         <div class="container mx-auto px-4 py-12 lg:py-16">
           <header>
             <div class="eyebrow">Design system</div>
@@ -146,7 +146,7 @@
               <li>Schrijf in zin-hoofdletters: alleen de eerste letter van de zin met hoofdletter; geen woorden in ALL CAPS.</li>
               <li>Koppen met sterke typografie: gewichten 800–900 voor hiërarchie.</li>
               <li>Hover-states subtiel; focus-ring in merk-kleur voor toegankelijkheid.</li>
-              <li>Geen gradients in secties; gebruik effen achtergronden. Donkere modus wordt niet ondersteund.</li>
+              <li>Subtiele, moderne brand-gradients zijn toegestaan (paginatitel, menubalk, footer). Houd het rustig en zonder flashy effecten. Donkere modus wordt niet ondersteund.</li>
               <li>Beeldgebruik: plaats afbeeldingen bij voorkeur naast tekst; houd ze subtiel en niet te dominant.</li>
             </ul>
           </section>
@@ -154,8 +154,8 @@
           <!-- Pagina titel -->
           <section id="pagina-titel" class="sg-section">
             <h2 class="text-2xl font-black">Pagina titel</h2>
-            <p class="mt-1 text-sm text-dark/70">Gebruik een zachte teal-tint zonder gradient. Structuur: header, paginatitel, content, footer.</p>
-            <div class="mt-4 section-teal-tint border border-light rounded-[0.75rem]">
+            <p class="mt-1 text-sm text-dark/70">Gebruik een subtiele brand-gradient met zachte highlight. Structuur: header, paginatitel, content, footer.</p>
+            <div class="mt-4 hero-brand-soft border border-light rounded-[0.75rem]">
               <div class="container mx-auto px-4 py-6">
                 <div class="flex items-center justify-between gap-3">
                   <div>
@@ -179,6 +179,7 @@
               <h5 class="text-base font-semibold">Kop h5</h5>
               <h6 class="text-sm font-semibold text-dark/80">Kop h6</h6>
               <p class="mt-2">Bodytekst met <a href="#" class="text-brand hover:underline">link</a> voorbeeld. Gebruik duidelijke paragrafen en voldoende regelafstand.</p>
+              <p class="text-sm text-dark/70">Subtitel-stijl: <code>.section-subtitle</code> gebruikt gewicht 700 en een iets grotere corpsgrootte voor hiërarchie.</p>
               <ul class="list-disc pl-5 space-y-1">
                 <li>Ongeordende lijst</li>
                 <li>Consistente opmaak</li>
@@ -376,17 +377,29 @@
               <div class="card p-4">
                 <h3 class="text-lg font-extrabold">Modal</h3>
                 <p class="text-sm text-dark/70">Eenvoudige overlay met focus-trap.</p>
-                <button class="btn btn-brand mt-3" data-open-modal>Open modal</button>
-                <div id="sg-modal" class="fixed inset-0 z-50 hidden" aria-hidden="true" role="dialog" aria-label="Dialoog">
-                  <div class="absolute inset-0 bg-black/40" data-close-modal></div>
-                  <div class="absolute inset-0 grid place-items-center p-4">
-                    <div class="card w-full max-w-md">
-                      <div class="flex items-center justify-between p-4 border-b border-light"><h4 class="font-extrabold">Titel</h4><button class="p-2" data-close-modal aria-label="Sluiten">✕</button></div>
-                      <div class="p-4 text-sm text-dark/80">Inhoud van de modal.</div>
-                      <div class="p-4 border-t border-light flex justify-end gap-2"><button class="btn btn-outline" data-close-modal>Annuleren</button><button class="btn btn-brand" data-close-modal>Opslaan</button></div>
-                    </div>
-                  </div>
+                <div class="mt-3 flex gap-2">
+                  <button class="btn btn-brand" id="demoDialogSm">Open sm</button>
+                  <button class="btn btn-outline" id="demoDialogLg">Open lg</button>
                 </div>
+                <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto text-xs"><code>BaseDialog.open({
+  title: 'Titel',
+  size: 'md', // 'sm' | 'md' | 'lg'
+  offsetTop: 36,
+  body: '&lt;div class="text-sm text-dark/80"&gt;Inhoud...&lt;/div&gt;',
+  footer: '&lt;div class="flex justify-end gap-2"&gt;...&lt;/div&gt;',
+  ariaLabel: 'Dialoog',
+  ariaLabelledby: 'id-van-titel'
+});</code></pre>
+                <script>
+                  document.addEventListener('click', function(e){
+                    if(e.target && e.target.id === 'demoDialogSm'){
+                      window.BaseDialog && window.BaseDialog.open({ title: 'Kleine dialoog', size: 'sm', offsetTop: 36, body: '<div class="text-sm text-dark/80">Voorbeeldinhoud.</div>', footer: '<div class="flex justify-end gap-2"><button class="btn btn-outline" data-close="basedialog">Sluiten</button><button class="btn btn-brand">Actie</button></div>' });
+                    }
+                    if(e.target && e.target.id === 'demoDialogLg'){
+                      window.BaseDialog && window.BaseDialog.open({ title: 'Grote dialoog', size: 'lg', offsetTop: 48, body: '<div class="text-sm text-dark/80">Grotere inhoud met langere tekst, geschikt voor bestellijst of quote.</div>' });
+                    }
+                  });
+                </script>
               </div>
 
               <!-- Tooltips & badges -->
@@ -721,7 +734,7 @@ function computeAdvice({min,max,current}){ return Math.max(0, max - current); }<
                     <tr>
                       <td class="py-2 pr-3"><span class="badge badge-success">must</span></td>
                       <td class="py-2 pr-3">Paginatitel sectie</td>
-                      <td class="py-2 pr-3">Zachte teal-tint, duidelijke h1 en subtitel per pagina.</td>
+                      <td class="py-2 pr-3">Subtiele brand-gradient met duidelijke h1 en subtitel per pagina.</td>
                       <td class="py-2 pr-3">Stabiele spacing tussen header/titel/content.</td>
                       <td class="py-2 pr-3">Kop-hiërarchie correct (1× h1).</td>
                       <td class="py-2"><a class="underline hover:text-brand" href="#pagina-titel">pagina titel</a></td>
@@ -846,7 +859,7 @@ function computeAdvice({min,max,current}){ return Math.max(0, max - current); }<
                       <td class="py-2 pr-3"><span class="badge badge-warning">nice</span></td>
                       <td class="py-2 pr-3">Onderhoud/503 pagina</td>
                       <td class="py-2 pr-3">Eenvoudige pagina met logo, uitleg en link naar contact.</td>
-                      <td class="py-2 pr-3">Vol scherm; lichte teal-tint achtergrond.</td>
+                      <td class="py-2 pr-3">Vol scherm; lichte neutrale achtergrond of subtiele brand-tint.</td>
                       <td class="py-2 pr-3">Role="main"; duidelijke kop en linkfocus.</td>
                       <td class="py-2"><a class="underline hover:text-brand" href="#pagina-titel">pagina titel</a></td>
                     </tr>
@@ -874,7 +887,9 @@ function computeAdvice({min,max,current}){ return Math.max(0, max - current); }<
     <!-- Scripts -->
     <script src="/assets/js/nav.js" defer></script>
     <script src="/assets/js/index.js" defer></script>
+    <script src="/assets/js/baseDialog.js" defer></script>
     <script src="/assets/js/toasts.js" defer></script>
+    <script src="/assets/js/cartDrawer.js" defer></script>
     <script src="/assets/js/rfq-demo.js" defer></script>
     <script>
       // Toast demos

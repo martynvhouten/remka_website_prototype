@@ -25,71 +25,12 @@
     <main id="main" class="flex-1 container mx-auto px-4 py-10">
       <header class="mb-6">
         <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">Winkelwagen</h1>
-        <p class="section-subtitle">Hier zie je een voorbeeld van je winkelwagenpagina.</p>
+        <p class="section-subtitle">Controleer je selectie en ga veilig verder naar afrekenen.</p>
       </header>
-      <!-- Summary first on mobile, items first on desktop (Hyvä pattern) -->
+      <!-- Items first on mobile and desktop; summary follows (sticky on desktop) -->
       <div class="grid lg:grid-cols-3 gap-6 lg:gap-8 items-start">
-        <!-- Summary card (sticky on desktop) -->
-        <aside class="lg:order-2 lg:col-span-1">
-          <div class="card p-4 lg:p-5 sticky-summary" id="cartSummary">
-            <!-- Estimate shipping & tax -->
-            <div class="border-b border-light pb-3 mb-3">
-              <button type="button" class="w-full flex items-center justify-between text-left font-semibold" data-acc="toggle" aria-expanded="false" aria-controls="shipPanel">
-                <span>Verzendkosten en btw berekenen</span>
-                <svg class="w-5 h-5 text-dark/70 transition-transform" data-acc="chev" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
-              </button>
-              <div id="shipPanel" class="mt-3 accordion-panel" hidden>
-                <div class="grid grid-cols-1 gap-2">
-                  <label class="text-sm" for="shipCountry">Land</label>
-                  <select id="shipCountry" class="select">
-                    <option>Nederland</option>
-                    <option>België</option>
-                    <option>Duitsland</option>
-                  </select>
-                  <label class="text-sm" for="shipZip">Postcode</label>
-                  <input id="shipZip" class="input" placeholder="1234 AB" />
-                </div>
-                <div class="mt-3 space-y-2 text-sm">
-                  <div class="flex items-center justify-between"><span>Standaard verzending</span><span class="font-semibold">€5,00</span></div>
-                  <div class="flex items-center justify-between"><span>Pakketpost</span><span class="font-semibold">€7,50</span></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Coupon accordion (preserve IDs/handlers) -->
-            <div class="border-b border-light pb-3 mb-3">
-              <button type="button" class="w-full flex items-center justify-between text-left font-semibold" data-acc="toggle" aria-expanded="false" aria-controls="couponPanel">
-                <span>Kortingscode</span>
-                <svg class="w-5 h-5 text-dark/70 transition-transform" data-acc="chev" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
-              </button>
-              <div id="couponPanel" class="mt-3 accordion-panel" hidden>
-                <label for="coupon" class="block text-sm font-medium">Voer kortingscode in</label>
-                <div class="mt-1 flex gap-2">
-                  <input id="coupon" class="input" placeholder="Voer coupon in" />
-                  <button id="applyCoupon" class="btn btn-outline" type="button">Pas toe</button>
-                </div>
-                <p id="couponNote" class="text-sm text-dark/70 mt-1 hidden">Coupon toegepast.</p>
-              </div>
-            </div>
-
-            <!-- Totals -->
-            <div class="space-y-1">
-              <div class="flex items-center justify-between"><span>Subtotaal</span><span class="font-semibold">€ <span id="subTotal">8,75</span></span></div>
-              <div class="flex items-center justify-between text-sm text-dark/70"><span>Btw (indicatie)</span><span>€ <span id="taxTotal">1,84</span></span></div>
-              <div class="divider my-2"></div>
-              <div class="flex items-center justify-between text-lg font-extrabold"><span>Totaal</span><span>€ <span id="grandTotal">10,59</span></span></div>
-            </div>
-
-            <!-- CTA -->
-            <div class="mt-4 space-y-2">
-              <a href="/checkout-shipping.html" class="btn btn-brand w-full" id="proceedToCheckout">Afrekenen</a>
-              <a href="/category.html" class="link-cta block text-center">Verder winkelen</a>
-            </div>
-          </div>
-        </aside>
-
         <!-- Items list -->
-        <section class="lg:order-1 lg:col-span-2" id="cartItems">
+        <section class="lg:col-span-2" id="cartItems">
           <div class="card">
             <!-- Row header for md+ only -->
             <div class="hidden md:grid grid-cols-[auto,1fr,auto,auto,auto,auto] items-center gap-4 px-4 pt-4 pb-2 text-sm text-dark/60">
@@ -126,6 +67,65 @@
             </div>
           </div>
         </section>
+
+        <!-- Summary card (sticky on desktop) -->
+        <aside class="lg:col-span-1">
+          <div class="card p-4 lg:p-5 sticky-summary" id="cartSummary">
+            <!-- Estimate shipping & tax -->
+            <div class="border-b border-light pb-3 mb-3">
+              <button type="button" class="w-full flex items-center justify-between text-left font-semibold" data-acc="toggle" aria-expanded="false" aria-controls="shipPanel">
+                <span>Verzendkosten en btw (indicatie)</span>
+                <svg class="w-5 h-5 text-dark/70 transition-transform" data-acc="chev" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
+              </button>
+              <div id="shipPanel" class="mt-3 accordion-panel" hidden>
+                <div class="grid grid-cols-1 gap-2">
+                  <label class="text-sm" for="shipCountry">Land</label>
+                  <select id="shipCountry" class="select">
+                    <option>Nederland</option>
+                    <option>België</option>
+                    <option>Duitsland</option>
+                  </select>
+                  <label class="text-sm" for="shipZip">Postcode</label>
+                  <input id="shipZip" class="input" placeholder="1234 AB" />
+                </div>
+                <div class="mt-3 space-y-2 text-sm">
+                  <div class="flex items-center justify-between"><span>Nederland / België</span><span class="font-semibold">€ 6,95 (incl. btw)</span></div>
+                  <div class="flex items-center justify-between"><span>Gratis vanaf € 100</span><span class="font-semibold">€ 0,00</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Coupon accordion (preserve IDs/handlers) -->
+            <div class="border-b border-light pb-3 mb-3">
+              <button type="button" class="w-full flex items-center justify-between text-left font-semibold" data-acc="toggle" aria-expanded="false" aria-controls="couponPanel">
+                <span>Kortingscode</span>
+                <svg class="w-5 h-5 text-dark/70 transition-transform" data-acc="chev" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
+              </button>
+              <div id="couponPanel" class="mt-3 accordion-panel" hidden>
+                <label for="coupon" class="block text-sm font-medium">Kortingscode</label>
+                <div class="mt-1 flex gap-2">
+                  <input id="coupon" class="input" placeholder="Voer coupon in" />
+                  <button id="applyCoupon" class="btn btn-outline" type="button">Toepassen</button>
+                </div>
+                <p id="couponNote" class="text-sm text-dark/70 mt-1 hidden">Kortingscode toegepast.</p>
+              </div>
+            </div>
+
+            <!-- Totals -->
+            <div class="space-y-1">
+              <div class="flex items-center justify-between"><span>Subtotaal</span><span class="font-semibold">€ <span id="subTotal">8,75</span></span></div>
+              <div class="flex items-center justify-between text-sm text-dark/70"><span>Btw (indicatie)</span><span>€ <span id="taxTotal">1,84</span></span></div>
+              <div class="divider my-2"></div>
+              <div class="flex items-center justify-between text-lg font-extrabold"><span>Totaal</span><span>€ <span id="grandTotal">10,59</span></span></div>
+            </div>
+
+            <!-- CTA -->
+            <div class="mt-4 space-y-2">
+              <a href="/checkout-shipping.html" class="btn btn-brand w-full" id="proceedToCheckout">Afrekenen</a>
+              <a href="/category.html" class="link-cta block text-center">Verder winkelen</a>
+            </div>
+          </div>
+        </aside>
       </div>
     </main>
     <div id="footer-placeholder"></div>

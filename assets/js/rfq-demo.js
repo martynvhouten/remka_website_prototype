@@ -73,61 +73,33 @@
     });
   }
 
-  // Accessible modal primitive (focus trap + ESC)
+  // Modal wrapper powered by BaseDialog
   function createModal(opts){
-    var overlay = document.createElement('div');
-    overlay.className = 'fixed inset-0 z-50 hidden';
-    overlay.setAttribute('role','dialog');
-    overlay.setAttribute('aria-modal','true');
-    overlay.setAttribute('aria-label', opts && opts.ariaLabel ? opts.ariaLabel : 'Dialoog');
-    overlay.innerHTML = ''
-      + '<div class="absolute inset-0 bg-black/40" data-close="rfq"></div>'
-      + '<div class="absolute inset-0 grid place-items-center p-4">'
-      +   '<div class="card w-full max-w-md">'
-      +     '<div class="flex items-center justify-between p-4 border-b border-light">'
-      +       '<h4 class="font-extrabold">'+(opts && opts.title ? opts.title : 'Offerte')+'</h4>'
-      +       '<button class="p-2" data-close="rfq" aria-label="Sluiten">✕</button>'
-      +     '</div>'
-      +     '<div class="p-4">'+(opts && opts.content ? opts.content : '')+'</div>'
-      +     '<div class="p-4 border-t border-light flex justify-end gap-2">'
-      +       '<button class="btn btn-outline" data-close="rfq">Annuleren</button>'
-      +       '<button class="btn btn-brand" data-submit="rfq">Versturen</button>'
-      +     '</div>'
-      +   '</div>'
-      + '</div>';
-
-    document.body.appendChild(overlay);
-
-    function getFocusables(container){
-      var f = container.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
-      return Array.prototype.filter.call(f, function(el){ return !el.hasAttribute('disabled') && el.offsetParent !== null; });
-    }
-
-    var untrap = null;
-    function trap(){
-      var focusables = getFocusables(overlay);
-      var first = focusables[0];
-      var last = focusables[focusables.length - 1];
-      function onKey(e){
-        if(e.key === 'Escape'){ close(); }
-        if(e.key !== 'Tab') return;
-        if(focusables.length === 0) return;
-        if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
-        else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
-      }
-      document.addEventListener('keydown', onKey);
-      setTimeout(function(){ (first || overlay).focus(); }, 0);
-      untrap = function(){ document.removeEventListener('keydown', onKey); };
-    }
-
-    function open(){ overlay.classList.remove('hidden'); trap(); }
-    function close(){ overlay.classList.add('hidden'); if(untrap) { untrap(); untrap = null; } setTimeout(function(){ if(overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay); }, 200); }
-
-    overlay.addEventListener('click', function(e){
-      if(e.target.closest('[data-close="rfq"]')){ close(); }
-      if(e.target.getAttribute && e.target.getAttribute('data-close') === 'rfq'){ close(); }
-    });
-    return { el: overlay, open: open, close: close };
+    var instance = null;
+    var api = {
+      el: null,
+      open: function(){
+        if(instance) return instance;
+        var body = (opts && opts.content) || '';
+        var footer = '<div class="flex justify-end gap-2">'
+          + '<button class="btn btn-outline" data-close="basedialog">Annuleren</button>'
+          + '<button class="btn btn-brand" data-submit="rfq">Versturen</button>'
+          + '</div>';
+        instance = (window.BaseDialog && window.BaseDialog.open({
+          title: (opts && opts.title) || 'Offerte',
+          ariaLabel: (opts && opts.ariaLabel) || 'Offerteformulier',
+          size: 'md',
+          offsetTop: 36,
+          body: body,
+          footer: footer,
+          onClose: function(){ instance = null; api.el = null; }
+        })) || null;
+        api.el = instance ? instance.el : null;
+        return instance;
+      },
+      close: function(){ if(instance && instance.close) instance.close(); }
+    };
+    return api;
   }
 
   function bindOfferte(btn){
@@ -138,36 +110,116 @@
       var title = addBtn.getAttribute('data-title') || (document.querySelector('h1') ? document.querySelector('h1').textContent.trim() : '');
 
       var content = ''
-        + '<div class="space-y-3">'
-        +   '<label class="block text-sm font-semibold" for="rfq-qty">Aantal</label>'
-        +   '<input id="rfq-qty" class="input" type="number" min="1" step="1" value="1" />'
-        +   '<label class="block text-sm font-semibold" for="rfq-note">Opmerking <span class="text-dark/60">(optioneel)</span></label>'
-        +   '<textarea id="rfq-note" class="textarea" rows="4" placeholder="Beschrijf je aanvraag of stel je vraag"></textarea>'
+        + '<div class="space-y-4">'
+        +   '<p class="text-sm text-dark/80">Vul je aanvraag in. We nemen zo snel mogelijk contact met je op met een passende offerte.</p>'
+        +   '<div class="grid md:grid-cols-2 gap-3">'
+        +     '<div>'
+        +       '<label class="block text-sm font-semibold" for="rfq-qty">Aantal <span class="text-brand" aria-hidden="true">*</span></label>'
+        +       '<input id="rfq-qty" class="input w-full" type="number" min="1" step="1" value="1" required aria-required="true" />'
+        +     '</div>'
+        +     '<div>'
+        +       '<label class="block text-sm font-semibold" for="rfq-org">Organisatietype <span class="text-brand" aria-hidden="true">*</span></label>'
+        +       '<select id="rfq-org" class="select w-full" required aria-required="true">'
+        +         '<option value="">Selecteer een type</option>'
+        +         '<option>Huisartsenpraktijk</option>'
+        +         '<option>Kliniek</option>'
+        +         '<option>Ziekenhuis</option>'
+        +         '<option>Tandartspraktijk</option>'
+        +         '<option>Verloskunde</option>'
+        +         '<option>Anders</option>'
+        +       '</select>'
+        +     '</div>'
+        +   '</div>'
+        +   '<div class="grid md:grid-cols-2 gap-3">'
+        +     '<div>'
+        +       '<label class="block text-sm font-semibold" for="rfq-contact">Contactpersoon <span class="text-brand" aria-hidden="true">*</span></label>'
+        +       '<input id="rfq-contact" class="input w-full" type="text" placeholder="Voor- en achternaam" required aria-required="true" />'
+        +     '</div>'
+        +     '<div>'
+        +       '<label class="block text-sm font-semibold" for="rfq-email">E‑mail <span class="text-brand" aria-hidden="true">*</span></label>'
+        +       '<input id="rfq-email" class="input w-full" type="email" inputmode="email" autocomplete="email" placeholder="naam@organisatie.nl" required aria-required="true" />'
+        +     '</div>'
+        +   '</div>'
+        +   '<div class="grid md:grid-cols-2 gap-3">'
+        +     '<div>'
+        +       '<label class="block text-sm font-semibold" for="rfq-phone">Telefoonnummer <span class="text-dark/60">(optioneel)</span></label>'
+        +       '<input id="rfq-phone" class="input w-full" type="tel" inputmode="tel" placeholder="+31 6 1234 5678" />'
+        +     '</div>'
+        +     '<div>'
+        +       '<label class="block text-sm font-semibold" for="rfq-delivery">Levervoorkeur</label>'
+        +       '<select id="rfq-delivery" class="select w-full">'
+        +         '<option>Zo snel mogelijk</option>'
+        +         '<option>Specifieke datum</option>'
+        +         '<option>Flexibel</option>'
+        +       '</select>'
+        +     '</div>'
+        +   '</div>'
+        +   '<div>'
+        +     '<label class="block text-sm font-semibold" for="rfq-note">Extra notities of specifieke wensen</label>'
+        +     '<textarea id="rfq-note" class="textarea" rows="4" placeholder="Beschrijf varianten, gewenste levertijd, of aanvullende vragen"></textarea>'
+        +   '</div>'
+        +   '<div>'
+        +     '<label class="block text-sm font-semibold" for="rfq-file">Bestand toevoegen <span class="text-dark/60">(optioneel, PDF/Excel)</span></label>'
+        +     '<input id="rfq-file" class="input w-full" type="file" accept="application/pdf,.pdf,application/vnd.ms-excel,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.xlsx" />'
+        +     '<div class="mt-1 text-xs text-dark/70">Bijlagen kunnen niet automatisch worden meegestuurd via e‑mailkoppeling; we vermelden de bestandsnaam in je aanvraag.</div>'
+        +   '</div>'
+        +   '<div class="rounded-md border border-light bg-light/20 p-3 text-xs text-dark/70">'
+        +     '<div>Deze aanvraag wordt als e‑mail voorbereid aan <span class="font-semibold">'+MAIL_TO+'</span>. Je ziet je e‑mailclient openen om te versturen.</div>'
+        +   '</div>'
         + '</div>';
 
       var modal = createModal({ title: 'Offerte aanvragen', ariaLabel: 'Offerteformulier', content: content });
       modal.open();
 
-      var qtyEl = modal.el.querySelector('#rfq-qty');
-      var noteEl = modal.el.querySelector('#rfq-note');
-      var submitBtn = modal.el.querySelector('[data-submit="rfq"]');
+      var qtyEl = modal.el && modal.el.querySelector('#rfq-qty');
+      var orgEl = modal.el && modal.el.querySelector('#rfq-org');
+      var contactEl = modal.el && modal.el.querySelector('#rfq-contact');
+      var emailEl = modal.el && modal.el.querySelector('#rfq-email');
+      var phoneEl = modal.el && modal.el.querySelector('#rfq-phone');
+      var deliveryEl = modal.el && modal.el.querySelector('#rfq-delivery');
+      var noteEl = modal.el && modal.el.querySelector('#rfq-note');
+      var fileEl = modal.el && modal.el.querySelector('#rfq-file');
+      var submitBtn = modal.el && modal.el.querySelector('[data-submit="rfq"]');
+
+      // Prefill from demo user if available
+      (function(){
+        try {
+          var c = tryGetContact();
+          if(c){
+            if(c.name && contactEl && !contactEl.value) contactEl.value = c.name;
+            if(c.email && emailEl && !emailEl.value) emailEl.value = c.email;
+          }
+        } catch(_){ }
+      })();
 
       function submit(){
         var qty = parseInt((qtyEl && qtyEl.value) || '1', 10) || 1;
+        var org = (orgEl && orgEl.value || '').trim();
+        var person = (contactEl && contactEl.value || '').trim();
+        var email = (emailEl && emailEl.value || '').trim();
+        var phone = (phoneEl && phoneEl.value || '').trim();
+        var delivery = (deliveryEl && deliveryEl.value) || '';
         var note = (noteEl && noteEl.value || '').trim();
-        var contact = tryGetContact();
+        var fileName = '';
+        try { fileName = (fileEl && fileEl.files && fileEl.files[0] && fileEl.files[0].name) || ''; } catch(_){ fileName=''; }
+
+        // Minimal validation for required fields
+        if(!org){ try{ window.toast && window.toast.warning('Kies een organisatietype.'); }catch{} if(orgEl) orgEl.focus(); return; }
+        if(!person){ try{ window.toast && window.toast.warning('Vul de contactpersoon in.'); }catch{} if(contactEl) contactEl.focus(); return; }
+        if(!email){ try{ window.toast && window.toast.warning('Vul je e‑mail in.'); }catch{} if(emailEl) emailEl.focus(); return; }
         var lines = [];
         lines.push('Product: ' + title);
         if(sku) lines.push('SKU: ' + sku);
         lines.push('Aantal: ' + qty);
         if(note) lines.push('Opmerking: ' + note);
         try { lines.push('URL: ' + window.location.href); } catch {}
-        if(contact && (contact.name || contact.email)){
-          lines.push('');
-          lines.push('Contact:');
-          if(contact.name) lines.push('Naam: ' + contact.name);
-          if(contact.email) lines.push('E-mail: ' + contact.email);
-        }
+        lines.push('');
+        lines.push('Organisatie: ' + org);
+        lines.push('Contactpersoon: ' + person);
+        lines.push('E‑mail: ' + email);
+        if(phone) lines.push('Telefoon: ' + phone);
+        if(delivery) lines.push('Levervoorkeur: ' + delivery);
+        if(fileName) lines.push('Bijlage (bestandsnaam): ' + fileName);
         var body = lines.join('\n');
         var subject = 'Offerte — ' + (sku || '') + (sku && title ? ' — ' : '') + (title || '');
         var mailto = buildMailto(subject, body);
@@ -204,14 +256,15 @@
     var offerteBtn = document.querySelector('[data-rfq-demo]');
     if(!offerteBtn){
       if(!FEATURE_RFQ) return;
-      var btnRow = addBtn.closest('.flex');
-      if(!btnRow) return;
+      // Insert only in the dedicated secondary actions row if present
+      var host = document.getElementById('pdpSecondaryActions') || document.querySelector('[data-rfq-host]');
+      if(!host) return; // avoid inserting in the first row
       offerteBtn = document.createElement('button');
-      offerteBtn.className = 'btn btn-outline inline-flex items-center gap-2';
+      offerteBtn.className = 'btn btn-outline btn--rfq btn--no-shrink inline-flex items-center gap-2 whitespace-nowrap';
       offerteBtn.setAttribute('type','button');
       offerteBtn.setAttribute('aria-label','Offerte');
       offerteBtn.innerHTML = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 2H8a2 2 0 0 0-2 2v3H4v2h2v10a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3V4a2 2 0 0 0-2-2Zm0 18a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V7h11ZM10 9h7v2h-7Zm0 4h7v2h-7Zm0 4h5v2h-5Z"/></svg><span>Offerte</span>';
-      btnRow.appendChild(offerteBtn);
+      host.appendChild(offerteBtn);
     }
     if(offerteBtn) bindOfferte(offerteBtn);
   }

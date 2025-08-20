@@ -1,30 +1,142 @@
 <!-- DEVNOTE[hyva-slot,blog][owner=remka|date=2025-08-11]: Blog list/grid template. Target: handle=cms_page_view (or blog module), phtml=Vendor_Blog::list.phtml (verify). Docs: style-guide.html#cards -->
-<section class="container mx-auto px-4 py-10 section">
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    <a href="/blog-post.html" class="card card--hover overflow-hidden">
-      <img src="/assets/images/placeholder-16x9.svg" alt="Blogafbeelding" loading="lazy" />
+<section class="container mx-auto px-4 py-12">
+  <div class="grid lg:grid-cols-12 gap-8">
+    <div class="lg:col-span-9">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" aria-label="Blogoverzicht" role="list">
+        <article role="listitem" class="card card--hover overflow-hidden flex" itemscope itemtype="https://schema.org/BlogPosting">
+          <a href="/blog-post.html" class="block">
+            <img src="/assets/images/placeholder-16x9.svg" alt="Hygiëneprotocol in 5 stappen" loading="lazy" decoding="async" width="1200" height="675" class="w-full aspect-[16/9] object-cover" itemprop="image" />
+          </a>
+          <div class="p-4">
+            <div class="flex items-center gap-2 text-xs text-dark/70">
+              <span itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Remka Redactie</span></span>
+              <span>·</span>
+              <time datetime="2025-04-11" itemprop="datePublished">11 apr 2025</time>
+              <span>·</span>
+              <span class="pill pill--sm pill--neutral">Praktijktips</span>
+            </div>
+            <h3 class="mt-2 font-extrabold text-lg tracking-tight" itemprop="headline">
+              <a class="link-cta" href="/blog-post.html">Hygiëneprotocol in 5 stappen</a>
+            </h3>
+            <p class="mt-2 text-sm text-dark/80 line-clamp-2" itemprop="description">Maak je praktijk schoon en veilig met dit korte stappenplan.</p>
+            <div class="mt-3">
+              <a class="link-cta" href="/blog-post.html" aria-label="Lees meer over Hygiëneprotocol in 5 stappen">Lees meer</a>
+            </div>
+          </div>
+        </article>
+
+        <article role="listitem" class="card card--hover overflow-hidden flex" itemscope itemtype="https://schema.org/BlogPosting">
+          <a href="/blog-post.html" class="block">
+            <img src="/assets/images/placeholder-16x9.svg" alt="Nieuwe nitril handschoenen" loading="lazy" decoding="async" width="1200" height="675" class="w-full aspect-[16/9] object-cover" itemprop="image" />
+          </a>
+          <div class="p-4">
+            <div class="flex items-center gap-2 text-xs text-dark/70">
+              <span itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Remka Redactie</span></span>
+              <span>·</span>
+              <time datetime="2025-03-28" itemprop="datePublished">28 mrt 2025</time>
+              <span>·</span>
+              <span class="pill pill--sm pill--secondary">Productnieuws</span>
+            </div>
+            <h3 class="mt-2 font-extrabold text-lg tracking-tight" itemprop="headline">
+              <a class="link-cta" href="/blog-post.html">Nieuwe nitril handschoenen</a>
+            </h3>
+            <p class="mt-2 text-sm text-dark/80 line-clamp-2" itemprop="description">Sterk, comfortabel en geschikt voor lange inzet.</p>
+            <div class="mt-3">
+              <a class="link-cta" href="/blog-post.html" aria-label="Lees meer over Nieuwe nitril handschoenen">Lees meer</a>
+            </div>
+          </div>
+        </article>
+
+        <article role="listitem" class="card card--hover overflow-hidden flex" itemscope itemtype="https://schema.org/BlogPosting">
+          <a href="/blog-post.html" class="block">
+            <img src="/assets/images/placeholder-16x9.svg" alt="Voor 16:00 besteld, snel geleverd" loading="lazy" decoding="async" width="1200" height="675" class="w-full aspect-[16/9] object-cover" itemprop="image" />
+          </a>
       <div class="p-4">
-        <div class="text-xs text-dark/70">11 apr 2025 · Praktijktips</div>
-        <h3 class="mt-1 font-semibold">Hygiëneprotocol in 5 stappen</h3>
-        <p class="mt-2 text-sm text-dark/80">Maak je praktijk schoon en veilig met dit korte stappenplan.</p>
+            <div class="flex items-center gap-2 text-xs text-dark/70">
+              <span itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Remka Logistiek</span></span>
+              <span>·</span>
+              <time datetime="2025-03-12" itemprop="datePublished">12 mrt 2025</time>
+              <span>·</span>
+              <span class="pill pill--sm pill--primary">Logistiek</span>
+            </div>
+            <h3 class="mt-2 font-extrabold text-lg tracking-tight" itemprop="headline">
+              <a class="link-cta" href="/blog-post.html">Voor 16:00 besteld, snel geleverd</a>
+            </h3>
+            <p class="mt-2 text-sm text-dark/80 line-clamp-2" itemprop="description">Zo houden we levertijden laag en voorraden op peil.</p>
+            <div class="mt-3">
+              <a class="link-cta" href="/blog-post.html" aria-label="Lees meer over Voor 16:00 besteld, snel geleverd">Lees meer</a>
+            </div>
+          </div>
+        </article>
       </div>
-    </a>
-    <a href="/blog-post.html" class="card card--hover overflow-hidden">
-      <img src="/assets/images/placeholder-16x9.svg" alt="Blogafbeelding" loading="lazy" />
-      <div class="p-4">
-        <div class="text-xs text-dark/70">28 mrt 2025 · Productnieuws</div>
-        <h3 class="mt-1 font-semibold">Nieuwe nitril handschoenen</h3>
-        <p class="mt-2 text-sm text-dark/80">Sterk, comfortabel en geschikt voor lange inzet.</p>
+
+      <div class="mt-8">
+        <nav class="py-2" role="navigation" aria-label="Paginering">
+          <ul class="flex items-center justify-center gap-1">
+            <li><a href="#" class="btn btn-outline btn-sm" aria-label="Vorige pagina">Vorige</a></li>
+            <li><a href="#" class="btn btn-brand btn-sm" aria-current="page">1</a></li>
+            <li><a href="#" class="btn btn-outline btn-sm">2</a></li>
+            <li><a href="#" class="btn btn-outline btn-sm">3</a></li>
+            <li><a href="#" class="btn btn-outline btn-sm" aria-label="Volgende pagina">Volgende</a></li>
+          </ul>
+        </nav>
       </div>
-    </a>
-    <a href="/blog-post.html" class="card card--hover overflow-hidden">
-      <img src="/assets/images/placeholder-16x9.svg" alt="Blogafbeelding" loading="lazy" />
-      <div class="p-4">
-        <div class="text-xs text-dark/70">12 mrt 2025 · Logistiek</div>
-        <h3 class="mt-1 font-semibold">Voor 16:00 besteld, snel geleverd</h3>
-        <p class="mt-2 text-sm text-dark/80">Zo houden we levertijden laag en voorraden op peil.</p>
+    </div>
+
+    <aside class="lg:col-span-3">
+      <div class="sticky-sidebar">
+        <div class="card p-4">
+          <label for="blogSearch" class="text-sm font-semibold">Zoek</label>
+          <div class="mt-2 flex gap-2">
+            <input id="blogSearch" class="input flex-1" type="search" placeholder="Zoek artikelen" />
+            <button class="btn btn-brand btn-sm" type="button">Zoek</button>
+          </div>
+        </div>
+        <div class="mt-4 card p-4">
+          <div class="font-extrabold">Populaire artikelen</div>
+          <ul class="mt-3 space-y-3">
+            <li><a href="/blog-post.html" class="link-cta">Handschoenen: welke kies je?</a></li>
+            <li><a href="/blog-post.html" class="link-cta">Checklist hygiëne in de behandelkamer</a></li>
+            <li><a href="/blog-post.html" class="link-cta">Zorgeloos voorraadbeheer</a></li>
+          </ul>
+        </div>
+        <div class="mt-4 card p-4">
+          <div class="font-extrabold">Categorieën</div>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <a href="#" class="pill pill--sm pill--neutral">Praktijktips</a>
+            <a href="#" class="pill pill--sm pill--secondary">Productnieuws</a>
+            <a href="#" class="pill pill--sm pill--primary">Logistiek</a>
+            <a href="#" class="pill pill--sm pill--neutral">Hygiëne</a>
+          </div>
+        </div>
+        <div class="mt-4 card p-4">
+          <div class="font-extrabold">Recent geplaatst</div>
+          <ul class="mt-3 space-y-3">
+            <li class="flex gap-3">
+              <img class="w-12 h-12 rounded object-cover border border-light" src="/assets/images/placeholder-square.svg" alt="" loading="lazy" />
+              <div>
+                <a href="/blog-post.html" class="font-semibold leading-tight">Verbandmaterialen: wat heb je echt nodig?</a>
+                <div class="text-xs text-dark/70">5 apr 2025</div>
+              </div>
+            </li>
+            <li class="flex gap-3">
+              <img class="w-12 h-12 rounded object-cover border border-light" src="/assets/images/placeholder-square.svg" alt="" loading="lazy" />
+              <div>
+                <a href="/blog-post.html" class="font-semibold leading-tight">Instrumenten onderhouden in 7 stappen</a>
+                <div class="text-xs text-dark/70">30 mrt 2025</div>
+              </div>
+            </li>
+            <li class="flex gap-3">
+              <img class="w-12 h-12 rounded object-cover border border-light" src="/assets/images/placeholder-square.svg" alt="" loading="lazy" />
+              <div>
+                <a href="/blog-post.html" class="font-semibold leading-tight">Introductie: nieuwe nitril handschoenen</a>
+                <div class="text-xs text-dark/70">28 mrt 2025</div>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
-    </a>
+    </aside>
   </div>
 </section>
 

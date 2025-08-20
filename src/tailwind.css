@@ -2,21 +2,93 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Design tokens bridge (optional) */
-:root {
-  --brand: #9E0059;
-  --accent: #F77F00;
-  --teal: #00A99D;
-  --dark: #333333;
-  --light: #E6E6E6;
-}
-
-/* Minimal component layer for common utilities that map to existing CSS tokens */
 @layer components {
-  .btn { @apply inline-flex items-center justify-center gap-2 font-bold rounded-md px-4 py-2; }
-  .btn-brand { @apply bg-brand text-white; }
-  .btn-accent { @apply bg-accent text-black; }
-  .btn-outline { @apply border border-dark text-dark bg-white; }
-}
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-mdplus font-extrabold whitespace-nowrap border border-transparent shadow-sm transition-colors;
+  }
+  .btn-sm {
+    @apply text-sm px-3 py-2 min-h-[40px] leading-tight whitespace-nowrap;
+  }
+  .btn-brand {
+    @apply bg-brand text-white hover:bg-[#7d0047] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand;
+  }
+  .btn-accent {
+    @apply bg-accent text-[#111] hover:bg-amber-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500;
+  }
+  .btn-outline {
+    @apply bg-white text-brand border border-brand/35 hover:bg-brand/5;
+  }
+  .btn--orderlist { @apply min-w-[11.5rem]; }
+  .btn--no-shrink { @apply shrink-0; }
+  .btn--rfq { @apply min-w-[8.5rem]; }
+  .btn-card { @apply text-sm sm:text-base py-2.5 px-3 min-h-[44px] whitespace-nowrap; }
 
+  /* Forms */
+  .input, .select, .textarea {
+    @apply w-full rounded-brand border border-gray-300 px-3 py-2 bg-white text-dark placeholder:text-dark/60 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent;
+  }
+  .textarea { @apply min-h-[120px]; }
+  .input-sm { @apply min-h-9 px-2 py-1.5; }
+  .select { @apply pr-8; }
+
+  /* Cards */
+  .card {
+    @apply bg-white border border-black/10 rounded-2xl shadow-sm overflow-hidden;
+  }
+  .card--hover {
+    @apply transition will-change-transform hover:-translate-y-0.5 hover:shadow-2xl;
+  }
+  .card-body { @apply p-4; }
+
+  /* Pills & badges */
+  .pill {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full font-extrabold text-sm border border-black/10 text-dark bg-black/5;
+  }
+  .pill--sm { @apply px-3 py-1 text-[0.8125rem]; }
+  .pill--primary { @apply bg-brand/10 border-brand/20 text-[#7d0047]; }
+  .pill--secondary { @apply bg-teal/10 border-teal/20 text-teal; }
+  .pill--neutral { @apply bg-black/5 border-black/10 text-dark; }
+  .dot { @apply inline-block w-2 h-2 rounded-full bg-current; }
+
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-2 py-0.5 text-xs rounded-md border border-light bg-white text-dark;
+  }
+  .badge--ok { @apply border-teal/30 text-teal bg-teal/10; }
+  .badge--soft { @apply border-brand/15 text-brand bg-brand/10 font-extrabold; }
+
+  /* Alerts & toasts */
+  .alert { @apply rounded-xl border px-3 py-2 text-[0.95rem]; }
+  .alert--success { @apply border-teal text-teal bg-teal/10; }
+  .alert--warning { @apply border-amber-500 text-amber-800 bg-amber-500/10; }
+  .alert--error { @apply border-brand text-brand bg-brand/10; }
+
+  .toasts {
+    @apply fixed left-1/2 bottom-[calc(1rem+env(safe-area-inset-bottom))] -translate-x-1/2 z-[90] grid gap-2 w-[min(92vw,400px)];
+  }
+  @media (min-width: 768px) {
+    .toasts { @apply left-auto right-[calc(1rem+env(safe-area-inset-right))] top-[calc(1rem+env(safe-area-inset-top))] bottom-auto translate-x-0 w-[min(92vw,380px)]; }
+  }
+  .toast {
+    @apply pointer-events-auto bg-white text-dark border border-light rounded-xl shadow-2xl p-2.5 grid grid-cols-[auto_1fr_auto] gap-2.5 items-center opacity-0 translate-y-1 transition;
+  }
+  .toast[data-state="open"] { @apply opacity-100 translate-y-0; }
+  .toast--success { @apply border-l-4 border-teal; }
+  .toast--warning { @apply border-l-4 border-accent; }
+  .toast--error { @apply border-l-4 border-brand; }
+  .toast--info { @apply border-l-4 border-brand; }
+
+  /* Dialogs */
+  .dialog-root { @apply isolate z-[95]; }
+  .dialog-overlay { @apply absolute inset-0 bg-black/35 opacity-0 transition-opacity; }
+  .dialog-viewport { @apply absolute inset-0 grid place-items-center p-4; }
+  .dialog-panel {
+    @apply w-full max-w-[720px] bg-white/80 border border-white/60 rounded-2xl shadow-2xl opacity-0 -translate-y-[var(--dialog-offset-top,0px)] scale-95 transition;
+  }
+  .dialog-panel[data-state="open"] { @apply opacity-100 scale-100; }
+  .dialog-overlay[data-state="open"] { @apply opacity-100 backdrop-blur; }
+  .dialog--sm { @apply max-w-[520px]; }
+  .dialog--md { @apply max-w-[720px]; }
+  .dialog--lg { @apply max-w-[880px]; }
+}
 
