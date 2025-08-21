@@ -26,6 +26,17 @@ Files touched
 - src/tailwind.css (new @layer components)
 - components/ProductCard.html (minor inline utilities)
 - assets/css/base.css (to be reduced in later phases)
+- style-guide.html (structure overhaul, tokens-only examples, dark mode preview, search, copy buttons)
+- Removed legacy duplicate: styleguide.html
+
+### 2025-08 Styleguide overhaul
+- New navigation (sticky sidebar with anchors), optional mobile collapse
+- Dark-mode aware previews (class strategy, not enabled sitewide)
+- Tokens-only color panel; removed all hardcoded hex from examples
+- Live examples with realistic content + copy buttons on code blocks
+- Unified toasts/dialog patterns (Alpine-friendly)
+- Utilities/layout examples (.section, .section-alt, grids 2/3/4 cols)
+- Added sections: Tables, Pagination, Utilities, Callouts, Blog
 
 ### Size delta
 - BEFORE: base.css=TBD, tailwind.css=TBD

@@ -32,13 +32,17 @@
   .btn--rfq { @apply min-w-[8.5rem]; }
   .btn-card { @apply text-sm sm:text-base py-2.5 px-3 min-h-[44px] whitespace-nowrap; }
 
+  /* Utility: consistent horizontal button rows that wrap on small widths */
+  .btn-row { @apply flex gap-3 flex-wrap; }
+  .btn-row > .btn { @apply shrink-0; }
+
   /* Global: prevent CTA clipping and horizontal overflow */
   :where(.flex):has(.btn) { flex-wrap: wrap; }
   :where(.btn) { flex-shrink: 0; }
 
-  /* Utility: consistent horizontal button rows that wrap on small widths */
-  .btn-row { @apply flex gap-3 flex-wrap; }
-  .btn-row > .btn { @apply shrink-0; }
+  /* ProductCard CTA row: allow wrapping and keep buttons from shrinking */
+  [data-card] [data-cta] { @apply flex-wrap; }
+  [data-card] [data-cta] .btn { @apply shrink-0; }
 
   /* Forms */
   .input, .select, .textarea {

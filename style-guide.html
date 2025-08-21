@@ -22,49 +22,129 @@
     <main id="main" class="flex-1">
       <section class="hero-brand-soft border-b border-light/60">
         <div class="container mx-auto px-4 py-12 lg:py-16">
-          <header>
-            <div class="eyebrow">Design system</div>
-            <h1 class="mt-1 text-3xl font-extrabold tracking-tight">Remka style guide</h1>
-            <p class="mt-2 section-subtitle max-w-prose">Overzicht van kleuren, typografie, componenten en UI-elementen. Direct toepasbaar in Hyvä/Tailwind en modulair opgezet.</p>
+          <header class="flex flex-col gap-4">
+            <div>
+              <div class="eyebrow">Design system</div>
+              <h1 class="mt-1 text-3xl font-extrabold tracking-tight text-center">Remka style guide</h1>
+              <p class="mt-2 section-subtitle max-w-prose mx-auto text-center">Overzicht van kleuren, typografie, componenten en UI-elementen. Direct toepasbaar in Hyvä/Tailwind en modulair opgezet.</p>
+            </div>
+            <div class="flex flex-col md:flex-row items-center justify-between gap-3">
+              <div class="w-full md:w-auto flex items-center gap-2">
+                <button id="tocToggle" class="md:hidden btn btn-outline btn-sm" aria-expanded="false" aria-controls="sg-toc">Inhoud</button>
+                <div class="hidden md:flex items-center gap-2 text-sm text-dark/70">
+                  <span class="font-semibold">Designkeuzes:</span>
+                  <span>• <span class="font-semibold">brand</span> = primair</span>
+                  <span>• <span class="font-semibold">accent</span> = secundair</span>
+                  <span>• <span class="font-semibold">teal</span> = info/succes</span>
+                </div>
+              </div>
+              <div class="w-full md:w-auto flex items-center gap-2">
+                <div class="relative flex-1">
+                  <input id="sgSearch" class="input pl-9" placeholder="Zoek in de style guide (secties/voorbeelden)" aria-label="Zoek in de style guide" />
+                  <svg class="w-5 h-5 absolute left-3 top-2.5 text-dark/60" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 18a8 8 0 1 1 5.293-14.293A8 8 0 0 1 10 18Zm12 2-6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                </div>
+                <button id="darkToggle" class="btn btn-outline btn-sm" type="button" aria-pressed="false">Dark preview</button>
+              </div>
+            </div>
           </header>
         </div>
       </section>
 
+          <!-- Utilities -->
+          <section id="utilities" class="sg-section" data-tags="utilities helpers section section-alt container callout">
+            <h2 class="text-2xl font-black">Utilities</h2>
+            <p class="mt-1 text-sm text-dark/70">Gebruik de @layer component utilities: <code>.section</code>, <code>.section-alt</code>, <code>.callout-*</code>, <code>.divider</code>, <code>.h-scroll</code>.</p>
+            <div class="mt-4 grid md:grid-cols-2 gap-4">
+              <div class="section rounded-xl border border-light">
+                <div class="container"><div class="font-semibold">Section</div><div class="text-sm text-dark/70">Witte achtergrond met royale verticale spacing.</div></div>
+              </div>
+              <div class="section-alt rounded-xl border border-light">
+                <div class="container"><div class="font-semibold">Section-alt</div><div class="text-sm text-dark/70">Muted achtergrond voor afwisseling.</div></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Tables -->
+          <section id="tables" class="sg-section" data-tags="tables data">
+            <h2 class="text-2xl font-black">Tables</h2>
+            <div class="mt-3 overflow-x-auto">
+              <table class="min-w-full text-sm">
+                <thead class="bg-brand text-white font-black">
+                  <tr><th class="text-left py-2 px-3">Kolom</th><th class="text-left py-2 px-3">Kolom</th><th class="text-left py-2 px-3">Kolom</th></tr>
+                </thead>
+                <tbody class="divide-y divide-light/70">
+                  <tr><td class="py-2 px-3">Waarde</td><td class="py-2 px-3">Waarde</td><td class="py-2 px-3">Waarde</td></tr>
+                  <tr><td class="py-2 px-3">Waarde</td><td class="py-2 px-3">Waarde</td><td class="py-2 px-3">Waarde</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Pagination -->
+          <section id="pagination" class="sg-section" data-tags="pagination nav">
+            <h2 class="text-2xl font-black">Pagination</h2>
+            <nav class="mt-3" aria-label="Paginatie">
+              <ul class="inline-flex items-center gap-1">
+                <li><a href="#" class="pill" aria-label="Vorige">‹</a></li>
+                <li><a href="#" class="pill" aria-current="page">1</a></li>
+                <li><a href="#" class="pill">2</a></li>
+                <li><a href="#" class="pill">3</a></li>
+                <li><a href="#" class="pill" aria-label="Volgende">›</a></li>
+              </ul>
+            </nav>
+          </section>
+
+          <!-- Blog -->
+          <section id="blog" class="sg-section" data-tags="blog prose typography content">
+            <h2 class="text-2xl font-black">Blog</h2>
+            <article class="prose max-w-none">
+              <h2>Hygiëne in de praktijk: 5 snelle tips</h2>
+              <p>Een schone werkplek voorkomt infecties en verbetert de ervaring van patiënten. In dit artikel delen we vijf praktische tips die je direct kunt toepassen.</p>
+              <blockquote>Een klein beetje voorbereiding voorkomt een hoop gedoe later.</blockquote>
+              <p>Gebruik bijvoorbeeld handschoenen op de juiste momenten en reinig instrumenten volgens het protocol.</p>
+              <a href="#">Lees meer</a>
+            </article>
+          </section>
+
+          <!-- Callouts -->
+          <section id="callouts" class="sg-section" data-tags="callouts banners tints accent teal">
+            <h2 class="text-2xl font-black">Callouts</h2>
+            <div class="mt-3 grid md:grid-cols-2 gap-4">
+              <div class="p-4 callout-teal">
+                <div class="font-extrabold">Teal callout</div>
+                <p class="text-sm text-dark/80">Gebruik spaarzaam voor tips of success.</p>
+              </div>
+              <div class="p-4 callout-accent">
+                <div class="font-extrabold">Accent callout</div>
+                <p class="text-sm text-dark/80">Voor secundaire aandachtspunten.</p>
+              </div>
+            </div>
+          </section>
+
       <section class="container mx-auto px-4 py-10 grid md:grid-cols-[260px,1fr] gap-8" id="inhoud">
         <!-- Sticky inhoudsopgave -->
-        <aside class="sticky-sidebar self-start">
+        <aside class="sticky-sidebar self-start" id="sg-toc">
           <div class="card p-4">
             <h2 class="text-base font-extrabold">Inhoud</h2>
             <nav class="mt-3 text-sm space-y-2">
-              <!-- Fundamenten -->
               <a class="block hover:text-brand" href="#design-tokens">Design tokens</a>
-              <a class="block hover:text-brand" href="#kleuren">Kleurenpalet</a>
-              <a class="block hover:text-brand" href="#typografie">Typografie</a>
-              <a class="block hover:text-brand" href="#grid">Grid en layout</a>
-              <a class="block hover:text-brand" href="#pagina-titel">Pagina titel</a>
-
-              <!-- UI-elementen -->
+              <a class="block hover:text-brand" href="#kleuren">Colors</a>
+              <a class="block hover:text-brand" href="#typografie">Typography</a>
               <a class="block hover:text-brand" href="#buttons">Buttons</a>
-              <a class="block hover:text-brand" href="#forms">Form elementen</a>
-              <a class="block hover:text-brand" href="#cards">Kaarten en containers</a>
-              <a class="block hover:text-brand" href="#componenten">Componenten</a>
-
-              <!-- Navigatie -->
-              <a class="block hover:text-brand" href="#navigatie">Navigatie en footer</a>
-              <a class="block hover:text-brand" href="#navigation-details">Navigatie details</a>
-              <a class="block hover:text-brand" href="#iconen">Iconen</a>
-
-              <!-- Feedback -->
-              <a class="block hover:text-brand" href="#toasts">Toasts</a>
-               <a class="block hover:text-brand" href="#loading-states">Loading en empty</a>
-
-              <!-- Commerce -->
-               <a class="block hover:text-brand" href="#order-lists">Bestellijsten</a>
-               <a class="block hover:text-brand" href="#order-list-table">Bestellijst tabel</a>
-               <a class="block hover:text-brand" href="#order-list-add">Bestellijst toevoegen</a>
-
-              <!-- Richtlijnen & handover -->
-               <a class="block hover:text-brand" href="#tekst">Tekst & content</a>
+              <a class="block hover:text-brand" href="#forms">Forms</a>
+              <a class="block hover:text-brand" href="#pills">Pills / Badges</a>
+              <a class="block hover:text-brand" href="#cards">Cards</a>
+              <a class="block hover:text-brand" href="#toasts">Alerts / Toasts</a>
+              <a class="block hover:text-brand" href="#componenten">Dialogs</a>
+              <a class="block hover:text-brand" href="#navigatie">Navigation</a>
+              <a class="block hover:text-brand" href="#navigation-details">Mega & details</a>
+              <a class="block hover:text-brand" href="#tables">Tables</a>
+              <a class="block hover:text-brand" href="#pagination">Pagination</a>
+              <a class="block hover:text-brand" href="#utilities">Utilities</a>
+              <a class="block hover:text-brand" href="#grid">Layout / Grid</a>
+              <a class="block hover:text-brand" href="#callouts">Callouts</a>
+              <a class="block hover:text-brand" href="#blog">Blog</a>
+              <a class="block hover:text-brand" href="#tekst">Tekst & content</a>
               <a class="block hover:text-brand" href="#handover-checklist">Handover checklist</a>
             </nav>
           </div>
@@ -73,19 +153,19 @@
         <!-- Content kolom -->
         <div class="space-y-10">
           <!-- Design tokens -->
-          <section id="design-tokens" class="sg-section">
+          <section id="design-tokens" class="sg-section" data-tags="tokens colors spacing radius zindex focus">
             <h2 class="text-2xl font-black">Design tokens</h2>
             <div class="mt-3 text-sm text-dark/80 space-y-4">
               <div class="card p-4">
-                <div class="font-semibold">Kleuren (Tailwind + CSS tokens)</div>
+                <div class="font-semibold">Kleuren (Tailwind tokens)</div>
                 <div class="mt-2 grid sm:grid-cols-2 lg:grid-cols-3 gap-2 text-sm">
-                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-brand text-white"><span>brand</span><span>#9E0059</span></div>
-                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-accent text-ink"><span>accent</span><span>#F77F00</span></div>
-                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-teal text-white"><span>teal</span><span>#00A99D</span></div>
-                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-dark text-white"><span>dark</span><span>#333333</span></div>
-                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-light text-[#111]"><span>light</span><span>#E6E6E6</span></div>
+                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-brand text-white"><span>brand</span><span class="opacity-75">bg-brand • text-white • ring-brand</span></div>
+                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-accent text-ink"><span>accent</span><span class="opacity-75">bg-accent • text-ink • ring-accent</span></div>
+                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-teal text-white"><span>teal</span><span class="opacity-75">bg-teal • text-white • ring-teal</span></div>
+                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-dark text-white"><span>dark</span><span class="opacity-75">bg-dark • text-white</span></div>
+                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-light text-dark"><span>light</span><span class="opacity-75">bg-light • text-dark</span></div>
                 </div>
-                <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto"><code>&lt;!-- Utilities --&gt;
+                <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto"><code>&lt;!-- Tokens only (geen hex) --&gt;
 &lt;button class=&quot;btn btn-brand&quot;&gt;cta&lt;/button&gt;
 &lt;div class=&quot;border border-brand/30 bg-brand/5 text-brand&quot;&gt;accent&lt;/div&gt;
 &lt;div class=&quot;text-dark bg-light&quot;&gt;neutraal&lt;/div&gt;</code></pre>
@@ -115,16 +195,16 @@
 
           
           <!-- Kleurenpalet -->
-          <section id="kleuren" class="sg-section">
+          <section id="kleuren" class="sg-section" data-tags="colors tokens palette">
             <h2 class="text-2xl font-black">Kleurenpalet</h2>
-            <p class="mt-1 text-sm text-dark/70">Primair, secundair en grijstinten. Gebruik <code>hover</code> en <code>focus</code> subtiel.</p>
+            <p class="mt-1 text-sm text-dark/70">Primair, secundair en grijstinten. Gebruik <code>hover</code> en <code>focus</code> subtiel. Gebruik uitsluitend Tailwind tokens.</p>
             <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div class="sg-kleur bg-brand text-white"><span>Brand</span><span>#9E0059</span></div>
-              <div class="sg-kleur bg-accent text-ink"><span>Accent</span><span>#F77F00</span></div>
-              <div class="sg-kleur bg-teal text-white"><span>Teal</span><span>#00A99D</span></div>
-              <div class="sg-kleur bg-dark text-white"><span>Donker</span><span>#333333</span></div>
-              <div class="sg-kleur bg-light text-ink"><span>Licht</span><span>#E6E6E6</span></div>
-              <div class="sg-kleur bg-white text-dark"><span>Wit</span><span>#FFFFFF</span></div>
+              <div class="sg-kleur bg-brand text-white"><span>Brand</span><span class="opacity-75">bg-brand • text-white</span></div>
+              <div class="sg-kleur bg-accent text-ink"><span>Accent</span><span class="opacity-75">bg-accent • text-ink</span></div>
+              <div class="sg-kleur bg-teal text-white"><span>Teal</span><span class="opacity-75">bg-teal • text-white</span></div>
+              <div class="sg-kleur bg-dark text-white"><span>Donker</span><span class="opacity-75">bg-dark • text-white</span></div>
+              <div class="sg-kleur bg-light text-dark"><span>Licht</span><span class="opacity-75">bg-light • text-dark</span></div>
+              <div class="sg-kleur bg-white text-dark"><span>Wit</span><span class="opacity-75">bg-white • text-dark</span></div>
             </div>
             <div class="mt-4 text-sm text-dark/70">
               <p><strong>Focus</strong>: outline in merk-kleur. <strong>Hover</strong>: lichte schaduw of kleur-tint; geen flashy effecten.</p>
@@ -215,7 +295,7 @@
           </section>
 
           <!-- Buttons -->
-          <section id="buttons" class="sg-section">
+          <section id="buttons" class="sg-section" data-tags="buttons cta links">
             <h2 class="text-2xl font-black">Buttons</h2>
             <p class="mt-1 text-sm text-dark/70">Primaire, secundaire en outline. Gebruik disabled met lagere opacity.</p>
               <div class="mt-4 flex flex-wrap gap-3 items-center">
@@ -229,7 +309,7 @@
           </section>
 
           <!-- Pills (incl. footer context) -->
-          <section id="pills" class="sg-section">
+          <section id="pills" class="sg-section" data-tags="pills badges tags chips">
             <h2 class="text-2xl font-black">Pills</h2>
             <div class="mt-3 flex flex-wrap items-center gap-2">
               <span class="pill pill--primary">Primary</span>
@@ -491,6 +571,26 @@
                 <div class="mt-2 text-sm text-dark/70">sm (640px), md (768px), lg (1024px), xl (1280px)</div>
               </div>
               <div class="card p-4">
+                <div class="text-sm font-semibold">Grids</div>
+                <div class="mt-3 grid gap-4">
+                  <div class="grid grid-cols-2 gap-2">
+                    <div class="bg-light/60 rounded-md h-8"></div>
+                    <div class="bg-light/60 rounded-md h-8"></div>
+                  </div>
+                  <div class="grid grid-cols-3 gap-2">
+                    <div class="bg-light/60 rounded-md h-8"></div>
+                    <div class="bg-light/60 rounded-md h-8"></div>
+                    <div class="bg-light/60 rounded-md h-8"></div>
+                  </div>
+                  <div class="grid grid-cols-4 gap-2">
+                    <div class="bg-light/60 rounded-md h-8"></div>
+                    <div class="bg-light/60 rounded-md h-8"></div>
+                    <div class="bg-light/60 rounded-md h-8"></div>
+                    <div class="bg-light/60 rounded-md h-8"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="card p-4">
                 <div class="text-sm font-semibold">Kolommen</div>
                 <div class="mt-3 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 demo-grid">
                   <div class="bg-light/60 rounded-md">1</div>
@@ -547,7 +647,7 @@
           </section>
 
           <!-- Toasts -->
-          <section id="toasts" class="sg-section">
+          <section id="toasts" class="sg-section" data-tags="alerts toasts feedback notifications">
             <h2 class="text-2xl font-black">Toasts</h2>
             <p class="mt-1 text-sm text-dark/70">Compacte meldingen. Op mobiel onderaan gecentreerd, op desktop rechtsboven. Maximaal 3 tegelijk zichtbaar; rest in wachtrij. Animatie 200ms fade+slide, respecteert reduced motion.</p>
             <div class="mt-4 grid md:grid-cols-2 gap-6">
@@ -946,6 +1046,78 @@ function computeAdvice({min,max,current}){ return Math.max(0, max - current); }<
     <script src="/assets/js/cartDrawer.js" defer></script>
     <script src="/assets/js/rfq-demo.js" defer></script>
     <script>
+      // Dark mode preview toggle (class strategy)
+      (function(){
+        var btn = document.getElementById('darkToggle');
+        if(!btn) return;
+        btn.addEventListener('click', function(){
+          var html = document.documentElement;
+          var on = html.classList.toggle('dark');
+          btn.setAttribute('aria-pressed', on ? 'true':'false');
+        });
+      })();
+
+      // TOC collapsible (mobile)
+      (function(){
+        var t = document.getElementById('tocToggle');
+        var toc = document.getElementById('sg-toc');
+        if(!t || !toc) return;
+        function set(open){
+          t.setAttribute('aria-expanded', open ? 'true' : 'false');
+          toc.style.display = open ? '' : 'none';
+        }
+        set(false);
+        t.addEventListener('click', function(){ var open = t.getAttribute('aria-expanded')==='true'; set(!open); });
+        // ensure desktop always visible
+        var m = window.matchMedia('(min-width: 768px)');
+        function onChange(){ if(m.matches){ toc.style.display=''; t.setAttribute('aria-expanded','true'); } else { toc.style.display='none'; t.setAttribute('aria-expanded','false'); } }
+        try { m.addEventListener('change', onChange); } catch { m.onchange = onChange; }
+        onChange();
+      })();
+
+      // Client-side search/filter: hide sections not matching query
+      (function(){
+        var input = document.getElementById('sgSearch');
+        if(!input) return;
+        var sections = Array.from(document.querySelectorAll('.sg-section'));
+        function norm(s){ return (s||'').toLowerCase(); }
+        function matches(section, q){
+          if(!q) return true;
+          var tag = (section.getAttribute('data-tags')||'');
+          var text = section.textContent || '';
+          return norm(tag).includes(q) || norm(text).includes(q);
+        }
+        input.addEventListener('input', function(){
+          var q = norm(input.value.trim());
+          sections.forEach(function(sec){ sec.style.display = matches(sec, q) ? '' : 'none'; });
+        });
+      })();
+
+      // Copy buttons for all code blocks
+      (function(){
+        var pres = Array.from(document.querySelectorAll('pre'));
+        pres.forEach(function(pre){
+          var code = pre.querySelector('code');
+          if(!code) return;
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'btn btn-outline btn-sm';
+          btn.textContent = 'Kopieer';
+          btn.style.position = 'absolute';
+          btn.style.right = '0.5rem';
+          btn.style.top = '0.5rem';
+          var wrap = document.createElement('div');
+          wrap.style.position = 'relative';
+          pre.parentNode.insertBefore(wrap, pre);
+          wrap.appendChild(pre);
+          wrap.appendChild(btn);
+          btn.addEventListener('click', function(){
+            var txt = code.innerText || code.textContent || '';
+            navigator.clipboard && navigator.clipboard.writeText(txt).then(function(){ btn.textContent = 'Gekopieerd'; setTimeout(function(){ btn.textContent = 'Kopieer'; }, 1200); });
+          });
+        });
+      })();
+
       // Toast demos
       document.addEventListener('click', function(e){
         var btn = e.target.closest('[data-demo-toast]');

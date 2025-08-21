@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     './app/design/frontend/**/*.{phtml,html,php,xml}',
     './vendor/hyva-themes/**/*.{phtml,html,php}',
