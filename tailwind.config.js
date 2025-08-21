@@ -37,9 +37,16 @@ module.exports = {
         // brand palette
         brand: '#9E0059',
         accent: '#F77F00',
+        accentDark: '#E06F00',
         teal: '#00A99D',
         dark: '#333333',
         light: '#E6E6E6',
+        // additional tokens for utilities (no inline hex in templates)
+        brandDeep: '#7d0047',
+        brandMid: '#ab0060',
+        ink: '#111827',
+        paper: '#f8fafc',
+        muted: '#f7f7f7',
         // service tier accents
         tier: {
           bronze: '#b7792b',
@@ -81,7 +88,10 @@ module.exports = {
   },
   corePlugins: {
     preflight: true
-  }
+  },
+  plugins: [
+    require('@tailwindcss/typography')
+  ]
 };
 
 
