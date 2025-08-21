@@ -32,7 +32,7 @@
     if(!tpl) return null;
     var node = tpl.content.firstElementChild.cloneNode(true);
 
-    var link = node.querySelector('[data-card-link]');
+    var links = node.querySelectorAll('[data-card-link]');
     var img = node.querySelector('[data-image]');
     var ttl = node.querySelector('[data-title]');
     var brandEl = node.querySelector('[data-brand]');
@@ -47,7 +47,12 @@
     var discountHost = node.querySelector('[data-discount]');
 
     var url = data.url || '/product.html';
-    if(link) { link.href = url; link.setAttribute('aria-label', data.title || 'Product'); }
+    if(links && links.length){
+      links.forEach(function(a){
+        a.href = url;
+        a.setAttribute('aria-label', data.title || 'Product');
+      });
+    }
 
     var src = data.imageSrc || '/assets/images/placeholder-square.svg';
     if(img){
@@ -56,8 +61,8 @@
       img.loading = 'lazy';
       img.decoding = 'async';
       img.sizes = '(min-width: 768px) 25vw, 50vw';
-      if(data.width) img.setAttribute('width', String(data.width)); else img.setAttribute('width', '400');
-      if(data.height) img.setAttribute('height', String(data.height)); else img.setAttribute('height', '400');
+      if(data.width) img.setAttribute('width', String(data.width)); else img.setAttribute('width', '800');
+      if(data.height) img.setAttribute('height', String(data.height)); else img.setAttribute('height', '600');
     }
 
     if(ttl) ttl.textContent = data.title || '';
@@ -75,7 +80,7 @@
       var main = hasCompare
         ? '<div class="flex items-center gap-2"><span>'+formatPrice(data.price)+'</span><s class="text-dark/60">'+formatPrice(data.compareAtPrice)+'</s></div>'
         : '<span>'+formatPrice(data.price)+'</span>';
-      var vat = '<div class="text-xs text-dark/70">excl. btw</div>';
+      var vat = '<small>excl. btw</small>';
       priceEl.innerHTML = main + vat;
     }
 
