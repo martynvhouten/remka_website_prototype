@@ -1,46 +1,151 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Voorraadbeheer – Remka B.V.</title>
-    <meta name="description" content="Bestellijsten en voorraadbeheer-oplossingen voor zorgorganisaties." />
-    <link rel="icon" type="image/svg+xml" href="/assets/images/logo-remka.svg" />
+    <meta name="description" content="Beheer je medische verbruiksartikelen slimmer met helder overzicht, meldingen en herbestellen in één." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/assets/css/tailwind.css" />
     <link rel="stylesheet" href="/assets/css/base.css" />
-</head>
-  <body class="min-h-screen flex flex-col">
+  </head>
+  <body class="min-h-screen flex flex-col layout-wide">
     <div id="header-placeholder"></div>
+
     <main id="main" class="flex-1">
-      <section class="hero-brand-soft">
+      <!-- Hero -->
+      <section class="hero-brand-soft border-b border-light/60">
         <div class="container mx-auto px-4 py-12 lg:py-16">
-          <header>
-            <div class="eyebrow">Klantenservice</div>
+          <header class="max-w-3xl">
+            <div class="eyebrow">Oplossingen</div>
             <h1 class="mt-1 text-3xl font-extrabold tracking-tight">Voorraadbeheer</h1>
-            <p class="mt-2 section-subtitle">Werk met bestellijsten en herhaalbestellingen per afdeling of team.</p>
+            <p class="mt-2 section-subtitle max-w-prose">Slim voorraadbeheer voor je praktijk: snel inzicht in verbruik, tijdig herbestellen en minder verspilling.</p>
           </header>
         </div>
       </section>
-      <section class="container mx-auto px-4 py-10 grid lg:grid-cols-3 gap-8 items-start">
-        <article class="lg:col-span-2 space-y-6">
-          <h2 class="text-xl font-extrabold">Oplossingen</h2>
-          <ul class="space-y-2 list-disc list-inside text-dark/90">
-            <li>Bestellijsten per team of vestiging</li>
-            <li>Herhaalbestellingen en favorieten</li>
-            <li>Accountrollen en goedkeuring (op aanvraag)</li>
-          </ul>
-          <h2 class="text-xl font-extrabold">Aanvragen</h2>
-          <p class="text-dark/80">Neem contact op met je wensen; we richten dit in op basis van je processen.</p>
-        </article>
-        <aside>
-          <div data-partial="content/contact-card"></div>
-        </aside>
+
+      <!-- Intro + Video -->
+      <section class="section">
+        <div class="container mx-auto px-4">
+          <div class="grid lg:grid-cols-12 gap-8 lg:items-start">
+            <div class="lg:col-span-5">
+              <div class="mx-auto max-w-[70ch] text-dark/90">
+                <p class="text-copy">Met Remka voorraadbeheer houd je je verbruiksartikelen moeiteloos op peil. Je ziet in één oogopslag wat op raakt, stelt meldingen in en bestelt direct bij. Zo bespaar je tijd aan de balie en voorkom je tekorten tijdens behandelingen.</p>
+                <ul class="list-check mt-4">
+                  <li><span class="dot"></span><span>Realtime overzicht per locatie of kamer</span></li>
+                  <li><span class="dot"></span><span>Meldingen bij drempelwaarden</span></li>
+                  <li><span class="dot"></span><span>Snel herbestellen vanuit favorieten of lijsten</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="lg:col-span-7">
+              <div class="w-full aspect-[16/9] overflow-hidden rounded-xlplus border border-light shadow-card">
+                <iframe
+                  class="w-full h-full"
+                  src="https://www.youtube.com/embed/pSrQmsd-trw"
+                  title="Voorraadbeheer – Remka"
+                  loading="lazy"
+                  decoding="async"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section class="section-alt">
+        <div class="container mx-auto px-4">
+          <div class="max-w-3xl">
+            <h2 class="section-title text-2xl">Wat levert het je op?</h2>
+            <p class="mt-2 text-dark/80">Eenvoud in beheer en rust in het team. Minder misgrijpen, minder spoedbestellingen en meer grip op kosten.</p>
+          </div>
+          <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="feature-card">
+              <div class="feature-icon">✓</div>
+              <div>
+                <div class="feature-title">Altijd op voorraad</div>
+                <div class="feature-text">Automatische meldingen bij drempelwaarden en seizoenspieken.</div>
+              </div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon feature-icon--teal">⏱</div>
+              <div>
+                <div class="feature-title">Minder administratietijd</div>
+                <div class="feature-text">Herbestellen in seconden via favorieten en standaardlijsten.</div>
+              </div>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon feature-icon--accent">€</div>
+              <div>
+                <div class="feature-title">Grip op kosten</div>
+                <div class="feature-text">Inzicht in verbruik per productgroep en locatie.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How it works -->
+      <section class="section">
+        <div class="container mx-auto px-4">
+          <div class="max-w-3xl">
+            <h2 class="section-title text-2xl">Zo werkt het</h2>
+          </div>
+          <div class="mt-4 grid md:grid-cols-3 gap-4">
+            <div class="tier-card p-4">
+              <div class="tier-card__head">
+                <div class="tier-card__title">1. Start met lijsten</div>
+              </div>
+              <p class="tier-card__text mt-1">Maak je favorieten of behandelkamer-lijsten. Voeg drempelwaarden toe.</p>
+            </div>
+            <div class="tier-card p-4">
+              <div class="tier-card__head">
+                <div class="tier-card__title">2. Registreer verbruik</div>
+              </div>
+              <p class="tier-card__text mt-1">Noteer verbruik periodiek of koppel je voorraad aan bestellingen.</p>
+            </div>
+            <div class="tier-card p-4">
+              <div class="tier-card__head">
+                <div class="tier-card__title">3. Bestel op tijd</div>
+              </div>
+              <p class="tier-card__text mt-1">Ontvang meldingen en bestel direct de juiste aantallen bij.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section section-brand-tint">
+        <div class="container mx-auto px-4">
+          <div class="tier-card p-5 md:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+            <div>
+              <h2 class="section-title text-2xl">Aan de slag met voorraadbeheer</h2>
+              <p class="section-subtitle mt-1">We helpen je graag bij het inrichten van lijsten en meldingen.</p>
+            </div>
+            <div class="btn-row">
+              <a href="/contact.html" class="btn btn-brand">Plan een demo</a>
+              <a href="/category.html" class="btn btn-outline">Bekijk verbruiksartikelen</a>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
+
     <div id="footer-placeholder"></div>
+
     <script src="/assets/js/nav.js" defer></script>
     <script src="/assets/js/index.js" defer></script>
+    <script src="/assets/js/toasts.js" defer></script>
+    <script src="/assets/js/cartDrawer.js" defer></script>
   </body>
-  </html>
+  <!-- Video bron: https://youtu.be/pSrQmsd-trw -->
+</html>
 
 

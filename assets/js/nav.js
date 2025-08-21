@@ -292,7 +292,7 @@
       panel.appendChild(grid); wrap.appendChild(panel); rail.appendChild(wrap);
     });
 
-    // interactions with intent (open delay ~120ms, close delay ~200ms)
+    // interactions with intent (open delay ~120ms, close delay ~170ms)
     let intentOpenTimer = null;
     let intentCloseTimer = null;
     let currentOpen = null;
@@ -332,7 +332,7 @@
     };
     const scheduleClose = () => {
       if (intentCloseTimer) clearTimeout(intentCloseTimer);
-      intentCloseTimer = setTimeout(() => { closeAll(); }, 200);
+      intentCloseTimer = setTimeout(() => { closeAll(); }, 170);
     };
 
     // Hover/click/focus intent on triggers

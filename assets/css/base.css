@@ -717,10 +717,7 @@ a.text-sm.font-semibold.text-brand:hover::after { transform: translateX(2px); }
 .btn-sm { font-size: .875rem; padding: .45rem .65rem; min-height: 40px; line-height: 1.2; white-space: nowrap; }
 .btn:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
 .btn:active { box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-.btn-brand { background: var(--brand); color: #fff; }
-.btn-brand:hover { background: #7d0047; }
-.btn-accent { background: var(--accent); color: #111; }
-.btn-accent:hover { background: #e06f00; }
+/* Button variants live in Tailwind components (src/tailwind.css) */
 .btn-outline { background: #fff; color: var(--brand); border-color: rgba(158,0,89,0.35); }
 .btn-outline:hover { background: rgba(158,0,89,0.06); }
 /* Removed legacy BEM-style button variants (use btn-accent/btn-outline) */
@@ -734,9 +731,8 @@ a.text-sm.font-semibold.text-brand:hover::after { transform: translateX(2px); }
 
 /* Clear section backgrounds (no gradients) */
 .section { background: #fff; }
-.section-alt { background: #f7f7f7; }
-.section-brand-tint { background: rgba(158,0,89,0.06); }
-.section-teal-tint { background: rgba(0,169,157,0.06); }
+.section-alt { background: var(--light); }
+/* Section tints handled via Tailwind utilities (bg-brand/5, bg-teal/5) */
 /* Page title: subtle brand gradient (light, modern) */
 .section-hero-brand {
   background-image:

@@ -80,7 +80,7 @@
                 <div class="font-semibold">Kleuren (Tailwind + CSS tokens)</div>
                 <div class="mt-2 grid sm:grid-cols-2 lg:grid-cols-3 gap-2 text-sm">
                   <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-brand text-white"><span>brand</span><span>#9E0059</span></div>
-                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-accent text-[#111]"><span>accent</span><span>#F77F00</span></div>
+                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-accent text-ink"><span>accent</span><span>#F77F00</span></div>
                   <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-teal text-white"><span>teal</span><span>#00A99D</span></div>
                   <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-dark text-white"><span>dark</span><span>#333333</span></div>
                   <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-light text-[#111]"><span>light</span><span>#E6E6E6</span></div>
@@ -120,10 +120,10 @@
             <p class="mt-1 text-sm text-dark/70">Primair, secundair en grijstinten. Gebruik <code>hover</code> en <code>focus</code> subtiel.</p>
             <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <div class="sg-kleur bg-brand text-white"><span>Brand</span><span>#9E0059</span></div>
-              <div class="sg-kleur bg-accent text-[#111]"><span>Accent</span><span>#F77F00</span></div>
+              <div class="sg-kleur bg-accent text-ink"><span>Accent</span><span>#F77F00</span></div>
               <div class="sg-kleur bg-teal text-white"><span>Teal</span><span>#00A99D</span></div>
               <div class="sg-kleur bg-dark text-white"><span>Donker</span><span>#333333</span></div>
-              <div class="sg-kleur bg-light text-[#111]"><span>Licht</span><span>#E6E6E6</span></div>
+              <div class="sg-kleur bg-light text-ink"><span>Licht</span><span>#E6E6E6</span></div>
               <div class="sg-kleur bg-white text-dark"><span>Wit</span><span>#FFFFFF</span></div>
             </div>
             <div class="mt-4 text-sm text-dark/70">
@@ -181,6 +181,36 @@
                 <li>Geordende lijst</li>
                 <li>Stabiele hiërarchie</li>
               </ol>
+            </div>
+          </section>
+
+          <!-- Colors & Accents -->
+          <section id="colors-accents" class="sg-section">
+            <h2 class="text-2xl font-black">Colors & Accents</h2>
+            <p class="mt-1 text-sm text-dark/70">Gebruik: <span class="font-semibold">brand</span> voor primaire acties, <span class="font-semibold">accent</span> (oranje) voor secundaire CTAs, <span class="font-semibold">teal</span> voor success/info. Gebruik hooguit één subtiele tint per viewport.</p>
+            <div class="mt-4 grid sm:grid-cols-3 gap-4">
+              <div class="p-4 card">
+                <div class="text-sm font-semibold">Knoppen</div>
+                <div class="mt-2 flex flex-wrap gap-2 items-center">
+                  <button class="btn btn-brand">Primaire</button>
+                  <button class="btn btn-accent">Secundaire</button>
+                  <button class="btn btn-outline">Outline</button>
+                </div>
+              </div>
+              <div class="p-4 card">
+                <div class="text-sm font-semibold">Badges</div>
+                <div class="mt-2 flex flex-wrap gap-2 items-center">
+                  <span class="badge badge--soft">Brand</span>
+                  <span class="badge badge--ok">Succes</span>
+                </div>
+              </div>
+              <div class="p-4 card">
+                <div class="text-sm font-semibold">Callout</div>
+                <div class="mt-2 p-3 callout-teal">
+                  <div class="font-semibold">Subtiele highlight</div>
+                  <p class="text-sm text-dark/80">Gebruik spaarzaam als accent.</p>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -300,15 +330,15 @@
               </div>
               <div class="col-span-full card p-4">
                 <div class="grid sm:grid-cols-3 gap-4">
-                  <div class="promo p-4 rounded-lg bg-[rgba(158,0,89,0.06)] border border-[rgba(158,0,89,0.15)]">
+                  <div class="promo p-4 rounded-lg bg-brand/10 border border-brand/20">
                     <div class="font-extrabold">Promo banner</div>
                     <div class="text-sm text-dark/70">Merk-tint met duidelijke call-to-action.</div>
                   </div>
-                  <div class="promo p-4 rounded-lg bg-[rgba(0,169,157,0.06)] border border-[rgba(0,169,157,0.15)]">
+                  <div class="promo p-4 rounded-lg bg-teal/10 border border-teal/20">
                     <div class="font-extrabold">Promo banner</div>
                     <div class="text-sm text-dark/70">Alternatieve tint.</div>
                   </div>
-                  <div class="promo p-4 rounded-lg bg-[rgba(247,127,0,0.10)] border border-[rgba(247,127,0,0.25)]">
+                  <div class="promo p-4 rounded-lg bg-accent/10 border border-accent/25">
                     <div class="font-extrabold">Promo banner</div>
                     <div class="text-sm text-dark/70">Accentvariant.</div>
                   </div>
