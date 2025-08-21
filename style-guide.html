@@ -22,30 +22,10 @@
     <main id="main" class="flex-1">
       <section class="hero-brand-soft border-b border-light/60">
         <div class="container mx-auto px-4 py-12 lg:py-16">
-          <header class="flex flex-col gap-4">
-            <div>
-              <div class="eyebrow">Design system</div>
-              <h1 class="mt-1 text-3xl font-extrabold tracking-tight text-center">Remka style guide</h1>
-              <p class="mt-2 section-subtitle max-w-prose mx-auto text-center">Overzicht van kleuren, typografie, componenten en UI-elementen. Direct toepasbaar in Hyvä/Tailwind en modulair opgezet.</p>
-            </div>
-            <div class="flex flex-col md:flex-row items-center justify-between gap-3">
-              <div class="w-full md:w-auto flex items-center gap-2">
-                <button id="tocToggle" class="md:hidden btn btn-outline btn-sm" aria-expanded="false" aria-controls="sg-toc">Inhoud</button>
-                <div class="hidden md:flex items-center gap-2 text-sm text-dark/70">
-                  <span class="font-semibold">Designkeuzes:</span>
-                  <span>• <span class="font-semibold">brand</span> = primair</span>
-                  <span>• <span class="font-semibold">accent</span> = secundair</span>
-                  <span>• <span class="font-semibold">teal</span> = info/succes</span>
-                </div>
-              </div>
-              <div class="w-full md:w-auto flex items-center gap-2">
-                <div class="relative flex-1">
-                  <input id="sgSearch" class="input pl-9" placeholder="Zoek in de style guide (secties/voorbeelden)" aria-label="Zoek in de style guide" />
-                  <svg class="w-5 h-5 absolute left-3 top-2.5 text-dark/60" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 18a8 8 0 1 1 5.293-14.293A8 8 0 0 1 10 18Zm12 2-6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-                </div>
-                <button id="darkToggle" class="btn btn-outline btn-sm" type="button" aria-pressed="false">Dark preview</button>
-              </div>
-            </div>
+          <header>
+            <div class="eyebrow text-center">Design system</div>
+            <h1 class="mt-1 text-3xl font-extrabold tracking-tight text-center">Remka style guide</h1>
+            <p class="mt-2 section-subtitle max-w-prose mx-auto text-center">Overzicht van kleuren, typografie, componenten en UI-elementen. Direct toepasbaar in Hyvä/Tailwind en modulair opgezet.</p>
           </header>
         </div>
       </section>
@@ -152,6 +132,25 @@
 
         <!-- Content kolom -->
         <div class="space-y-10">
+          <!-- Toolbar: search, dark preview, mobile TOC toggle -->
+          <div class="flex flex-col md:flex-row items-center justify-between gap-3">
+            <div class="w-full md:w-auto flex items-center gap-2">
+              <button id="tocToggle" class="md:hidden btn btn-outline btn-sm" aria-expanded="false" aria-controls="sg-toc">Inhoud</button>
+              <div class="hidden md:flex items-center gap-2 text-sm text-dark/70">
+                <span class="font-semibold">Designkeuzes:</span>
+                <span>• <span class="font-semibold">brand</span> = primair</span>
+                <span>• <span class="font-semibold">accent</span> = secundair</span>
+                <span>• <span class="font-semibold">teal</span> = info/succes</span>
+              </div>
+            </div>
+            <div class="w-full md:w-auto flex items-center gap-2">
+              <div class="relative flex-1">
+                <input id="sgSearch" class="input pl-9" placeholder="Zoek in de style guide (secties/voorbeelden)" aria-label="Zoek in de style guide" />
+                <svg class="w-5 h-5 absolute left-3 top-2.5 text-dark/60" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 18a8 8 0 1 1 5.293-14.293A8 8 0 0 1 10 18Zm12 2-6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              </div>
+              <button id="darkToggle" class="btn btn-outline btn-sm" type="button" aria-pressed="false">Dark preview</button>
+            </div>
+          </div>
           <!-- Design tokens -->
           <section id="design-tokens" class="sg-section" data-tags="tokens colors spacing radius zindex focus">
             <h2 class="text-2xl font-black">Design tokens</h2>
