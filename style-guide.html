@@ -1064,13 +1064,14 @@ function computeAdvice({min,max,current}){ return Math.max(0, max - current); }<
         if(!t || !toc) return;
         function set(open){
           t.setAttribute('aria-expanded', open ? 'true' : 'false');
-          toc.style.display = open ? '' : 'none';
+          toc.classList.toggle('hidden', !open);
         }
+        toc.classList.add('hidden');
         set(false);
         t.addEventListener('click', function(){ var open = t.getAttribute('aria-expanded')==='true'; set(!open); });
         // ensure desktop always visible
         var m = window.matchMedia('(min-width: 768px)');
-        function onChange(){ if(m.matches){ toc.style.display=''; t.setAttribute('aria-expanded','true'); } else { toc.style.display='none'; t.setAttribute('aria-expanded','false'); } }
+        function onChange(){ if(m.matches){ toc.classList.remove('hidden'); t.setAttribute('aria-expanded','true'); } else { toc.classList.add('hidden'); t.setAttribute('aria-expanded','false'); } }
         try { m.addEventListener('change', onChange); } catch { m.onchange = onChange; }
         onChange();
       })();
@@ -1101,13 +1102,10 @@ function computeAdvice({min,max,current}){ return Math.max(0, max - current); }<
           if(!code) return;
           var btn = document.createElement('button');
           btn.type = 'button';
-          btn.className = 'btn btn-outline btn-sm';
+          btn.className = 'btn btn-outline btn-sm absolute right-2 top-2';
           btn.textContent = 'Kopieer';
-          btn.style.position = 'absolute';
-          btn.style.right = '0.5rem';
-          btn.style.top = '0.5rem';
           var wrap = document.createElement('div');
-          wrap.style.position = 'relative';
+          wrap.className = 'relative';
           pre.parentNode.insertBefore(wrap, pre);
           wrap.appendChild(pre);
           wrap.appendChild(btn);
