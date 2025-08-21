@@ -31,40 +31,52 @@
       </section>
 
       <section class="container mx-auto px-4 py-10 grid md:grid-cols-[260px,1fr] gap-8" id="inhoud">
+        <!-- Mobile TOC toggle -->
+        <div class="md:hidden -mt-2">
+          <button type="button" class="btn btn-outline btn-sm" id="tocToggle" aria-expanded="false" aria-controls="sg-toc">Inhoud</button>
+        </div>
         <!-- Sticky inhoudsopgave -->
         <aside class="sticky-sidebar self-start">
           <div class="card p-4">
             <h2 class="text-base font-extrabold">Inhoud</h2>
-            <nav class="mt-3 text-sm space-y-2">
+            <nav id="sg-toc" class="mt-3 text-sm space-y-2 hidden md:block">
               <!-- Fundamenten -->
               <a class="block hover:text-brand" href="#design-tokens">Design tokens</a>
-              <a class="block hover:text-brand" href="#kleuren">Kleurenpalet</a>
+              <a class="block hover:text-brand" href="#kleuren">Kleuren</a>
               <a class="block hover:text-brand" href="#typografie">Typografie</a>
-              <a class="block hover:text-brand" href="#grid">Grid en layout</a>
+              <a class="block hover:text-brand" href="#layout-grid">Layout & grid</a>
               <a class="block hover:text-brand" href="#pagina-titel">Pagina titel</a>
 
               <!-- UI-elementen -->
               <a class="block hover:text-brand" href="#buttons">Buttons</a>
-              <a class="block hover:text-brand" href="#forms">Form elementen</a>
-              <a class="block hover:text-brand" href="#cards">Kaarten en containers</a>
-              <a class="block hover:text-brand" href="#componenten">Componenten</a>
+              <a class="block hover:text-brand" href="#forms">Formulieren</a>
+              <a class="block hover:text-brand" href="#pills">Pills & badges</a>
+              <a class="block hover:text-brand" href="#cards">Kaarten</a>
+              <a class="block hover:text-brand" href="#alerts">Alerts</a>
+              <a class="block hover:text-brand" href="#toasts">Toasts</a>
+              <a class="block hover:text-brand" href="#dialogs">Dialogs</a>
 
               <!-- Navigatie -->
-              <a class="block hover:text-brand" href="#navigatie">Navigatie en footer</a>
+              <a class="block hover:text-brand" href="#navigatie">Navigatie & footer</a>
               <a class="block hover:text-brand" href="#navigation-details">Navigatie details</a>
               <a class="block hover:text-brand" href="#iconen">Iconen</a>
 
-              <!-- Feedback -->
-              <a class="block hover:text-brand" href="#toasts">Toasts</a>
-               <a class="block hover:text-brand" href="#loading-states">Loading en empty</a>
+              <!-- Data & lijsten -->
+              <a class="block hover:text-brand" href="#tables">Tabellen</a>
+              <a class="block hover:text-brand" href="#pagination">Paginatie</a>
+
+              <!-- Utilities & content -->
+              <a class="block hover:text-brand" href="#utilities">Utilities</a>
+              <a class="block hover:text-brand" href="#callouts">Callouts</a>
+              <a class="block hover:text-brand" href="#blog">Blog</a>
 
               <!-- Commerce -->
-               <a class="block hover:text-brand" href="#order-lists">Bestellijsten</a>
-               <a class="block hover:text-brand" href="#order-list-table">Bestellijst tabel</a>
-               <a class="block hover:text-brand" href="#order-list-add">Bestellijst toevoegen</a>
+              <a class="block hover:text-brand" href="#order-lists">Bestellijsten</a>
+              <a class="block hover:text-brand" href="#order-list-table">Bestellijst tabel</a>
+              <a class="block hover:text-brand" href="#order-list-add">Bestellijst toevoegen</a>
 
               <!-- Richtlijnen & handover -->
-               <a class="block hover:text-brand" href="#tekst">Tekst & content</a>
+              <a class="block hover:text-brand" href="#tekst">Tekst & content</a>
               <a class="block hover:text-brand" href="#handover-checklist">Handover checklist</a>
             </nav>
           </div>
@@ -77,18 +89,12 @@
             <h2 class="text-2xl font-black">Design tokens</h2>
             <div class="mt-3 text-sm text-dark/80 space-y-4">
               <div class="card p-4">
-                <div class="font-semibold">Kleuren (Tailwind + CSS tokens)</div>
-                <div class="mt-2 grid sm:grid-cols-2 lg:grid-cols-3 gap-2 text-sm">
-                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-brand text-white"><span>brand</span><span>#9E0059</span></div>
-                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-accent text-ink"><span>accent</span><span>#F77F00</span></div>
-                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-teal text-white"><span>teal</span><span>#00A99D</span></div>
-                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-dark text-white"><span>dark</span><span>#333333</span></div>
-                  <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-light text-[#111]"><span>light</span><span>#E6E6E6</span></div>
-                </div>
-                <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto"><code>&lt;!-- Utilities --&gt;
-&lt;button class=&quot;btn btn-brand&quot;&gt;cta&lt;/button&gt;
-&lt;div class=&quot;border border-brand/30 bg-brand/5 text-brand&quot;&gt;accent&lt;/div&gt;
-&lt;div class=&quot;text-dark bg-light&quot;&gt;neutraal&lt;/div&gt;</code></pre>
+                <div class="font-semibold">Tokens (Tailwind utilities + CSS custom properties)</div>
+                <p class="mt-2 text-dark/70">Gebruik uitsluitend tokens in markup en styles. Geen hex-codes in templates.</p>
+                <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto"><code>&lt;!-- Voorbeelden --&gt;
+&lt;button class=&quot;btn btn-brand&quot;&gt;Primaire actie&lt;/button&gt;
+&lt;div class=&quot;border border-brand/30 bg-brand/5 text-brand&quot;&gt;Merk tint&lt;/div&gt;
+&lt;div class=&quot;text-dark bg-light&quot;&gt;Neutraal vlak&lt;/div&gt;</code></pre>
               </div>
               <div class="card p-4">
                 <div class="font-semibold">Radius en container-breedtes</div>
@@ -114,20 +120,20 @@
           
 
           
-          <!-- Kleurenpalet -->
+          <!-- Kleuren -->
           <section id="kleuren" class="sg-section">
-            <h2 class="text-2xl font-black">Kleurenpalet</h2>
-            <p class="mt-1 text-sm text-dark/70">Primair, secundair en grijstinten. Gebruik <code>hover</code> en <code>focus</code> subtiel.</p>
+            <h2 class="text-2xl font-black">Kleuren</h2>
+            <p class="mt-1 text-sm text-dark/70">Tokens voor merk- en neutrale kleuren. Gebruik <code>brand</code> voor primaire acties, <code>accent</code> voor secundaire CTAs, <code>teal</code> voor success/info.</p>
             <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div class="sg-kleur bg-brand text-white"><span>Brand</span><span>#9E0059</span></div>
-              <div class="sg-kleur bg-accent text-ink"><span>Accent</span><span>#F77F00</span></div>
-              <div class="sg-kleur bg-teal text-white"><span>Teal</span><span>#00A99D</span></div>
-              <div class="sg-kleur bg-dark text-white"><span>Donker</span><span>#333333</span></div>
-              <div class="sg-kleur bg-light text-ink"><span>Licht</span><span>#E6E6E6</span></div>
-              <div class="sg-kleur bg-white text-dark"><span>Wit</span><span>#FFFFFF</span></div>
+              <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-brand text-white"><span>brand</span><span class="text-xs">bg-brand text-white</span></div>
+              <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-accent text-ink"><span>accent</span><span class="text-xs">bg-accent text-ink</span></div>
+              <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-teal text-white"><span>teal</span><span class="text-xs">bg-teal text-white</span></div>
+              <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-dark text-white"><span>dark</span><span class="text-xs">bg-dark text-white</span></div>
+              <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-light text-dark"><span>light</span><span class="text-xs">bg-light text-dark</span></div>
+              <div class="h-16 rounded-md border border-light flex items-center justify-between gap-3 px-3 bg-white text-dark"><span>white</span><span class="text-xs">bg-white text-dark</span></div>
             </div>
             <div class="mt-4 text-sm text-dark/70">
-              <p><strong>Focus</strong>: outline in merk-kleur. <strong>Hover</strong>: lichte schaduw of kleur-tint; geen flashy effecten.</p>
+              <p><strong>Focus</strong>: always zichtbaar in merk-kleur. <strong>Hover</strong>: subtiele schaduw of tint; geen flashy effecten.</p>
             </div>
           </section>
 
@@ -184,9 +190,9 @@
             </div>
           </section>
 
-          <!-- Colors & Accents -->
+          <!-- Design guidelines: kleurengebruik -->
           <section id="colors-accents" class="sg-section">
-            <h2 class="text-2xl font-black">Colors & Accents</h2>
+            <h2 class="text-2xl font-black">Richtlijnen voor kleuren</h2>
             <p class="mt-1 text-sm text-dark/70">Gebruik: <span class="font-semibold">brand</span> voor primaire acties, <span class="font-semibold">accent</span> (oranje) voor secundaire CTAs, <span class="font-semibold">teal</span> voor success/info. Gebruik hooguit één subtiele tint per viewport.</p>
             <div class="mt-4 grid sm:grid-cols-3 gap-4">
               <div class="p-4 card">
@@ -228,7 +234,7 @@
             <div class="mt-4 text-sm text-dark/70">Hover: subtiele schaduw of tint. Focus: duidelijke focus-ring.</div>
           </section>
 
-          <!-- Pills (incl. footer context) -->
+          <!-- Pills & badges (incl. footer context) -->
           <section id="pills" class="sg-section">
             <h2 class="text-2xl font-black">Pills</h2>
             <div class="mt-3 flex flex-wrap items-center gap-2">
@@ -464,8 +470,8 @@
                 <div class="mt-2 flex flex-wrap items-center gap-2 text-sm">
                   <button class="btn btn-outline" title="Korte toelichting">Hover voor tooltip</button>
                   <span class="badge">Standaard</span>
-                  <span class="badge badge-success">Succes</span>
-                  <span class="badge badge-warning">Waarschuwing</span>
+                  <span class="badge badge--ok">Ok</span>
+                  <span class="badge">Waarschuwing</span>
                 </div>
               </div>
 
@@ -481,8 +487,18 @@
             </div>
           </section>
 
-          <!-- Grid & layout -->
-          <section id="grid" class="sg-section">
+          <!-- Dialogs (separate anchor for TOC) -->
+          <section id="dialogs" class="sg-section">
+            <h2 class="text-2xl font-black">Dialogs</h2>
+            <p class="mt-1 text-sm text-dark/70">Gebruik één dialog patroon (BaseDialog). Toon focus-trap, ESC om te sluiten en juiste ARIA.</p>
+            <div class="mt-3 flex gap-2">
+              <button class="btn btn-brand" id="demoDialogSm2">Open voorbeeld</button>
+            </div>
+            <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto text-xs"><code>&lt;button class=&quot;btn btn-brand&quot; onclick=&quot;BaseDialog.open({ title: 'Titel', size: 'md', body: '&lt;p&gt;Inhoud&lt;/p&gt;' })&quot;&gt;Open&lt;/button&gt;</code></pre>
+          </section>
+
+          <!-- Layout & grid -->
+          <section id="layout-grid" class="sg-section">
             <h2 class="text-2xl font-black">Grid en layout</h2>
             <p class="mt-1 text-sm text-dark/70">Gebruik <code>container</code>, responsive grids en consistente spacing.</p>
             <div class="mt-4 grid gap-4">
@@ -510,7 +526,103 @@
                   <div class="bg-light/60 rounded-md w-23 h-6" title="spacing 6"></div>
                 </div>
               </div>
+              <div class="card p-4">
+                <div class="text-sm font-semibold">Containers en secties</div>
+                <div class="mt-2 grid gap-2 text-sm">
+                  <div class="p-3 rounded-md border border-light bg-white">.container + .section</div>
+                  <div class="p-3 rounded-md border border-light bg-muted">.section-alt</div>
+                </div>
+              </div>
             </div>
+          </section>
+
+          <!-- Utilities -->
+          <section id="utilities" class="sg-section">
+            <h2 class="text-2xl font-black">Utilities</h2>
+            <p class="mt-1 text-sm text-dark/70">Veelgebruikte patronen met tokens: knoppenrijen, dividers en horizontale scroll.</p>
+            <div class="mt-4 grid md:grid-cols-2 gap-6">
+              <div class="card p-4">
+                <div class="font-semibold">Knoppenrij</div>
+                <div class="mt-2 btn-row">
+                  <button class="btn btn-brand">Actie</button>
+                  <button class="btn btn-outline">Optie</button>
+                  <button class="btn btn-accent">Meer</button>
+                </div>
+              </div>
+              <div class="card p-4">
+                <div class="font-semibold">Divider en h-scroll</div>
+                <div class="mt-2 space-y-2">
+                  <div class="divider"></div>
+                  <div class="h-scroll whitespace-nowrap"><span class="pill">Tag</span> <span class="pill">Tag</span> <span class="pill">Tag</span></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Callouts -->
+          <section id="callouts" class="sg-section">
+            <h2 class="text-2xl font-black">Callouts</h2>
+            <p class="mt-1 text-sm text-dark/70">Subtiele accenten voor tips en informatie.</p>
+            <div class="mt-3 grid md:grid-cols-2 gap-4">
+              <div class="p-4 callout-accent">
+                <div class="font-semibold">Accent callout</div>
+                <p class="text-sm text-dark/80">Gebruik spaarzaam, benadrukt secundaire acties.</p>
+              </div>
+              <div class="p-4 callout-teal">
+                <div class="font-semibold">Teal callout</div>
+                <p class="text-sm text-dark/80">Gebruik voor success/info meldingen.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Tabellen -->
+          <section id="tables" class="sg-section">
+            <h2 class="text-2xl font-black">Tabellen</h2>
+            <p class="mt-1 text-sm text-dark/70">Consistente tabellen met zebra-rows en hover-state.</p>
+            <div class="mt-3">
+              <table class="pricing-table w-full">
+                <thead>
+                  <tr>
+                    <th>Kolom</th>
+                    <th>Kolom</th>
+                    <th>Kolom</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Rij 1</td><td>Data</td><td>Data</td></tr>
+                  <tr><td>Rij 2</td><td>Data</td><td>Data</td></tr>
+                  <tr><td>Rij 3</td><td>Data</td><td>Data</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto text-xs"><code>&lt;table class=&quot;pricing-table w-full&quot;&gt;...&lt;/table&gt;</code></pre>
+          </section>
+
+          <!-- Paginatie -->
+          <section id="pagination" class="sg-section">
+            <h2 class="text-2xl font-black">Paginatie</h2>
+            <nav class="mt-3" aria-label="Paginatie">
+              <ul class="inline-flex items-center gap-1">
+                <li><a class="pill" href="#" aria-label="Vorige">Vorige</a></li>
+                <li><a class="pill is-active" href="#" aria-current="page">1</a></li>
+                <li><a class="pill" href="#">2</a></li>
+                <li><a class="pill" href="#">3</a></li>
+                <li><a class="pill" href="#" aria-label="Volgende">Volgende</a></li>
+              </ul>
+            </nav>
+            <pre class="mt-3 bg-white border border-light rounded-md p-3 overflow-x-auto text-xs"><code>&lt;nav aria-label=&quot;Paginatie&quot;&gt;...&lt;/nav&gt;</code></pre>
+          </section>
+
+          <!-- Blog -->
+          <section id="blog" class="sg-section">
+            <h2 class="text-2xl font-black">Blog</h2>
+            <p class="mt-1 text-sm text-dark/70">Gebruik <code>prose</code> voor rijke content en onze tokens voor accenten.</p>
+            <article class="mt-3 prose">
+              <h2>Voorbeeld artikel</h2>
+              <p>Korte inleiding met een <a href="#">link</a> en een afbeelding:</p>
+              <img src="/assets/images/placeholder-4x3.svg" alt="Voorbeeld" />
+              <blockquote>Subtiele quote met brand-accent links.</blockquote>
+            </article>
           </section>
 
           <!-- Iconen -->
@@ -943,9 +1055,16 @@ function computeAdvice({min,max,current}){ return Math.max(0, max - current); }<
     <script src="/assets/js/index.js" defer></script>
     <script src="/assets/js/baseDialog.js" defer></script>
     <script src="/assets/js/toasts.js" defer></script>
-    <script src="/assets/js/cartDrawer.js" defer></script>
-    <script src="/assets/js/rfq-demo.js" defer></script>
     <script>
+      // Mobile TOC toggle
+      document.getElementById('tocToggle')?.addEventListener('click', function(){
+        var toc = document.getElementById('sg-toc');
+        if(!toc) return;
+        var open = !toc.classList.contains('hidden');
+        this.setAttribute('aria-expanded', String(!open));
+        toc.classList.toggle('hidden');
+      });
+
       // Toast demos
       document.addEventListener('click', function(e){
         var btn = e.target.closest('[data-demo-toast]');
@@ -1008,6 +1127,38 @@ function computeAdvice({min,max,current}){ return Math.max(0, max - current); }<
           }
         });
         document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ var m = document.getElementById('sg-modal'); if(m && !m.classList.contains('hidden')){ m.classList.add('hidden'); if(typeof untrap === 'function'){ untrap(); untrap = null; } } } });
+      })();
+
+      // Dialog anchor demo button (reuses BaseDialog)
+      document.addEventListener('click', function(e){
+        if(e.target && e.target.id === 'demoDialogSm2'){
+          window.BaseDialog && window.BaseDialog.open({ title: 'Voorbeeld dialoog', size: 'md', offsetTop: 40, body: '<div class="text-sm text-dark/80">Dialooginhoud met focus-trap en ESC om te sluiten.</div>' });
+        }
+      });
+
+      // Copy buttons for code blocks
+      (function(){
+        var codes = document.querySelectorAll('pre > code');
+        codes.forEach(function(code){
+          var pre = code.parentElement;
+          if(!pre) return;
+          pre.classList.add('relative');
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'btn btn-outline btn-sm absolute top-2 right-2';
+          btn.textContent = 'Kopiëren';
+          pre.appendChild(btn);
+          btn.addEventListener('click', async function(){
+            try {
+              await navigator.clipboard.writeText(code.textContent || '');
+              btn.textContent = 'Gekopieerd';
+              setTimeout(function(){ btn.textContent = 'Kopiëren'; }, 1200);
+            } catch(_) {
+              btn.textContent = 'Mislukt';
+              setTimeout(function(){ btn.textContent = 'Kopiëren'; }, 1200);
+            }
+          });
+        });
       })();
     </script>
   </body>
